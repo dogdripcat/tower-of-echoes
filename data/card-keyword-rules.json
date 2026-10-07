@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "cardTypes": ["공격", "스킬", "강화", "각성", "초월"],
+  "upgradeKeywords": {
+    "위력": {"meaning": "카드의 기본 피해·방어·회복·자원·상태 수치 증가", "changesType": false},
+    "경량": {"meaning": "기본 행동력 비용 감소", "changesType": false},
+    "연계": {"meaning": "다른 카드·상태·자원·유형과 상호작용 추가 또는 강화", "changesType": false},
+    "변환": {"meaning": "공격·스킬·강화 간 실제 유형 및 기능 변경", "changesType": true,
+      "valid": {"공격": ["스킬", "강화"], "스킬": ["공격", "강화"], "강화": ["공격", "스킬"]}}
+  },
+  "propertyKeywords": {
+    "소멸": {"timing": "afterResolve", "moveTo": "exhaust", "meaning": "이번 전투 동안 순환에서 제외"},
+    "보존": {"timing": "endTurnUnused", "moveTo": "hand", "meaning": "손에 남아 있으면 버리지 않음"},
+    "개전": {"timing": "drawPileShuffle", "moveTo": "drawPileTop", "order": "개전 카드의 덱 등록 순서가 빠를수록 위쪽", "meaning": "뽑을 카드 더미가 섞일 때마다 맨 위로"},
+    "유일": {"timing": "deckAdd", "maxCopiesPerExactName": 1},
+    "증발": {"timing": "endTurnUnused", "moveTo": "exhaust", "meaning": "손에 남아 있으면 소멸"},
+    "신속": {"timing": "afterSuccessfulPlay", "costReduction": 1, "floor": 0, "scope": "cardInstanceDuringCurrentBattle", "meaning": "해당 실물 카드의 행동력 비용이 사용 시마다 1 감소"},
+    "회수": {"timing": "endTurn", "precondition": "theSameCardIsStillInDiscard", "moveTo": "hand", "meaning": "사용 후 버린 카드 더미에 들어간 카드가 턴 종료에도 그 자리에 있으면 손으로", "from": ["discard"]},
+    "안식": {"timing": "postResolveIfWouldDiscard", "moveTo": "drawPile", "meaning": "사용 후 버린 카드 더미에 들어갈 상황을 뽑을 카드 더미로 치환", "replacesOnly": "discard", "fromExhaust": false},
+    "연인": {"timing": "naturalDrawFromDrawPile", "condition": "pairedCardIsCurrentlyInDrawPile", "movePairedCardTo": "hand", "effectDrawTriggersAnotherLovers": false, "meaning": "자연스럽게 뽑은 연인 카드의 지정된 짝 한 장을 함께 뽑음"}
+  },
+  "timingOrder": ["play", "resolveEffect", "postUseMovement", "endTurn"],
+  "conflicts": [{"keywords": ["안식", "회수"], "reason": "서로 다른 사용 후 이동"}, {"keywords": ["안식", "소멸"], "reason": "소멸은 안식이 대체할 수 없음"}],
+  "ordinaryPropertyLimit": 2,
+  "notes": ["연인으로 추가로 뽑힌 카드의 연인은 연쇄 발동하지 않음", "회수는 버린 카드 더미 외 다른 더미에서 카드를 가져오지 않음", "안식은 소멸한 카드를 복구하지 않음"]
+}

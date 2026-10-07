@@ -1,0 +1,95 @@
+/* v1.2.0 pose-based combat motion. Mechanical resolution occurs at motion impact callbacks. */
+body.combat-motion-locked #hand,
+body.combat-motion-locked #endTurn,
+body.combat-motion-locked .enemy-party{pointer-events:none}
+.hero-battle-unit,.enemy-slot{--motion-accent:#fff;transform-origin:50% 92%;will-change:transform,filter}
+.hero-battle-unit.motion-active .hero-combat-art,
+.enemy-slot.motion-active .enemy-art-wrap{will-change:transform,filter}
+
+.hero-battle-unit.motion-attack-quick{animation:toePlayerQuick var(--motion-duration,.68s) cubic-bezier(.2,.72,.2,1)}
+.hero-battle-unit.motion-attack-heavy,.hero-battle-unit.motion-attack-aoe{animation:toePlayerHeavy var(--motion-duration,.92s) cubic-bezier(.2,.66,.18,1)}
+.hero-battle-unit.motion-attack-ranged{animation:toePlayerRanged var(--motion-duration,.72s) ease-out}
+.hero-battle-unit.motion-attack-magic,.hero-battle-unit.motion-skill-cast{animation:toePlayerCast var(--motion-duration,.82s) ease-in-out}
+.hero-battle-unit.motion-attack-summon{animation:toePlayerCommand var(--motion-duration,.86s) ease-in-out}
+.hero-battle-unit.motion-defend,.hero-battle-unit.motion-skill-buff{animation:toePlayerDefend var(--motion-duration,.70s) ease-out}
+.hero-battle-unit.motion-dodge{animation:toeDodge var(--motion-duration,.58s) ease-out}
+.hero-battle-unit.motion-counter{animation:toeCounter var(--motion-duration,.65s) ease-out}
+.hero-battle-unit.motion-skill-utility,.hero-battle-unit.motion-skill-debuff{animation:toePlayerSkill var(--motion-duration,.72s) ease-in-out}
+
+.enemy-slot.motion-attack-quick,.enemy-slot.motion-attack-magic{animation:toeEnemyAttack var(--motion-duration,.68s) cubic-bezier(.2,.7,.15,1)}
+.enemy-slot.motion-attack-heavy,.enemy-slot.motion-attack-aoe{animation:toeEnemyHeavy var(--motion-duration,.92s) cubic-bezier(.2,.64,.15,1)}
+.enemy-slot.motion-attack-summon,.enemy-slot.motion-skill-cast,.enemy-slot.motion-phase-skill{animation:toeEnemySpecial var(--motion-duration,.92s) ease-in-out}
+.enemy-slot.motion-defend,.enemy-slot.motion-counter,.enemy-slot.motion-skill-buff{animation:toeEnemyDefend var(--motion-duration,.72s) ease-out}
+.enemy-slot.motion-skill-debuff,.enemy-slot.motion-skill-utility{animation:toeEnemySkill var(--motion-duration,.72s) ease-in-out}
+
+.hero-battle-unit.motion-hit,.enemy-slot.motion-hit{animation:toeHit .38s ease-out!important;filter:brightness(1.5) drop-shadow(0 0 12px var(--motion-accent))}
+.hero-battle-unit.motion-heavy-hit,.enemy-slot.motion-heavy-hit{animation:toeHeavyHit .55s ease-out!important;filter:brightness(1.65) drop-shadow(0 0 18px var(--motion-accent))}
+.enemy-slot.motion-death{animation:toeDeath .55s ease-in forwards!important;pointer-events:none}
+.enemy-slot.motion-block-hit{animation:toeBlockHit .34s ease-out!important;filter:drop-shadow(0 0 13px #83d9ff)}
+.enemy-slot.motion-cue-counter .enemy-art-wrap::after{content:"↺";position:absolute;right:8%;top:13%;z-index:3;color:#ffd27a;font-size:1.45rem;text-shadow:0 0 10px #ff9d2e}
+.enemy-slot.motion-cue-armor .enemy-art-wrap::before{content:"";position:absolute;inset:8% 5% 5%;z-index:2;border:2px solid #a9d5e8aa;border-radius:45%;box-shadow:inset 0 0 18px #70b8d855,0 0 13px #70b8d855;pointer-events:none}
+.enemy-slot.motion-cue-marked{filter:drop-shadow(0 0 8px #ffcf4a)}
+.arena.motion-heavy-impact{animation:toeArenaPunch .22s ease-out}
+
+.motion-projectile{position:absolute;z-index:7;left:28%;top:43%;width:clamp(44px,6vw,90px);height:8px;border-radius:999px;background:linear-gradient(90deg,transparent,#fff 55%,var(--motion-accent));box-shadow:0 0 12px #fff,0 0 28px var(--motion-accent);transform-origin:left center;animation:toeProjectile var(--projectile-duration,.36s) ease-in forwards;pointer-events:none}
+.motion-projectile.magic{height:28px;width:28px;border-radius:50%;background:#fff;box-shadow:0 0 18px 7px #fff,0 0 42px 18px var(--motion-accent)}
+.motion-projectile.summon{height:90px;width:90px;border:2px solid var(--motion-accent);border-radius:50%;background:transparent;box-shadow:0 0 22px var(--motion-accent),inset 0 0 18px var(--motion-accent)}
+.motion-projectile.enemy{left:72%;animation-name:toeEnemyProjectile}
+.motion-impact-marker{position:absolute;z-index:8;width:120px;height:120px;border-radius:50%;border:3px solid #fff;background:radial-gradient(circle,#fff 0 7%,var(--motion-accent) 10%,transparent 62%);box-shadow:0 0 34px var(--motion-accent);transform:translate(-50%,-50%);animation:toeImpact .42s ease-out forwards;pointer-events:none}
+.motion-impact-marker.block{border-color:#8be0ff;background:radial-gradient(circle,#fff,transparent 60%);box-shadow:0 0 30px #53bfff}
+.motion-impact-marker.status{border-style:dashed;filter:hue-rotate(35deg)}
+
+.combat-cinematic{position:absolute;inset:0;z-index:12;overflow:hidden;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at 50% 48%,color-mix(in srgb,var(--cinematic-color) 26%,transparent),transparent 52%)}
+.combat-cinematic::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--cinematic-color) 16%,transparent),transparent);animation:toeCinematicSweep var(--cinematic-duration,1s) ease-out}
+.combat-cinematic-keyart{position:absolute;left:50%;bottom:-5%;height:108%;max-width:72%;object-fit:contain;filter:drop-shadow(0 0 18px var(--cinematic-color)) drop-shadow(0 16px 28px #000);animation:toeAwakeningKey var(--cinematic-duration,1s) cubic-bezier(.18,.7,.18,1) forwards}
+.combat-cinematic-emblem{position:absolute;width:min(38vw,290px);height:min(38vw,290px);object-fit:contain;opacity:.24;filter:drop-shadow(0 0 18px var(--cinematic-color));animation:toeEmblemSpin var(--cinematic-duration,1s) ease-out}
+.combat-cinematic-title{position:absolute;left:50%;top:48%;padding:7px 28px;transform:translate(-50%,-50%);white-space:nowrap;color:#fff;font:900 clamp(1.5rem,4vw,3.5rem)/1.15 Georgia,"Noto Serif KR",serif;letter-spacing:.16em;text-shadow:0 2px 4px #000,0 0 10px #fff,0 0 28px var(--cinematic-color);animation:toeCinematicTitle var(--cinematic-duration,1s) ease-out}
+.combat-cinematic.transcendence{background:radial-gradient(circle at 50% 45%,#fff8 0, color-mix(in srgb,var(--cinematic-color) 42%,transparent) 13%,transparent 58%);backdrop-filter:blur(.4px)}
+.combat-cinematic.transcendence::after{content:"";position:absolute;inset:-8%;background:repeating-linear-gradient(96deg,transparent 0 18px,#fff2 20px 21px);filter:url(#none);animation:toeMirage .32s ease-in-out infinite alternate;mix-blend-mode:screen}
+.combat-cinematic.transcendence .combat-cinematic-keyart{filter:brightness(1.2) drop-shadow(0 0 12px #fff) drop-shadow(0 0 30px var(--cinematic-color));animation-name:toeTranscendenceKey}
+.combat-cinematic.transcendence .combat-cinematic-title{text-shadow:0 0 8px #fff,0 0 22px #fff,0 0 42px var(--cinematic-color)}
+.motion-state-label{position:absolute;z-index:10;top:18%;left:50%;transform:translateX(-50%);padding:5px 14px;border:1px solid color-mix(in srgb,var(--motion-accent) 70%,#fff);background:#090711c9;color:#fff;font-weight:800;letter-spacing:.08em;animation:toeStateLabel .65s ease-out forwards;pointer-events:none}
+.motion-application-burst{position:absolute;z-index:11;inset:8% 12%;border:3px solid var(--motion-accent);box-shadow:inset 0 0 60px color-mix(in srgb,var(--motion-accent) 50%,transparent),0 0 28px var(--motion-accent);animation:toeApplication .62s ease-out forwards;pointer-events:none}
+
+@keyframes toePlayerQuick{0%,100%{transform:translateX(0)}25%{transform:translateX(2%) rotate(-1deg)}48%{transform:translateX(18%) rotate(1deg)}58%{transform:translateX(16%)} }
+@keyframes toePlayerHeavy{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-2%) rotate(-2deg)}52%{transform:translateX(15%) rotate(2deg);filter:brightness(1.18)}63%{transform:translateX(13%) rotate(1deg)}}
+@keyframes toePlayerRanged{0%,100%{transform:translateX(0)}38%{transform:translateX(2%)}52%{transform:translateX(-1%);filter:brightness(1.18)}60%{transform:translateX(-2%)}}
+@keyframes toePlayerCast{0%,100%{transform:translateY(0)}38%{transform:translateY(-2%);filter:drop-shadow(0 0 8px var(--motion-accent))}58%{filter:brightness(1.2) drop-shadow(0 0 20px var(--motion-accent))}}
+@keyframes toePlayerCommand{0%,100%{transform:translateX(0)}42%{transform:translateX(1%);filter:drop-shadow(0 0 12px var(--motion-accent))}58%{transform:translateX(-1%)}}
+@keyframes toePlayerDefend{0%,100%{transform:translateX(0)}38%,65%{transform:translateX(4%) scale(1.015);filter:drop-shadow(0 0 15px var(--motion-accent))}}
+@keyframes toePlayerSkill{0%,100%{transform:translateY(0)}45%{transform:translateY(-2%);filter:drop-shadow(0 0 15px var(--motion-accent))}}
+@keyframes toeDodge{0%,100%{transform:translateX(0)}38%{transform:translateX(-8%);opacity:.72}58%{transform:translateX(2%)}}
+@keyframes toeCounter{0%,100%{transform:translateX(0)}30%{transform:translateX(-2%)}50%{transform:translateX(13%) rotate(1deg)}}
+@keyframes toeEnemyAttack{0%,100%{transform:translateX(0)}28%{transform:translateX(2%)}50%{transform:translateX(-14%)}62%{transform:translateX(-11%)}}
+@keyframes toeEnemyHeavy{0%,100%{transform:translateX(0)}24%{transform:translateX(4%) rotate(1deg)}54%{transform:translateX(-15%) rotate(-2deg);filter:brightness(1.2)}68%{transform:translateX(-12%)}}
+@keyframes toeEnemySpecial{0%,100%{transform:translateY(0)}38%{transform:translateY(-2%);filter:drop-shadow(0 0 14px var(--motion-accent))}60%{filter:brightness(1.2) drop-shadow(0 0 25px var(--motion-accent))}}
+@keyframes toeEnemyDefend{0%,100%{transform:translateX(0)}38%,64%{transform:translateX(-3%) scale(1.018);filter:drop-shadow(0 0 15px var(--motion-accent))}}
+@keyframes toeEnemySkill{0%,100%{transform:translateY(0)}48%{transform:translateY(-2%);filter:drop-shadow(0 0 19px var(--motion-accent))}}
+@keyframes toeHit{0%,100%{transform:translateX(0)}28%{transform:translateX(4%)}52%{transform:translateX(-2%)}}
+@keyframes toeHeavyHit{0%,100%{transform:translateX(0)}22%{transform:translateX(7%) rotate(1deg)}45%{transform:translateX(-3%)}67%{transform:translateX(2%)}}
+@keyframes toeBlockHit{0%,100%{transform:scale(1)}35%{transform:scale(.97)}58%{transform:scale(1.015)}}
+@keyframes toeDeath{0%{opacity:1;filter:brightness(1.6)}45%{opacity:.8;transform:translateY(2%) scale(.98)}100%{opacity:0;transform:translateY(12%) scale(.92);filter:grayscale(1) blur(2px)}}
+@keyframes toeArenaPunch{35%{transform:translateX(-2px)}65%{transform:translateX(2px)}}
+@keyframes toeProjectile{to{transform:translateX(44vw) scaleX(1.25);opacity:.2}}
+@keyframes toeEnemyProjectile{to{transform:translateX(-44vw) scaleX(1.25);opacity:.2}}
+@keyframes toeImpact{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}32%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.7)}}
+@keyframes toeAwakeningKey{0%{opacity:0;transform:translateX(-50%) scale(.82)}35%{opacity:1;transform:translateX(-50%) scale(1.04)}72%{opacity:.86;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(.96)}}
+@keyframes toeTranscendenceKey{0%{opacity:0;transform:translateX(-53%) scale(.8)}28%{opacity:1;transform:translateX(-50%) scale(1.08)}70%{opacity:1;transform:translateX(-47%) scale(1.02)}100%{opacity:0;transform:translateX(-50%) scale(1.14);filter:brightness(1.6) blur(1px)}}
+@keyframes toeEmblemSpin{0%{opacity:0;transform:scale(.45) rotate(-18deg)}40%{opacity:.38;transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(1.2) rotate(12deg)}}
+@keyframes toeCinematicTitle{0%,20%{opacity:0;transform:translate(-50%,20%) scale(.8)}43%,74%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-100%) scale(1.04)}}
+@keyframes toeCinematicSweep{0%{opacity:0;transform:translateX(-50%)}45%{opacity:1}100%{opacity:0;transform:translateX(50%)}}
+@keyframes toeMirage{to{transform:translate(3px,-2px) skewX(.8deg);opacity:.45}}
+@keyframes toeStateLabel{0%{opacity:0;transform:translate(-50%,8px)}25%,70%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-12px)}}
+@keyframes toeApplication{0%{opacity:0;transform:scale(.82)}35%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.08)}}
+
+@media(max-width:700px){
+  .combat-cinematic-keyart{height:92%;max-width:88%;bottom:0}
+  .combat-cinematic-emblem{width:46vw;height:46vw}
+  .combat-cinematic-title{top:44%;max-width:92%;font-size:clamp(1.25rem,7vw,2.2rem);letter-spacing:.09em;text-align:center}
+  .motion-projectile{top:38%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-battle-unit.motion-active,.enemy-slot.motion-active,.combat-cinematic-keyart,.combat-cinematic-emblem,.combat-cinematic-title{animation-duration:.18s!important}
+  .motion-projectile{animation-duration:.12s!important}
+  .arena.motion-heavy-impact{animation:none!important}
+}

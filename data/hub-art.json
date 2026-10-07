@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "HUB-CONFESSOR-01",
+      "name": "고해사",
+      "role": "의식형 성녀 · 축복과 저주, 속죄와 고해",
+      "description": "루미에라의 친언니이자 교단의 의식 담당자. 자비와 심판을 함께 다루는 성녀로, 고해를 듣고 축복과 저주의 의식을 집행한다.",
+      "image": "assets/confessor-v3.png",
+      "group": "전문가 NPC"
+    },
+    {
+      "id": "HUB-GUILD-HALL-01",
+      "name": "길드 회관",
+      "role": "의뢰 접수 · 계약 관리 · 보상 정산",
+      "description": "중앙 접수대와 의뢰 게시판, 계약 장부와 보상 진열대를 갖춘 모험가 길드의 회관.",
+      "image": "assets/guild-hall-v2.png",
+      "group": "거점 장소"
+    },
+    {
+      "id": "HUB-GUILD-RECEPTIONIST-01",
+      "name": "길드 접수원",
+      "role": "의뢰 등록 · 안내 · 보상 정산",
+      "description": "실눈의 온화한 미소와 빈틈없는 업무 솜씨로 모험가의 계약과 보상을 처리하는 길드의 안내자.",
+      "image": "assets/guild-receptionist-v4.png",
+      "group": "전문가 NPC"
+    }
+  ]
+}

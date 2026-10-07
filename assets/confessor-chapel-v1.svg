@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="촛불과 스테인드글라스가 있는 고딕 예배당 내부">
+  <defs>
+    <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#171526"/><stop offset="1" stop-color="#090811"/></linearGradient>
+    <radialGradient id="glass"><stop stop-color="#fff0b0"/><stop offset=".35" stop-color="#9d315b"/><stop offset="1" stop-color="#241633"/></radialGradient>
+    <radialGradient id="candle"><stop stop-color="#ffd98a" stop-opacity=".8"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+    <pattern id="stone" width="120" height="70" patternUnits="userSpaceOnUse"><path d="M0 0h120v70H0z" fill="#171521"/><path d="M0 0h120M0 70h120M60 0v35M0 35h120M20 35v35M100 35v35" stroke="#2f2938" stroke-width="3"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#wall)"/><rect width="1600" height="690" fill="url(#stone)" opacity=".78"/>
+  <path d="M0 690h1600v210H0z" fill="#0e0c14"/><path d="M0 690h1600M300 690l-80 210M650 690l-20 210M950 690l20 210M1300 690l80 210" stroke="#443849" stroke-width="5"/>
+  <g fill="#0b0910" stroke="#66526b" stroke-width="9"><path d="M110 690V245q0-145 125-145t125 145v445z"/><path d="M1240 690V245q0-145 125-145t125 145v445z"/><path d="M590 570V190q0-190 210-190t210 190v380z"/></g>
+  <g fill="url(#glass)" stroke="#c59d72" stroke-width="8"><path d="M150 570V255q0-95 85-95t85 95v315z"/><path d="M1280 570V255q0-95 85-95t85 95v315z"/><path d="M650 485V205q0-120 150-120t150 120v280z"/></g>
+  <g stroke="#ecd18b" stroke-width="8" opacity=".72"><path d="M235 170v390M160 360h150M1365 170v390M1290 360h150M800 95v380M675 300h250"/></g>
+  <path d="M570 710h460l-55-150H625z" fill="#2a2028" stroke="#a4825e" stroke-width="8"/><path d="M730 560h140v-105H730z" fill="#cfb16f"/><path d="M760 530h80v-155h-80z" fill="#ead799"/>
+  <g fill="#5a3d2d"><path d="M40 760h510v45H40zM1050 760h510v45h-510z"/><path d="M70 805h28v95H70zM490 805h28v95h-28zM1080 805h28v95h-28zM1500 805h28v95h-28z"/></g>
+  <g><circle cx="480" cy="600" r="110" fill="url(#candle)"/><circle cx="1120" cy="600" r="110" fill="url(#candle)"/><g fill="#f5d48a"><path d="M454 650h12v-85h-12zM493 650h12v-105h-12zM1095 650h12v-105h-12zM1134 650h12v-85h-12z"/></g><g fill="#fff3bb"><ellipse cx="460" cy="555" rx="8" ry="18"/><ellipse cx="499" cy="535" rx="8" ry="18"/><ellipse cx="1101" cy="535" rx="8" ry="18"/><ellipse cx="1140" cy="555" rx="8" ry="18"/></g></g>
+  <path d="M0 0h1600v900H0z" fill="none" stroke="#05040a" stroke-width="35"/>
+</svg>

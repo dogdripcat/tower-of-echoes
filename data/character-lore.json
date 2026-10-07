@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "characters": [
+    {
+      "id": "NPC-CONFESSOR-01",
+      "name": "고해사",
+      "kind": "NPC",
+      "role": "의식형 성녀 · 고해사",
+      "relationship": {
+        "type": "친언니",
+        "character": "루미에라",
+        "label": "루미에라의 친언니"
+      },
+      "heightCm": 168,
+      "bodySettings": {
+        "bust": 82,
+        "hipsGlutes": 60,
+        "thighs": 58,
+        "muscle": 20
+      },
+      "bodyDirection": "루미에라보다 키가 작고 흉부 볼륨이 큰 성숙한 성녀형 체형. 우아하고 중후한 상체 중심 실루엣을 사용하며 전사형 근육질로 표현하지 않는다. 하체는 과도하게 강조하지 않고 균형 있게 유지한다.",
+      "costume": {
+        "identity": "교단의 정식 성녀 예복",
+        "palette": ["아이보리", "백색", "금색", "와인색 또는 붉은 포인트"],
+        "elements": ["성녀 드레스", "성직자 헤드드레스", "금색 자수", "성문양 장식"],
+        "direction": "과도한 갑옷보다 신성하고 고귀한 분위기를 우선한다."
+      },
+      "roleContrast": "루미에라는 수호와 신앙의 기사형 성직자이며, 고해사는 축복과 저주, 속죄와 고해를 다루는 의식형 성녀이다.",
+      "description": "루미에라의 친언니인 고해사는 교단의 의식을 맡아 축복과 저주, 속죄와 고해를 다룬다. 자비만을 베푸는 성녀가 아니라 죄를 듣고 심판을 집행하는 고귀한 의식자다.",
+      "art": "assets/confessor-v3.png"
+    }
+  ]
+}

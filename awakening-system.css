@@ -1,0 +1,15 @@
+.awakening-choice-overlay{position:fixed;inset:0;z-index:10050;background:linear-gradient(#070810a8,#070810c9);backdrop-filter:blur(2px);display:grid;place-items:center;padding:12px}
+.awakening-choice-dialog{width:min(920px,96vw);max-height:94dvh;overflow:auto;padding:22px;background:#16141f;border:1px solid #8e779f;box-shadow:0 20px 80px #000;color:#f9f2e7}
+.awakening-choice-dialog h2{margin:0 0 8px}.awakening-choice-progress{color:#d7c18c}
+.awakening-choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px;max-height:60dvh;overflow:auto;margin:12px 0}
+.awakening-choice-card{min-height:100px;padding:10px;text-align:left;color:#f7f1e9;background:#242130;border:1px solid #857c99;display:flex;flex-direction:column;gap:4px}
+.awakening-choice-card small{color:#d7c18c}.awakening-choice-card span{font-size:.82rem}.awakening-choice-card.selected{border:2px solid #e9dfae;background:#3b3448;box-shadow:0 0 16px #e9dfae66}
+.awakening-choice-confirm:disabled{opacity:.45}
+#hand .card.awakened-red{--awakening-light:#ff3b53;box-shadow:0 0 10px 2px var(--awakening-light),inset 0 0 16px #ff3b5355!important}
+#hand .card.awakened-green{--awakening-light:#55f09b;box-shadow:0 0 10px 2px var(--awakening-light),inset 0 0 16px #55f09b55!important}
+#hand .card.awakened-blue{--awakening-light:#60b9ff;box-shadow:0 0 10px 2px var(--awakening-light),inset 0 0 16px #60b9ff55!important}
+#hand .card.transcended{position:relative;box-shadow:0 0 9px 3px var(--awakening-light),0 0 22px 9px #fff9,inset 0 0 15px #fff8!important;animation:awakening-mirage 2.1s ease-in-out infinite}
+#hand .card.transcended::after{content:"";position:absolute;inset:-5px;border:2px solid #fffd;filter:blur(3px);pointer-events:none;animation:awakening-haze 1.7s ease-in-out infinite}
+@keyframes awakening-mirage{50%{filter:brightness(1.24) blur(.4px)}}
+@keyframes awakening-haze{50%{transform:translate(2px,-2px) skewX(.6deg);opacity:.45}}
+@media(max-width:700px){.awakening-choice-dialog{padding:12px}.awakening-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

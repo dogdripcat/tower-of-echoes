@@ -1,0 +1,1452 @@
+{
+  "schemaVersion": 1,
+  "statusIds": [
+    "MARK",
+    "BLEEDING",
+    "BIND",
+    "POISON",
+    "PAIN",
+    "SHOCK",
+    "REGRET",
+    "VULNERABLE",
+    "BURN",
+    "FROSTBITE",
+    "CONFUSION",
+    "OBLIVION"
+  ],
+  "actionTypes": [
+    "attack",
+    "block",
+    "counter",
+    "status",
+    "buff",
+    "summon",
+    "heal",
+    "attackHeal",
+    "blockHeal",
+    "attackBlock",
+    "telegraph",
+    "recover",
+    "domain",
+    "blockBuff",
+    "lawErosion"
+  ],
+  "monsters": [
+    {
+      "id": "MON-F1-01",
+      "name": "굶주린 들개",
+      "floor": 1,
+      "rank": "NORMAL",
+      "hp": 24,
+      "role": "ATTACK",
+      "actions": [
+        {
+          "id": "bite",
+          "name": "물어뜯기",
+          "type": "attack",
+          "damage": 5,
+          "priority": 20
+        },
+        {
+          "id": "sniff",
+          "name": "냄새 맡기",
+          "type": "status",
+          "status": "MARK",
+          "value": 1,
+          "condition": "NO_MARK",
+          "priority": 40
+        },
+        {
+          "id": "chase",
+          "name": "추격",
+          "type": "attack",
+          "damage": 8,
+          "status": "BLEEDING",
+          "statusValue": 1,
+          "condition": "MARKED",
+          "cannotRepeat": true,
+          "priority": 60
+        }
+      ],
+      "ai": {
+        "rules": [
+          "NO_MARK→냄새 맡기 우선",
+          "추격 requires MARKED",
+          "추격 cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F1-02",
+      "name": "녹슨 병사",
+      "floor": 1,
+      "rank": "NORMAL",
+      "hp": 40,
+      "role": "DEFENSE",
+      "startArmor": 0,
+      "actions": [
+        {
+          "id": "rust-slash",
+          "name": "녹슨 검격",
+          "type": "attack",
+          "damage": 6,
+          "priority": 35
+        },
+        {
+          "id": "raise-shield",
+          "name": "방패 세우기",
+          "type": "block",
+          "block": 7,
+          "priority": 30,
+          "cannotRepeat": true
+        },
+        {
+          "id": "counter-stance",
+          "name": "반격 태세",
+          "type": "counter",
+          "counter": 3,
+          "priority": 25,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Counter cannot repeat",
+          "avoid repeated defense-only turns"
+        ]
+      }
+    },
+    {
+      "id": "MON-F1-03",
+      "name": "성벽 박쥐",
+      "floor": 1,
+      "rank": "NORMAL",
+      "hp": 20,
+      "role": "SUPPORT",
+      "actions": [
+        {
+          "id": "claw",
+          "name": "할퀴기",
+          "type": "attack",
+          "damage": 4,
+          "priority": 20
+        },
+        {
+          "id": "ominous-cry",
+          "name": "불길한 비명",
+          "type": "buff",
+          "attackBonus": 2,
+          "priority": 35,
+          "cannotRepeat": true
+        },
+        {
+          "id": "rally",
+          "name": "집결",
+          "type": "summon",
+          "summonName": "성벽 박쥐",
+          "maxUses": 1,
+          "requiresFreeSlot": true,
+          "cannotRepeat": true,
+          "priority": 50
+        }
+      ],
+      "ai": {
+        "rules": [
+          "집결 max 1 use",
+          "summoned bat cannot use 집결",
+          "집결 requires free slot"
+        ]
+      }
+    },
+    {
+      "id": "ELT-F1-01",
+      "name": "추방된 기사",
+      "floor": 1,
+      "rank": "ELITE",
+      "hp": 96,
+      "role": "DEFENSE/ATTACK",
+      "startArmor": 12,
+      "actions": [
+        {
+          "id": "knight-slash",
+          "name": "기사의 참격",
+          "type": "attack",
+          "damage": 9,
+          "priority": 35
+        },
+        {
+          "id": "iron-wall",
+          "name": "철벽",
+          "type": "block",
+          "block": 12,
+          "priority": 25,
+          "cannotRepeat": true
+        },
+        {
+          "id": "blood-counter",
+          "name": "피의 반격",
+          "type": "counter",
+          "counter": 5,
+          "priority": 30,
+          "cannotRepeat": true
+        },
+        {
+          "id": "execution-prepare",
+          "name": "처형 준비",
+          "type": "telegraph",
+          "next": "execution",
+          "priority": 55,
+          "cooldown": 3
+        },
+        {
+          "id": "execution",
+          "name": "처형검",
+          "type": "attack",
+          "damage": 16,
+          "requiresTelegraph": "execution-prepare",
+          "priority": 80,
+          "cooldown": 3
+        }
+      ],
+      "ai": {
+        "rules": [
+          "처형검 requires 처형 준비",
+          "Counter cannot repeat",
+          "strong attack cooldown 3"
+        ]
+      }
+    },
+    {
+      "id": "MON-F2-01",
+      "name": "피꽃 사냥개",
+      "floor": 2,
+      "rank": "NORMAL",
+      "hp": 40,
+      "role": "ATTACK",
+      "actions": [
+        {
+          "id": "bite",
+          "name": "물기",
+          "type": "attack",
+          "damage": 7,
+          "priority": 25
+        },
+        {
+          "id": "blood-charge",
+          "name": "피가시 돌진",
+          "type": "attack",
+          "damage": 9,
+          "status": "BLEEDING",
+          "statusValue": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "hunt-mark",
+          "name": "사냥 표식",
+          "type": "status",
+          "status": "MARK",
+          "value": 1,
+          "priority": 40,
+          "condition": "NO_MARK"
+        },
+        {
+          "id": "chase-charge",
+          "name": "추격 돌진",
+          "type": "attack",
+          "damage": 10,
+          "priority": 70,
+          "condition": "MARKED",
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "추격 돌진 requires MARKED",
+          "Bleeding attack cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F2-02",
+      "name": "가시 덩굴",
+      "floor": 2,
+      "rank": "NORMAL",
+      "hp": 56,
+      "role": "CONTROL",
+      "actions": [
+        {
+          "id": "vine-whip",
+          "name": "덩굴 채찍",
+          "type": "attack",
+          "damage": 7,
+          "priority": 25
+        },
+        {
+          "id": "bind",
+          "name": "휘감기",
+          "type": "status",
+          "status": "BIND",
+          "value": 1,
+          "priority": 50,
+          "condition": "NO_BIND",
+          "cannotRepeat": true
+        },
+        {
+          "id": "constrict",
+          "name": "조이기",
+          "type": "attack",
+          "damage": 11,
+          "priority": 65,
+          "condition": "BOUND"
+        }
+      ],
+      "ai": {
+        "rules": [
+          "조이기 requires active BIND",
+          "no consecutive Bind"
+        ]
+      }
+    },
+    {
+      "id": "MON-F2-03",
+      "name": "독화분 정령",
+      "floor": 2,
+      "rank": "NORMAL",
+      "hp": 48,
+      "role": "STATUS",
+      "actions": [
+        {
+          "id": "poison-strike",
+          "name": "독화 타격",
+          "type": "attack",
+          "damage": 6,
+          "priority": 25
+        },
+        {
+          "id": "spore",
+          "name": "독성 포자",
+          "type": "status",
+          "status": "POISON",
+          "value": 4,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "pain-pollen",
+          "name": "고통의 꽃가루",
+          "type": "status",
+          "status": "PAIN",
+          "value": 1,
+          "priority": 40,
+          "cannotRepeat": true
+        },
+        {
+          "id": "life-spore",
+          "name": "생명 포자",
+          "type": "heal",
+          "heal": 5,
+          "priority": 60,
+          "condition": "HP_BELOW_50",
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Poison/Pain generation cannot repeat same action",
+          "heal priority rises below 50% HP"
+        ]
+      }
+    },
+    {
+      "id": "ELT-F2-01",
+      "name": "포식화 알라우네",
+      "floor": 2,
+      "rank": "ELITE",
+      "hp": 132,
+      "role": "CONTROL/SUSTAIN",
+      "actions": [
+        {
+          "id": "thorn-cut",
+          "name": "가시 베기",
+          "type": "attack",
+          "damage": 11,
+          "priority": 25
+        },
+        {
+          "id": "devour-vine",
+          "name": "포식 덩굴",
+          "type": "status",
+          "status": "BIND",
+          "value": 1,
+          "priority": 45,
+          "condition": "NO_BIND",
+          "cannotRepeat": true
+        },
+        {
+          "id": "life-devour",
+          "name": "생명 포식",
+          "type": "attackHeal",
+          "damage": 8,
+          "heal": 8,
+          "priority": 50,
+          "cannotRepeat": true
+        },
+        {
+          "id": "devour-prepare",
+          "name": "포식 준비",
+          "type": "telegraph",
+          "next": "swallow",
+          "priority": 60
+        },
+        {
+          "id": "swallow",
+          "name": "삼켜버리기",
+          "type": "attack",
+          "damage": 16,
+          "requiresTelegraph": "devour-prepare",
+          "priority": 80,
+          "cooldown": 3
+        }
+      ],
+      "ai": {
+        "rules": [
+          "삼켜버리기 requires 포식 준비",
+          "Bind/heal cannot repeat",
+          "major attack cooldown 3"
+        ]
+      }
+    },
+    {
+      "id": "BOS-F2-01",
+      "name": "혈가시의 장미여왕 로제벨",
+      "floor": 2,
+      "rank": "BOSS",
+      "hp": 270,
+      "role": "BOSS",
+      "domainId": "BLOOD_GARDEN",
+      "actions": [
+        {
+          "id": "thorn-whip",
+          "name": "가시채찍",
+          "type": "attack",
+          "damage": 9,
+          "priority": 25
+        },
+        {
+          "id": "red-thorn",
+          "name": "붉은 가시",
+          "type": "attack",
+          "damage": 6,
+          "status": "BLEEDING",
+          "statusValue": 1,
+          "priority": 40
+        },
+        {
+          "id": "vine-bind",
+          "name": "덩굴 구속",
+          "type": "status",
+          "status": "BIND",
+          "value": 1,
+          "priority": 45,
+          "condition": "NO_BIND",
+          "cannotRepeat": true
+        },
+        {
+          "id": "rose-protection",
+          "name": "장미의 보호",
+          "type": "blockHeal",
+          "block": 10,
+          "heal": 4,
+          "priority": 50,
+          "cannotRepeat": true
+        },
+        {
+          "id": "blood-petals",
+          "name": "피의 꽃잎",
+          "type": "attack",
+          "damage": 4,
+          "hits": 3,
+          "priority": 55,
+          "cannotRepeat": true
+        },
+        {
+          "id": "bloom-prepare",
+          "name": "만개 예고",
+          "type": "telegraph",
+          "next": "bloom",
+          "priority": 75
+        },
+        {
+          "id": "bloom",
+          "name": "만개",
+          "type": "attack",
+          "damage": 17,
+          "status": "BLEEDING",
+          "statusValue": 1,
+          "requiresTelegraph": "bloom-prepare",
+          "priority": 90
+        },
+        {
+          "id": "domain",
+          "name": "Domain activation",
+          "type": "domain",
+          "priority": 100
+        }
+      ],
+      "ai": {
+        "rules": [
+          "만개 gauge 3에서 강제",
+          "개화 0이면 다음 주기 치유 억제",
+          "만개 2회 후 요구 피해량 12"
+        ]
+      }
+    },
+    {
+      "id": "MON-F3-01",
+      "name": "태엽쥐",
+      "floor": 3,
+      "rank": "NORMAL",
+      "hp": 38,
+      "role": "FAST_ATTACK",
+      "actions": [
+        {
+          "id": "gear-bite",
+          "name": "톱니 물기",
+          "type": "attack",
+          "damage": 3,
+          "hits": 2,
+          "priority": 35
+        },
+        {
+          "id": "leak",
+          "name": "전류 누출",
+          "type": "status",
+          "status": "SHOCK",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "spin-guard",
+          "name": "회전 방어",
+          "type": "block",
+          "block": 4,
+          "priority": 25,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Shock generation cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F3-02",
+      "name": "톱니 고블린",
+      "floor": 3,
+      "rank": "NORMAL",
+      "hp": 58,
+      "role": "DEFENSE",
+      "startArmor": 12,
+      "actions": [
+        {
+          "id": "gear-hit",
+          "name": "톱니 타격",
+          "type": "attack",
+          "damage": 8,
+          "priority": 30
+        },
+        {
+          "id": "plate",
+          "name": "철판 보강",
+          "type": "block",
+          "block": 8,
+          "priority": 25,
+          "cannotRepeat": true
+        },
+        {
+          "id": "machine-counter",
+          "name": "기계 반격",
+          "type": "counter",
+          "counter": 3,
+          "priority": 35,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Armor decreases by 2 each monster turn",
+          "Counter cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F3-03",
+      "name": "종지기 인형",
+      "floor": 3,
+      "rank": "NORMAL",
+      "hp": 52,
+      "role": "DISRUPTION",
+      "actions": [
+        {
+          "id": "clock-hand",
+          "name": "시계침 베기",
+          "type": "attack",
+          "damage": 7,
+          "priority": 25
+        },
+        {
+          "id": "delayed-memory",
+          "name": "늦춰진 기억",
+          "type": "status",
+          "status": "REGRET",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "wind-up",
+          "name": "태엽 감기",
+          "type": "buff",
+          "nextDamageBonus": 3,
+          "priority": 40,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Regret/buff cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "ELT-F3-01",
+      "name": "열두 시의 종지기",
+      "floor": 3,
+      "rank": "ELITE",
+      "hp": 178,
+      "role": "CHARGE/ARMOR",
+      "startArmor": 20,
+      "actions": [
+        {
+          "id": "charge",
+          "name": "종말 충전",
+          "type": "telegraph",
+          "next": "bell-of-doom",
+          "priority": 70
+        },
+        {
+          "id": "bell-of-doom",
+          "name": "열두 시의 종",
+          "type": "attack",
+          "damage": 21,
+          "requiresTelegraph": "charge",
+          "priority": 90
+        },
+        {
+          "id": "overheat",
+          "name": "과열",
+          "type": "recover",
+          "block": 4,
+          "priority": 80
+        },
+        {
+          "id": "heavy-pendulum",
+          "name": "무거운 추",
+          "type": "attack",
+          "damage": 12,
+          "priority": 35
+        }
+      ],
+      "ai": {
+        "rules": [
+          "strong attack requires charge",
+          "after strong attack mandatory overheat/recovery",
+          "Armor decreases by 4 each monster turn"
+        ]
+      }
+    },
+    {
+      "id": "BOS-F3-01",
+      "name": "시계탑의 마녀 아스트라",
+      "floor": 3,
+      "rank": "BOSS",
+      "hp": 360,
+      "role": "BOSS",
+      "domainId": "FROZEN_CLOCK",
+      "actions": [
+        {
+          "id": "second-hand",
+          "name": "초침 베기",
+          "type": "attack",
+          "damage": 8,
+          "priority": 25
+        },
+        {
+          "id": "gear-shard",
+          "name": "톱니 파편",
+          "type": "attack",
+          "damage": 4,
+          "hits": 3,
+          "priority": 50,
+          "cannotRepeat": true
+        },
+        {
+          "id": "time-delay",
+          "name": "시간 지연",
+          "type": "status",
+          "status": "REGRET",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "clock-wall",
+          "name": "시계 방벽",
+          "type": "block",
+          "block": 12,
+          "priority": 35,
+          "cannotRepeat": true
+        },
+        {
+          "id": "wind-up-charge",
+          "name": "태엽 충전",
+          "type": "telegraph",
+          "next": "final-bell",
+          "priority": 60
+        },
+        {
+          "id": "final-bell",
+          "name": "종말의 종",
+          "type": "attack",
+          "damage": 20,
+          "requiresTelegraph": "wind-up-charge",
+          "priority": 85
+        },
+        {
+          "id": "rewind",
+          "name": "역행",
+          "type": "blockBuff",
+          "block": 8,
+          "nextDamageBonus": 3,
+          "priority": 45
+        },
+        {
+          "id": "domain",
+          "name": "Domain activation",
+          "type": "domain",
+          "priority": 100
+        }
+      ],
+      "ai": {
+        "rules": [
+          "domain after boss turn 3",
+          "종말의 종 requires 태엽 충전",
+          "time acceleration every 4 boss turns, max 3"
+        ]
+      }
+    },
+    {
+      "id": "MON-F4-01",
+      "name": "균열 고블린",
+      "floor": 4,
+      "rank": "NORMAL",
+      "hp": 66,
+      "role": "STATUS",
+      "actions": [
+        {
+          "id": "rift-blade",
+          "name": "균열 칼날",
+          "type": "attack",
+          "damage": 8,
+          "priority": 25
+        },
+        {
+          "id": "pain-inject",
+          "name": "고통 주입",
+          "type": "status",
+          "status": "PAIN",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "vulnerable-rift",
+          "name": "약화의 균열",
+          "type": "status",
+          "status": "VULNERABLE",
+          "value": 1,
+          "priority": 40,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "same Status generation cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F4-02",
+      "name": "고해의 망령",
+      "floor": 4,
+      "rank": "NORMAL",
+      "hp": 74,
+      "role": "CONTROL",
+      "actions": [
+        {
+          "id": "soul-cut",
+          "name": "영혼 베기",
+          "type": "attack",
+          "damage": 8,
+          "priority": 25
+        },
+        {
+          "id": "regret-whisper",
+          "name": "후회의 속삭임",
+          "type": "status",
+          "status": "REGRET",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "sin-chain",
+          "name": "죄의 사슬",
+          "type": "status",
+          "status": "BIND",
+          "value": 1,
+          "priority": 50,
+          "condition": "NO_BIND",
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Bind cannot repeat",
+          "status actions cannot endlessly alternate without attacks"
+        ]
+      }
+    },
+    {
+      "id": "MON-F4-03",
+      "name": "문지기 시체병",
+      "floor": 4,
+      "rank": "NORMAL",
+      "hp": 82,
+      "role": "DEFENSE",
+      "startArmor": 14,
+      "actions": [
+        {
+          "id": "rotten-spear",
+          "name": "썩은 창격",
+          "type": "attack",
+          "damage": 10,
+          "priority": 30
+        },
+        {
+          "id": "grave-shield",
+          "name": "무덤 방패",
+          "type": "block",
+          "block": 10,
+          "priority": 25,
+          "cannotRepeat": true
+        },
+        {
+          "id": "dead-counter",
+          "name": "사자의 반격",
+          "type": "counter",
+          "counter": 4,
+          "priority": 35,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Counter cannot repeat",
+          "Armor decreases through existing Armor system"
+        ]
+      }
+    },
+    {
+      "id": "ELT-F4-01",
+      "name": "무언의 집행자",
+      "floor": 4,
+      "rank": "ELITE",
+      "hp": 210,
+      "role": "EXECUTION",
+      "actions": [
+        {
+          "id": "executioner-axe",
+          "name": "집행자의 도끼",
+          "type": "attack",
+          "damage": 14,
+          "priority": 30
+        },
+        {
+          "id": "death-sentence",
+          "name": "사형선고",
+          "type": "telegraph",
+          "next": "silent-execution",
+          "priority": 65
+        },
+        {
+          "id": "silent-execution",
+          "name": "무언의 집행",
+          "type": "attack",
+          "damage": 21,
+          "requiresTelegraph": "death-sentence",
+          "priority": 90
+        },
+        {
+          "id": "black-guard",
+          "name": "검은 방어",
+          "type": "block",
+          "block": 12,
+          "priority": 35,
+          "cannotRepeat": true
+        }
+      ],
+      "passive": "UNDEAD_SURVIVAL_ONCE",
+      "ai": {
+        "rules": [
+          "execution requires telegraph",
+          "strong attack cannot repeat",
+          "Oblivion forbidden"
+        ]
+      }
+    },
+    {
+      "id": "BOS-F4-01",
+      "name": "차원문지기 모르가나",
+      "floor": 4,
+      "rank": "BOSS",
+      "hp": 460,
+      "role": "BOSS",
+      "domainId": "LIFE_BORDER",
+      "actions": [
+        {
+          "id": "border-blade",
+          "name": "경계의 칼날",
+          "type": "attack",
+          "damage": 10,
+          "priority": 25
+        },
+        {
+          "id": "dead-whisper",
+          "name": "망자의 속삭임",
+          "type": "status",
+          "status": "PAIN",
+          "value": 1,
+          "priority": 40,
+          "cannotRepeat": true
+        },
+        {
+          "id": "regret-gaze",
+          "name": "후회의 시선",
+          "type": "status",
+          "status": "REGRET",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "life-drain",
+          "name": "생명 흡수",
+          "type": "attackHeal",
+          "damage": 9,
+          "heal": 7,
+          "priority": 55,
+          "cannotRepeat": true
+        },
+        {
+          "id": "oblivion-sentence",
+          "name": "망각의 문장",
+          "type": "status",
+          "status": "OBLIVION",
+          "value": 1,
+          "priority": 70,
+          "cooldown": 4
+        },
+        {
+          "id": "grave-gate",
+          "name": "사자의 문",
+          "type": "block",
+          "block": 12,
+          "priority": 35,
+          "cannotRepeat": true
+        },
+        {
+          "id": "harvest-prepare",
+          "name": "수확 예고",
+          "type": "telegraph",
+          "next": "border-harvest",
+          "priority": 75
+        },
+        {
+          "id": "border-harvest",
+          "name": "경계 수확",
+          "type": "attack",
+          "damage": 19,
+          "requiresTelegraph": "harvest-prepare",
+          "priority": 90
+        },
+        {
+          "id": "domain",
+          "name": "Domain activation",
+          "type": "domain",
+          "priority": 100
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Domain at HP 75%",
+          "Oblivion cooldown 4",
+          "Oblivion boss-only",
+          "harvest requires telegraph"
+        ]
+      }
+    },
+    {
+      "id": "MON-F5-01",
+      "name": "성운 화염령",
+      "floor": 5,
+      "rank": "NORMAL",
+      "hp": 72,
+      "role": "ELEMENTAL_FIRE",
+      "actions": [
+        {
+          "id": "nebula-flame",
+          "name": "성운 불꽃",
+          "type": "attack",
+          "damage": 9,
+          "priority": 25
+        },
+        {
+          "id": "ignite",
+          "name": "점화",
+          "type": "status",
+          "status": "BURN",
+          "value": 3,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "scorch",
+          "name": "작열",
+          "type": "attack",
+          "damage": 12,
+          "priority": 60,
+          "condition": "BURNED",
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Burn generation cannot endlessly repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F5-02",
+      "name": "공허 빙정령",
+      "floor": 5,
+      "rank": "NORMAL",
+      "hp": 78,
+      "role": "ELEMENTAL_ICE",
+      "actions": [
+        {
+          "id": "frost-shard",
+          "name": "빙결 파편",
+          "type": "attack",
+          "damage": 9,
+          "priority": 25
+        },
+        {
+          "id": "frostbite",
+          "name": "동상",
+          "type": "status",
+          "status": "FROSTBITE",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "ice-shroud",
+          "name": "얼음 장막",
+          "type": "block",
+          "block": 10,
+          "priority": 35,
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Frostbite generation cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "MON-F5-03",
+      "name": "별을 먹는 들개",
+      "floor": 5,
+      "rank": "NORMAL",
+      "hp": 92,
+      "role": "HUNTER",
+      "actions": [
+        {
+          "id": "star-fang",
+          "name": "별이빨",
+          "type": "attack",
+          "damage": 11,
+          "priority": 25
+        },
+        {
+          "id": "star-mark",
+          "name": "별의 표식",
+          "type": "status",
+          "status": "MARK",
+          "value": 2,
+          "priority": 45,
+          "condition": "NO_MARK"
+        },
+        {
+          "id": "devour-chase",
+          "name": "포식 추격",
+          "type": "attack",
+          "damage": 17,
+          "priority": 75,
+          "condition": "MARKED",
+          "cannotRepeat": true
+        }
+      ],
+      "ai": {
+        "rules": [
+          "포식 추격 requires MARKED",
+          "strong attack cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "ELT-F5-01",
+      "name": "이름 없는 별의 사도",
+      "floor": 5,
+      "rank": "ELITE",
+      "hp": 245,
+      "role": "LAW_DISTORTION",
+      "actions": [
+        {
+          "id": "otherworld-blade",
+          "name": "이계의 칼날",
+          "type": "attack",
+          "damage": 13,
+          "priority": 25
+        },
+        {
+          "id": "distortion",
+          "name": "뒤틀림",
+          "type": "status",
+          "status": "CONFUSION",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "law-erosion",
+          "name": "법칙 침식",
+          "type": "lawErosion",
+          "priority": 65,
+          "cooldown": 4
+        },
+        {
+          "id": "collapse-prepare",
+          "name": "붕괴 준비",
+          "type": "telegraph",
+          "next": "law-collapse",
+          "priority": 70
+        },
+        {
+          "id": "law-collapse",
+          "name": "법칙 붕괴",
+          "type": "attack",
+          "damage": 20,
+          "requiresTelegraph": "collapse-prepare",
+          "priority": 90
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Law Erosion cooldown 4",
+          "strong attack requires telegraph",
+          "Confusion cannot repeat"
+        ]
+      }
+    },
+    {
+      "id": "BOS-F5-01",
+      "name": "외신의 잔영 이벨린",
+      "floor": 5,
+      "rank": "BOSS",
+      "hp": 600,
+      "role": "BOSS",
+      "domainId": "NAMELESS_SANCTUM",
+      "actions": [
+        {
+          "id": "star-shard",
+          "name": "별의 파편",
+          "type": "attack",
+          "damage": 11,
+          "priority": 25
+        },
+        {
+          "id": "void-wave",
+          "name": "공허의 파동",
+          "type": "attack",
+          "damage": 5,
+          "hits": 3,
+          "priority": 50,
+          "cannotRepeat": true
+        },
+        {
+          "id": "distortion",
+          "name": "뒤틀림",
+          "type": "status",
+          "status": "CONFUSION",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "erosion-trace",
+          "name": "침식의 흔적",
+          "type": "status",
+          "status": "VULNERABLE",
+          "value": 1,
+          "priority": 45,
+          "cannotRepeat": true
+        },
+        {
+          "id": "star-veil",
+          "name": "별의 장막",
+          "type": "block",
+          "block": 15,
+          "priority": 35,
+          "cannotRepeat": true
+        },
+        {
+          "id": "law-erosion",
+          "name": "법칙 침식",
+          "type": "lawErosion",
+          "priority": 70,
+          "cooldown": 4
+        },
+        {
+          "id": "collapse-prepare",
+          "name": "붕괴 예고",
+          "type": "telegraph",
+          "next": "sanctum-collapse",
+          "priority": 75
+        },
+        {
+          "id": "sanctum-collapse",
+          "name": "성역 붕괴",
+          "type": "attack",
+          "damage": 24,
+          "requiresTelegraph": "collapse-prepare",
+          "priority": 95
+        },
+        {
+          "id": "rewriting",
+          "name": "무명의 재작성",
+          "type": "blockBuff",
+          "block": 10,
+          "nextDamageBonus": 4,
+          "condition": "PHASE_3",
+          "priority": 70
+        }
+      ],
+      "ai": {
+        "rules": [
+          "RGB law cycle",
+          "adapt all three colors to break law",
+          "Law Erosion non-stacking",
+          "soft enrage turn 12/15"
+        ]
+      }
+    },
+    {
+      "id": "BOS-F1-01",
+      "name": "철혈성문 수호자 아르델라",
+      "floor": 1,
+      "rank": "BOSS",
+      "hp": 180,
+      "role": "BOSS",
+      "domainId": "IRON_GATE",
+      "actions": [
+        {
+          "id": "gate-slash",
+          "name": "성문 참격",
+          "type": "attack",
+          "damage": 9,
+          "priority": 25
+        },
+        {
+          "id": "shield-bash",
+          "name": "방패 강타",
+          "type": "attackBlock",
+          "damage": 6,
+          "block": 6,
+          "priority": 45
+        },
+        {
+          "id": "iron-wall",
+          "name": "철벽",
+          "type": "block",
+          "block": 13,
+          "priority": 35,
+          "cannotRepeat": true
+        },
+        {
+          "id": "counter-stance",
+          "name": "반격 태세",
+          "type": "counter",
+          "counter": 5,
+          "priority": 40,
+          "cannotRepeat": true
+        },
+        {
+          "id": "pressure",
+          "name": "압박",
+          "type": "attack",
+          "damage": 5,
+          "hits": 2,
+          "priority": 50,
+          "cannotRepeat": true
+        },
+        {
+          "id": "execution-prepare",
+          "name": "처형 준비",
+          "type": "telegraph",
+          "next": "blood-execution",
+          "priority": 70
+        },
+        {
+          "id": "blood-execution",
+          "name": "철혈의 집행",
+          "type": "attack",
+          "damage": 18,
+          "requiresTelegraph": "execution-prepare",
+          "priority": 90,
+          "cooldown": 3
+        },
+        {
+          "id": "domain",
+          "name": "Domain activation",
+          "type": "domain",
+          "priority": 100
+        }
+      ],
+      "ai": {
+        "rules": [
+          "Domain at HP 60%",
+          "철혈의 집행 requires 처형 준비",
+          "strong attack cooldown 3",
+          "Counter cannot repeat"
+        ]
+      }
+    }
+  ],
+  "domains": {
+    "IRON_GATE": {
+      "id": "IRON_GATE",
+      "name": "철혈의 성문",
+      "activation": "HP_LE_60",
+      "law": "TURN_START_ARMOR",
+      "breakCondition": "Domain Armor를 0으로 만들기",
+      "ui": {
+        "current": "성문 방어",
+        "next": "성문 붕괴"
+      },
+      "armor": 10,
+      "cycleMax": 4,
+      "softEnrage": {
+        "after": 4,
+        "armor": 12
+      }
+    },
+    "BLOOD_GARDEN": {
+      "id": "BLOOD_GARDEN",
+      "name": "혈가시의 정원",
+      "activation": "HP_LE_70",
+      "law": "BLOOM_GAUGE",
+      "breakCondition": "개화 게이지를 0으로 만들기",
+      "ui": {
+        "current": "개화 게이지",
+        "next": "만개"
+      },
+      "bloomGauge": 0,
+      "bloomMax": 3,
+      "cycleMax": 2,
+      "softEnrage": {
+        "after": 2,
+        "damageThreshold": 12
+      }
+    },
+    "FROZEN_CLOCK": {
+      "id": "FROZEN_CLOCK",
+      "name": "멈춰버린 시계세계",
+      "activation": "AFTER_BOSS_TURN_3",
+      "law": "ACCELERATED_DELAYED",
+      "breakCondition": "가속 카드와 지연 카드를 같은 턴 사용",
+      "ui": {
+        "current": "가속 / 지연",
+        "next": "시간 오류"
+      },
+      "timeAcceleration": 0,
+      "maxTimeAcceleration": 3
+    },
+    "LIFE_BORDER": {
+      "id": "LIFE_BORDER",
+      "name": "생사의 경계",
+      "activation": "HP_LE_75",
+      "law": "STATUS_PURGE",
+      "breakCondition": "처리 가능한 상태 카드를 모두 제거",
+      "ui": {
+        "current": "상태 정화",
+        "next": "망각의 문장"
+      },
+      "cycleMax": 4,
+      "softEnrage": {
+        "after": 4,
+        "drainDamage": 2,
+        "harvestDamage": 2
+      }
+    },
+    "NAMELESS_SANCTUM": {
+      "id": "NAMELESS_SANCTUM",
+      "name": "무명의 성역",
+      "activation": "BATTLE_START",
+      "law": "RGB_CYCLE",
+      "breakCondition": "적·녹·청 법칙을 모두 소모",
+      "ui": {
+        "current": "적색 — 파괴",
+        "next": "녹색 — 인과"
+      },
+      "colors": [
+        "RED",
+        "GREEN",
+        "BLUE"
+      ],
+      "phaseThresholds": [
+        0.7,
+        0.35
+      ],
+      "softEnrage": {
+        "turn12": 10,
+        "turn15": 20
+      }
+    }
+  }
+}

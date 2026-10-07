@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tower of Echoes · Monster Size Lineup</title>
+<style>
+:root{color-scheme:dark;--bg:#0c0a11;--panel:#17121f;--line:#493b58;--gold:#e6c477;--muted:#b9adbf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#352346 0,#0c0a11 44%);color:#f8f1fb;font:14px/1.45 system-ui,"Noto Sans KR",sans-serif}main{width:min(1500px,calc(100% - 32px));margin:24px auto 48px}header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:14px}h1,h2,p{margin:0}h1{font:700 clamp(1.5rem,3vw,2.3rem) Georgia,serif;color:var(--gold)}h2{font-size:1rem;color:#fff}header p,.legend{color:var(--muted)}select{background:#21192b;border:1px solid #725d82;color:#fff;border-radius:5px;padding:9px 12px}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}.legend b{color:#fff}.section{margin-top:22px}.section h2{padding:9px 12px;border-left:3px solid var(--gold);background:#1d1527}.lineup{display:flex;align-items:end;gap:8px;min-height:310px;overflow-x:auto;padding:20px 12px 0;background:linear-gradient(180deg,#1a142266,#09080d);border:1px solid var(--line);border-top:0}.unit{flex:0 0 128px;display:flex;flex-direction:column;align-items:center;justify-content:end;min-height:290px}.figure{height:var(--figure-height);width:112px;display:flex;align-items:end;justify-content:center;position:relative}.figure::after{content:"";position:absolute;bottom:0;left:8%;right:8%;height:1px;background:#a984b9aa;box-shadow:0 0 14px #bd8eea88}.figure img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 8px #000b)}.unit.player .figure img{filter:drop-shadow(0 0 10px #e6c47777)}.name{text-align:center;margin-top:8px;font-weight:700;white-space:nowrap}.meta{font-size:.72rem;color:var(--muted);text-align:center}.badge{display:inline-block;margin-top:5px;padding:2px 6px;border:1px solid #665372;border-radius:999px;font-size:.68rem;color:#efdcff}.unit.player .badge{border-color:#b89550;color:var(--gold)}.notes{font-size:.69rem;color:#968a9e;text-align:center;min-height:34px;margin-top:4px}.empty{padding:30px;color:var(--muted)}@media(max-width:700px){main{width:min(100% - 14px,1500px);margin-top:12px}header{align-items:start;flex-direction:column}.lineup{min-height:270px}.unit{flex-basis:105px}.figure{width:92px}.name{font-size:.78rem}.meta,.badge,.notes{font-size:.63rem}}
+</style>
+</head>
+<body>
+<main>
+<header><div><h1>Monster Size Master</h1><p>실제 전투 스케일과 설정상 신장을 분리한 비교 시트입니다.</p></div><label>계층 <select id="floor"><option value="all">전체</option><option value="1">F1</option><option value="2">F2</option><option value="3">F3</option><option value="4">F4</option><option value="5">F5</option></select></label></header>
+<div class="legend"><span><b>플레이어 기준</b> = 프로젝트 전투 스케일</span><span><b>Monster</b> = lore height / battle scale</span><span><b>foot anchor</b> = 지면선 보정 px</span></div>
+<section class="section"><h2>플레이어블 캐릭터 기준선</h2><div class="lineup" id="players"></div></section>
+<section class="section"><h2 id="monsterTitle">몬스터 전체 라인업</h2><div class="lineup" id="monsters"></div></section>
+</main>
+<script src="player-size-data.js"></script>
+<script src="monster-size-data.js"></script>
+<script>
+const players=window.PLAYER_SIZE_MASTER.map(p=>[p.name,p.image,p.height_cm,p.battle_scale,p.visual_mass]);
+const cmHeight=cm=>`${Math.max(54,Math.min(258,cm*.68))}px`;
+function playerCard([name,image,cm,scale,mass]){return `<article class="unit player"><div class="figure" style="--figure-height:${cmHeight(cm)}"><img src="assets/${image}" alt="${name}"></div><div class="name">${name}</div><div class="meta">${cm}cm · ×${scale.toFixed(2)}</div><span class="badge">${mass}</span></article>`}
+const assetMap={'굶주린 들개':'enemy-hungry-hound.webp','녹슨 병사':'enemy-rusted-soldier.webp','성벽 박쥐':'enemy-wall-bat.webp','추방된 기사':'enemy-exiled-knight.webp','철혈성문 수호자 아르델라':'boss-gatekeeper.webp','피꽃 사냥개':'enemy-bloodflower-hound.webp','가시 덩굴':'enemy-thorn-vine.webp','독화분 정령':'enemy-poison-planter-spirit.webp','포식화 알라우네':'enemy-devouring-alraune.webp','혈가시의 장미여왕 로제벨':'boss-rosequeen.webp','태엽쥐':'enemy-clockwork-rat.webp','톱니 고블린':'enemy-cog-goblin.webp','종지기 인형':'enemy-bellringer-doll.webp','열두 시의 종지기':'enemy-twelve-bellkeeper.webp','시계탑의 마녀 아스트라':'boss-astra.webp','균열 고블린':'enemy-rift-goblin.webp','고해의 망령':'enemy-confession-wraith.webp','문지기 시체병':'enemy-gate-corpse-soldier.webp','무언의 집행자':'enemy-silent-executioner.webp','차원문지기 모르가나':'boss-morgana.webp','성운 화염령':'enemy-nebula-flame.webp','공허 빙정령':'enemy-void-ice.webp','별을 먹는 들개':'enemy-star-eating-hound.webp','이름 없는 별의 사도':'enemy-nameless-apostle.webp','외신의 잔영 이벨린':'boss-ivelyn.webp'};
+const assetName=name=>assetMap[name]||'enemy-stage-1.webp';
+function monsterCard(m){return `<article class="unit"><div class="figure" style="--figure-height:${cmHeight(m.lore_height_cm)}"><img src="assets/${assetName(m.name)}" alt="${m.name}"></div><div class="name">${m.name}</div><div class="meta">F${m.floor} · ${m.lore_height_cm}cm · ×${m.battle_scale.toFixed(2)}</div><span class="badge">${m.size_class} · ${m.rank} · ${m.visual_mass}</span><div class="notes">${m.dimension_type} · anchor ${m.foot_anchor}px</div></article>`}
+document.querySelector('#players').innerHTML=players.map(playerCard).join('');
+function render(){const floor=document.querySelector('#floor').value;const list=window.MONSTER_SIZE_MASTER.filter(m=>floor==='all'||String(m.floor)===floor);document.querySelector('#monsterTitle').textContent=floor==='all'?'몬스터 전체 라인업':`F${floor} 몬스터 라인업`;document.querySelector('#monsters').innerHTML=list.length?list.map(monsterCard).join(''):'<div class="empty">표시할 몬스터가 없습니다.</div>'}
+document.querySelector('#floor').addEventListener('change',render);render();
+</script>
+</body>
+</html>

@@ -1,0 +1,3344 @@
+{
+  "schemaVersion": 3,
+  "total": 88,
+  "goldTokens": [
+    "GOLD_SMALL",
+    "GOLD_MEDIUM",
+    "GOLD_HIGH"
+  ],
+  "events": [
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E01",
+      "name": "부서진 병기고",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E02",
+      "name": "감옥의 마지막 죄수",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E03",
+      "name": "피 묻은 군기",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E04",
+      "name": "식어버린 연회",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E05",
+      "name": "사냥개의 우리",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E06",
+      "name": "무너진 예배당",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 1,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "1계층 전용 이벤트",
+      "event_id": "F1-E07",
+      "name": "병사의 유언",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E01",
+      "name": "가시 정원사",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E02",
+      "name": "향기 저장고",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E03",
+      "name": "포식 장미",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E04",
+      "name": "유리 온실",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E05",
+      "name": "잠든 분수",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E06",
+      "name": "벌레먹은 정원일지",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 2,
+      "floor_max": 2,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "2계층 전용 이벤트",
+      "event_id": "F2-E07",
+      "name": "향수 제조실",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E01",
+      "name": "멈춘 대시계",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E02",
+      "name": "톱니 주조장",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E03",
+      "name": "고장 난 자동인형",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E04",
+      "name": "역행 기록실",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E05",
+      "name": "거대한 진자실",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E06",
+      "name": "공장 폐기 구역",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 3,
+      "floor_max": 3,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "3계층 전용 이벤트",
+      "event_id": "F3-E07",
+      "name": "관측용 승강기",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E01",
+      "name": "고해실",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E02",
+      "name": "유골 세공소",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E03",
+      "name": "장례 행렬",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E04",
+      "name": "영혼의 세금소",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E05",
+      "name": "망자의 무기고",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E06",
+      "name": "심판의 회랑",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 4,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "4계층 전용 이벤트",
+      "event_id": "F4-E07",
+      "name": "쇠사슬 우물",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E01",
+      "name": "별 없는 전망대",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E02",
+      "name": "뒤집힌 제단",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E03",
+      "name": "속삭이는 구체",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E04",
+      "name": "불가능한 계단",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E05",
+      "name": "죽은 별의 잔해",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E06",
+      "name": "공허 기록관",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 5,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "5계층 전용 이벤트",
+      "event_id": "F5-E07",
+      "name": "마지막 만찬",
+      "category": "floor",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E01",
+      "name": "떠돌이 카드 세공사",
+      "category": "common",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E02",
+      "name": "잊힌 우편함",
+      "category": "common",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E03",
+      "name": "부서진 보물상자",
+      "category": "common",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E04",
+      "name": "길 잃은 순례자",
+      "category": "common",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E05",
+      "name": "복제 거울",
+      "category": "common",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E06",
+      "name": "잠긴 금고",
+      "category": "common",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E07",
+      "name": "버려진 야영지",
+      "category": "common",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E08",
+      "name": "찢어진 지도",
+      "category": "common",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E09",
+      "name": "검은 마차",
+      "category": "common",
+      "choices": [
+        {
+          "id": "remove",
+          "label": "대가를 치르고 흔적을 지운다",
+          "cost": "HP_SMALL",
+          "reward": "CARD_REMOVE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E10",
+      "name": "세 얼굴 석상",
+      "category": "common",
+      "choices": [
+        {
+          "id": "transform",
+          "label": "변화를 받아들인다",
+          "cost": "GOLD_SMALL",
+          "reward": "CARD_TRANSFORM"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E11",
+      "name": "빈 연금술 작업대",
+      "category": "common",
+      "choices": [
+        {
+          "id": "heal",
+          "label": "잠시 숨을 고른다",
+          "cost": null,
+          "reward": "HP_RECOVER"
+        },
+        {
+          "id": "gold",
+          "label": "남은 물자를 챙긴다",
+          "cost": "HP_SMALL",
+          "reward": "GOLD_MEDIUM"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E12",
+      "name": "잃어버린 귀중품 상자",
+      "category": "common",
+      "choices": [
+        {
+          "id": "potion",
+          "label": "봉인된 약병을 연다",
+          "cost": "GOLD_SMALL",
+          "reward": "POTION"
+        },
+        {
+          "id": "map",
+          "label": "주변을 정찰한다",
+          "cost": null,
+          "reward": "MAP_REVEAL"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E13",
+      "name": "낡은 결투장",
+      "category": "common",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "위험한 유물을 취한다",
+          "cost": "HP_MEDIUM",
+          "reward": "RELIC"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E14",
+      "name": "침묵하는 조각가",
+      "category": "common",
+      "choices": [
+        {
+          "id": "combat",
+          "label": "시련에 응한다",
+          "cost": null,
+          "reward": "VALUABLE_RELIC",
+          "combat_type": "event"
+        },
+        {
+          "id": "leave",
+          "label": "물러난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "전 계층 공통 이벤트",
+      "event_id": "COM-E15",
+      "name": "붉은 문과 푸른 문",
+      "category": "common",
+      "choices": [
+        {
+          "id": "upgrade",
+          "label": "무기를 손질한다",
+          "cost": null,
+          "reward": "CARD_UPGRADE"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_1",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E01",
+      "name": "백색 성소",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_2",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E02",
+      "name": "전사의 맹세",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_3",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E03",
+      "name": "순례자의 화로",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_4",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E04",
+      "name": "길잡이의 별",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_5",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E05",
+      "name": "맑은 샘",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": "BLESSING_6",
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "축복 슬롯 상한은 현재 계층과 같으며 가득 찬 경우 교체",
+      "event_id": "BLS-E06",
+      "name": "쌍둥이 제단",
+      "category": "blessing",
+      "choices": [
+        {
+          "id": "blessing",
+          "label": "축복을 받는다",
+          "cost": null,
+          "reward": "BLESSING"
+        },
+        {
+          "id": "leave",
+          "label": "떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_1",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E01",
+      "name": "검은 계약서",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_2",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E02",
+      "name": "속삭이는 거울",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_3",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E03",
+      "name": "굶주린 우물",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_4",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E04",
+      "name": "피의 왕관",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_5",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E05",
+      "name": "잃어버린 이름",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": "CURSE_6",
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "저주 획득은 기본적으로 선택 사항",
+      "event_id": "CUR-E06",
+      "name": "쇠사슬의 문",
+      "category": "curse",
+      "choices": [
+        {
+          "id": "curse",
+          "label": "위험한 제안을 받아들인다",
+          "cost": "CURSE",
+          "reward": "GOLD_HIGH"
+        },
+        {
+          "id": "leave",
+          "label": "거절하고 떠난다",
+          "cost": null,
+          "reward": null
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": 0.05,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": false,
+      "max_visits": 5,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": "RANDOM_3_NO_ORIENTATION",
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "계층당 최대 1회; 보유 시 유지 또는 교체",
+      "event_id": "ARC-E01",
+      "name": "점성술사의 천막",
+      "category": "arcana",
+      "choices": [
+        {
+          "id": "arcana",
+          "label": "아르카나 3장 중 하나를 선택한다",
+          "cost": null,
+          "reward": "ARCANA_SELECT_3"
+        },
+        {
+          "id": "keep",
+          "label": "현재 아르카나를 유지한다",
+          "cost": null,
+          "reward": "ARCANA_CHARGE"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": 0.02,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": "A_RANK_DRAGON_CHOICE",
+      "relic": null,
+      "event_only": false,
+      "notes": "런당 1회; 네 종류 중 정확히 하나 선택",
+      "event_id": "DRG-E01",
+      "name": "용의 유산",
+      "category": "a_potion",
+      "choices": [
+        {
+          "id": "dragon_1",
+          "label": "용의 숨결",
+          "cost": "HP_HIGH",
+          "reward": "용의 숨결"
+        },
+        {
+          "id": "dragon_2",
+          "label": "용의 비늘",
+          "cost": "GOLD_HIGH",
+          "reward": "용의 비늘"
+        },
+        {
+          "id": "dragon_3",
+          "label": "용의 날개",
+          "cost": "COMBAT_TRIAL",
+          "reward": "용의 날개"
+        },
+        {
+          "id": "dragon_4",
+          "label": "용의 심장",
+          "cost": "MAX_HP_SMALL",
+          "reward": "용의 심장"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": "TRANSCENDENCE_OBTAINED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": "EVENT_ONLY_1",
+      "event_only": true,
+      "notes": "기존 180 유물 DB의 EVENT_ONLY 유물 사용",
+      "event_id": "REL-E01",
+      "name": "초월자의 보관실",
+      "category": "event_relic",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "보관된 유물을 받는다",
+          "cost": "HP_MEDIUM",
+          "reward": "EVENT_ONLY_RELIC"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": "TRANSCENDENCE_OBTAINED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": "EVENT_ONLY_2",
+      "event_only": true,
+      "notes": "기존 180 유물 DB의 EVENT_ONLY 유물 사용",
+      "event_id": "REL-E02",
+      "name": "왕의 빈 관",
+      "category": "event_relic",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "보관된 유물을 받는다",
+          "cost": "GOLD_HIGH",
+          "reward": "EVENT_ONLY_RELIC"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": "TRANSCENDENCE_OBTAINED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": "EVENT_ONLY_3",
+      "event_only": true,
+      "notes": "기존 180 유물 DB의 EVENT_ONLY 유물 사용",
+      "event_id": "REL-E03",
+      "name": "별철 제단",
+      "category": "event_relic",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "보관된 유물을 받는다",
+          "cost": "COMBAT_TRIAL",
+          "reward": "EVENT_ONLY_RELIC"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": "TRANSCENDENCE_OBTAINED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": "EVENT_ONLY_4",
+      "event_only": true,
+      "notes": "기존 180 유물 DB의 EVENT_ONLY 유물 사용",
+      "event_id": "REL-E04",
+      "name": "침묵의 종루",
+      "category": "event_relic",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "보관된 유물을 받는다",
+          "cost": null,
+          "reward": "EVENT_ONLY_RELIC"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": "TRANSCENDENCE_OBTAINED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": "EVENT_ONLY_5",
+      "event_only": true,
+      "notes": "기존 180 유물 DB의 EVENT_ONLY 유물 사용",
+      "event_id": "REL-E05",
+      "name": "무명왕의 유산",
+      "category": "event_relic",
+      "choices": [
+        {
+          "id": "relic",
+          "label": "보관된 유물을 받는다",
+          "cost": "MAX_HP_SMALL",
+          "reward": "EVENT_ONLY_RELIC"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "벨",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-01",
+      "name": "검의 맹세",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "검무",
+          "cost": null,
+          "reward": "AWAKENING:검무"
+        },
+        {
+          "id": "awakening_2",
+          "label": "기교",
+          "cost": null,
+          "reward": "AWAKENING:기교"
+        },
+        {
+          "id": "awakening_3",
+          "label": "장막",
+          "cost": null,
+          "reward": "AWAKENING:장막"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "세라핀",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-02",
+      "name": "마도의 갈림길",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "폭주",
+          "cost": null,
+          "reward": "AWAKENING:폭주"
+        },
+        {
+          "id": "awakening_2",
+          "label": "연산",
+          "cost": null,
+          "reward": "AWAKENING:연산"
+        },
+        {
+          "id": "awakening_3",
+          "label": "결계",
+          "cost": null,
+          "reward": "AWAKENING:결계"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "루미에라",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-03",
+      "name": "신앙의 심판",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "단죄",
+          "cost": null,
+          "reward": "AWAKENING:단죄"
+        },
+        {
+          "id": "awakening_2",
+          "label": "축복",
+          "cost": null,
+          "reward": "AWAKENING:축복"
+        },
+        {
+          "id": "awakening_3",
+          "label": "성호",
+          "cost": null,
+          "reward": "AWAKENING:성호"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "베르나",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-04",
+      "name": "탄환의 행방",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "섬멸",
+          "cost": null,
+          "reward": "AWAKENING:섬멸"
+        },
+        {
+          "id": "awakening_2",
+          "label": "낙인",
+          "cost": null,
+          "reward": "AWAKENING:낙인"
+        },
+        {
+          "id": "awakening_3",
+          "label": "연막",
+          "cost": null,
+          "reward": "AWAKENING:연막"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "이리스",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-05",
+      "name": "생사의 실",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "장송",
+          "cost": null,
+          "reward": "AWAKENING:장송"
+        },
+        {
+          "id": "awakening_2",
+          "label": "인과",
+          "cost": null,
+          "reward": "AWAKENING:인과"
+        },
+        {
+          "id": "awakening_3",
+          "label": "축성",
+          "cost": null,
+          "reward": "AWAKENING:축성"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "카렌",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-06",
+      "name": "부족의 부름",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "혈월",
+          "cost": null,
+          "reward": "AWAKENING:혈월"
+        },
+        {
+          "id": "awakening_2",
+          "label": "선조",
+          "cost": null,
+          "reward": "AWAKENING:선조"
+        },
+        {
+          "id": "awakening_3",
+          "label": "강신",
+          "cost": null,
+          "reward": "AWAKENING:강신"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "이레",
+      "trigger": "event_node",
+      "base_chance": 0.35,
+      "forced_before": "FLOOR_3_BOSS",
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "구형 직업 선택 없음; 선택한 각성 카드 지급",
+      "event_id": "CHR-AWK-07",
+      "name": "주먹의 길",
+      "category": "awakening",
+      "choices": [
+        {
+          "id": "awakening_1",
+          "label": "파천",
+          "cost": null,
+          "reward": "AWAKENING:파천"
+        },
+        {
+          "id": "awakening_2",
+          "label": "심안",
+          "cost": null,
+          "reward": "AWAKENING:심안"
+        },
+        {
+          "id": "awakening_3",
+          "label": "반진",
+          "cost": null,
+          "reward": "AWAKENING:반진"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "벨",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-01",
+      "name": "검 끝의 서약",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "세라핀",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-02",
+      "name": "마도의 극점",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "루미에라",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-03",
+      "name": "신앙 너머의 빛",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "베르나",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-04",
+      "name": "최후의 탄환",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "이리스",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-05",
+      "name": "생사를 잇는 실",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "카렌",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-06",
+      "name": "선조의 마지막 부름",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": "이레",
+      "trigger": "event_node",
+      "base_chance": 0.1,
+      "forced_before": "FLOOR_5_BOSS",
+      "prerequisite": "AWAKENING_EVENT_COMPLETED",
+      "unique_per_run": true,
+      "max_visits": 1,
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "해당 캐릭터의 단일 초월 카드 지급",
+      "event_id": "CHR-TRN-07",
+      "name": "주먹 너머의 경지",
+      "category": "transcendence",
+      "choices": [
+        {
+          "id": "transcendence",
+          "label": "경계를 넘어선다",
+          "cost": null,
+          "reward": "TRANSCENDENCE_CARD"
+        }
+      ]
+    },
+    {
+      "event_id": "SAN-E01",
+      "name": "상단 조우",
+      "category": "common",
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "choices": [
+        {
+          "id": "accept",
+          "label": "도움을 받는다",
+          "cost": null,
+          "reward": "SANCTUARY_TEMP_ACTIVITY:1"
+        },
+        {
+          "id": "decline",
+          "label": "정중히 사양한다",
+          "cost": null,
+          "reward": null
+        }
+      ],
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "탑을 오르던 상단이 다음 성역을 위한 물자를 나누어 줍니다."
+    },
+    {
+      "event_id": "SAN-E02",
+      "name": "모험가 파티 조우",
+      "category": "common",
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "choices": [
+        {
+          "id": "accept",
+          "label": "도움을 받는다",
+          "cost": null,
+          "reward": "SANCTUARY_TEMP_ACTIVITY:1"
+        },
+        {
+          "id": "decline",
+          "label": "정중히 사양한다",
+          "cost": null,
+          "reward": null
+        }
+      ],
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "귀환 중인 모험가들이 성역 이용권을 건넵니다."
+    },
+    {
+      "event_id": "SAN-E03",
+      "name": "기사단 조우",
+      "category": "common",
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "choices": [
+        {
+          "id": "accept",
+          "label": "도움을 받는다",
+          "cost": null,
+          "reward": "SANCTUARY_TEMP_ACTIVITY:1"
+        },
+        {
+          "id": "decline",
+          "label": "정중히 사양한다",
+          "cost": null,
+          "reward": null
+        }
+      ],
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "순찰 기사단이 성역에 전할 공문을 맡깁니다."
+    },
+    {
+      "event_id": "SAN-E04",
+      "name": "학자 조우",
+      "category": "common",
+      "floor_min": 1,
+      "floor_max": 5,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "choices": [
+        {
+          "id": "accept",
+          "label": "도움을 받는다",
+          "cost": null,
+          "reward": "SANCTUARY_TEMP_ACTIVITY:1"
+        },
+        {
+          "id": "decline",
+          "label": "정중히 사양한다",
+          "cost": null,
+          "reward": null
+        }
+      ],
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": false,
+      "notes": "탑을 조사하던 학자가 성역 관리인의 추천서를 써 줍니다."
+    },
+    {
+      "event_id": "GLD-E01",
+      "name": "황금빛 초대장",
+      "category": "common",
+      "floor_min": 2,
+      "floor_max": 4,
+      "character": null,
+      "trigger": "event_node",
+      "base_chance": null,
+      "forced_before": null,
+      "prerequisite": null,
+      "unique_per_run": true,
+      "max_visits": 1,
+      "choices": [
+        {
+          "id": "enter",
+          "label": "황금향에 입장한다",
+          "cost": null,
+          "reward": "GOLDEN_LAND_ENTRY"
+        },
+        {
+          "id": "decline",
+          "label": "초대를 거절한다",
+          "cost": null,
+          "reward": null
+        }
+      ],
+      "cost": null,
+      "reward": null,
+      "combat_type": null,
+      "blessing": null,
+      "curse": null,
+      "arcana": null,
+      "potion": null,
+      "relic": null,
+      "event_only": true,
+      "notes": "이벤트로만 입장 가능한 이차원 카지노. 거절해도 이번 런에는 다시 등장하지 않습니다."
+    }
+  ]
+}

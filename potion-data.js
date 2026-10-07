@@ -1,0 +1,527 @@
+/* Tower of Echoes v0.56 authoritative item databases. */
+window.POTION_DATABASE=[
+  {
+    "id": "POT-001",
+    "name": "용의 숨결",
+    "grade": "A",
+    "rarity": "A",
+    "use": [
+      "combat"
+    ],
+    "effect": "dragonBreath",
+    "desc": "모든 적에게 피해 24와 화상 3을 부여합니다.",
+    "eventOnly": true,
+    "amount": 24,
+    "burn": 3,
+    "throwing": true
+  },
+  {
+    "id": "POT-002",
+    "name": "용의 비늘",
+    "grade": "A",
+    "rarity": "A",
+    "use": [
+      "combat"
+    ],
+    "effect": "dragonScale",
+    "desc": "방어 24를 얻고, 매 턴 방어 6을 얻으며 방어가 사라지지 않습니다.",
+    "eventOnly": true,
+    "amount": 24,
+    "turnBlock": 6
+  },
+  {
+    "id": "POT-003",
+    "name": "용의 날개",
+    "grade": "A",
+    "rarity": "A",
+    "use": [
+      "combat"
+    ],
+    "effect": "dragonWing",
+    "desc": "이번 턴 모든 카드 비용이 0이 되고 상태이상 카드를 소멸합니다. 매 턴 일반 소멸 카드 1장을 덱으로 돌립니다.",
+    "eventOnly": true
+  },
+  {
+    "id": "POT-004",
+    "name": "용의 심장",
+    "grade": "A",
+    "rarity": "A",
+    "use": [
+      "automatic"
+    ],
+    "effect": "dragonHeart",
+    "desc": "직접 사용할 수 없습니다. 사망 시 자동 발동해 완전 회복하고 제거 가능한 저주와 모든 상태이상을 정화합니다.",
+    "eventOnly": true,
+    "automatic": true
+  },
+  {
+    "id": "POT-005",
+    "name": "회복 물약",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "combat",
+      "noncombat"
+    ],
+    "effect": "healPercent",
+    "desc": "최대 HP의 10%를 회복합니다.",
+    "amount": 10
+  },
+  {
+    "id": "POT-006",
+    "name": "방벽 물약",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "combat"
+    ],
+    "effect": "block",
+    "desc": "방어를 12 얻습니다.",
+    "amount": 12
+  },
+  {
+    "id": "POT-007",
+    "name": "활력 물약",
+    "grade": "E",
+    "rarity": "E",
+    "use": [
+      "combat"
+    ],
+    "effect": "energy",
+    "desc": "이번 턴 행동력을 1 얻습니다.",
+    "amount": 1
+  },
+  {
+    "id": "POT-008",
+    "name": "신속 물약",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "combat"
+    ],
+    "effect": "draw",
+    "desc": "카드를 2장 뽑습니다.",
+    "amount": 2
+  },
+  {
+    "id": "POT-009",
+    "name": "맹공 물약",
+    "grade": "E",
+    "rarity": "E",
+    "use": [
+      "combat"
+    ],
+    "effect": "nextAttackDamage",
+    "desc": "다음 공격 카드의 피해 수치가 8 증가합니다.",
+    "amount": 8
+  },
+  {
+    "id": "POT-010",
+    "name": "철피 물약",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat"
+    ],
+    "effect": "turnBlockMultiplier",
+    "desc": "이번 턴 얻는 방어가 25% 증가합니다.",
+    "amount": 25
+  },
+  {
+    "id": "POT-011",
+    "name": "재생 물약",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat"
+    ],
+    "effect": "regeneration",
+    "desc": "3턴 동안 턴 종료 시 최대 HP의 3%를 회복합니다.",
+    "amount": 3,
+    "turns": 3
+  },
+  {
+    "id": "POT-012",
+    "name": "기억 물약",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "recallDiscard",
+    "desc": "버린 더미의 일반 카드 1장을 패로 회수하고 이번 턴 비용을 1 낮춥니다."
+  },
+  {
+    "id": "POT-013",
+    "name": "집중 물약",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "nextCardFree",
+    "desc": "이번 턴 다음 일반 카드의 비용이 0이 됩니다."
+  },
+  {
+    "id": "POT-014",
+    "name": "증폭 물약",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat"
+    ],
+    "effect": "nextNumericAmplify",
+    "desc": "다음 일반 카드의 기본 피해·방어 수치를 50% 증폭합니다.",
+    "amount": 50
+  },
+  {
+    "id": "POT-015",
+    "name": "별빛 촉매",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat",
+      "noncombat"
+    ],
+    "effect": "arcana",
+    "desc": "아르카나 게이지를 20 얻습니다.",
+    "amount": 20
+  },
+  {
+    "id": "POT-016",
+    "name": "연막 물약",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat"
+    ],
+    "effect": "escapeNormal",
+    "desc": "일반 몬스터 전투에서 보상 없이 이탈합니다."
+  },
+  {
+    "id": "POT-017",
+    "name": "혼돈의 증류액",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat"
+    ],
+    "effect": "chaosDraw",
+    "desc": "카드 3장을 뽑고 이번 턴 비용을 1 낮춥니다.",
+    "amount": 3
+  },
+  {
+    "id": "POT-018",
+    "name": "불사조의 눈물",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat"
+    ],
+    "effect": "phoenix",
+    "desc": "다음 치명 피해를 1회 막고 HP 1과 방어 12를 얻습니다."
+  },
+  {
+    "id": "POT-019",
+    "name": "지혈 물약",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "combat"
+    ],
+    "effect": "cleanseBleed",
+    "desc": "출혈 효과 또는 출혈 상태이상 카드 1장을 제거합니다."
+  },
+  {
+    "id": "POT-020",
+    "name": "해독 물약",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "combat"
+    ],
+    "effect": "cleansePoison",
+    "desc": "중독 효과 또는 중독 상태이상 카드 1장을 제거합니다."
+  },
+  {
+    "id": "POT-021",
+    "name": "성화의 영약",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat"
+    ],
+    "effect": "preventStatus",
+    "desc": "다음 상태이상 카드 생성을 1회 막습니다."
+  },
+  {
+    "id": "POT-022",
+    "name": "영양 강장제",
+    "grade": "F",
+    "rarity": "F",
+    "use": [
+      "noncombat"
+    ],
+    "effect": "healPercent",
+    "desc": "비전투 중 최대 HP의 8%를 회복합니다.",
+    "amount": 8
+  },
+  {
+    "id": "POT-023",
+    "name": "예지 물약",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat",
+      "map"
+    ],
+    "effect": "foresight",
+    "desc": "다음 적 의도 2개 또는 다음 분기 노드 1개를 공개합니다.",
+    "event": true
+  },
+  {
+    "id": "POT-024",
+    "name": "봉인 용해액",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "event"
+    ],
+    "effect": "unlockSeal",
+    "desc": "지원되는 봉인 보물이나 이벤트 선택지를 해제합니다.",
+    "event": true
+  },
+  {
+    "id": "POT-025",
+    "name": "약초 정제액",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat",
+      "event"
+    ],
+    "effect": "herbalCleanse",
+    "desc": "상태이상 카드 1장을 소멸시키고 최대 HP의 3%를 회복합니다.",
+    "event": true
+  },
+  {
+    "id": "POT-026",
+    "name": "화염 투척병",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "fireBomb",
+    "desc": "모든 적에게 피해 8과 화상 2를 부여합니다.",
+    "amount": 8,
+    "burn": 2,
+    "throwing": true
+  },
+  {
+    "id": "POT-027",
+    "name": "서리 투척병",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "frostBomb",
+    "desc": "모든 적에게 피해 5와 빙결 1을 부여합니다.",
+    "amount": 5,
+    "freeze": 1,
+    "throwing": true
+  },
+  {
+    "id": "POT-028",
+    "name": "부식 투척병",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "acidBomb",
+    "desc": "적 하나에게 피해 10과 취약 2를 부여합니다.",
+    "amount": 10,
+    "vulnerable": 2,
+    "throwing": true
+  },
+  {
+    "id": "POT-029",
+    "name": "파훼 영약",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat"
+    ],
+    "effect": "hexBreak",
+    "desc": "제거 가능한 해로운 효과 하나를 제거합니다."
+  },
+  {
+    "id": "POT-030",
+    "name": "정제 촉매",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "deckDistill",
+    "desc": "패 1장을 소멸시키고 카드 2장을 뽑습니다.",
+    "amount": 2
+  },
+  {
+    "id": "POT-031",
+    "name": "생존자의 비약",
+    "grade": "B",
+    "rarity": "B",
+    "use": [
+      "combat"
+    ],
+    "effect": "survival",
+    "desc": "최대 HP의 12%를 회복하고 방어 10을 얻습니다.",
+    "heal": 12,
+    "block": 10
+  },
+  {
+    "id": "POT-032",
+    "name": "뇌광 투척병",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "thunderBomb",
+    "desc": "모든 적에게 피해 6과 감전 1을 부여합니다.",
+    "amount": 6,
+    "shock": 1,
+    "throwing": true
+  },
+  {
+    "id": "POT-033",
+    "name": "그림자 용액",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "combat"
+    ],
+    "effect": "evasion",
+    "desc": "다음 공격을 1회 회피합니다.",
+    "amount": 1
+  },
+  {
+    "id": "POT-034",
+    "name": "정화의 샘물",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "cleanseStatus",
+    "desc": "상태이상 카드 최대 2장을 소멸시킵니다.",
+    "amount": 2
+  },
+  {
+    "id": "POT-035",
+    "name": "길잡이의 향",
+    "grade": "D",
+    "rarity": "D",
+    "use": [
+      "map",
+      "event"
+    ],
+    "effect": "exploration",
+    "desc": "다음 경로 분기를 추가 공개하며 지원 이벤트 선택지를 해제합니다.",
+    "event": true
+  },
+  {
+    "id": "POT-036",
+    "name": "결투자의 향수",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "bellDuel",
+    "desc": "다음 공격 피해가 25% 증가하고 방어를 5 얻습니다.",
+    "character": "벨"
+  },
+  {
+    "id": "POT-037",
+    "name": "마력 결정액",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "seraphinMana",
+    "desc": "마나를 3 얻습니다.",
+    "character": "세라핀",
+    "amount": 3
+  },
+  {
+    "id": "POT-038",
+    "name": "성광의 성유",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "lumieraFaith",
+    "desc": "신앙을 3 얻고 상태이상 카드 1장을 소멸시킵니다.",
+    "character": "루미에라",
+    "amount": 3
+  },
+  {
+    "id": "POT-039",
+    "name": "전술 각성제",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "vernaTactical",
+    "desc": "탄약을 2 얻고 선택한 적에게 표식 2를 부여합니다.",
+    "character": "베르나",
+    "amount": 2
+  },
+  {
+    "id": "POT-040",
+    "name": "생명 점액",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "irisSummonHeal",
+    "desc": "활성 소환물 모두 최대 HP의 30%를 회복합니다.",
+    "character": "이리스",
+    "amount": 30
+  },
+  {
+    "id": "POT-041",
+    "name": "붉은 달 약초액",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "karenRage",
+    "desc": "분노를 4 얻고 방어를 6 얻습니다.",
+    "character": "카렌",
+    "amount": 4
+  },
+  {
+    "id": "POT-042",
+    "name": "호흡환",
+    "grade": "C",
+    "rarity": "C",
+    "use": [
+      "combat"
+    ],
+    "effect": "ireCombo",
+    "desc": "연계를 3 얻고 다음 다단 공격 최종 피해가 15% 증가합니다.",
+    "character": "이레",
+    "amount": 3
+  }
+];
+window.POTION_SLOT_LIMIT=3;

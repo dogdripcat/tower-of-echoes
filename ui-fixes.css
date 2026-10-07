@@ -1,0 +1,243 @@
+#startScreen.selecting .hero-select-panel{grid-template-rows:56px minmax(0,1fr) 38px}
+#startScreen.selecting .hero-select-head{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#startScreen.selecting .menu-back{padding:2px 12px;font-size:.75rem;line-height:1.3}
+#startScreen.selecting .hero{position:relative;overflow:hidden;padding:0}
+#startScreen.selecting .hero-art{position:absolute;top:0;bottom:auto;left:-42%;width:184%;height:calc(100% - 12px);max-width:none;object-fit:contain;object-position:center bottom}
+#startScreen.selecting .hero-copy{position:absolute;z-index:1;left:0;right:0;bottom:0;min-height:69px;padding:4px 6px;background:linear-gradient(transparent,#09070de8 16%,#09070df5)}
+#overlay:has(.gatekeeper-modal){background-image:linear-gradient(90deg,#040308b8,#0905136b 48%,#040308b8),var(--tier-bg);background-position:center;background-size:cover;backdrop-filter:none;isolation:isolate}
+#overlay:has(.gatekeeper-modal)::before{content:'';position:absolute;z-index:0;left:50%;top:4%;width:min(39vw,580px);height:min(80vh,680px);transform:translateX(-50%);border:clamp(13px,2.2vw,35px) ridge var(--entry-color,#bcb7c1);border-bottom:0;border-radius:48% 48% 0 0;background:radial-gradient(ellipse at center,#764f9c77,#10091fc9 70%),var(--tier-bg) center/cover;box-shadow:0 0 0 12px #100c15c9,0 0 0 20px color-mix(in srgb,var(--entry-color,#bcb7c1) 65%,#000),0 0 90px var(--entry-color,#bcb7c1),inset 0 0 110px #000;pointer-events:none}
+#overlay[data-tier="0"]{--entry-color:#bcb7c1}#overlay[data-tier="1"]{--entry-color:#ac394d}#overlay[data-tier="2"]{--entry-color:#c59858}#overlay[data-tier="3"]{--entry-color:#8750bf}#overlay[data-tier="4"]{--entry-color:#6a86bc}
+.gatekeeper-modal{position:relative;z-index:1}.gatekeeper-scene{grid-template-columns:1fr!important}.gatekeeper-dialog{background:#180f20e8}
+.battle .mana-dock{height:112px;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:4px;width:76px}
+.action-panel,.qi-panel{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;line-height:1.05}
+.action-panel b{font-size:2rem}.qi-panel{position:absolute;left:0;bottom:calc(100% + 4px);min-height:66px;padding:5px 2px;border:1px solid #79aade;background:#102847ed;box-shadow:0 0 18px #247ac67a}
+.qi-panel b{font-size:.95rem!important;letter-spacing:.08em;white-space:nowrap}.qi-panel small{font-size:.61rem;white-space:nowrap}
+.bag-tooltip{position:fixed;z-index:110;max-width:min(245px,80vw);padding:9px 11px;border:1px solid #b9956d;border-radius:6px;background:#100d17f5;color:#f6ecdf;line-height:1.45;font-size:.78rem;white-space:pre-line;box-shadow:0 10px 30px #000c;pointer-events:none}
+.bag-item::after{display:none}
+.battle-menu-toggle{display:none;position:fixed;z-index:40;right:73px;top:7px;width:39px;height:39px;border:1px solid #a99ac0;border-radius:50%;background:#171222ea;color:#fff;font-size:1.3rem;line-height:1;cursor:pointer}
+.in-battle .battle-menu-toggle{display:grid;place-items:center}
+.battle-menu{position:fixed;z-index:60;right:13px;top:52px;width:178px;display:grid;gap:3px;padding:7px;border:1px solid #806393;border-radius:8px;background:#17111eea;box-shadow:0 12px 35px #000b}
+.battle-menu button{border:0;border-radius:5px;background:transparent;color:#eee;padding:9px 12px;text-align:left;cursor:pointer}.battle-menu button:hover,.battle-menu button:focus-visible{background:#543777}
+@media(max-width:900px){#startScreen.selecting .hero-select-panel{width:min(980px,calc(100vw - 18px))}#startScreen.selecting .hero-art{left:-42%;width:184%;height:calc(100% - 8px)}#startScreen.selecting .hero-copy{min-height:63px}.battle .mana-dock{height:92px;width:62px}.action-panel b{font-size:1.5rem}}
+@media(max-width:700px) and (orientation:landscape){#startScreen.selecting .hero-select-panel{grid-template-rows:43px minmax(0,1fr) 34px}#startScreen.selecting .hero-art{height:calc(100% - 6px)}#startScreen.selecting .hero-copy{min-height:57px;padding:2px 4px}.battle .mana-dock{height:67px;width:62px}.qi-panel{min-height:49px}.battle-menu-toggle{right:54px;top:6px;width:36px;height:36px}}
+/* Keep portraits large while reserving a readable footer for every character. */
+#startScreen.selecting .hero-select-panel{height:min(76svh,690px);grid-template-rows:52px minmax(0,1fr) 42px}
+#startScreen.selecting .hero-art{height:calc(100% - 92px);object-position:center bottom}
+#startScreen.selecting .hero::after{inset:45% 0 0;background:linear-gradient(transparent,#09070d 82%);pointer-events:none}
+#startScreen.selecting .hero-copy{min-height:106px;padding:9px 6px 7px;background:linear-gradient(transparent,#09070df5 9%);text-align:center}
+#startScreen.selecting .hero-copy strong{display:block;color:#fff;font-size:clamp(.79rem,1vw,1rem);line-height:1.25}
+#startScreen.selecting .hero-copy small{min-height:0;margin:3px 0 0;color:#f3ecef;font-size:clamp(.67rem,.8vw,.82rem);line-height:1.2}
+#startScreen.selecting .hero-resource{margin-top:3px;font-size:clamp(.6rem,.72vw,.74rem);line-height:1.25}
+#startScreen.selecting .hero-relic{margin-top:5px;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.2}
+#startScreen.selecting .hero-relic::after{bottom:calc(100% + 4px)}
+@media(max-width:900px){#startScreen.selecting .hero-select-panel{height:min(80svh,620px)}#startScreen.selecting .hero-art{left:-42%;width:184%;height:calc(100% - 98px)}#startScreen.selecting .hero-copy{min-height:103px}}
+@media(max-height:550px) and (orientation:landscape){#startScreen.selecting .hero-select-panel{height:calc(100svh - 10px);grid-template-rows:39px minmax(0,1fr) 34px}#startScreen.selecting .hero-copy{min-height:85px;padding:4px 3px}#startScreen.selecting .hero-art{height:calc(100% - 78px)}#startScreen.selecting .hero-relic{margin-top:2px}}
+/* The supply screen shows a barred iron gate built into the stage wall. */
+#overlay:has(.gatekeeper-modal)::before{left:52%;top:4%;width:min(37vw,610px);height:min(89vh,780px);border:0;border-radius:0;transform:translateX(-50%);background:linear-gradient(90deg,#0b090e 0 6%,#716b71 6.5%,#27242a 10%,transparent 12% 88%,#27242a 90%,#716b71 93.5%,#0b090e 94%),linear-gradient(180deg,#201d23 0 5%,#79747a 5.4%,#2a262d 9%,transparent 11% 93%,#28252c 96%,#07060a 100%),linear-gradient(#0c0a10b8,#0b0912ce),var(--tier-bg) center/cover;box-shadow:inset 0 0 70px #000,0 0 0 9px #19171d,0 0 0 13px #5c555c,0 18px 60px #000d}
+#overlay:has(.gatekeeper-modal)::after{content:'';position:absolute;z-index:0;left:52%;top:11%;width:min(31vw,510px);height:min(78vh,680px);transform:translateX(-50%);background:repeating-linear-gradient(90deg,transparent 0 8.4%,#08090d 8.4% 9.4%,#625c60 9.6% 10%,#111015 10.2% 11.5%),linear-gradient(180deg,transparent 0 30%,#100e13 30% 32%,#5a5156 32.2% 32.7%,transparent 33% 68%,#100e13 68% 70%,#5a5156 70.2% 70.7%,transparent 71%);border:7px solid #16141b;box-shadow:inset 0 0 28px #000,0 0 14px #000;pointer-events:none}
+/* Inner energy is a round resource, and card costs reflect the resource spent. */
+.battle .qi-panel{left:50%;bottom:calc(100% + 8px);width:78px;height:78px;min-height:78px;transform:translateX(-50%);border:2px solid #9ac6ed;border-radius:50%;background:radial-gradient(circle at 38% 25%,#31597a,#0b172c 74%);box-shadow:0 0 0 3px #071326,0 0 22px #64b3f583}
+.qi-panel span{font-size:.74rem}.qi-panel b{font-size:.83rem!important;letter-spacing:0}.qi-panel small{font-size:.69rem}
+.battle .card .cost-qi{border-radius:50%;border-color:#83c9ff;background:linear-gradient(145deg,#2b6f9e,#0b2843);box-shadow:0 0 10px #70baf577}
+.battle .card .cost-dual{overflow:visible}
+.battle .card .cost-inner{position:absolute;top:-10px;left:-10px;display:grid;place-items:center;width:18px;height:18px;border:1px solid #83c9ff;border-radius:50%;background:#15496e;color:#fff;font-size:.62rem;line-height:1;box-shadow:0 0 8px #6ebaff77}
+@media(max-width:900px){.battle .qi-panel{width:66px;height:66px;min-height:66px}}
+@media(max-width:700px) and (orientation:landscape){.battle .qi-panel{width:54px;height:54px;min-height:54px;bottom:calc(100% + 4px)}.qi-panel span{font-size:.62rem}.qi-panel b{font-size:.65rem!important}.qi-panel small{font-size:.58rem}}
+/* Draw selection facts above both the portrait and its darkening layer. */
+#startScreen.selecting .hero-copy{z-index:5;min-height:120px;padding:12px 5px 8px;background:linear-gradient(180deg,#100c14ee,#0a0810 18%,#0a0810 100%);color:#fff;isolation:isolate}
+#startScreen.selecting .hero-copy strong,#startScreen.selecting .hero-copy small,#startScreen.selecting .hero-resource,#startScreen.selecting .hero-relic{position:relative;z-index:6;opacity:1!important;visibility:visible!important;filter:none!important;text-shadow:none}
+#startScreen.selecting .hero-copy small{color:#efe7f4}
+#startScreen.selecting .hero-resource{color:#aee3ff}
+#startScreen.selecting .hero-relic{color:#ffe1a4}
+#startScreen.selecting .hero-art{height:calc(100% - 115px)}
+#startScreen.selecting .hero-copy strong{font-size:clamp(.875rem,1.05vw,1rem)}
+#startScreen.selecting .hero-copy small,#startScreen.selecting .hero-resource,#startScreen.selecting .hero-relic{font-size:clamp(.72rem,.8vw,.82rem)}
+#startScreen.selecting .hero::after{display:none}
+@media(max-width:900px){#startScreen.selecting .hero-copy{min-height:112px;padding:7px 3px 5px}#startScreen.selecting .hero-art{height:calc(100% - 107px)}}
+@media(max-height:550px) and (orientation:landscape){#startScreen.selecting .hero-copy{min-height:92px;padding:4px 3px}#startScreen.selecting .hero-art{height:calc(100% - 90px)}#startScreen.selecting .hero-relic{font-size:.58rem}}
+/* Dedicated illustrated entrance for each stage; never reuse the combat backdrop. */
+#overlay:has(.gatekeeper-modal){background:linear-gradient(90deg,#0706098a,#09071125 45%,#0706098a),var(--tier-entry) center/cover no-repeat;backdrop-filter:none}
+#overlay:has(.gatekeeper-modal)::before,#overlay:has(.gatekeeper-modal)::after{content:none;display:none}
+.gatekeeper-dialog{background:#100c17e8;box-shadow:0 14px 36px #000a}
+/* Relic descriptions are always visible below the selected hero's relic. */
+#startScreen.selecting .hero-copy{min-height:156px!important;padding-bottom:8px!important}
+#startScreen.selecting .hero-art{height:calc(100% - 154px)!important}
+#startScreen.selecting .hero-relic{cursor:default;overflow:hidden!important}
+#startScreen.selecting .hero-relic::after{display:none!important}
+#startScreen.selecting .hero-relic-desc{display:block;position:relative;z-index:7;margin-top:4px;padding:4px 3px;border-top:1px solid #695338;color:#e8d8bb;font-size:clamp(.62rem,.67vw,.76rem);line-height:1.25;overflow-wrap:anywhere}
+/* Stand the gatekeeper beside a compact supply panel over the illustrated entrance. */
+#overlay:has(.gatekeeper-modal){place-items:center}
+.gatekeeper-modal{width:min(1040px,94vw)!important;grid-template-columns:minmax(180px,35%) minmax(0,1fr)!important;align-items:center!important;gap:clamp(12px,3vw,42px)!important}
+.gatekeeper-stand{height:min(76svh,700px)!important}
+.gatekeeper-stand img{filter:drop-shadow(0 18px 22px #06030bdc)!important}
+.gatekeeper-dialog{border:1px solid #9c78a9!important;border-radius:8px;background:#160e21e9!important;box-shadow:0 20px 55px #000b!important}
+.gatekeeper-scene{min-height:110px!important;padding:16px 22px!important}
+.supply-panel{padding:14px 18px 20px!important}
+.supply-choices{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.supply-choice{min-height:125px!important;padding:10px!important}
+/* The dragged card retains its rectangular shape regardless of the hand fan. */
+.battle .card.card-drag-ghost{position:fixed!important;display:block!important;flex:none!important;aspect-ratio:auto!important;margin:0!important;min-width:0!important;transform:translate(-50%,-50%) rotate(0deg) scale(.92)!important;pointer-events:none!important;z-index:1000!important;opacity:.96!important}
+.fx-targeted{position:absolute!important;transform:translate(-50%,-50%)!important}
+@media(max-width:900px){#startScreen.selecting .hero-copy{min-height:145px!important}#startScreen.selecting .hero-art{height:calc(100% - 142px)!important}.gatekeeper-modal{grid-template-columns:minmax(105px,25%) minmax(0,1fr)!important;gap:8px!important}.gatekeeper-stand{height:min(72svh,430px)!important}.supply-choice{min-height:78px!important;padding:5px!important}.gatekeeper-scene{min-height:70px!important;padding:8px!important}.supply-panel{padding:7px!important}}
+@media(max-height:550px) and (orientation:landscape){#startScreen.selecting .hero-copy{min-height:112px!important;padding:3px!important}#startScreen.selecting .hero-art{height:calc(100% - 108px)!important}#startScreen.selecting .hero-relic-desc{font-size:.55rem;padding:1px!important;margin:1px!important}.gatekeeper-stand{height:82svh!important}.supply-choice{min-height:64px!important}}
+#startScreen.selecting .hero-select-panel{height:min(70svh,600px)}
+@media(max-width:900px){#startScreen.selecting .hero-select-panel{height:min(76svh,540px)}}
+@media(max-height:550px) and (orientation:landscape){#startScreen.selecting .hero-select-panel{height:calc(100svh - 12px)}}
+/* Character roster: a focused hero scene with compact portrait selectors. */
+#startScreen.selecting .hero-select-panel{width:min(1280px,calc(100vw - 32px));height:min(94svh,860px);grid-template-rows:auto minmax(0,1fr) auto auto;gap:clamp(5px,1svh,12px);position:relative}
+#startScreen.selecting .hero-select-head{z-index:3;justify-content:flex-start;color:#f2d68f}
+#startScreen.selecting .hero-feature{position:relative;min-height:0;overflow:hidden;display:flex;align-items:center;border:1px solid #7058878c;border-radius:12px;background:radial-gradient(circle at 78% 50%,color-mix(in srgb,var(--hero-accent,#b795c3) 28%,transparent),transparent 43%),linear-gradient(90deg,#160c1deb,#160c1d88 56%,#100b169e),url('assets/stage-bg-clocktower-v1.webp') center/cover;color:#fff;isolation:isolate}
+#startScreen.selecting .hero-feature-copy{z-index:2;width:min(47%,510px);margin-left:clamp(16px,4vw,60px);padding:clamp(8px,2vw,26px);border:1px solid #9c7c9b6e;border-radius:10px;background:#100b16cc;box-shadow:0 18px 38px #0504098c}
+#startScreen.selecting .hero-feature h2{font:700 clamp(1.6rem,3vw,3.2rem) Georgia,'Noto Serif KR',serif;margin:5px 0;color:#f4dbad}
+#startScreen.selecting .hero-feature p{margin:10px 0;color:#eee4ed;font-size:clamp(.77rem,1.08vw,1.1rem);line-height:1.5}
+#startScreen.selecting .hero-feature-stats{display:flex;flex-wrap:wrap;gap:5px 14px;font-weight:700;color:#ffdfa0;font-size:clamp(.72rem,.92vw,1rem)}
+#startScreen.selecting .hero-feature-relic{display:grid;gap:5px;padding:10px 12px;border-left:3px solid #c3a362;background:#261b28d9;font-size:clamp(.75rem,.9vw,.98rem)}
+#startScreen.selecting .hero-feature-relic strong{color:#f2d795}#startScreen.selecting .hero-feature-relic span{color:#eee}
+#startScreen.selecting .hero-feature-art{position:absolute;right:0;bottom:0;width:52%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 14px 22px #030205ae)}
+#startScreen.selecting .heroes{display:flex;justify-content:center;align-items:stretch;gap:8px;height:clamp(60px,10svh,94px);overflow-x:auto;overflow-y:hidden;padding:4px 3px;flex:0 0 auto}
+#startScreen.selecting .heroes .hero{position:relative;display:block;flex:0 0 clamp(56px,7.3vw,91px);width:clamp(56px,7.3vw,91px);height:100%;min-height:0;margin:0;padding:0;overflow:hidden;border:2px solid #4e3c59;background:#1a1421;transform:none;scroll-snap-align:center}
+#startScreen.selecting .heroes .hero.selected{border-color:#f0bd62;box-shadow:0 0 15px #e9b86c9c}
+#startScreen.selecting .heroes .hero-art{position:absolute;inset:0!important;width:100%!important;height:100%!important;object-fit:cover;object-position:50% 13%}
+#startScreen.selecting .heroes .hero-copy{position:absolute;inset:auto 0 0;z-index:2;min-height:0!important;height:auto!important;padding:2px!important;background:#09060bd9;text-align:center}
+#startScreen.selecting .heroes .hero-copy strong{font-size:clamp(.65rem,.9vw,.85rem);line-height:1.2}
+#startScreen.selecting .start-action{height:36px}
+/* A dedicated gatehouse interior forms the entire supply scene. */
+#overlay:has(.gatekeeper-modal){background-image:linear-gradient(90deg,#0c0712a8,#0b071054 40%,#0a061095),url('assets/gatehouse-supply.webp')!important;background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important}
+#overlay:has(.gatekeeper-modal) .gatekeeper-modal{width:min(1150px,94vw)!important;grid-template-columns:minmax(180px,40%) minmax(0,1fr)!important}
+#overlay:has(.gatekeeper-modal) .gatekeeper-dialog{background:#160e21d3!important;backdrop-filter:blur(3px)}
+/* The floating card lives inside .battle to retain all card descendants and colors. */
+.battle>.card.card-drag-ghost{position:fixed!important;display:block!important;flex:none!important;max-width:none!important;aspect-ratio:auto!important;transform:translate(-50%,-50%) scale(.94)!important;margin:0!important;opacity:.98!important;z-index:1000!important;pointer-events:none!important;overflow:visible!important}
+@media(max-width:760px){#startScreen.selecting .hero-select-panel{width:calc(100vw - 10px);height:calc(100svh - 10px)}#startScreen.selecting .hero-feature-copy{width:54%;margin-left:4px;padding:8px}#startScreen.selecting .hero-feature-art{width:51%}#startScreen.selecting .hero-feature p{font-size:.68rem;line-height:1.28;margin:4px 0}#startScreen.selecting .hero-feature-relic{padding:4px 6px;font-size:.65rem}#startScreen.selecting .heroes{height:clamp(50px,13svh,70px)}#startScreen.selecting .heroes .hero{flex-basis:clamp(45px,10vw,68px);width:clamp(45px,10vw,68px)}#overlay:has(.gatekeeper-modal) .gatekeeper-modal{grid-template-columns:minmax(100px,30%) minmax(0,1fr)!important}}
+#startScreen.selecting .heroes .hero-sigil{position:absolute;z-index:4;left:50%;bottom:17px;transform:translateX(-50%);display:grid;place-items:center;width:29px;height:29px;border:1px solid #c5a56b;border-radius:50%;background:#0c0917e8;color:#f2dbaf;font-size:1.05rem;box-shadow:0 0 10px #000c}
+#startScreen.selecting .heroes .hero.selected .hero-sigil{border-color:#ffe5a5;box-shadow:0 0 13px #ffce68}
+@media(max-width:760px){#startScreen.selecting .heroes .hero-sigil{width:22px;height:22px;font-size:.8rem;bottom:14px}}
+
+/* v1.1.1 character selection: list / full-body stage / identity panel. */
+#startScreen.selecting .hero-select-panel{width:min(1380px,calc(100vw - 24px));height:min(92svh,880px);grid-template-rows:auto minmax(0,1fr) auto!important;gap:8px}
+#startScreen.selecting .hero-select-layout{min-height:0;display:grid;grid-template-columns:minmax(150px,190px) minmax(300px,1fr) minmax(330px,430px);gap:10px;overflow:hidden}
+#startScreen.selecting .hero-select-layout>.heroes{height:100%!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(7,minmax(0,1fr));gap:5px;overflow:hidden;padding:0}
+#startScreen.selecting .heroes .hero{width:100%!important;height:auto!important;min-height:0!important;display:grid;grid-template-columns:54px 1fr;align-items:center;gap:8px;flex:none!important;padding:4px 8px!important;text-align:left;overflow:hidden}
+#startScreen.selecting .heroes .hero-art{position:relative!important;inset:auto!important;width:50px!important;height:58px!important;object-fit:cover!important;object-position:50% 12%!important;border-radius:4px;background:#09070d}
+#startScreen.selecting .heroes .hero-copy{position:relative!important;inset:auto!important;padding:0!important;background:none!important;text-align:left!important}
+#startScreen.selecting .heroes .hero-copy strong{font-size:.86rem}.hero-copy small{font-size:.63rem;min-height:0!important;color:#cdbfd1}
+#startScreen.selecting .hero-stage{position:relative;min-width:0;overflow:hidden;border:1px solid #7058878c;border-radius:12px;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--hero-accent,#b795c3) 24%,transparent),transparent 52%),linear-gradient(#211429c2,#0a0710e8),url('assets/stage-bg-clocktower-v1.webp') center/cover}
+#startScreen.selecting .hero-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 16px 24px #000c)}
+#startScreen.selecting .hero-feature{min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:stretch;padding:14px;border:1px solid #7058878c;border-radius:12px;background:linear-gradient(155deg,#1d1425f2,#0d0a12f2);color:#fff}
+#startScreen.selecting .hero-identity{display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid #6d5877}
+#startScreen.selecting .hero-emblem{width:84px;height:84px;object-fit:contain;border-radius:7px;background:#08060b;box-shadow:0 0 18px color-mix(in srgb,var(--hero-accent) 50%,transparent)}
+#startScreen.selecting .hero-identity h2{margin:2px 0 0;font:700 2rem Georgia,'Noto Serif KR',serif;color:#f3d99e}
+#startScreen.selecting .hero-identity strong{font-size:.82rem;color:#d8cbdc}
+#startScreen.selecting .hero-lore{margin:10px 0;color:#e8dfe9;font-size:.82rem;line-height:1.48}
+#startScreen.selecting .hero-feature-stats{display:flex;flex-wrap:wrap;gap:5px 10px;padding:8px;border:1px solid #4d3d56;background:#110c17;font-size:.72rem;color:#f3d593}
+#startScreen.selecting .hero-playstyle{display:grid;gap:4px;margin-top:9px;padding:9px;background:#231829}
+#startScreen.selecting .hero-playstyle strong{color:#e8c780}#startScreen.selecting .hero-playstyle span{font-size:.78rem}#startScreen.selecting .hero-playstyle small{color:#bfb1c4}
+#startScreen.selecting .hero-feature-relic{display:grid;gap:3px;margin-top:8px;padding:9px;border-left:3px solid #c3a362;background:#261b28;font-size:.75rem}
+#startScreen.selecting .awakening-preview{margin-top:auto;padding-top:10px}#startScreen.selecting .awakening-preview h3{margin:0 0 7px;font-size:.9rem}
+#startScreen.selecting .awakening-preview>div{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.awakening-chip{padding:7px 4px;border:1px solid;text-align:center;font-weight:800;font-size:.76rem;background:#0c0911}.awakening-chip.red{border-color:#d95c66;color:#ff9aa2}.awakening-chip.green{border-color:#5eb987;color:#96e2b7}.awakening-chip.blue{border-color:#5e91ca;color:#9dcaff}.awakening-preview small{display:block;margin-top:6px;color:#978b9b;font-size:.6rem}
+#startScreen.selecting .start-action{height:auto!important;margin:0!important;justify-content:flex-end}#startScreen.selecting .start-action .primary{min-width:220px;padding:11px 30px;font-size:1rem}
+@media(max-width:820px) and (orientation:portrait){#startScreen.selecting .hero-select-panel{height:auto;max-height:none;overflow:visible}#startScreen.selecting .hero-select-layout{display:flex;flex-direction:column;overflow:visible}#startScreen.selecting .hero-select-layout>.heroes{display:flex!important;height:72px!important;overflow-x:auto;overflow-y:hidden}#startScreen.selecting .heroes .hero{flex:0 0 126px!important;width:126px!important;grid-template-columns:44px 1fr}#startScreen.selecting .heroes .hero-art{width:42px!important;height:58px!important}#startScreen.selecting .hero-stage{height:46svh;min-height:340px}#startScreen.selecting .hero-feature{overflow:visible}#startScreen.selecting .start-action{position:sticky;bottom:0;z-index:5;background:#09070de8;padding:7px}#startScreen.selecting .start-action .primary{width:100%}}
+@media(max-height:560px) and (orientation:landscape){#startScreen.selecting .hero-select-panel{height:calc(100svh - 8px)}#startScreen.selecting .hero-select-layout{grid-template-columns:140px minmax(260px,1fr) 330px}#startScreen.selecting .hero-lore{display:none}#startScreen.selecting .hero-emblem{width:52px;height:52px}#startScreen.selecting .hero-identity h2{font-size:1.25rem}#startScreen.selecting .hero-feature{padding:7px}#startScreen.selecting .hero-playstyle,#startScreen.selecting .hero-feature-relic{padding:5px;margin-top:4px}.awakening-chip{padding:3px}}
+/* Reward relic placement: each visible square can be selected with mouse or keyboard. */
+.bag-grid .bag-cell{pointer-events:auto;z-index:1;cursor:default;padding:0;appearance:none}
+.bag-grid .bag-cell.bag-placeable{cursor:pointer;border-color:#d6b768;background:linear-gradient(145deg,#6a562a,#282319);box-shadow:inset 0 0 12px #e0bd6680}
+.bag-grid .bag-cell.bag-placeable:hover,.bag-grid .bag-cell.bag-placeable:focus-visible{background:#ad8239;outline:2px solid #ffdb82;outline-offset:-3px}
+.reward-row-copy small{line-height:1.35}
+/* Phone landscape: use the actual browser viewport for one complete battle scene. */
+@media (orientation:landscape) and (max-height:700px) and (pointer:coarse){
+  html,body{width:100%;height:100%;overflow:hidden}
+  body.in-battle .shell{width:100%;height:100dvh;min-height:0;padding:0;overflow:hidden}
+  body.in-battle .screen{height:100dvh;min-height:0;display:block;overflow:hidden}
+  body.in-battle .topbar{height:42px;min-height:42px;padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left));grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  body.in-battle .stage{font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42vw}
+  body.in-battle .resources{align-items:center;gap:5px;font-size:.75rem}
+  .battle{position:relative!important;display:block!important;width:100%;height:100dvh!important;min-height:0!important;padding:0!important;overflow:hidden}
+  .battle .arena{position:absolute;inset:0 0 0!important;display:grid!important;width:100%;height:100%!important;min-height:0!important;grid-template-columns:minmax(0,32%) minmax(0,1fr)!important;grid-template-rows:1fr!important;gap:5px!important;align-items:end!important;padding:49px max(5px,env(safe-area-inset-right)) calc(clamp(112px,32dvh,164px) + 4px) max(5px,env(safe-area-inset-left))!important;overflow:hidden}
+  .battle .hero-battle-unit{grid-column:1!important;grid-row:1!important;width:100%!important;max-width:100%;min-height:0;align-self:end}
+  .battle .figure{height:clamp(85px,calc(66dvh - 100px),240px)!important;min-height:0!important;max-height:none!important}
+  .battle .hero-combat-art{height:100%!important;max-height:100%!important;max-width:100%;object-fit:contain;object-position:center bottom}
+  .battle .hero-local{width:100%!important;padding:2px 4px!important;min-height:0}
+  .battle .hero-local h2{font-size:.7rem!important}.battle .hero-local .statline{font-size:.63rem;white-space:nowrap}
+  .battle .enemy-party{grid-column:2!important;grid-row:1!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;display:flex;align-items:end;justify-content:center;overflow:visible}
+  .battle .enemy-slot{height:100%;min-width:0;max-width:none;grid-template-rows:auto minmax(0,1fr) auto;padding-top:25px}
+  .battle .enemy-slot>.enemy-art-wrap{height:100%;min-height:0!important;overflow:hidden}
+  .battle .enemy-slot img{width:100%;height:100%;max-height:100%!important;object-fit:contain;object-position:center bottom}
+  .battle .enemy-intent{top:1px;max-width:100%;min-width:0;padding:1px 2px;font-size:.62rem;overflow:hidden;text-overflow:ellipsis}
+  .battle .enemy-local{padding:2px;font-size:.6rem}.battle .enemy-local strong{font-size:.62rem}.battle .enemy-local small{font-size:.57rem}
+  .battle .turn-indicator{top:45px!important;font-size:.62rem!important;padding:2px 8px}
+  .battle .hand-area{position:absolute!important;inset:auto 0 0!important;width:100%;height:clamp(112px,32dvh,164px)!important;min-height:0!important;display:flex!important;align-items:end;justify-content:center;gap:0;padding:0 max(67px,env(safe-area-inset-right)) max(3px,env(safe-area-inset-bottom)) max(67px,env(safe-area-inset-left))!important;margin:0!important;background:linear-gradient(transparent,#07060bc9 20%,#050409 100%)}
+  .battle .hand{width:100%;height:100%!important;min-height:0!important;min-width:0;display:flex;align-items:end;justify-content:flex-start!important;gap:3px!important;overflow-x:auto!important;overflow-y:hidden!important;padding:1px 4px 3px!important;scrollbar-width:thin;touch-action:pan-x}
+  .battle .card{flex:0 0 auto;width:clamp(76px,12dvh,105px)!important;min-width:0!important;height:calc(100% - 4px)!important;aspect-ratio:auto!important;margin:0!important;padding:5px 4px!important;transform:none!important;overflow:hidden;font-size:.63rem}
+  .battle .card-name{margin-left:22px;min-height:20px;font-size:.64rem}.battle .card-type{margin:1px 0 0 22px;font-size:.52rem}.battle .card-art{height:clamp(21px,6dvh,36px);margin:3px 0}.battle .card-effect{font-size:.57rem;line-height:1.15}.battle .card-keyword{font-size:.51rem;margin-bottom:1px}.battle .cost{left:3px;top:3px;width:20px;height:20px;font-size:.65rem}
+  .battle .card:hover:not(:disabled){transform:translateY(-3px)!important}
+  .battle .mana-dock{left:max(3px,env(safe-area-inset-left));bottom:4px;width:53px;height:clamp(68px,19dvh,92px);min-height:0;padding:2px;font-size:.6rem}
+  .battle .piles{position:absolute;left:max(4px,env(safe-area-inset-left));bottom:calc(clamp(68px,19dvh,92px) + 7px);gap:2px;display:flex!important}
+  .battle .pile[data-pile]{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;width:26px;height:34px;padding:0}
+  .battle .card-stack i,.battle .card-stack::before,.battle .card-stack::after{width:19px;height:27px}.battle .card-stack b{width:17px;height:17px;font-size:.56rem;bottom:-2px}
+  .battle .end-turn{right:max(4px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));width:56px!important;height:56px!important;margin:0!important;padding:2px!important}.battle .end-turn small{font-size:.59rem}
+  .battle-effects{display:grid;top:54px!important;left:4px;width:min(125px,19vw);max-height:calc(100dvh - 190px);overflow:auto;gap:2px;pointer-events:auto}.battle-effects span{font-size:.55rem;padding:2px 3px}
+  .battle>.card.card-drag-ghost{height:auto!important;width:100px!important;min-height:136px;transform:translate(-50%,-50%) scale(.85)!important;overflow:visible!important}
+}
+.bag-rotate{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;margin:8px 0 12px}.bag-rotate button{min-width:86px;min-height:36px;border:1px solid #c4a165;border-radius:5px;background:#302336;color:#fff;cursor:pointer}.bag-rotate button:focus-visible,.bag-rotate button:hover{background:#68487a}.bag-rotate span{min-width:128px;text-align:center;color:#ead59e;font-size:.8rem}.bag-item.relic,.bag-item.weapon{cursor:pointer}.bag-item.relic:hover,.bag-item.weapon:hover{filter:brightness(1.18)}
+.merchant-sale{margin:10px 0;padding:9px;border:1px solid #625173;background:#160f1b}.merchant-sale h3{margin:0 0 6px;font-size:.9rem}.merchant-sale #merchantSellList{display:flex;flex-wrap:wrap;gap:6px;max-height:96px;overflow:auto}.merchant-sell-item{border:1px solid #a78656;border-radius:5px;background:#30252a;color:#fff;padding:7px;cursor:pointer}.merchant-sell-item b{color:#f2d38b}.merchant-sell-item:hover{background:#4a393a}
+.bag-item.relic-저주{border-color:#b54e82;background:radial-gradient(circle at 38% 28%,#a64d89,#412043 55%,#140c19)}.bag-item.relic-축복{border-color:#ffe69f;background:radial-gradient(circle at 38% 28%,#fff0a9,#7a603b 55%,#241909)}.bag-item.relic-매각{border-color:#7fdad8;background:radial-gradient(circle at 38% 28%,#c5ffff,#376e76 55%,#10252a)}
+/* Every square under a relic carries the same grade as a card name. */
+.bag-grid .bag-occupied-cell{z-index:1;pointer-events:none;margin:2px;border:1px solid var(--grade-edge);border-radius:3px;background:linear-gradient(135deg,var(--grade-fill),#100e18);box-shadow:inset 0 0 12px var(--grade-glow),0 0 4px var(--grade-glow)}
+.bag-grid .grade-일반{--grade-edge:#f0f0ef;--grade-fill:#66636b;--grade-glow:#ddd8e347}
+.bag-grid .grade-고급{--grade-edge:#73df8b;--grade-fill:#22643c;--grade-glow:#38e37055}
+.bag-grid .grade-희귀{--grade-edge:#75c8ff;--grade-fill:#23587a;--grade-glow:#4cabff66}
+.bag-grid .grade-신화{--grade-edge:#d594ff;--grade-fill:#66318a;--grade-glow:#c073ff66}
+.bag-grid .grade-초월,.bag-grid .grade-전용{--grade-edge:#ffdc86;--grade-fill:#926325;--grade-glow:#ffc15e70}
+.bag-grid .grade-F{--grade-edge:#a9a9ad;--grade-fill:#4d4c52;--grade-glow:#d0d0d033}.bag-grid .grade-E{--grade-edge:#d9ddd7;--grade-fill:#656965;--grade-glow:#efffe044}.bag-grid .grade-D{--grade-edge:#73df8b;--grade-fill:#22643c;--grade-glow:#38e37055}.bag-grid .grade-C{--grade-edge:#75c8ff;--grade-fill:#23587a;--grade-glow:#4cabff66}.bag-grid .grade-B{--grade-edge:#d594ff;--grade-fill:#66318a;--grade-glow:#c073ff66}.bag-grid .grade-A{--grade-edge:#ffcf6e;--grade-fill:#85591f;--grade-glow:#ffbd4f70}.bag-grid .grade-S{--grade-edge:#fff5bd;--grade-fill:#a67a28;--grade-glow:#fff2a8a0}
+.bag-grid .bag-item.relic{border-color:var(--grade-edge);background:linear-gradient(150deg,color-mix(in srgb,var(--grade-fill) 83%,transparent),#100d16c9);box-shadow:inset 0 0 20px var(--grade-glow),0 4px 12px #000b}
+.bag-grid .bag-item.relic.relic-저주{border-style:dashed}.bag-grid .bag-item.relic.relic-축복{box-shadow:inset 0 0 18px #ffe79a75,0 0 10px var(--grade-glow)}
+.bag-grid .bag-item.relic small{color:#fff3d9}
+.card-art.equipment-art{background-repeat:no-repeat;background-size:200% 100%;background-color:#0c0912}
+.card-art.equipment-attack{background-position:left center}
+.card-art.equipment-defense{background-position:right center}
+
+/* Prevent intrinsic sprite aspect ratios from expanding compact battle grid rows. */
+@media (orientation:landscape) and (max-height:700px) and (pointer:coarse){
+ .battle .figure{display:block!important;position:relative!important;overflow:hidden}
+ .battle .figure .hero-combat-art{position:absolute!important;inset:0;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;object-fit:contain}
+ .battle .enemy-slot{grid-template-rows:minmax(0,1fr) auto auto!important;padding-top:0!important}
+ .battle .enemy-slot>.enemy-art-wrap{position:relative!important;display:block!important;height:100%!important;min-height:0!important;overflow:hidden!important}
+ .battle .enemy-slot .enemy-art-wrap img{position:absolute!important;inset:0;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:100%!important;object-fit:contain;transform:none!important}
+}
+
+@media (orientation:landscape) and (max-height:700px) and (pointer:coarse){
+ .battle .hand .card{display:flex!important;flex-direction:column;align-items:stretch}
+ .battle .hand .card-name,.battle .hand .card-type,.battle .hand .card-art,.battle .hand .card-keyword{flex-shrink:0}
+ .battle .hand .card-art{min-height:0!important;height:21px!important}
+ .battle .hand .card-effect{flex:1;min-height:18px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;white-space:normal}
+}
+
+@media (orientation:landscape) and (max-height:700px) and (pointer:coarse){
+ .battle .hand .card-name{min-height:15px!important;line-height:15px;margin-left:21px}
+ .battle .hand .card-keyword{margin:0!important;padding:0 2px!important;font-size:7px!important;line-height:9px!important}
+ .battle .hand .card-effect{min-height:30px!important}
+ .battle .piles{position:absolute!important;inset:0!important;display:block!important;pointer-events:none}
+ .battle .pile[data-pile]{position:absolute!important;pointer-events:auto;left:auto!important;right:64px!important;bottom:5px!important}
+ .battle .pile[data-pile=draw]{left:4px!important;right:auto!important;bottom:calc(clamp(68px,19dvh,92px) + 7px)!important}
+ .battle .pile[data-pile=exhaust]{bottom:45px!important}
+}
+
+/* v0.56 consumables: one three-slot potion belt, relics remain in the grid. */
+.potion-section{margin:10px auto 12px;padding:10px;border:1px solid #6f5b78;background:#100c16;max-width:520px}
+.potion-section-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px;color:#eee2f5}
+.potion-section-head small{color:#a99bb1;font-size:.68rem}
+.potion-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.potion-slot{min-height:76px;border:1px solid #765c80;border-radius:6px;background:radial-gradient(circle at 32% 22%,#803b6266,#17101e 58%);color:#fff;padding:7px;display:grid;grid-template-columns:auto 1fr;gap:2px 7px;text-align:left;align-items:center}
+.potion-slot:not(.empty){cursor:pointer}.potion-slot:not(.empty):hover{border-color:#e0b7ef;filter:brightness(1.12)}
+.potion-slot.empty{place-items:center;display:grid;color:#716579;border-style:dashed;background:#0b0910}
+.potion-slot .potion-icon{grid-row:1/3;font-size:1.35rem}.potion-slot strong{font-size:.75rem}.potion-slot small{font-size:.58rem;color:#c9b9d1}
+.potion-event{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#7e5aae;color:#fff;font-size:.55rem;margin-left:4px}
+@media(max-width:900px){.potion-section{margin:4px auto 6px;padding:5px}.potion-slot{min-height:52px;padding:4px}.potion-section-head{margin-bottom:4px}.potion-section-head small{font-size:.55rem}}
+.provision-panel{padding:14px 18px 20px;background:linear-gradient(160deg,#24192e,#100d15)}
+.provision-panel>h3{margin:0 0 10px;text-align:center;font:700 1.1rem Georgia,"Noto Serif KR",serif}
+.provision-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.provision-choice{min-height:108px;display:grid;grid-template-rows:auto auto 1fr;gap:4px;padding:10px;border:1px solid #78608a;border-radius:5px;background:linear-gradient(155deg,#2c2037,#15101b);color:#fff;text-align:left;cursor:pointer}
+.provision-choice:hover{border-color:#d7adff;transform:translateY(-2px)}.provision-choice>span{font-size:1.35rem}.provision-choice strong{color:#f2ddff}.provision-choice small{color:#c7b8cf;line-height:1.4}
+@media(max-width:900px){.provision-panel{padding:6px}.provision-panel>h3{font-size:.8rem;margin-bottom:4px}.provision-choices{gap:4px}.provision-choice{min-height:58px;padding:5px;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr}.provision-choice>span{grid-row:1/3;font-size:.85rem}.provision-choice strong{font-size:.65rem}.provision-choice small{font-size:.5rem}}
+.game-version{display:block;margin:-18px auto 14px;text-align:center;color:#aa9db2;font-size:.75rem;letter-spacing:.12em}
+.arcana-toggle{position:relative;min-width:46px;height:36px;display:inline-flex;align-items:center;justify-content:center;gap:3px;border:1px solid #6e91c7;border-radius:5px;background:linear-gradient(145deg,#101f39,#15101f);color:#d9ecff;cursor:pointer;box-shadow:inset 0 0 12px #4778ad33}.arcana-toggle span{font-size:1rem}.arcana-toggle b{font-size:.65rem;color:#fff}.arcana-toggle[data-content-status="ARCANA_CONTENT_BLOCKED"]{filter:saturate(.7)}
+.map-node.sanctuary{background:radial-gradient(circle,#67528b,#251d35 68%);border-color:#bda8e6;color:#fff5c6;box-shadow:0 0 14px #8d6fca66}

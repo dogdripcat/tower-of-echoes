@@ -1,0 +1,35 @@
+/* Creature silhouette scale is independent of encounter rank. Bosses remain hero-sized. */
+.battle .enemy-slot.enemy-shape-boss{--enemy-scale:1}
+.battle .enemy-slot.enemy-shape-humanoid{--enemy-scale:1.06}
+.battle .enemy-slot.enemy-shape-beast{--enemy-scale:1.42}
+.battle .enemy-slot.enemy-shape-other{--enemy-scale:1.36}
+.battle .enemy-slot.enemy-shape-humanoid .enemy-art-wrap img,
+.battle .enemy-slot.enemy-shape-beast .enemy-art-wrap img,
+.battle .enemy-slot.enemy-shape-other .enemy-art-wrap img{
+  max-height:clamp(265px,43vh,440px);
+  transform:scale(var(--enemy-scale));
+  transform-origin:center bottom;
+}
+.battle .enemy-slot.enemy-shape-boss .enemy-art-wrap img{
+  height:clamp(255px,38vh,380px);
+  max-height:clamp(255px,38vh,380px);
+  transform:none;
+}
+/* Narrow encounters retain all five target areas and their intent/status panels. */
+.battle .enemy-party[data-count="4"] .enemy-slot.enemy-shape-humanoid,
+.battle .enemy-party[data-count="5"] .enemy-slot.enemy-shape-humanoid{--enemy-scale:1.06}
+.battle .enemy-party[data-count="4"] .enemy-slot.enemy-shape-beast,
+.battle .enemy-party[data-count="5"] .enemy-slot.enemy-shape-beast{--enemy-scale:1.34}
+.battle .enemy-party[data-count="4"] .enemy-slot .enemy-art-wrap img,
+.battle .enemy-party[data-count="5"] .enemy-slot .enemy-art-wrap img{max-height:clamp(245px,37vh,380px)}
+.battle .enemy-party[data-count="4"] .enemy-slot.enemy-shape-boss .enemy-art-wrap img,
+.battle .enemy-party[data-count="5"] .enemy-slot.enemy-shape-boss .enemy-art-wrap img{max-height:clamp(255px,38vh,380px)}
+@media (orientation:landscape) and (max-height:700px) and (pointer:coarse){
+  .battle .enemy-slot>.enemy-art-wrap{overflow:visible}
+  .battle .enemy-slot.enemy-shape-humanoid{--enemy-scale:1.06}
+  .battle .enemy-slot.enemy-shape-beast{--enemy-scale:1.35}
+  .battle .enemy-slot.enemy-shape-other{--enemy-scale:1.3}
+  .battle .enemy-slot.enemy-shape-boss{--enemy-scale:1}
+  .battle .enemy-slot.enemy-shape-boss .enemy-art-wrap img{height:100%;transform:none}
+  .battle .enemy-slot .enemy-art-wrap img{max-height:100%!important}
+}
