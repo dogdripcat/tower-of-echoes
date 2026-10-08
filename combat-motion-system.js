@@ -2,17 +2,17 @@
 (() => {
   const data = window.TOE_COMBAT_MOTION_DATA;
   if (!data) throw new Error('COMBAT_MOTION_DATA_MISSING');
-  const timers = new Set();
+  const timers = new Map();
   let chain = Promise.resolve();
   let busy = false;
   let actionSerial = 0;
   const tagClass = tag => `motion-${String(tag || 'SKILL_UTILITY').toLowerCase().replaceAll('_','-')}`;
   const delay = milliseconds => new Promise(resolve => {
-    const id = setTimeout(() => { timers.delete(id); resolve(); }, Math.max(0, milliseconds));
-    timers.add(id);
+    const id = setTimeout(() => { timers.delete(id); resolve(true); }, Math.max(0, milliseconds));
+    timers.set(id, resolve);
   });
   const later = (callback,milliseconds) => {
-    const id=setTimeout(()=>{timers.delete(id);callback()},Math.max(0,milliseconds));timers.add(id);return id;
+    const id=setTimeout(()=>{timers.delete(id);callback()},Math.max(0,milliseconds));timers.set(id,null);return id;
   };
   const reduced = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const enabled = () => Boolean(document.body?.classList?.contains('in-battle') && document.querySelector('#arena') && document.querySelector('#heroFigure'));
@@ -101,14 +101,14 @@
     const key=document.createElement('img');key.className='combat-cinematic-keyart';key.src=HEROES[state.hero]?.image||'';key.alt='';
     const emblem=document.createElement('img');emblem.className='combat-cinematic-emblem';emblem.src=profile.emblem||'';emblem.alt='';
     const heading=document.createElement('strong');heading.className='combat-cinematic-title';heading.textContent=title;
-    node.append(key,emblem,heading);arena.append(node);await delay(scaleTime(duration*1000));node.remove();
+    node.append(key,emblem,heading);arena.append(node);const completed=await delay(scaleTime(duration*1000));node.remove();return completed;
   }
   function enemySnapshot() { return new Map((state.enemies||[]).map(enemy=>[enemy.id,{hp:enemy.hp,block:enemy.block,status:JSON.stringify(enemy.statuses||{}),bleed:enemy.bleed||0,phase:enemy.phase||1}])); }
   async function playerAction(card,targetId,resolve) {
     const hero=HEROES[state.hero]?.name, profile=data.player[hero]||{}, tag=data.cardTag(card,hero), accent=state.awakeningState?.selectedIds?.includes(card.id)?({red:'#ff4059',green:'#55e99a',blue:'#5bbcff'}[state.awakeningState.color]||profile.accent):profile.accent;
     if(tag==='AWAKENING'||tag==='TRANSCENDENCE'){
       const path=(card.name||'').replace(/\*+$/,'');
-      await cinematic(tag,path,tag==='TRANSCENDENCE'?'#ffffff':accent,hero);
+      if(!await cinematic(tag,path,tag==='TRANSCENDENCE'?'#ffffff':accent,hero))return false;
       resolve();return true;
     }
     const duration=durationFor(tag,profile), unit=unitElement('hero');
@@ -117,7 +117,7 @@
     if(['DEFEND','SKILL_BUFF','COUNTER'].includes(tag))label(card.name,accent);
     projectile('hero',tag,accent,duration);
     const impactAt=['ATTACK_RANGED','ATTACK_MAGIC','ATTACK_SUMMON','ATTACK_AOE'].includes(tag)?.58:tag==='ATTACK_HEAVY'?.54:.48;
-    await delay(scaleTime(duration*1000*impactAt));
+    if((await delay(scaleTime(duration*1000*impactAt)))===false)return false;
     const before=enemySnapshot(),heroBlock=state.block||0;
     let deferredWin=false, actualWin=window.winBattle;
     if(typeof actualWin==='function')window.winBattle=()=>{deferredWin=true};
@@ -127,33 +127,34 @@
       for(const enemy of state.enemies||[]){const old=before.get(enemy.id);if(!old)continue;const damaged=enemy.hp<old.hp||enemy.block<old.block;if(damaged)react('enemy',enemy.id,{heavy:['ATTACK_HEAVY','ATTACK_AOE'].includes(tag),blocked:enemy.hp===old.hp&&enemy.block<old.block,dead:enemy.hp<=0,accent});if((enemy.phase||1)>(old.phase||1))label(`PHASE ${enemy.phase}`,accent);}
     }else if((state.block||0)>heroBlock){impactMarker('hero','', 'block',accent)}
     else if(tag==='SKILL_DEBUFF')impactMarker('enemy',targetId,'status',accent);
-    await delay(scaleTime(duration*1000*(1-impactAt)));
+    if((await delay(scaleTime(duration*1000*(1-impactAt))))===false)return false;
     unit.classList.remove('motion-active',tagClass(tag));
     if(deferredWin&&actualWin)actualWin();
     return true;
   }
   async function enemyAction(enemy,action,onImpact) {
     const profile=data.monster[enemy.monsterId]||{}, tag=data.actionTag(enemy,action), duration=durationFor(tag,profile,enemy.rank), accent=profile.accent||'#e96c75';
-    const unit=unitElement('enemy',enemy.id);if(!unit){for(let i=0;i<(action.hits||1);i++)onImpact(i);return}
+    const unit=unitElement('enemy',enemy.id);if(!unit){for(let i=0;i<(action.hits||1);i++)if(onImpact(i)===false)break;return true}
     unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
     if(['PHASE_SKILL','SKILL_CAST','COUNTER','DEFEND'].includes(tag))label(action.name,accent);
     projectile('enemy',tag,accent,duration);
     const hits=Math.max(1,action.hits||1), first=duration*1000*((tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE') ? 0.55 : 0.48), spacing=Math.min(170,duration*1000*.17);
-    await delay(scaleTime(first));
+    if((await delay(scaleTime(first)))===false)return false;
     for(let hit=0;hit<hits;hit++){
-      const hp=state.hp, block=state.block, enemyHp=enemy.hp;onImpact(hit);
+      const hp=state.hp, block=state.block, enemyHp=enemy.hp;if(onImpact(hit)===false){unit.classList.remove('motion-active',tagClass(tag));return false}
       const damaged=state.hp<hp||state.block<block;
       if(damaged)react('hero','',{heavy:tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE',blocked:state.hp===hp&&state.block<block,accent});
       else if(['DEFEND','SKILL_BUFF'].includes(tag))impactMarker('enemy',enemy.id,'block',accent);
       else if(tag==='SKILL_DEBUFF')impactMarker('hero','','status',accent);
       if(enemy.hp<enemyHp)react('enemy',enemy.id,{heavy:false,dead:enemy.hp<=0,accent:'#8ddcff'});
-      if(hit<hits-1)await delay(scaleTime(spacing));
+      if(hit<hits-1&&(await delay(scaleTime(spacing)))===false)return false;
     }
-    await delay(scaleTime(Math.max(80,duration*1000-first-spacing*(hits-1))));
+    if((await delay(scaleTime(Math.max(80,duration*1000-first-spacing*(hits-1)))))===false)return false;
     unit.classList.remove('motion-active',tagClass(tag));
+    return true;
   }
   function clear() {
-    for(const id of timers)clearTimeout(id);timers.clear();actionSerial++;setLocked(false);cleanupTransient();chain=Promise.resolve();
+    for(const [id,resolve] of timers){clearTimeout(id);resolve?.(false)}timers.clear();actionSerial++;setLocked(false);cleanupTransient();chain=Promise.resolve();
   }
   const previousUse=window.useCard;
   window.useCard=function(id,targetId=''){

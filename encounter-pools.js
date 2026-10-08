@@ -12,7 +12,7 @@
     [12,15,10,55,100], [16,17,14,68,125], [17,21,19,82,150],
     [21,23,26,100,180], [25,27,30,122,220]
   ];
-  function choose(kind,stage,row,random=Math.random,history=[]){
+  function choose(kind,stage,row,random=toeRandom,history=[]){
     if(kind!=='normal')return{difficulty:kind.toUpperCase(),names:[kind==='elite'?STAGES[stage].elite[0]:STAGES[stage].boss[0]]};
     const segment=row<=4?'early':row<=10?'mid':'late',roll=random()*100,w=weights[segment];
     const difficulty=roll<w[0]?'easy':roll<w[0]+w[1]?'standard':'hard';
@@ -21,7 +21,7 @@
     return{difficulty:difficulty.toUpperCase(),names};
   }
   buildEncounter=function(kind){
-    const history=state.recentEncounters?.[state.stage]||[],choice=choose(kind,state.stage,state.node||0,Math.random,history);
+    const history=state.recentEncounters?.[state.stage]||[],choice=choose(kind,state.stage,state.node||0,toeRandom,history);
     state.encounterDifficulty=choice.difficulty;
     if(kind==='normal'){
       state.recentEncounters??={};state.recentEncounters[state.stage]=[...history,choice.names.join('|')].slice(-2);

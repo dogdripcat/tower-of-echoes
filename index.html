@@ -365,6 +365,9 @@ const STAGES=[
 {name:'외신의 잔영',types:['원소형','이계형'],enemies:[['성운 화염령','원소형',72,9],['공허 빙정령','원소형',78,9],['별을 먹는 들개','이계형(원소형)',92,11]],elite:['이름 없는 별의 사도','이계형(원소형)',245,13],boss:['외신의 잔영 이벨린','이계형(원소형)',600,11]}];
 const GAME_VERSION='v1.2.0';
 const state={hero:null,maxHp:72,hp:72,block:0,gold:0,relics:0,potions:0,restRelic:false,stage:0,node:0,deck:[],draw:[],discard:[],hand:[],mana:3,innerQi:0,enemy:null,enemyBlock:0,turn:1,firstAttack:true,summonHp:0,summonBlock:0};
+function freshRngSeed(){const words=new Uint32Array(1);crypto.getRandomValues(words);return words[0]||0x9e3779b9}
+function toeRandom(){let x=(Number(state.rngState)||freshRngSeed())>>>0;x^=x<<13;x^=x>>>17;x^=x<<5;state.rngState=x>>>0;return state.rngState/4294967296}
+window.TOE_RNG={next:toeRandom,seed(value){state.rngState=(Number(value)>>>0)||0x9e3779b9},state:()=>state.rngState>>>0};
 const $=s=>document.querySelector(s), grid=$('#heroGrid');
 let selectionAudio;
 function playSelectionSfx(){try{const C=window.AudioContext||window.webkitAudioContext;selectionAudio??=new C();selectionAudio.resume();const now=selectionAudio.currentTime,g=selectionAudio.createGain();g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.16,now+.012);g.gain.exponentialRampToValueAtTime(.0001,now+.24);g.connect(selectionAudio.destination);[520,780].forEach((f,n)=>{const o=selectionAudio.createOscillator();o.type=n?'sine':'triangle';o.frequency.setValueAtTime(f,now);o.frequency.exponentialRampToValueAtTime(f*1.12,now+.18);o.connect(g);o.start(now+n*.025);o.stop(now+.25)})}catch(e){}}
@@ -386,9 +389,9 @@ function specialCardArt(h){return `assets/card-${CARD_ART_SPECIAL[h.name]}-speci
 function starter(h){const special=card(h.special,2,'전용 · 공격','피해 12 · 방어 4',12,'#63c985','#3b245a','special',specialCardArt(h));if(h.name==='이레'){special.cost=1;special.actionCost=1;special.innerCost=1;special.effect='행동력 1 + 내공 1 · 피해 12 · 방어 4'}return[...Array(5)].map(()=>card(h.strike,1,'공격','피해 6',6,'#fff','#5c202b','attack',CARD_ART_ATTACK)).concat([...Array(4)].map(()=>card(h.guard,1,'스킬','방어 5',5,'#fff','#173950','block',CARD_ART_DEFENSE))).concat(special)}
 $('#startBtn').onclick=()=>{const h=HEROES[state.hero];state.maxHp=state.hp=h.maxHp;state.deck=starter(h);state.gold=45;state.relics=0;state.restRelic=false;state.stage=0;state.node=0;$('#startScreen').classList.add('hidden');showRoute(true)};
 function showRoute(first=false){$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');const s=STAGES[state.stage];$('#stageLabel').textContent=`${state.stage+1}스테이지 · ${s.name} · ${state.node+1}/4`;const boss=state.node>=3;$('#modal').innerHTML=`<div class="route"><span class="tag">${state.stage+1}스테이지</span><h2>${s.name}</h2><p>${boss?'계층의 지배자가 길을 막고 있습니다.':'다음 이동 경로를 선택하십시오.'}</p><div class="choices">${boss?`<button class="choice" data-go="boss"><strong>보스전</strong>스테이지의 지배자와 전투합니다.</button>`:`<button class="choice" data-go="normal"><strong>일반 전투</strong>${s.types.join('·')} 중심의 적과 조우합니다.</button><button class="choice" data-go="elite"><strong>엘리트 전투</strong>강적에게서 유물을 노립니다.</button><button class="choice" data-go="rest"><strong>휴식처</strong>행동력 2로 정비합니다.</button>`}</div></div>`;document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const k=b.dataset.go;if(k==='rest')rest();else startBattle(k)})}
-function rest(){let ap=2;function draw(){ $('#modal').innerHTML=`<h2>휴식처</h2><p>남은 행동력 <b>${ap}</b></p><div class="choices"><button class="choice" data-r="heal"><strong>휴식 · 1</strong>HP를 18 회복합니다.</button><button class="choice" data-r="trim"><strong>정리 · 1</strong>기본 카드 1장을 제거합니다.</button><button class="choice" data-r="train"><strong>수련 · 1</strong>무작위 카드 1장을 강화합니다.</button></div><button class="primary" id="leaveRest">떠나기</button>`;document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{if(ap<1)return;ap--;if(b.dataset.r==='heal')state.hp=Math.min(state.maxHp,state.hp+18);if(b.dataset.r==='trim'&&state.deck.length>7){const ix=state.deck.findIndex(c=>c.extra==='attack'||c.extra==='block');if(ix>=0)state.deck.splice(ix,1)}if(b.dataset.r==='train'){const c=state.deck[Math.floor(Math.random()*state.deck.length)];c.name=c.name.includes('*')?c.name:c.name+'*';c.value+=2;c.effect=c.extra==='block'?`방어 ${c.value}`:`피해 ${c.value}`};sync();if(ap===0){state.node++;showRoute()}else draw()});$('#leaveRest').onclick=()=>{state.node++;showRoute()}}draw()}
-function startBattle(kind){document.body.classList.add('in-battle');$('#overlay').classList.add('hidden');$('#battleScreen').classList.remove('hidden');const s=STAGES[state.stage];let e;if(kind==='boss')e=s.boss;else if(kind==='elite')e=s.elite;else e=s.enemies[Math.floor(Math.random()*s.enemies.length)];state.enemy={name:e[0],type:e[1],maxHp:e[2],hp:e[2],attack:e[3],kind};state.block=0;state.enemyBlock=0;state.turn=1;state.firstAttack=true;state.draw=shuffle([...state.deck]);state.discard=[];state.hand=[];state.mana=3;drawCards(5);renderBattle('전투가 시작되었습니다.')}
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function rest(){let ap=2;function draw(){ $('#modal').innerHTML=`<h2>휴식처</h2><p>남은 행동력 <b>${ap}</b></p><div class="choices"><button class="choice" data-r="heal"><strong>휴식 · 1</strong>HP를 18 회복합니다.</button><button class="choice" data-r="trim"><strong>정리 · 1</strong>기본 카드 1장을 제거합니다.</button><button class="choice" data-r="train"><strong>수련 · 1</strong>무작위 카드 1장을 강화합니다.</button></div><button class="primary" id="leaveRest">떠나기</button>`;document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{if(ap<1)return;ap--;if(b.dataset.r==='heal')state.hp=Math.min(state.maxHp,state.hp+18);if(b.dataset.r==='trim'&&state.deck.length>7){const ix=state.deck.findIndex(c=>c.extra==='attack'||c.extra==='block');if(ix>=0)state.deck.splice(ix,1)}if(b.dataset.r==='train'){const c=state.deck[Math.floor(toeRandom()*state.deck.length)];c.name=c.name.includes('*')?c.name:c.name+'*';c.value+=2;c.effect=c.extra==='block'?`방어 ${c.value}`:`피해 ${c.value}`};sync();if(ap===0){state.node++;showRoute()}else draw()});$('#leaveRest').onclick=()=>{state.node++;showRoute()}}draw()}
+function startBattle(kind){document.body.classList.add('in-battle');$('#overlay').classList.add('hidden');$('#battleScreen').classList.remove('hidden');const s=STAGES[state.stage];let e;if(kind==='boss')e=s.boss;else if(kind==='elite')e=s.elite;else e=s.enemies[Math.floor(toeRandom()*s.enemies.length)];state.enemy={name:e[0],type:e[1],maxHp:e[2],hp:e[2],attack:e[3],kind};state.block=0;state.enemyBlock=0;state.turn=1;state.firstAttack=true;state.draw=shuffle([...state.deck]);state.discard=[];state.hand=[];state.mana=3;drawCards(5);renderBattle('전투가 시작되었습니다.')}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(toeRandom()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function hasCardProperty(c,name){return Array.isArray(c.properties)&&c.properties.some(p=>p.keyword===name)}
 function orderVanguard(draw){const first=draw.filter(c=>hasCardProperty(c,'개전')).sort((a,b)=>state.deck.findIndex(x=>x.id===a.id)-state.deck.findIndex(x=>x.id===b.id));const regular=draw.filter(c=>!hasCardProperty(c,'개전'));draw.splice(0,draw.length,...regular,...first.reverse());return draw}
 function drawCards(n){while(n--){if(!state.draw.length){state.draw=orderVanguard(shuffle(state.discard));state.discard=[]}if(!state.draw.length)break;const drawn=state.draw.pop();state.hand.push(drawn);const lovers=drawn.properties?.find(p=>p.keyword==='연인');if(lovers){const partnerIndex=state.draw.findIndex(c=>c.id===lovers.pairId);if(partnerIndex>=0)state.hand.push(state.draw.splice(partnerIndex,1)[0])}}}
@@ -438,7 +441,7 @@ function renderBattle(log=''){
 function sync(){$('#gold').textContent=state.gold;$('#relics').textContent=state.relics;$('#potions').textContent=state.potions||0}
 function winBattle(){const kind=state.enemy.kind;state.gold+=kind==='boss'?80:kind==='elite'?45:22;if(state.hero===2)state.hp=Math.min(state.maxHp,state.hp+2);if(kind==='elite')state.relics++;if(kind==='boss'){state.node=0;if(state.stage===STAGES.length-1){victory();return}state.stage++;reward(true)}else{state.node++;reward(false)}sync()}
 function reward(boss){$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');const h=HEROES[state.hero],pool=[card('날카로운 일격',1,'⚔ 공격','피해 9',9,'#63c985','#5c202b','attack'),card('견고한 태세',1,'◇ 기술','방어 8',8,'#63c985','#173950','block'),card(h.special+'*',2,'✦ 고유','피해 14 · 방어 4',14,'#6db8ee','#3b245a','special')];$('#modal').innerHTML=`<h2>${boss?'계층 돌파':'전투 보상'}</h2><p>카드 한 장을 덱에 추가할 수 있습니다.</p><div class="reward-cards" id="rewardCards"></div><button class="primary" id="skipReward">건너뛰기</button>`;const box=$('#rewardCards');pool.forEach(c=>{const b=document.createElement('button');b.className='card';b.style.cssText=`--rarity:${c.rarity};--tone:${c.tone}`;b.innerHTML=`<span class="cost">${c.cost}</span><span class="card-name">${c.name}</span><span class="card-type">${c.type}</span>${cardArt(c)}<span class="card-effect">${c.effect}</span>`;b.onclick=()=>{state.deck.push(c);showRoute()};box.appendChild(b)});$('#skipReward').onclick=showRoute}
-function gameOver(){document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');$('#modal').innerHTML=`<h2>등반 실패</h2><p>${state.stage+1}스테이지 ${STAGES[state.stage].name}에서 쓰러졌습니다.</p><button class="primary" onclick="location.reload()">다시 시작</button>`}
+function gameOver(){window.TOE_COMBAT_MOTION?.clear();document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');$('#modal').innerHTML=`<h2>등반 실패</h2><p>${state.stage+1}스테이지 ${STAGES[state.stage].name}에서 쓰러졌습니다.</p><button class="primary" onclick="location.reload()">다시 시작</button>`}
 function victory(){document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');$('#modal').innerHTML=`<h2>탑의 정상</h2><p>${HEROES[state.hero].name}이 외신의 잔영을 넘어 첫 번째 등반을 완수했습니다.</p><p>최종 덱 ${state.deck.length}장 · 골드 ${state.gold} · 유물 ${state.relics}</p><button class="primary" onclick="location.reload()">새 등반</button>`}
 </script>
 <script>
@@ -483,11 +486,11 @@ starter=function(h){
     .concat([...Array(4)].map(()=>card(h.guard,1,'일반 · 스킬','방어 5',5,'#fff','#173950','block',art.block)));
   return basics.concat(START_SPECIALS[h.name].map((s,i)=>{const item=card(s[0],s[1],`전용 · ${s[4]==='block'?'스킬':'공격'}`,s[2],s[3],'#fff','#3b245a',s[4],art.specials[i]||'');if(h.name==='이레'){item.actionCost=1;item.innerCost=i===0?0:2;item.keyword=i===0?'축기':'내공';if(i===0)item.innerGain=2}return item}));
 };
-function mapShuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function mapShuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(toeRandom()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function weightedRoom(allowed){
   const pool=MAP_WEIGHTS.filter(([type])=>allowed.includes(type));
   const total=pool.reduce((sum,x)=>sum+x[1],0);
-  let roll=Math.random()*total;
+  let roll=toeRandom()*total;
   for(const [type,weight] of pool){roll-=weight;if(roll<=0)return type}
   return pool[0][0];
 }
@@ -501,8 +504,8 @@ function generateMap(){
   };
   const starts=[];
   for(let route=0;route<6;route++){
-    let col=Math.floor(Math.random()*7);
-    if(route===1){while(col===starts[0])col=Math.floor(Math.random()*7)}
+    let col=Math.floor(toeRandom()*7);
+    if(route===1){while(col===starts[0])col=Math.floor(toeRandom()*7)}
     starts.push(col);
     getNode(0,col);
     for(let floor=0;floor<14;floor++){
@@ -583,7 +586,7 @@ function showGatekeeperProvision(){
     {key:'equipment',icon:'◆',name:'탐색 지원',desc:'무작위 유물 1개를 가방에 넣습니다.'},
     {key:'bagCare',icon:'🎒',name:'가방 정비',desc:'가방의 가로·세로 크기를 각각 1칸 확장합니다.'},
     {key:'training',icon:'▣',name:'기초 훈련',desc:'최대 HP가 5 증가하고 HP를 5 회복합니다.'}
-  ],randomProvision=randomProvisions[Math.floor(Math.random()*randomProvisions.length)];
+  ],randomProvision=randomProvisions[Math.floor(toeRandom()*randomProvisions.length)];
   $('#stageLabel').textContent=`${state.stage+1}스테이지 · ${stage.name} · 관문`;
   $('#modal').className='modal gatekeeper-modal';
   $('#modal').innerHTML=`<div class="gatekeeper-stand"><img src="assets/gatekeeper-plain-fabric.webp" alt="여성 관문지기"></div><div class="gatekeeper-dialog"><div class="gatekeeper-scene" ><div class="gatekeeper-copy"><span class="tag">계층 관문</span><h2>관문지기</h2><p>“다음 계층에 들어가시기 전, 필요한 지원 하나를 선택해 주십시오.”</p></div></div><div class="provision-panel"><h3>출발 지원 선택</h3><div class="provision-choices"><button class="provision-choice" data-provision="funds"><span>🪙</span><strong>여정 자금</strong><small>${funds}골드를 획득합니다.</small></button><button class="provision-choice" data-provision="medicine"><span>🧪</span><strong>응급 지원</strong><small>HP를 ${heal} 회복하고 포션 1개를 슬롯에 넣습니다.</small></button><button class="provision-choice" data-provision="${randomProvision.key}"><span>${randomProvision.icon}</span><strong>${randomProvision.name}</strong><small>${randomProvision.desc}</small></button></div></div></div>`;
@@ -695,8 +698,14 @@ function merchantRoom(){
   });
 }
 function treasureRoom(){
-  const foundRestRelic=!state.restRelic&&Math.random()<.25;
-  const stored=addInventoryItem('relic'),gold=[90,115,145,180,225][state.stage];state.gold+=gold;if(foundRestRelic)state.restRelic=true;sync();
+  const current=state.roomState?.phase==='treasure'&&state.roomState.nodeKey===state.map?.active?state.roomState.treasure:null;
+  let result=current;
+  if(!result){
+    const foundRestRelic=!state.restRelic&&toeRandom()<.25,stored=addInventoryItem('relic'),gold=[90,115,145,180,225][state.stage];
+    state.gold+=gold;if(foundRestRelic)state.restRelic=true;result={foundRestRelic,stored,gold};
+    state.roomState={nodeKey:state.map?.active||null,nodeType:'treasure',phase:'treasure',treasure:result};sync();
+  }
+  const {foundRestRelic,stored,gold}=result;
   $('#modal').className='modal';
   $('#modal').innerHTML=`<h2>보물 방</h2><p>봉인된 궤짝에서 ${stored?'유물 1개와 ':''}${gold}골드를 획득했습니다.${stored?'':' 가방에 빈 칸이 없어 유물은 남겨두었습니다.'}${foundRestRelic?' 휴식 전용 유물 「잔불의 모닥불」이 추가 행동을 허용합니다.':''}</p><button class="primary" id="leaveTreasure">계속하기</button>`;
   $('#leaveTreasure').onclick=finishMapRoom;
@@ -709,7 +718,7 @@ function eventRoom(){
     {title:'망자의 서가',desc:'읽을 수 없는 책들이 탑의 벽을 따라 빽빽하게 꽂혀 있습니다.',choices:[['책 한 권 펼치기','카드 1장을 강화합니다.','book'],['책을 챙기기','덱에 임시 지식 카드를 추가합니다.','tome'],['닫고 떠나기','아무 일도 일어나지 않습니다.','leave']]},
     {title:'부서진 제단',desc:'제단 위의 작은 불꽃이 등반자를 바라보듯 흔들립니다.',choices:[['불꽃에 손을 대기','HP 8을 소모하고 50골드를 얻습니다.','flame'],['기도하기','HP를 8 회복합니다.','pray'],['지나가기','아무 일도 일어나지 않습니다.','leave']]},
     {title:'떠돌이 가방 수선공',desc:'낡은 가죽끈과 황동 버클을 늘어놓은 수선공이 가방을 살펴봅니다.',choices:[['확장 맡기기','30골드를 지불하고 가로·세로를 1칸씩 늘립니다.','bagExpand'],['압축 교환','가로·세로를 1칸씩 줄이고 35골드를 받습니다.','bagShrink'],['지나가기','가방을 그대로 유지합니다.','leave']]}
-  ][Math.floor(Math.random()*6)];
+  ][Math.floor(toeRandom()*6)];
   $('#modal').className='modal';
   $('#modal').innerHTML=`<span class="tag">일반 이벤트</span><h2>${event.title}</h2><p>${event.desc}</p><div class="choices">${event.choices.map(c=>`<button class="choice" data-event="${c[2]}"><strong>${c[0]}</strong>${c[1]}</button>`).join('')}</div>`;
   const paidExpand=$('[data-event="bagExpand"]');if(paidExpand&&state.gold<30){paidExpand.disabled=true;paidExpand.title='골드가 부족합니다.'}
@@ -719,8 +728,8 @@ function eventRoom(){
     if(k==='fire'||k==='pray')state.hp=Math.min(state.maxHp,state.hp+(k==='fire'?10:8));
     if(k==='notice'||k==='pouch')state.gold+=k==='notice'?20:15;
     if(k==='spring')state.hp=Math.min(state.maxHp,state.hp+14);
-    if(k==='coin'){state.gold=Math.max(0,state.gold-12);if(Math.random()<.35)addInventoryItem('relic','event')}
-    if(k==='book'){const c=state.deck[Math.floor(Math.random()*state.deck.length)];if(c){if(c.awakeningId)upgradeChosenCard(c);else{const stars=(c.name.match(/\*/g)||[]).length;if(stars<3)c.name+='*';c.value+=2;c.effect=c.extra==='block'?`방어 ${c.value}`:`피해 ${c.value}`}}}
+    if(k==='coin'){state.gold=Math.max(0,state.gold-12);if(toeRandom()<.35)addInventoryItem('relic','event')}
+    if(k==='book'){const c=state.deck[Math.floor(toeRandom()*state.deck.length)];if(c){if(c.awakeningId)upgradeChosenCard(c);else{const stars=(c.name.match(/\*/g)||[]).length;if(stars<3)c.name+='*';c.value+=2;c.effect=c.extra==='block'?`방어 ${c.value}`:`피해 ${c.value}`}}}
     if(k==='tome')state.deck.push(card('낡은 지식',0,'✦ 고유','전투 중 1회: 카드 1장 드로우',0,'#fff','#3b245a','special'));
     if(k==='flame'){state.hp=Math.max(1,state.hp-8);state.gold+=50}
     if(k==='bagExpand'){if(state.gold<30)return;state.gold-=30;resizeBag(1)}
@@ -736,41 +745,49 @@ function makeCatalogCard(entry){
   return item;
 }
 reward=function(boss,after){
+  window.TOE_COMBAT_MOTION?.clear();
   document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');$('#modal').className='modal reward-modal';
-  const h=HEROES[state.hero],kind=state.enemy&&state.enemy.kind;
-  const goldReward=state.encounterGold??(kind==='boss'?80:kind==='elite'?45:22);
-  const potionDrop=Math.random()<(kind==='boss'?.4:kind==='elite'?.25:.12);
-  const permit=state.hubProgress?.benefits?.EXPLORATION_PERMIT;
-  const relicChance=kind==='boss'?1:kind==='elite'?(permit?.50:.35):(permit?.27:.12);
-  const relicDrop=Math.random()<relicChance;
-  if(permit&&kind!=='boss')delete state.hubProgress.benefits.EXPLORATION_PERMIT;
-  const rewardRelic=relicDrop?rollRelic('reward',kind):null;
-  const pool=window.TOE_CARD_RUNTIME?.rewardPool(h,kind)??(state.hero>=4&&state.hero<=6?(()=>{
+  const h=HEROES[state.hero],kind=state.enemy&&state.enemy.kind,existing=state.roomState?.phase==='reward'?state.roomState.reward:null;
+  let rewardState=existing;
+  if(!rewardState){
+    const goldReward=state.encounterGold??(kind==='boss'?80:kind==='elite'?45:22);
+    const potionDrop=toeRandom()<(kind==='boss'?.4:kind==='elite'?.25:.12);
+    const permit=state.hubProgress?.benefits?.EXPLORATION_PERMIT;
+    const relicChance=kind==='boss'?1:kind==='elite'?(permit?.50:.35):(permit?.27:.12);
+    const relicDrop=toeRandom()<relicChance;
+    if(permit&&kind!=='boss')delete state.hubProgress.benefits.EXPLORATION_PERMIT;
+    const rewardRelic=relicDrop?rollRelic('reward',kind):null;
+    const pool=window.TOE_CARD_RUNTIME?.rewardPool(h,kind)??(state.hero>=4&&state.hero<=6?(()=>{
     const available=(state.hero===4?irisCardCatalog():state.hero===5?karenCardCatalog():ireCardCatalog()).filter(entry=>entry.rewardable);
     const colors=state.hero===4?IRIS_RARITY_COLORS:state.hero===5?KAREN_RARITY_COLORS:IRE_RARITY_COLORS;
     const byRarity=rarity=>available.filter(entry=>entry.rarity===colors[rarity]);
-    const choose=entries=>entries[Math.floor(Math.random()*entries.length)];
-    const chosen=[choose(byRarity('일반')),choose(byRarity('고급')),choose(byRarity(kind==='boss'?'신화':Math.random()<.25?'희귀':'고급'))];
+    const choose=entries=>entries[Math.floor(toeRandom()*entries.length)];
+    const chosen=[choose(byRarity('일반')),choose(byRarity('고급')),choose(byRarity(kind==='boss'?'신화':toeRandom()<.25?'희귀':'고급'))];
     return chosen.map(makeCatalogCard);
   })():[card('날카로운 일격',1,'일반 · 공격','피해 9',9,'#fff','#5c202b','attack',START_CARD_ART[h.name].attack),card('견고한 태세',1,'일반 · 스킬','방어 8',8,'#fff','#173950','block',START_CARD_ART[h.name].block),card(h.special,2,'전용 · 공격','피해 14 · 방어 4',14,'#fff','#3b245a','special',specialCardArt(h))]);
-  let picked=false,closed=false,claimedGold=false;const claimedExtras=new Set();
+    rewardState={boss:Boolean(boss),kind,goldReward,potionDrop,relicDrop,rewardRelic,pool,picked:false,claimedGold:false,claimedExtras:[],afterAction:after===victory?'victory':after===beginStage?'beginStage':'finishMapRoom'};
+    state.roomState={nodeKey:state.map?.active||null,nodeType:kind==='boss'?'boss':'combat',phase:'reward',reward:rewardState};sync();
+  }
+  const {goldReward,potionDrop,relicDrop,rewardRelic,pool}=rewardState;
+  let closed=false;const claimedExtras=new Set(rewardState.claimedExtras||[]);
   const toolbar=()=>`<div class="reward-toolbar"><button class="bag-toggle" type="button" data-reward-bag title="가방">🎒 <b>${state.inventory.length}</b></button><button class="deck-toggle" type="button" data-reward-deck title="보유 덱"><span>▣</span><b>${state.deck.length}</b></button></div>`;
   const bindTools=()=>{$('[data-reward-bag]')?.addEventListener('click',openBag);$('[data-reward-deck]')?.addEventListener('click',()=>openPile('deck'))};
   const showList=()=>{
-    $('#modal').innerHTML=`${toolbar()}<div class="reward-screen"><span class="tag">${boss?'계층 돌파':'전투 보상'}</span><h2>전리품</h2><p>획득할 보상을 확인하십시오.</p><div class="reward-list"><button class="reward-row${claimedGold?' claimed':''}" id="goldReward" type="button" ${claimedGold?'disabled':''}><span>◉</span><span class="reward-row-copy"><strong>+${goldReward} 골드</strong><small>보유 ${state.gold}G · 클릭하여 획득</small></span><b>${claimedGold?'획득 완료':'획득'}</b></button><button class="reward-row${picked?' claimed':''}" id="cardReward" type="button" ${picked?'disabled':''}><span>▣</span><span class="reward-row-copy"><strong>카드 보상</strong><small>${picked?'선택한 카드가 덱에 추가되었습니다.':'후보 카드 3장 중 1장 선택'}</small></span><b>${picked?'획득 완료':'열기'}</b></button>${potionDrop?`<button class="reward-row${claimedExtras.has('potion')?' claimed':''}" data-reward-item="potion" type="button" ${claimedExtras.has('potion')?'disabled':''}><span>🧪</span><span class="reward-row-copy"><strong>포션</strong><small>가방에 보관되는 회복 보급품</small></span><b>${claimedExtras.has('potion')?'획득 완료':'획득'}</b></button>`:''}${relicDrop&&rewardRelic?`<button class="reward-row${claimedExtras.has('relic')?' claimed':''}" data-reward-item="relic" type="button" ${claimedExtras.has('relic')?'disabled':''} title="${rewardRelic.rarity} 유물 · ${rewardRelic.name}: ${rewardRelic.desc} · ${rewardRelic.w}×${rewardRelic.h}칸"><span>${rewardRelic.icon}</span><span class="reward-row-copy"><strong>${rewardRelic.category} · ${rewardRelic.rarity} 유물 · ${rewardRelic.name}</strong><small>${rewardRelic.desc} · ${rewardRelic.w}×${rewardRelic.h}칸</small></span><b>${claimedExtras.has('relic')?'획득 완료':'가방에 배치'}</b></button>`:''}</div><div class="reward-status" id="rewardStatus">${picked?'카드 보상을 획득했습니다.':'카드 보상은 선택하지 않아도 됩니다.'}</div><div class="reward-main-actions"><button class="primary reward-continue" id="continueReward" ${claimedGold&&!pendingBagItem?'':'disabled'}>계속하기</button></div></div>`;
+    $('#modal').innerHTML=`${toolbar()}<div class="reward-screen"><span class="tag">${rewardState.boss?'계층 돌파':'전투 보상'}</span><h2>전리품</h2><p>획득할 보상을 확인하십시오.</p><div class="reward-list"><button class="reward-row${rewardState.claimedGold?' claimed':''}" id="goldReward" type="button" ${rewardState.claimedGold?'disabled':''}><span>◉</span><span class="reward-row-copy"><strong>+${goldReward} 골드</strong><small>보유 ${state.gold}G · 클릭하여 획득</small></span><b>${rewardState.claimedGold?'획득 완료':'획득'}</b></button><button class="reward-row${rewardState.picked?' claimed':''}" id="cardReward" type="button" ${rewardState.picked?'disabled':''}><span>▣</span><span class="reward-row-copy"><strong>카드 보상</strong><small>${rewardState.picked?'선택한 카드가 덱에 추가되었습니다.':'후보 카드 3장 중 1장 선택'}</small></span><b>${rewardState.picked?'획득 완료':'열기'}</b></button>${potionDrop?`<button class="reward-row${claimedExtras.has('potion')?' claimed':''}" data-reward-item="potion" type="button" ${claimedExtras.has('potion')?'disabled':''}><span>🧪</span><span class="reward-row-copy"><strong>포션</strong><small>가방에 보관되는 회복 보급품</small></span><b>${claimedExtras.has('potion')?'획득 완료':'획득'}</b></button>`:''}${relicDrop&&rewardRelic?`<button class="reward-row${claimedExtras.has('relic')?' claimed':''}" data-reward-item="relic" type="button" ${claimedExtras.has('relic')?'disabled':''} title="${rewardRelic.rarity} 유물 · ${rewardRelic.name}: ${rewardRelic.desc} · ${rewardRelic.w}×${rewardRelic.h}칸"><span>${rewardRelic.icon}</span><span class="reward-row-copy"><strong>${rewardRelic.category} · ${rewardRelic.rarity} 유물 · ${rewardRelic.name}</strong><small>${rewardRelic.desc} · ${rewardRelic.w}×${rewardRelic.h}칸</small></span><b>${claimedExtras.has('relic')?'획득 완료':'가방에 배치'}</b></button>`:''}</div><div class="reward-status" id="rewardStatus">${rewardState.picked?'카드 보상을 획득했습니다.':'카드 보상은 선택하지 않아도 됩니다.'}</div><div class="reward-main-actions"><button class="primary reward-continue" id="continueReward" ${rewardState.claimedGold&&!pendingBagItem?'':'disabled'}>계속하기</button></div></div>`;
     bindTools();$('#cardReward').onclick=showCards;
-    $('#goldReward').onclick=()=>{if(claimedGold)return;claimedGold=true;state.gold+=goldReward;sync();showList()};
-    document.querySelectorAll('[data-reward-item]').forEach(button=>button.onclick=()=>{const type=button.dataset.rewardItem;if(claimedExtras.has(type))return;if(type==='relic'){beginBagPlacement(rewardRelic,()=>{claimedExtras.add('relic');showList()},null,showList);return}if(addInventoryItem(type)===false){$('#rewardStatus').textContent='가방에 빈 칸이 부족합니다.';return}claimedExtras.add(type);sync();showList()});
-    $('#continueReward').onclick=()=>{if(!claimedGold||pendingBagItem||closed)return;closed=true;after()};
+    $('#goldReward').onclick=()=>{if(rewardState.claimedGold)return;rewardState.claimedGold=true;state.gold+=goldReward;window.TOE_HUB?.trackProgress('gold',goldReward);sync();showList()};
+    document.querySelectorAll('[data-reward-item]').forEach(button=>button.onclick=()=>{const type=button.dataset.rewardItem;if(claimedExtras.has(type))return;const claim=()=>{claimedExtras.add(type);rewardState.claimedExtras=[...claimedExtras];sync();showList()};if(type==='relic'){beginBagPlacement(rewardRelic,()=>{window.TOE_HUB?.trackProgress('relic',1);claim()},null,showList);return}if(addInventoryItem(type)===false){$('#rewardStatus').textContent='가방에 빈 칸이 부족합니다.';return}claim()});
+    $('#continueReward').onclick=()=>{if(!rewardState.claimedGold||pendingBagItem||closed)return;closed=true;state.roomState=null;after()};
   };
   const showCards=()=>{
     $('#modal').innerHTML=`${toolbar()}<div class="reward-card-picker"><div class="reward-picker-head"><button class="reward-picker-back" id="rewardBack" type="button">← 전리품 목록</button><h3>카드 보상 선택</h3><span></span></div><div class="reward-cards" id="rewardCards"></div></div>`;
     bindTools();$('#rewardBack').onclick=showList;const box=$('#rewardCards');
-    pool.forEach(c=>{const button=document.createElement('button');button.className='card';button.style.cssText=`--rarity:${c.rarity};--tone:${c.tone}`;button.innerHTML=`<span class="cost">${c.cost}</span><span class="card-name">${c.name}</span><span class="card-type">${c.type}</span>${cardArt(c)}${cardKeyword(c)}${c.properties?.length?`<span class="card-keyword">${c.properties.map(p=>p.keyword).join(" · ")}</span>`:""}<span class="card-effect">${c.effect}</span>`;button.onclick=()=>{if(picked)return;if(state.deck.some(owned=>owned.name.replace(/\*/g,'')===c.name.replace(/\*/g,'')&&hasCardProperty(owned,'유일'))){button.title='유일 카드는 같은 이름으로 두 장 보유할 수 없습니다.';return}picked=true;state.deck.push(c);sync();showList()};box.appendChild(button)});
+    pool.forEach(c=>{const button=document.createElement('button');button.className='card';button.style.cssText=`--rarity:${c.rarity};--tone:${c.tone}`;button.innerHTML=`<span class="cost">${c.cost}</span><span class="card-name">${c.name}</span><span class="card-type">${c.type}</span>${cardArt(c)}${cardKeyword(c)}${c.properties?.length?`<span class="card-keyword">${c.properties.map(p=>p.keyword).join(" · ")}</span>`:""}<span class="card-effect">${c.effect}</span>`;button.onclick=()=>{if(rewardState.picked)return;if(state.deck.some(owned=>owned.name.replace(/\*/g,'')===c.name.replace(/\*/g,'')&&hasCardProperty(owned,'유일'))){button.title='유일 카드는 같은 이름으로 두 장 보유할 수 없습니다.';return}rewardState.picked=true;state.deck.push(c);sync();showList()};box.appendChild(button)});
   };
   showList();
 };
 winBattle=function(){
+  window.TOE_COMBAT_MOTION?.clear();
   const kind=state.enemy.kind;
   if(state.hero===2)state.hp=Math.min(state.maxHp,state.hp+4);
   sync();
@@ -783,7 +800,7 @@ winBattle=function(){
 $('#startBtn').onclick=()=>{
   const h=HEROES[state.hero];
   state.maxHp=state.hp=h.maxHp;state.maxMana=h.resourceMax;state.mana=h.resourceMax;
-  state.deck=starter(h);state.gold=100;state.relics=0;state.potions=0;state.restRelic=false;state.stage=0;state.inventory=[];state.bagModifier=0;state.blessings=[];state.curses=[];state.statuses=[];state.arcanaGauge=0;state.hubProgress=null;state.sanctuary=null;state.goldenLand=null;state.cardRemovalCount=0;state.recentEncounters={};
+  state.deck=starter(h);state.gold=100;state.relics=0;state.potions=0;state.restRelic=false;state.stage=0;state.inventory=[];state.bagModifier=0;state.blessings=[];state.curses=[];state.statuses=[];state.arcanaGauge=0;state.hubProgress=null;state.sanctuary=null;state.goldenLand=null;state.roomState=null;state.cardRemovalCount=0;state.recentEncounters={};state.rngState=freshRngSeed();
   grantStartingRelic(h);
   const transition=$('#entryTransition'),startButton=$('#startBtn');startButton.disabled=true;
   transition.classList.remove('hidden','fade');requestAnimationFrame(()=>transition.classList.add('show'));
@@ -901,7 +918,7 @@ function packBag(items=state.inventory||[],dims=bagDimensions()){
 }
 let pendingBagItem=null;
 function availablePotions(source='reward'){const hero=HEROES[state.hero]?.name;return POTION_DATABASE.filter(item=>(!item.character||item.character===hero)&&(source==='event'||!item.eventOnly)&&(source!=='alchemist'||item.grade!=='A'))}
-function weightedItem(items,weights){const pool=items.flatMap(item=>Array(weights[item.grade]||0).fill(item));return pool.length?pool[Math.floor(Math.random()*pool.length)]:null}
+function weightedItem(items,weights){const pool=items.flatMap(item=>Array(weights[item.grade]||0).fill(item));return pool.length?pool[Math.floor(toeRandom()*pool.length)]:null}
 function availableRelics(source='reward',kind=state.encounterKind||'normal'){
   const hero=HEROES[state.hero]?.name,weights=source==='shop'?RELIC_REWARD_WEIGHTS.shop:RELIC_REWARD_WEIGHTS[kind]||RELIC_REWARD_WEIGHTS.normal;
   const pool=RELIC_DATABASE.filter(item=>(!item.character||item.character===hero)&&!state.inventory.some(owned=>owned.id===item.id||owned.relicId===item.id)&&(source==='event'||!item.eventOnly)&&(['event','explicitCurse'].includes(source)||item.scope!=='cursed')&&(source!=='shop'||item.grade!=='S'));
@@ -909,7 +926,7 @@ function availableRelics(source='reward',kind=state.encounterKind||'normal'){
 }
 function rollRelic(source='reward',kind=state.encounterKind||'normal'){const {pool,weights}=availableRelics(source,kind),base=weightedItem(pool,weights);return base?{...base,relicId:base.id,type:'relic',id:crypto.randomUUID()}:null}
 function makeBagItem(type,source='reward'){
-  if(type==='potion'){const pool=availablePotions(source),base=pool[Math.floor(Math.random()*pool.length)];return{...base,potionId:base.id,type,id:crypto.randomUUID(),icon:'🧪',w:1,h:1}}
+  if(type==='potion'){const pool=availablePotions(source),base=pool[Math.floor(toeRandom()*pool.length)];return{...base,potionId:base.id,type,id:crypto.randomUUID(),icon:'🧪',w:1,h:1}}
   return rollRelic(source);
 }
 function beginBagPlacement(item,onPlaced,movingId=null,onCancel=null){
@@ -936,7 +953,7 @@ function addInventoryItem(type,source='reward'){
   if(!item)return false;
   if(normalized==='potion'&&(state.inventory||[]).filter(entry=>entry.type==='potion').length>=POTION_SLOT_LIMIT)return false;
   if(normalized==='relic'&&!packBag([...state.inventory,item]))return false;
-  state.inventory.push(item);if(normalized==='potion')state.potions++;else state.relics++;renderBag();return true;
+  state.inventory.push(item);if(normalized==='potion')state.potions++;else state.relics++;window.TOE_HUB?.trackProgress(normalized,1);renderBag();return true;
 }
 function potionContext(){if(document.body.classList.contains('in-battle'))return'combat';if(state.map?.nodes instanceof Map)return'map';if(!$('#overlay').classList.contains('hidden'))return'event';return'noncombat'}
 function isSpecialCard(card){return /각성|초월/.test(card?.type||'')||card?.extra==='awakening'||card?.extra==='transcendence'}
@@ -1088,7 +1105,7 @@ $('#bgmToggle').onclick=()=>{
   if(battleMusic.enabled&&document.body.classList.contains('in-battle'))startStageBgm(state.stage);else stopStageBgm();
   updateBgmButton();
 };
-function randomBetween(min,max){return min+Math.floor(Math.random()*(max-min+1))}
+function randomBetween(min,max){return min+Math.floor(toeRandom()*(max-min+1))}
 function createEnemy(template,kind,count,isLeader=false,slot=0){
   const hpScale=isLeader?1:Math.max(.5,1/(.55+count*.22));
   const attackScale=isLeader?Math.max(.72,1-count*.055):Math.max(.34,.9/Math.sqrt(count));
@@ -1100,15 +1117,15 @@ function buildEncounter(kind){
   let templates=[],leaderCount=0;
   if(kind==='normal'){
     const count=randomBetween(range[0],range[1]);
-    for(let i=0;i<count;i++)templates.push(stage.enemies[Math.floor(Math.random()*stage.enemies.length)]);
+    for(let i=0;i<count;i++)templates.push(stage.enemies[Math.floor(toeRandom()*stage.enemies.length)]);
   }else if(kind==='elite'){
     const count=Math.min(5,1+Math.floor(state.stage/2));
     templates=[stage.elite];leaderCount=1;
-    while(templates.length<count)templates.push(stage.enemies[Math.floor(Math.random()*stage.enemies.length)]);
+    while(templates.length<count)templates.push(stage.enemies[Math.floor(toeRandom()*stage.enemies.length)]);
   }else{
     const count=Math.min(5,1+state.stage);
     templates=[stage.boss];leaderCount=1;
-    while(templates.length<count)templates.push(stage.enemies[Math.floor(Math.random()*stage.enemies.length)]);
+    while(templates.length<count)templates.push(stage.enemies[Math.floor(toeRandom()*stage.enemies.length)]);
   }
   return templates.map((template,index)=>createEnemy(template,index<leaderCount?kind:'normal',templates.length,index<leaderCount,index));
 }
@@ -1126,6 +1143,7 @@ function currentTarget(){
   state.enemy=target||state.enemy;return target;
 }
 startBattle=function(kind){
+  window.TOE_COMBAT_MOTION?.clear();
   document.body.classList.add('in-battle');$('#overlay').classList.add('hidden');$('#battleScreen').classList.remove('hidden');
   state.encounterKind=kind;state.enemies=buildEncounter(kind);state.targetId=state.enemies[0].id;state.enemy=state.enemies[0];
   state.block=0;state.turn=1;state.firstAttack=true;state.deck.forEach(c=>{c.swiftPlays=0;delete c.potionCostReduction});state.activeEnhancements=[];state.previousCardType=null;state.draw=orderVanguard(shuffle([...state.deck]));state.discard=[];state.exhaust=[];state.hand=[];state.mana=HEROES[state.hero].resourceMax;state.innerQi=state.hero===6?3:0;state.summonHp=state.hero===4?5:0;state.summonMaxHp=state.hero===4?5:0;state.summonBlock=state.hero===4?4:0;state.potionNextAttack=0;state.potionNextAttackMultiplier=0;state.potionNextMultiHitMultiplier=0;state.potionNextCardFree=false;state.potionAmplify=false;state.potionBlockMultiplier=1;state.potionRegeneration=null;state.phoenixProtection=false;state.phoenixTriggered=false;state.dragonHeartTriggered=false;state.dragonScale=null;state.dragonWingFree=false;state.dragonWingRecycle=false;state.preventNextStatusCard=false;state.revealedIntents=0;
@@ -1134,7 +1152,7 @@ startBattle=function(kind){
   state.mana+=(state.inventory||[]).filter(item=>item.effect==='startMana').reduce((sum,item)=>sum+item.amount,0);
   state.block=Math.max(0,state.block-(state.inventory||[]).filter(item=>item.curseEffect==='startBlockLoss').reduce((sum,item)=>sum+item.curseAmount,0));
   state.mana=Math.max(0,state.mana-(state.inventory||[]).filter(item=>item.curseEffect==='startManaLoss').reduce((sum,item)=>sum+item.curseAmount,0));
-  drawCards(5+(state.inventory||[]).filter(item=>item.effect==='startDraw').reduce((sum,item)=>sum+item.amount,0));renderBattle();startStageBgm(state.stage);
+  drawCards(5+(state.inventory||[]).filter(item=>item.effect==='startDraw').reduce((sum,item)=>sum+item.amount,0));state.roomState={nodeKey:state.map?.active||null,nodeType:kind==='boss'?'boss':'combat',phase:'battle'};renderBattle();startStageBgm(state.stage);
 };
 function dealToEnemy(enemy,damage){
   const dealt=Math.max(0,damage-enemy.block);enemy.block=Math.max(0,enemy.block-damage);enemy.hp=Math.max(0,enemy.hp-dealt);return dealt;
@@ -1289,6 +1307,7 @@ function loadStateJSON(raw){
   loaded.inventory=(loaded.inventory||[]).filter(item=>item?.type==='relic'||item?.type==='potion').filter(item=>item.type!=='potion'||potionCount++<POTION_SLOT_LIMIT).map(item=>{if(item.type!=='potion')return item;const canonical=POTION_DATABASE.find(p=>oldSchema?p.name===item.name:p.id===item.potionId)||legacyPotion;return{...canonical,id:item.id||crypto.randomUUID(),potionId:canonical.id,type:'potion',icon:'🧪',w:1,h:1}});
   loaded.potions=loaded.inventory.filter(item=>item.type==='potion').length;loaded.relics=loaded.inventory.filter(item=>item.type==='relic').length;
   if(!loaded.sanctuary&&loaded.sanctuaryActivity){loaded.sanctuary={maxActivity:loaded.sanctuaryActivity.max||3,activity:loaded.sanctuaryActivity.current||0,currentNodeId:loaded.sanctuaryActivity.nodeId||null}}delete loaded.sanctuaryActivity;
+  if(!Number.isFinite(loaded.rngState)){const seed=Number(loaded.map_seed)||Number(loaded.map?.seed)||0x9e3779b9;loaded.rngState=(seed^Math.imul((loaded.stage||0)+1,7919)^Math.imul((loaded.node||0)+1,104729)^((loaded.hero||0)+1))>>>0||0x9e3779b9}
   loaded.arcanaGauge=Math.max(0,Math.min(loaded.arcanaMax||100,loaded.arcanaGauge||0));loaded.arcanaMax=loaded.arcanaMax||100;loaded.itemSchemaVersion=2;
   return loaded;
 }
@@ -1302,17 +1321,20 @@ function saveGame(){
   if(state.hero===null||!state.deck?.length){showMenuNotice('저장할 기록이 없습니다.','먼저 등반을 시작하십시오.');return}
   try{localStorage.setItem(SAVE_KEY,saveStateJSON());showMenuNotice('저장 완료','현재 등반 기록을 저장했습니다.')}catch{showMenuNotice('저장 실패','이 브라우저에서는 저장 기능을 사용할 수 없습니다.')}}
 function loadGame(){
+  window.TOE_COMBAT_MOTION?.clear();
   let saved;
   try{saved=localStorage.getItem(SAVE_KEY)}catch{showMenuNotice('불러오기 실패','이 브라우저에서는 저장 기능을 사용할 수 없습니다.');return}
   if(!saved){showMenuNotice('불러오기','저장된 등반 기록이 없습니다.');return}
   try{
-    Object.assign(state,loadStateJSON(saved));
+    const loaded=loadStateJSON(saved);Object.assign(state,loaded);state.roomState=loaded.roomState||null;
     const loadedHero=HEROES[state.hero];state.maxMana=loadedHero?.resourceMax||3;if(!Number.isFinite(state.mana))state.mana=state.maxMana;if(!Number.isFinite(state.innerQi))state.innerQi=state.hero===6?3:0;
     if(state.hero===6){const seen=new Set();for(const pile of [state.deck,state.hand,state.draw,state.discard,state.exhaust])for(const c of pile||[]){if(!c||seen.has(c.id))continue;seen.add(c.id);if(c.name?.replace(/\*/g,'')===loadedHero.guard){c.keyword='수비';c.actionCost=1;c.innerCost=0}}}
     document.body.classList.remove('menu-open');$('#startScreen').classList.remove('selecting');
     $('#startScreen').classList.add('hidden');
-    const inBattle=Array.isArray(state.enemies)&&state.enemies.some(enemy=>enemy.hp>0);
+    const activeNode=state.map?.nodes instanceof Map?state.map.nodes.get(state.map.active):null;
+    const inBattle=Array.isArray(state.enemies)&&state.enemies.some(enemy=>enemy.hp>0)&&(state.roomState?.phase==='battle'||!state.roomState&&['monster','elite','boss'].includes(activeNode?.type));
     if(inBattle){document.body.classList.add('in-battle');$('#overlay').classList.add('hidden');$('#battleScreen').classList.remove('hidden');renderBattle();startStageBgm(state.stage)}
+    else if(window.restoreRoomState?.()){}
     else if(state.map?.nodes instanceof Map){showMap()}
     else{beginStage()}
     sync();
@@ -1337,7 +1359,7 @@ document.addEventListener('pointerdown',event=>{if(!battleMenu.contains(event.ta
 function confirmBattleExit(quit){
   $('#modal').className='modal';$('#modal').innerHTML=`<h2>${quit?'게임 종료':'시작화면으로'}</h2><p>저장하지 않은 진행 상황은 사라집니다. 계속하시겠습니까?</p><div class="choices"><button class="choice" id="cancelExit" type="button">계속 플레이</button><button class="choice" id="confirmExit" type="button">${quit?'종료':'시작화면으로'}</button></div>`;
   $('#overlay').classList.remove('hidden');$('#cancelExit').onclick=()=>$('#overlay').classList.add('hidden');
-  $('#confirmExit').onclick=()=>{closeBag();closePile();closeBattleMenu();stopStageBgm();$('#overlay').classList.add('hidden');document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#startScreen').classList.remove('hidden','selecting');$('#heroSelectPanel').classList.add('hidden');$('#titleMenu').classList.remove('hidden');document.body.classList.add('menu-open');if(quit)location.reload()};
+  $('#confirmExit').onclick=()=>{window.TOE_COMBAT_MOTION?.clear();closeBag();closePile();closeBattleMenu();stopStageBgm();$('#overlay').classList.add('hidden');document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#startScreen').classList.remove('hidden','selecting');$('#heroSelectPanel').classList.add('hidden');$('#titleMenu').classList.remove('hidden');document.body.classList.add('menu-open');if(quit)location.reload()};
 }
 battleMenu.querySelectorAll('[data-battle-menu]').forEach(button=>button.onclick=()=>{
   closeBattleMenu();const action=button.dataset.battleMenu;

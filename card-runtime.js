@@ -59,7 +59,7 @@
     const candidates = cards.flatMap(card => Array(weight[card.rarity] || 0).fill(card));
     const picked = [], used = new Set();
     while (picked.length < 3 && candidates.length) {
-      const definition = candidates[Math.floor(Math.random() * candidates.length)];
+      const definition = candidates[Math.floor(toeRandom() * candidates.length)];
       if (used.has(definition.id)) continue;
       used.add(definition.id); picked.push(make(definition));
     }

@@ -135,9 +135,9 @@
     if(!(map.visited instanceof Set))map.visited=new Set(map.visited||[]);
     for(const node of map.nodes.values()){node.key??=node.node_id;node.row??=node.floor??0;node.column??=node.col??0;node.col??=node.column??0;node.visual_x_offset??=0;node.visual_y_offset??=0;node.type??=node.node_type||'empty';if(node.type==='merchant'||node.type==='rest')node.type='sanctuary';node.node_type=node.type;node.shop=false;node.rest=false;node.sanctuary=node.type==='sanctuary';node.out=node.out instanceof Set?node.out:new Set(node.out||node.neighbors||[]);node.parents=node.parents instanceof Set?node.parents:new Set(node.parents||[]);node.neighbors=[...node.out]}
     map.edges??=[];if(!map.edges.length)for(const node of map.nodes.values())for(const child of node.out)map.edges.push({a:node.key,b:child,floor:node.floor});
-    map.current??=[...map.nodes.values()].find(n=>n.type==='gatekeeper')?.key||null;map.active??=null;if(map.active&&map.nodes.get(map.active)?.type==='sanctuary'&&map.visited.has(map.active)){map.current=map.active;map.active=null}map.schemaVersion=Math.max(map.schemaVersion||4,4);return map;
+    map.current??=[...map.nodes.values()].find(n=>n.type==='gatekeeper')?.key||null;map.active??=null;if(map.active&&map.nodes.get(map.active)?.type==='sanctuary'&&map.visited.has(map.active)&&state.roomState?.nodeKey!==map.active){map.current=map.active;map.active=null}map.schemaVersion=Math.max(map.schemaVersion||4,4);return map;
   }
-  function generateMap(seed){const actual=Number.isFinite(seed)?seed:(state.map_seed=(Date.now()^Math.floor(Math.random()*0xffffffff))>>>0);return makeFloor(state.stage,actual)}
+  function generateMap(seed){const actual=Number.isFinite(seed)?seed:(state.map_seed=Math.floor(toeRandom()*0x100000000)>>>0);return makeFloor(state.stage,actual)}
   function mapPosition(node,maxFloor){return{x:8+(node.column+(node.visual_x_offset||0))*14,y:94-(node.floor/maxFloor)*88+(node.visual_y_offset||0)}}
   function showMap(){
     normalizeMap(state.map);if(!state.map)return;document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');
@@ -150,13 +150,32 @@
     document.querySelectorAll('[data-map-node]').forEach(b=>b.onclick=()=>enterMapNode(b.dataset.mapNode));
   }
   function enterMapNode(key){
-    normalizeMap(state.map);if(!reachableKeys().includes(key))return;const node=state.map.nodes.get(key);state.map.active=key;state.map.visited.add(key);state.node=node.floor;
+    normalizeMap(state.map);if(!reachableKeys().includes(key))return;const node=state.map.nodes.get(key);state.map.active=key;state.map.visited.add(key);state.node=node.floor;state.roomState={nodeKey:key,nodeType:node.type,phase:'entered'};sync?.();
     if(node.forcedEvent){const e=TOE_EVENT_SYSTEM?.characterEvent(node.forcedEvent);if(e&&TOE_EVENT_SYSTEM.show)TOE_EVENT_SYSTEM.show(e,finishMapRoom);else finishMapRoom();return}
     if(node.type==='monster')startBattle('normal');else if(node.type==='elite')startBattle('elite');else if(node.type==='sanctuary')sanctuaryRoom(node.node_id||node.key);else if(node.type==='treasure')treasureRoom();else if(node.type==='event')eventRoom();else if(node.type==='boss')showBossGate();else finishMapRoom();
   }
-  function finishMapRoom(){normalizeMap(state.map);const node=state.map.nodes.get(state.map.active);if(!node)return;state.map.current=node.key;state.map.active=null;if(node.boss)showBossGate();else showMap()}
+  function finishMapRoom(){window.TOE_COMBAT_MOTION?.clear();normalizeMap(state.map);const node=state.map.nodes.get(state.map.active);if(!node)return;window.TOE_HUB?.trackProgress('map',1);state.map.current=node.key;state.map.active=null;state.roomState=null;if(node.boss)showBossGate();else showMap()}
+  function restoreRoomState(){
+    normalizeMap(state.map);const room=state.roomState,node=state.map?.nodes?.get(room?.nodeKey||state.map?.active);if(!room||!node)return false;
+    state.map.active=room.nodeKey||node.key;
+    if(room.phase==='reward'){
+      const actions={finishMapRoom,beginStage,victory},action=actions[room.reward?.afterAction]||finishMapRoom;
+      reward(Boolean(room.reward?.boss),action);return true;
+    }
+    if(room.phase==='event'){
+      const event=window.TOE_EVENT_SYSTEM?.find?.(room.eventId);if(event){window.TOE_EVENT_SYSTEM.show(event,finishMapRoom);return true}
+    }
+    if(room.phase==='treasure'){treasureRoom();return true}
+    if(room.phase==='battle'&&Array.isArray(state.enemies)&&!state.enemies.some(enemy=>enemy.hp>0)){winBattle();return true}
+    if(node.forcedEvent){const event=window.TOE_EVENT_SYSTEM?.characterEvent(node.forcedEvent);if(event){window.TOE_EVENT_SYSTEM.show(event,finishMapRoom);return true}}
+    if(node.type==='event'){eventRoom();return true}
+    if(node.type==='sanctuary'){sanctuaryRoom(node.node_id||node.key);return true}
+    if(node.type==='treasure'){treasureRoom();return true}
+    if(node.type==='boss'){showBossGate();return true}
+    return false;
+  }
   const oldLoad=window.loadGame;
-  window.generateMap=generateMap;window.showMap=showMap;window.enterMapNode=enterMapNode;window.finishMapRoom=finishMapRoom;window.normalizeMapState=normalizeMap;window.TOE_MAP_GENERATOR={generateMap,makeFloor,weights:{...WEIGHTS}};
+  window.generateMap=generateMap;window.showMap=showMap;window.enterMapNode=enterMapNode;window.finishMapRoom=finishMapRoom;window.restoreRoomState=restoreRoomState;window.normalizeMapState=normalizeMap;window.TOE_MAP_GENERATOR={generateMap,makeFloor,weights:{...WEIGHTS}};
   const oldBossGate=window.showBossGate;if(oldBossGate)window.showBossGate=function(){const bg=state.map?.background_key||stageBackground(state.stage);$('#overlay').style.setProperty('--boss-entry',`url('${bg}')`);return oldBossGate()};
   if(oldLoad)window.loadGame=function(){oldLoad();normalizeMap(state.map);if(state.map?.seed)state.map_seed=state.map.seed};
   state.map_seed??=null;

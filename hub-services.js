@@ -14,25 +14,31 @@
   ];
   const quests=window.GUILD_QUEST_DATABASE||fallbackQuests;
   const hash=text=>{let h=2166136261;for(const ch of String(text)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0};
-  const questGold=value=>[55,75,90,115,140][Math.max(0,Math.min(4,value-1))];
+  const questGoldRanges={F:[35,55],E:[50,75],D:[70,100],C:[95,135],B:[125,175],A:[165,230],S:[220,300]};
+  const questGold=(quest,key=String(floor()))=>{
+    const [min,max]=questGoldRanges[quest.grade]||questGoldRanges.C;
+    return min+hash(`${state.map_seed||state.map?.seed||0}:${key}:${quest.id}:guild-gold`)%(max-min+1);
+  };
   const blessingName=blessing=>typeof blessing==='string'?blessing:blessing?.name||'이름 없는 축복';
 
   function offers(){
     const p=progress(),key=String(floor());
-    if(Array.isArray(p.guildOffers[key])&&p.guildOffers[key].length===5)return p.guildOffers[key];
+    if(Array.isArray(p.guildOffers[key])&&p.guildOffers[key].length===5&&p.guildOffers[key].every(offer=>offer&&typeof offer==='object'&&Number.isFinite(offer.gold)))return p.guildOffers[key];
     const eligible=quests.filter(q=>(!q.floor||q.floor<=floor())&&(!q.requiresTranscendence||p.transcendence||state.deck?.some(card=>card.extra==='awakening-transcendence')));
     const seed=hash(`${state.map_seed||state.map?.seed||0}:${key}:guild`),ordered=[...eligible].sort((a,b)=>hash(`${seed}:${a.id}`)-hash(`${seed}:${b.id}`)),chosen=[];
     for(const quest of ordered){if(chosen.some(item=>item.kind===quest.kind))continue;chosen.push(quest);if(chosen.length===5)break}
-    for(const quest of ordered){if(chosen.includes(quest))continue;chosen.push(quest);if(chosen.length===5)break}
-    p.guildOffers[key]=chosen.map(quest=>quest.id);sync?.();return p.guildOffers[key];
+    if(chosen.length<5)for(const quest of ordered){if(chosen.includes(quest))continue;chosen.push(quest);if(chosen.length===5)break}
+    p.guildOffers[key]=chosen.map(quest=>({id:quest.id,gold:questGold(quest,key)}));sync?.();return p.guildOffers[key];
   }
   function grantQuestReward(quest){
     if(!quest||quest.claimed)return false;
-    const p=progress();quest.claimed=true;state.gold+=(Number(quest.gold)||0);
+    const p=progress(),claimKey=quest.contractId||`${quest.floor||0}:${quest.id||quest.name}`;
+    if(p.claimedQuests.includes(claimKey)||p.claimedQuests.includes(quest.id||quest.name))return false;
+    quest.claimed=true;state.gold+=(Number(quest.gold)||0);
     if(quest.benefit)p.benefits[quest.benefit]=true;
     if(quest.reward?.type==='TEMP_ACTIVITY')window.TOE_SANCTUARY?.queueActivityVisits(quest.reward.visits||1);
     if(quest.reward?.type==='MAX_ACTIVITY')window.TOE_SANCTUARY?.queueActivityUpgrade(quest.reward.amount||1);
-    p.completedQuests.push({...quest});p.claimedQuests.push(quest.id||quest.name);if(p.activeQuest===quest)p.activeQuest=null;sync?.();return true;
+    p.completedQuests.push({...quest});p.claimedQuests.push(claimKey);if(p.activeQuest===quest)p.activeQuest=null;sync?.();return true;
   }
   function claim(){const quest=progress().activeQuest;return Boolean(quest?.completed&&grantQuestReward(quest))}
   function trackProgress(metric,amount=1){
@@ -79,19 +85,32 @@
   }
   function openGuild(nav,bindNav,back,message='',view='lobby'){
     const p=progress();shell('guild','길드 회관','“새 의뢰를 확인하시거나 진행 중인 계약을 살펴보시겠어요?”','assets/guild-hall-v2.png','assets/npc-guild-receptionist-cutout-v1.png',nav,bindNav,back);
-    const active=p.activeQuest,canAccept=!active&&!p.acceptedFloors.includes(floor())&&p.acceptedFloors.length<5&&Boolean(window.TOE_SANCTUARY?.activityAvailable()),available=offers().map(id=>quests.find(quest=>quest.id===id)).filter(Boolean).slice(0,5);
+    const active=p.activeQuest,canAccept=!active&&!p.acceptedFloors.includes(floor())&&p.acceptedFloors.length<5&&Boolean(window.TOE_SANCTUARY?.activityAvailable()),available=offers().map(offer=>({quest:quests.find(quest=>quest.id===offer.id),gold:offer.gold})).filter(offer=>Boolean(offer.quest));
     const activeHtml=active?`<div class="hub-quest"><strong>${active.name} [${active.grade||'C'}]</strong><span>${active.objective} · ${active.progress}/${active.target}</span><small>의뢰 진행 중 · 완료 즉시 보상이 지급됩니다.</small></div>`:'<p>진행 중인 의뢰가 없습니다.</p>';
-    const offerHtml=available.map(quest=>`<button type="button" data-quest="${quest.id}" ${canAccept?'':'disabled'}><span><strong>${quest.name} [${quest.grade||'C'}]</strong><small>${quest.objective}${quest.reward?` · ${quest.reward.type==='MAX_ACTIVITY'?'활동력 최대 +1':`다음 성역 ${quest.reward.visits}회 활동력 +1`}`:''}</small></span><b>${questGold(floor())}G · 활동력 1</b></button>`).join('');
+    const offerHtml=available.map(({quest,gold})=>`<button type="button" data-quest="${quest.id}" ${canAccept?'':'disabled'}><span><strong>${quest.name} [${quest.grade||'C'}]</strong><small>${quest.objective}${quest.reward?` · ${quest.reward.type==='MAX_ACTIVITY'?'활동력 최대 +1':`다음 성역 ${quest.reward.visits}회 활동력 +1`}`:''}</small></span><b>${gold}G · 활동력 1</b></button>`).join('');
     $('#hubServices').classList.toggle('guild-offer-list',view==='offers');
     $('#hubServices').innerHTML=view==='lobby'?'<button type="button" data-guild-view="offers"><strong>새 의뢰 확인</strong><small>이번 계층의 무작위 의뢰 5종을 확인합니다.</small></button><button type="button" data-guild-view="active"><strong>진행 중인 의뢰</strong><small>현재 계약과 진행도를 확인합니다.</small></button><button type="button" data-guild-back><strong>돌아간다</strong><small>성역으로 돌아갑니다.</small></button>':view==='active'?activeHtml:offerHtml;
     $('#specialistNotice').textContent=message||'의뢰는 정확히 5개가 제시되며, 완료 즉시 보상이 한 번만 지급됩니다.';
     $('#hubServices').querySelectorAll('[data-guild-view]').forEach(button=>button.onclick=()=>openGuild(nav,bindNav,back,'',button.dataset.guildView));$('#hubServices').querySelector('[data-guild-back]')?.addEventListener('click',()=>back());
-    $('#hubServices').querySelectorAll('[data-quest]').forEach(button=>button.onclick=()=>{if(!canAccept||p.activeQuest)return;const quest=quests.find(item=>item.id===button.dataset.quest);if(!quest||!window.TOE_SANCTUARY?.spend('guild:accept'))return;p.activeQuest={...quest,floor:floor(),gold:questGold(floor()),progress:0,completed:false,claimed:false};p.acceptedFloors.push(floor());sync?.();openGuild(nav,bindNav,back,`${quest.name} 의뢰를 수주했습니다.`)});
+    $('#hubServices').querySelectorAll('[data-quest]').forEach(button=>button.onclick=()=>{if(!canAccept||p.activeQuest)return;const offer=offers().find(item=>item.id===button.dataset.quest),quest=quests.find(item=>item.id===button.dataset.quest);if(!offer||!quest||!window.TOE_SANCTUARY?.spend('guild:accept'))return;p.activeQuest={...quest,floor:floor(),contractId:`${floor()}:${quest.id}`,gold:offer.gold,progress:0,completed:false,claimed:false};p.acceptedFloors.push(floor());sync?.();openGuild(nav,bindNav,back,`${quest.name} 의뢰를 수주했습니다.`)});
   }
   const priorWin=winBattle,priorPotion=useBagPotion;
   useBagPotion=function(...args){const before=(state.inventory||[]).filter(item=>item.type==='potion').length,result=priorPotion.apply(this,args),after=(state.inventory||[]).filter(item=>item.type==='potion').length;if(document.body.classList.contains('in-battle')&&after<before)state.potionsUsedInCombat=(state.potionsUsedInCombat||0)+before-after;return result};
   winBattle=function(...args){trackBattle(state.encounterKind,state.encounterDifficulty,state.hp,state.potionsUsedInCombat||0);return priorWin.apply(this,args)};
-  const priorCardUse=window.useCard;if(priorCardUse)window.useCard=function(id,...args){const card=state.hand?.find(item=>item.id===id),result=priorCardUse.call(this,id,...args);if(result!==false){const metric=card?.type==='공격'?'attack':card?.type==='스킬'?'skill':card?.type==='강화'?'enhance':null;if(metric)trackProgress(metric,1)}return result};
+  const priorCardUse=window.useCard;if(priorCardUse)window.useCard=function(id,...args){
+    const card=state.hand?.find(item=>item.id===id),aliveBefore=new Set((state.enemies||[]).filter(enemy=>enemy.hp>0).map(enemy=>enemy.id));
+    const blockBefore=state.block||0,statusBefore=(state.enemies||[]).reduce((sum,enemy)=>sum+Object.values(enemy.statuses||{}).reduce((total,value)=>total+(Number(value)||0),0),0);
+    const result=priorCardUse.call(this,id,...args),played=Boolean(card&&!state.hand?.some(item=>item.id===id));
+    if(played){
+      if(card.type?.includes('공격'))trackProgress('attack',(state.enemies||[]).filter(enemy=>aliveBefore.has(enemy.id)&&enemy.hp<=0).length);
+      else if(card.type?.includes('스킬'))trackProgress('skill',1);
+      else if(card.type?.includes('강화'))trackProgress('enhance',1);
+      trackProgress('block',Math.max(0,(state.block||0)-blockBefore));
+      const statusAfter=(state.enemies||[]).reduce((sum,enemy)=>sum+Object.values(enemy.statuses||{}).reduce((total,value)=>total+(Number(value)||0),0),0);
+      trackProgress('status',Math.max(0,statusAfter-statusBefore));
+    }
+    return result;
+  };
   window.addEventListener?.('toe:guild-progress',event=>trackProgress(event.detail?.metric,event.detail?.amount||1));
-  window.TOE_HUB={progress,offers,claim,grantQuestReward,trackBattle,trackProgress,quests,open(role,nav,bindNav,back){if(role==='confessor')openConfessor(nav,bindNav,back);else openGuild(nav,bindNav,back)}};
+  window.TOE_HUB={progress,offers,claim,grantQuestReward,trackBattle,trackProgress,questGold,questGoldRanges,quests,open(role,nav,bindNav,back){if(role==='confessor')openConfessor(nav,bindNav,back);else openGuild(nav,bindNav,back)}};
 })();

@@ -15,7 +15,7 @@
   const normalizeEnemy=(enemy,kind,count,isLeader)=>{
     const spec=specOf(enemy);if(!spec)return enemy;
     enemy.monsterId=spec.id;enemy.rank=spec.rank;enemy.baseHp=spec.hp;enemy.role=spec.role;enemy.actions=spec.actions;enemy.ai=spec.ai;enemy.domainId=spec.domainId||null;enemy.startArmor=spec.startArmor||0;enemy.passive=spec.passive||null;enemy.cooldowns??={};enemy.uses??={};enemy.lastActionId??=null;enemy.telegraph??=null;enemy.forcedNext??=null;enemy.actionBuff??=0;enemy.counter??=0;enemy.statuses??={};enemy.survivalOnce??=spec.passive==='UNDEAD_SURVIVAL_ONCE';enemy.summoned=Boolean(enemy.summoned);enemy.domain??=null;enemy.bossTurns??=0;enemy.phase??=1;enemy.domainDamageBonus??=0;
-    const calculated=exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp||enemy.hp<=0){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
+    const calculated=exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
     enemy.block=Math.max(0,enemy.block||0);enemy.armor=enemy.armor??spec.startArmor??0;
     if(enemy.summoned)enemy.uses.rally=1;
     return enemy;
@@ -128,7 +128,7 @@
     if(domain?.id==='IRON_GATE'&&action.type!=='domain'){if(domain.skipNextTurn){domain.skipNextTurn=false;domain.skipCounter=true;domain.armor=0;domain.damageBonus=0}else{domain.skipCounter=false;domain.armor=domain.armorTarget||10;domain.damageBonus=4}}
     if(action.type==='domain'){activateDomain(enemy);enemy.domainPending=false;enemy.nextAction=null;return `영역 발동: ${domainOf(enemy)?.name||''}`}
     if(action.type==='attack'||action.type==='attackHeal'||action.type==='attackBlock'){
-      const hits=action.hits||1;let total=0;const enrage=domain?.id==='NAMELESS_SANCTUM'&&enemy.bossTurns>=12?Math.min(.2,enemy.bossTurns>=15?.2:.1):0;const astraBonus=domain?.id==='FROZEN_CLOCK'?(domain.timeAcceleration||0):0;const morganaBonus=domain?.id==='LIFE_BORDER'&&(action.id==='life-drain'||action.id==='border-harvest')&&(domain.cycle||0)>=4?2:0;const partyBonus=state.monsterPartyAttackBonus||0;for(let i=0;i<hits;i++)total+=hurtPlayer(enemy,Math.ceil(((action.damage||0)+(enemy.actionBuff||0)+(i===0?partyBonus:0)+((domain?.damageBonus||0)/hits)+astraBonus+morganaBonus)*(1+enrage)));if(partyBonus)state.monsterPartyAttackBonus=0;enemy.actionBuff=0;applyActionStatus(enemy,action);if(action.type==='attackHeal')enemy.hp=Math.min(enemy.maxHp,enemy.hp+(action.heal||0));if(action.type==='attackBlock')enemy.block+=action.block||0;
+      const hits=action.hits||1;let total=0;const enrage=domain?.id==='NAMELESS_SANCTUM'&&enemy.bossTurns>=12?Math.min(.2,enemy.bossTurns>=15?.2:.1):0;const astraBonus=domain?.id==='FROZEN_CLOCK'?(domain.timeAcceleration||0):0;const morganaBonus=domain?.id==='LIFE_BORDER'&&(action.id==='life-drain'||action.id==='border-harvest')&&(domain.cycle||0)>=4?2:0;const partyBonus=state.monsterPartyAttackBonus||0;for(let i=0;i<hits&&enemy.hp>0&&state.hp>0;i++)total+=hurtPlayer(enemy,Math.ceil(((action.damage||0)+(enemy.actionBuff||0)+(i===0?partyBonus:0)+((domain?.damageBonus||0)/hits)+astraBonus+morganaBonus)*(1+enrage)));if(partyBonus)state.monsterPartyAttackBonus=0;enemy.actionBuff=0;if(enemy.hp>0&&state.hp>0){applyActionStatus(enemy,action);if(action.type==='attackHeal')enemy.hp=Math.min(enemy.maxHp,enemy.hp+(action.heal||0));if(action.type==='attackBlock')enemy.block+=action.block||0}
     }else if(action.type==='block'){enemy.block+=action.block||0}
     else if(action.type==='counter'){enemy.counter=action.counter||0}
     else if(action.type==='status'){applyActionStatus(enemy,action)}
@@ -163,8 +163,10 @@
     const morganaBonus=domain?.id==='LIFE_BORDER'&&(action.id==='life-drain'||action.id==='border-harvest')&&(domain.cycle||0)>=4?2:0;
     const partyBonus=state.monsterPartyAttackBonus||0;
     return motion.enemyAction(enemy,action,hit=>{
+      if(enemy.hp<=0||state.hp<=0)return false;
       hurtPlayer(enemy,Math.ceil(((action.damage||0)+(enemy.actionBuff||0)+(hit===0?partyBonus:0)+((domain?.damageBonus||0)/hits)+astraBonus+morganaBonus)*(1+enrage)));
-      if(hit<hits-1)return;
+      if(enemy.hp<=0||state.hp<=0)return false;
+      if(hit<hits-1)return true;
       if(partyBonus)state.monsterPartyAttackBonus=0;
       enemy.actionBuff=0;applyActionStatus(enemy,action);
       if(action.type==='attackHeal')enemy.hp=Math.min(enemy.maxHp,enemy.hp+(action.heal||0));
@@ -182,6 +184,7 @@
         if(domain.delayCharge>0)domain.delayCharge--;
       }
       enemy.nextAction=null;queueDomain(enemy);
+      return true;
     });
   }
   function updateDomainAtPlayerEnd(enemy){
@@ -224,8 +227,10 @@
         if(enemy.hp<=0)continue;
         const intent=intentForData(enemy),action=intent.action,takenBefore=state.hp;
         if(motion?.enabled()){
-          if((action?.hits||1)>1&&['attack','attackHeal','attackBlock'].includes(action.type))await executeMultiHitAnimated(enemy,action,motion);
-          else await motion.enemyAction(enemy,action,()=>executeAction(enemy,action));
+          const completed=(action?.hits||1)>1&&['attack','attackHeal','attackBlock'].includes(action.type)
+            ?await executeMultiHitAnimated(enemy,action,motion)
+            :await motion.enemyAction(enemy,action,()=>executeAction(enemy,action));
+          if(completed===false)return;
           renderBattle();
         }else executeAction(enemy,action);
         totalTaken+=Math.max(0,takenBefore-state.hp);
