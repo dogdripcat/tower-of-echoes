@@ -1325,9 +1325,15 @@ function showMenuNotice(title,text){
   $('#overlay').classList.remove('hidden');
   $('#menuNoticeOk').onclick=()=>$('#overlay').classList.add('hidden');
 }
+let pendingCombatSave=null;
 function saveGame(){
   if(state.hero===null||!state.deck?.length){showMenuNotice('저장할 기록이 없습니다.','먼저 등반을 시작하십시오.');return}
-  try{localStorage.setItem(SAVE_KEY,saveStateJSON());showMenuNotice('저장 완료','현재 등반 기록을 저장했습니다.')}catch{showMenuNotice('저장 실패','이 브라우저에서는 저장 기능을 사용할 수 없습니다.')}}
+  const motion=window.TOE_COMBAT_MOTION;
+  if(motion?.isBusy()){
+    if(!pendingCombatSave)pendingCombatSave=motion.whenIdle().then(completed=>completed?saveGame():false).finally(()=>{pendingCombatSave=null});
+    return pendingCombatSave;
+  }
+  try{localStorage.setItem(SAVE_KEY,saveStateJSON());showMenuNotice('저장 완료','현재 등반 기록을 저장했습니다.');return true}catch{showMenuNotice('저장 실패','이 브라우저에서는 저장 기능을 사용할 수 없습니다.');return false}}
 function loadGame(){
   window.TOE_COMBAT_MOTION?.clear();
   let saved;
