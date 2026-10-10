@@ -140,6 +140,7 @@
   function generateMap(seed){const actual=Number.isFinite(seed)?seed:(state.map_seed=Math.floor(toeRandom()*0x100000000)>>>0);return makeFloor(state.stage,actual)}
   function mapPosition(node,maxFloor){return{x:8+(node.column+(node.visual_x_offset||0))*14,y:94-(node.floor/maxFloor)*88+(node.visual_y_offset||0)}}
   function showMap(){
+    window.TOE_COMBAT_MOTION?.clear();
     normalizeMap(state.map);if(!state.map)return;document.body.classList.remove('in-battle');$('#battleScreen').classList.add('hidden');$('#overlay').classList.remove('hidden');
     const maxFloor=Math.max(...[...state.map.nodes.values()].map(n=>n.floor),14),reachable=new Set(reachableKeys()),s=STAGES[state.stage];
     const lines=state.map.edges.map(e=>{const a=mapPosition(state.map.nodes.get(e.a),maxFloor),b=mapPosition(state.map.nodes.get(e.b),maxFloor),used=state.map.visited.has(e.a)&&state.map.visited.has(e.b)?' visited':'';return `<line class="map-line${used}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`}).join('');

@@ -19,6 +19,7 @@
   const scaleTime = milliseconds => reduced() ? Math.min(180, Math.round(milliseconds * .28)) : milliseconds;
   function setLocked(value) {
     busy = value;
+    if(value)window.TOE_LIVING_IDLE?.stop();
     document.body?.classList?.toggle('combat-motion-locked', value);
     const end = document.querySelector('#endTurn');
     if (end) end.disabled = value;
@@ -31,13 +32,12 @@
       console.error('COMBAT_MOTION_ERROR', error);
       return false;
     }).finally(() => {
-      if (serial === actionSerial) setLocked(false);
-      cleanupTransient();
+      if (serial === actionSerial) {setLocked(false);cleanupTransient();window.TOE_LIVING_IDLE?.sync()}
     });
     return chain;
   }
   function cleanupTransient() {
-    document.querySelectorAll('.motion-projectile,.motion-impact-marker,.motion-state-label,.combat-cinematic').forEach(node => node.remove());
+    document.querySelectorAll('.motion-projectile,.motion-impact-marker,.motion-state-label,.motion-application-burst,.combat-cinematic').forEach(node => node.remove());
     document.querySelectorAll('.motion-active,.motion-hit,.motion-heavy-hit,.motion-block-hit,.motion-death').forEach(node => {
       node.classList.remove('motion-active','motion-hit','motion-heavy-hit','motion-block-hit','motion-death',...data.MOTION_TAGS.map(tagClass));
       node.style.removeProperty('--motion-duration');
@@ -82,9 +82,10 @@
   }
   function react(side,id,{heavy=false,blocked=false,dead=false,accent='#fff'}={}) {
     const unit=unitElement(side,id);if(!unit)return;
+    if(side==='hero')window.TOE_LIVING_IDLE?.stop();
     const className=dead?'motion-death':blocked?'motion-block-hit':heavy?'motion-heavy-hit':'motion-hit';
     unit.style.setProperty('--motion-accent',accent);unit.classList.add(className);
-    later(()=>unit.classList.remove(className),dead?650:heavy?580:420);
+    later(()=>{unit.classList.remove(className);if(side==='hero')window.TOE_LIVING_IDLE?.sync()},dead?650:heavy?580:420);
     impactMarker(side,id,blocked?'block':'damage',accent);
     if(heavy&&!blocked){const arena=document.querySelector('#arena');arena?.classList.remove('motion-heavy-impact');void arena?.offsetWidth;arena?.classList.add('motion-heavy-impact')}
   }
@@ -154,6 +155,7 @@
     return true;
   }
   function clear() {
+    window.TOE_LIVING_IDLE?.clear();
     for(const [id,resolve] of timers){clearTimeout(id);resolve?.(false)}timers.clear();actionSerial++;setLocked(false);cleanupTransient();chain=Promise.resolve();
   }
   const previousUse=window.useCard;
@@ -172,8 +174,12 @@
       slot.classList.toggle('motion-cue-armor',(enemy.armor||0)>0||(enemy.domain?.armor||0)>0);
       slot.classList.toggle('motion-cue-marked',Boolean(enemy.marked));
     }
+    window.TOE_LIVING_IDLE?.sync();
     return result;
   };
+  for(const name of ['showRoute']){
+    const previous=window[name];if(typeof previous==='function')window[name]=function(...args){clear();return previous.apply(this,args)};
+  }
   window.TOE_COMBAT_MOTION={data,enabled,isBusy:()=>busy,enqueue,delay,playerAction,enemyAction,react,impactMarker,cinematic,applicationBurst,clear,durationFor};
   const endTurnButton=document.querySelector('#endTurn');
   if(endTurnButton)endTurnButton.onclick=()=>window.endTurn();

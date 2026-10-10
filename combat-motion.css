@@ -93,3 +93,12 @@ body.combat-motion-locked .enemy-party{pointer-events:none}
   .motion-projectile{animation-duration:.12s!important}
   .arena.motion-heavy-impact{animation:none!important}
 }
+
+/* Idle overlay shares the exact original image footprint and shadow. */
+.hero-battle-unit .figure{position:relative}
+.living-idle-source{visibility:hidden}
+.living-idle-canvas{position:absolute;pointer-events:none;filter:drop-shadow(0 18px 22px #000d)}
+@media(prefers-reduced-motion:reduce){
+  .living-idle-canvas{display:none}
+  .living-idle-source{visibility:visible}
+}
