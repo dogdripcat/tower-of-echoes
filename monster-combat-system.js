@@ -12,10 +12,10 @@
   const addStatusCard=(id,value=1)=>{if(typeof card!=='function')return;const c=card(statusNames[id]||id,0,'상태',`${statusNames[id]||id} ${value}`,0,'#d56b85','#251526','status');c.statusId=id;c.statusStacks=value;c.temporary=true;state.discard??=[];state.discard.push(c)};
   const activeBoss=()=>state.enemies?.find(e=>e.kind==='boss'&&e.hp>0&&e.domain?.active);
   const exactHp=(enemy,spec)=>{const template=STAGES[state.stage]?.enemies?.find(x=>x[0]===enemy.name)||STAGES[state.stage]?.elite;const old=Number(template?.[2])||spec.hp;const ratio=enemy.maxHp/old;return Math.max(1,Math.round(spec.hp*(Number.isFinite(ratio)&&ratio>0?ratio:1)))};
-  const normalizeEnemy=(enemy,kind,count,isLeader)=>{
+  const normalizeEnemy=(enemy,kind,count,isLeader,preserveHp=false)=>{
     const spec=specOf(enemy);if(!spec)return enemy;
     enemy.monsterId=spec.id;enemy.rank=spec.rank;enemy.baseHp=spec.hp;enemy.role=spec.role;enemy.actions=spec.actions;enemy.ai=spec.ai;enemy.domainId=spec.domainId||null;enemy.startArmor=spec.startArmor||0;enemy.passive=spec.passive||null;enemy.cooldowns??={};enemy.uses??={};enemy.lastActionId??=null;enemy.telegraph??=null;enemy.forcedNext??=null;enemy.actionBuff??=0;enemy.counter??=0;enemy.statuses??={};enemy.survivalOnce??=spec.passive==='UNDEAD_SURVIVAL_ONCE';enemy.summoned=Boolean(enemy.summoned);enemy.domain??=null;enemy.bossTurns??=0;enemy.phase??=1;enemy.domainDamageBonus??=0;
-    const calculated=exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
+    const calculated=preserveHp&&Number.isFinite(enemy.maxHp)&&enemy.maxHp>0?enemy.maxHp:exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
     enemy.block=Math.max(0,enemy.block||0);enemy.armor=enemy.armor??spec.startArmor??0;
     if(enemy.summoned)enemy.uses.rally=1;
     return enemy;
@@ -43,9 +43,10 @@
   };
   const hasFreeSlot=()=>aliveEnemies().length<5;
   function activateDomain(enemy){
-    const template=domainOf(enemy);if(!template)return;
+    const template=domainOf(enemy);if(!template||enemy.domain?.activated||enemy.domain?.active)return false;
     enemy.domain={...template,active:true,activated:true,armor:0,armorTarget:template.armor||10,bloomGauge:template.bloomGauge||0,bossTurns:0,cycle:0,currentLaw:template.colors?.[0]||null,nextLaw:template.colors?.[1]||null,adapted:[],brokenThisCycle:false,forceAction:null,damageBonus:0,timeAcceleration:0};
-    enemy.phase=1;state.domainLog=`${template.name}이 활성화되었습니다.`;
+    phaseUpdate(enemy);state.domainLog=`${template.name}이 활성화되었습니다.`;
+    return true;
   }
   function phaseUpdate(enemy){
     if(!enemy.domain?.active)return;
@@ -54,13 +55,16 @@
       const colors=enemy.domain.colors;const index=Math.max(0,colors.indexOf(enemy.domain.currentLaw));enemy.domain.nextLaw=colors[(index+1)%colors.length];
     }
   }
-  function queueDomain(enemy){
-    const template=domainOf(enemy);if(!template||enemy.domain?.active)return;
+  function domainEligible(enemy){
+    const template=domainOf(enemy);if(!template||enemy.domain?.activated||enemy.domain?.active)return false;
     const ratio=enemy.hp/enemy.maxHp;
-    const eligible=template.activation==='BATTLE_START'||template.activation==='HP_LE_60'&&ratio<=.60||template.activation==='HP_LE_70'&&ratio<=.70||template.activation==='HP_LE_75'&&ratio<=.75||template.activation==='AFTER_BOSS_TURN_3'&&enemy.bossTurns>=3;
-    if(eligible)enemy.domainPending=true;
+    return template.activation==='BATTLE_START'||template.activation==='HP_LE_60'&&ratio<=.60||template.activation==='HP_LE_70'&&ratio<=.70||template.activation==='HP_LE_75'&&ratio<=.75||template.activation==='AFTER_BOSS_TURN_3'&&enemy.bossTurns>=3;
+  }
+  function queueDomain(enemy){
+    enemy.domainPending=domainEligible(enemy);
   }
   function actionEligible(enemy,action){
+    if(action.type==='domain')return domainEligible(enemy);
     if(enemy.summoned&&action.type==='summon')return false;
     if(action.requiresFreeSlot&&!hasFreeSlot())return false;
     if(action.requiresTelegraph&&enemy.telegraph!==action.requiresTelegraph)return false;
@@ -76,7 +80,7 @@
   }
   function chooseAction(enemy){
     const spec=specOf(enemy);if(!spec)return null;
-    if(enemy.domainPending){const domainAction=spec.actions.find(x=>x.type==='domain');if(domainAction)return domainAction}
+    if(domainEligible(enemy)){const domainAction=spec.actions.find(x=>x.type==='domain');if(domainAction)return domainAction}
     if(enemy.domain?.forceAction){const forced=spec.actions.find(x=>x.id===enemy.domain.forceAction);if(forced){enemy.domain.forceAction=null;return forced}}
     if(enemy.forcedNext){const forced=spec.actions.find(x=>x.id===enemy.forcedNext);if(forced&&actionEligible(enemy,forced))return forced;}
     const candidates=spec.actions.filter(action=>actionEligible(enemy,action)).sort((a,b)=>(b.priority||0)-(a.priority||0));
@@ -96,6 +100,8 @@
     return action.name;
   }
   function intentForData(enemy){
+    if(domainEligible(enemy)&&enemy.nextAction?.type!=='domain')enemy.nextAction=null;
+    if(enemy.nextAction?.type==='domain'&&!domainEligible(enemy))enemy.nextAction=null;
     enemy.nextAction??=chooseAction(enemy);
     const action=enemy.nextAction||chooseAction(enemy);enemy.nextAction=action;
     return {kind:'monster-action',action,value:action?.damage||0,text:actionText(enemy,action)};
@@ -126,7 +132,7 @@
     const domain=enemy.domain?.active?enemy.domain:null;
     const spec=specOf(enemy);if(enemy.armor>0)enemy.armor=Math.max(0,enemy.armor-(enemy.rank==='ELITE'?4:2));
     if(domain?.id==='IRON_GATE'&&action.type!=='domain'){if(domain.skipNextTurn){domain.skipNextTurn=false;domain.skipCounter=true;domain.armor=0;domain.damageBonus=0}else{domain.skipCounter=false;domain.armor=domain.armorTarget||10;domain.damageBonus=4}}
-    if(action.type==='domain'){activateDomain(enemy);enemy.domainPending=false;enemy.nextAction=null;return `영역 발동: ${domainOf(enemy)?.name||''}`}
+    if(action.type==='domain'){if(!domainEligible(enemy))return '';activateDomain(enemy);enemy.domainPending=false;enemy.nextAction=null;return `영역 발동: ${domainOf(enemy)?.name||''}`}
     if(action.type==='attack'||action.type==='attackHeal'||action.type==='attackBlock'){
       const hits=action.hits||1;let total=0;const enrage=domain?.id==='NAMELESS_SANCTUM'&&enemy.bossTurns>=12?Math.min(.2,enemy.bossTurns>=15?.2:.1):0;const astraBonus=domain?.id==='FROZEN_CLOCK'?(domain.timeAcceleration||0):0;const morganaBonus=domain?.id==='LIFE_BORDER'&&(action.id==='life-drain'||action.id==='border-harvest')&&(domain.cycle||0)>=4?2:0;const partyBonus=state.monsterPartyAttackBonus||0;for(let i=0;i<hits&&enemy.hp>0&&state.hp>0;i++)total+=hurtPlayer(enemy,Math.ceil(((action.damage||0)+(enemy.actionBuff||0)+(i===0?partyBonus:0)+((domain?.damageBonus||0)/hits)+astraBonus+morganaBonus)*(1+enrage)));if(partyBonus)state.monsterPartyAttackBonus=0;enemy.actionBuff=0;if(enemy.hp>0&&state.hp>0){applyActionStatus(enemy,action);if(action.type==='attackHeal')enemy.hp=Math.min(enemy.maxHp,enemy.hp+(action.heal||0));if(action.type==='attackBlock')enemy.block+=action.block||0}
     }else if(action.type==='block'){enemy.block+=action.block||0}
@@ -246,6 +252,6 @@
     finishEnemyTurn(totalTaken);
   };
   const previousRender=renderBattle;
-  renderBattle=function(...args){previousRender(...args);const boss=activeBoss();if(!boss)return;const d=boss.domain,container=$('#battleEffects');if(!d||!container)return;let detail=`영역 · ${d.name}`;if(d.id==='IRON_GATE')detail+=` · 방어 ${d.armor||0}/10 · ${d.armor>0?'성문 붕괴 대기':'붕괴 완료'}`;if(d.id==='BLOOD_GARDEN')detail+=` · 개화 ${d.bloomGauge||0}/3 · ${d.bloomGauge>=3?'만개 예고':''}`;if(d.id==='FROZEN_CLOCK')detail+=` · 다음: 가속/지연 동시 사용 시 시간 오류`;if(d.id==='LIFE_BORDER')detail+=` · 상태 카드 제거 시 정화`;if(d.id==='NAMELESS_SANCTUM')detail+=` · 현재 ${d.currentLaw||'RED'} · 다음 ${d.nextLaw||'GREEN'} · 적응 ${d.adapted?.length||0}/3`;const span=document.createElement('span');span.className='domain-indicator';span.innerHTML=`<i>◇</i>${detail}`;container.prepend(span)};
-  window.TOE_MONSTER_COMBAT={db,specOf,domainOf,normalizeEnemy,activateDomain,chooseAction,intentForData,executeAction,executeMultiHitAnimated,updateDomainAtPlayerEnd,applyClockLaw,clearClockLaw};
+  renderBattle=function(...args){for(const enemy of state.enemies||[])phaseUpdate(enemy);previousRender(...args);const boss=activeBoss();if(!boss)return;const d=boss.domain,container=$('#battleEffects');if(!d||!container)return;let detail=`영역 · ${d.name}`;if(d.id==='IRON_GATE')detail+=` · 방어 ${d.armor||0}/10 · ${d.armor>0?'성문 붕괴 대기':'붕괴 완료'}`;if(d.id==='BLOOD_GARDEN')detail+=` · 개화 ${d.bloomGauge||0}/3 · ${d.bloomGauge>=3?'만개 예고':''}`;if(d.id==='FROZEN_CLOCK')detail+=` · 다음: 가속/지연 동시 사용 시 시간 오류`;if(d.id==='LIFE_BORDER')detail+=` · 상태 카드 제거 시 정화`;if(d.id==='NAMELESS_SANCTUM')detail+=` · 현재 ${d.currentLaw||'RED'} · 다음 ${d.nextLaw||'GREEN'} · 적응 ${d.adapted?.length||0}/3`;const span=document.createElement('span');span.className='domain-indicator';span.innerHTML=`<i>◇</i>${detail}`;container.prepend(span)};
+  window.TOE_MONSTER_COMBAT={db,specOf,domainOf,normalizeEnemy,activateDomain,phaseUpdate,chooseAction,intentForData,executeAction,executeMultiHitAnimated,updateDomainAtPlayerEnd,applyClockLaw,clearClockLaw};
 })();

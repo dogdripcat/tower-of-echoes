@@ -1327,6 +1327,7 @@ function loadGame(){
   if(!saved){showMenuNotice('불러오기','저장된 등반 기록이 없습니다.');return}
   try{
     const loaded=loadStateJSON(saved);Object.assign(state,loaded);state.roomState=loaded.roomState||null;
+    for(const enemy of state.enemies||[])window.TOE_MONSTER_COMBAT?.phaseUpdate(enemy);
     const loadedHero=HEROES[state.hero];state.maxMana=loadedHero?.resourceMax||3;if(!Number.isFinite(state.mana))state.mana=state.maxMana;if(!Number.isFinite(state.innerQi))state.innerQi=state.hero===6?3:0;
     if(state.hero===6){const seen=new Set();for(const pile of [state.deck,state.hand,state.draw,state.discard,state.exhaust])for(const c of pile||[]){if(!c||seen.has(c.id))continue;seen.add(c.id);if(c.name?.replace(/\*/g,'')===loadedHero.guard){c.keyword='수비';c.actionCost=1;c.innerCost=0}}}
     document.body.classList.remove('menu-open');$('#startScreen').classList.remove('selecting');

@@ -114,7 +114,8 @@
       const spec=runtime.specOf(enemy);
       if(!spec)continue;
       const kind=spec.rank==='BOSS'?'boss':spec.rank==='ELITE'?'elite':'normal';
-      runtime.normalizeEnemy(enemy,kind,state.enemies.length,spec.rank!=='NORMAL');
+      // Saved HP already includes encounter scaling; restore metadata without scaling again.
+      runtime.normalizeEnemy(enemy,kind,state.enemies.length,spec.rank!=='NORMAL',true);
     }
     const boss=state.enemies?.find(enemy=>enemy.kind==='boss'&&enemy.domainId==='NAMELESS_SANCTUM'&&!enemy.domain);
     if(boss)runtime.activateDomain(boss);
