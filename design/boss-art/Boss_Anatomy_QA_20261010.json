@@ -1,0 +1,131 @@
+{
+  "scope": "5 boss 2D reference-sheet anatomy audit",
+  "measurement_status": "estimated_visible_2D_landmarks_not_skeletal_measurement",
+  "head_ratio_target": 8.5,
+  "head_ratio_certified": false,
+  "technical_qa": "PARTIAL",
+  "metrics": [
+    {
+      "id": "ardella",
+      "name": "아르델라",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "method": "manual_visible_hair_top_to_foot_sole_y_landmark_estimate",
+      "front_y": [
+        110,
+        791
+      ],
+      "back_y": [
+        113,
+        791
+      ],
+      "front_span_px": 681,
+      "back_span_px": 678,
+      "relative_difference_pct": 0.44,
+      "endpoint_uncertainty_px": 8,
+      "anatomical_head_ratio": null,
+      "note": "머리카락 상단 기준; 두개골 정수리/후면 턱 가림"
+    },
+    {
+      "id": "rosebel",
+      "name": "로제벨",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "method": "manual_visible_hair_top_to_foot_sole_y_landmark_estimate",
+      "front_y": [
+        126,
+        730
+      ],
+      "back_y": [
+        128,
+        724
+      ],
+      "front_span_px": 604,
+      "back_span_px": 596,
+      "relative_difference_pct": 1.33,
+      "endpoint_uncertainty_px": 8,
+      "anatomical_head_ratio": null,
+      "note": "가시왕관 제외, 속옷뷰 두발 접지; 의상뷰 힐 보정 필요"
+    },
+    {
+      "id": "astra",
+      "name": "아스트라",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "method": "manual_visible_hair_top_to_foot_sole_y_landmark_estimate",
+      "front_y": [
+        104,
+        727
+      ],
+      "back_y": [
+        104,
+        732
+      ],
+      "front_span_px": 623,
+      "back_span_px": 628,
+      "relative_difference_pct": 0.8,
+      "endpoint_uncertainty_px": 8,
+      "anatomical_head_ratio": null,
+      "note": "속옷뷰 모자 없음, 정수리는 머리카락에 가림"
+    },
+    {
+      "id": "morgana",
+      "name": "모르가나",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "method": "manual_visible_hair_top_to_foot_sole_y_landmark_estimate",
+      "front_y": [
+        140,
+        780
+      ],
+      "back_y": [
+        140,
+        778
+      ],
+      "front_span_px": 640,
+      "back_span_px": 638,
+      "relative_difference_pct": 0.31,
+      "endpoint_uncertainty_px": 8,
+      "anatomical_head_ratio": null,
+      "note": "속옷뷰 맨발; 겉옷 후면 골반/발 가림"
+    },
+    {
+      "id": "ivelyn",
+      "name": "이벨린",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "method": "manual_visible_hair_top_to_foot_sole_y_landmark_estimate",
+      "front_y": [
+        123,
+        735
+      ],
+      "back_y": [
+        123,
+        734
+      ],
+      "front_span_px": 612,
+      "back_span_px": 611,
+      "relative_difference_pct": 0.16,
+      "endpoint_uncertainty_px": 8,
+      "anatomical_head_ratio": null,
+      "note": "후드/백발로 두상 가림; 겉옷 발·무릎 가림"
+    }
+  ],
+  "review_completed_at": "2026-10-10T04:46:03.985916+00:00",
+  "review_execution": "DONE",
+  "measurement_source": "시각 검토 중 기록한 이전 기준 시트의 근사 윤곽 랜드마크. 최신 로제벨/이벨린 수정본은 구조를 재대조했으며 좌표를 새 실측값으로 주장하지 않음.",
+  "latest_revision_recheck": {
+    "rosebel": "패턴/채찍/밴드 수정, 체형/접지 비교 완료. 가려진 골격 미검증.",
+    "ivelyn": "체형 유지 및 스타킹/후면 가터 구조 비교 완료. 겉옷 아래 하체 미검증."
+  }
+}

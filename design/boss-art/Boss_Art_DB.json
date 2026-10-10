@@ -1,0 +1,3550 @@
+{
+  "schema_version": 2,
+  "database_version": "2.23.0",
+  "project": "Tower of Echoes",
+  "scope": "boss_and_playable_art_direction",
+  "updated_at": "2026-10-10T04:46:03.985916+00:00",
+  "status": [
+    "design_reference_ready",
+    "review_sheet_ready",
+    "qa_partial"
+  ],
+  "reference_priority": [
+    "사용자가 최신 기준으로 지정한 REVIEW SHEET; 최종 승인과 구분",
+    "Female_Character_Art_Direction_Guide.md v2.0",
+    "기존 Boss_Art_DB.json",
+    "기존 게임 본체 아트",
+    "과거 구형 보스 원본"
+  ],
+  "approval_policy": "approved_reference_image는 이번 요청에서 지정한 디자인 참조를 뜻함. 최종 설정화 승인·인체 QA 통과·게임 반영을 뜻하지 않음. final_approved:true를 추가하지 않음. 2026-10-09 사용자 승인: 벨·세라핀·루미에라 최신 설정화 디자인은 final_approved. 보스 QA와 게임 배포 상태는 승격하지 않음.",
+  "sources": {
+    "guide": {
+      "path": "/Female_Character_Art_Direction_Guide.md",
+      "library_file_id": "libfile_991fc0f21a0081918fa88936dda6a6d3",
+      "document_version": "2.14",
+      "previous_storage_version": "11",
+      "synchronization_note": "v2.23 승인 수정본·QA 반영",
+      "repository_path": "design/boss-art/Female_Character_Art_Direction_Guide.md"
+    },
+    "previous_database": {
+      "path": "/Boss_Art_DB.json",
+      "library_file_id": "libfile_51f64bc0affc8191935a76a1f852f8ad",
+      "storage_version": "1",
+      "schema_version": 1
+    },
+    "qa_archive": {
+      "path": "/탑의 잔향/Tower_of_Echoes_Boss_Sheets_Anatomy_Review_v1.zip",
+      "library_file_id": "libfile_28331b34e5108191a4a0582eeb65ae94",
+      "members": [
+        "Review_Notes.md",
+        "QA_Record.json",
+        "Prompt_Record.json"
+      ],
+      "role": "기존 PARTIAL 검수 기록. 현재 단독 이미지와 ZIP 이미지의 바이트 동일성은 주장하지 않음."
+    },
+    "game_archive": {
+      "path": "/Tower-of-Echoes-Living-Idle-Work-20261009.zip",
+      "library_file_id": "libfile_a96b479121ec81918b4a083fbc310876",
+      "role": "BOS ID 매핑 및 기존 아트 확인용. 수정 없음."
+    },
+    "anatomy_qa": {
+      "library_file_id": "libfile_f3636eb03aa481919b6f45d668e7031f",
+      "repository_path": "design/boss-art/Boss_Anatomy_QA_20261010.json"
+    }
+  },
+  "common_rules": {
+    "images_per_request": 1,
+    "images_per_character": 1,
+    "preserve": "보스별 최신 참조의 얼굴·헤어·의상·무기·색·상징을 보존",
+    "anatomy": "흉곽–골반 및 사지 연결·손 파지·지지축·3뷰 체적 검수. 실측 없는 수치 단정 금지.",
+    "underwear_palette_rule": "보스별 최신 시트 관찰값 우선. 머리색과 동일이라는 과거 일괄 규칙은 관찰값을 덮어쓰지 않음.",
+    "rendering": "Guide v2.0의 여관주인 기준과 소재 분리·정돈된 마감 적용. 원본 시트 관찰과 미래 제작 기준을 구분.",
+    "measurement_status": "NOT_MEASURED",
+    "game_database_applied": false
+  },
+  "legacy_history": {
+    "previous_common_rules": {
+      "images_per_request": 1,
+      "underwear_base": "캐릭터 머리색과 동일",
+      "lace": "캐릭터 상징 색상",
+      "embroidery": "캐릭터별 꽃 평면 자수",
+      "preserve": "명시 요청 외 얼굴·헤어·겉옷·무기 보존",
+      "images_per_character": 1
+    },
+    "previous_boss_records": [
+      {
+        "floor": 1,
+        "id": "ardella",
+        "name": "아르델라",
+        "title": "기사왕",
+        "status": "user_approved",
+        "approved_image_filename": "exec-e02779bd-dacf-496d-9bb7-3dab4246041c.png",
+        "approval": "좋아 이정도면 충분해",
+        "hair_color": "화이트실버",
+        "armor": "허벅지까지 판금과 검정 밑옷으로 덮는 중갑",
+        "underwear": {
+          "base": "은백색 실크",
+          "lace": "청색",
+          "flower": "백합",
+          "garter": "독립 허리벨트",
+          "stockings": "검정"
+        },
+        "proportions": "골반·둔부·허벅지·무릎·종아리의 균형 및 3뷰 체적 일치",
+        "accepted_variations": "사용자가 마지막 생성본의 갑옷 세부문양과 앞자락 색상을 포함하여 승인",
+        "game_database_applied": false
+      },
+      {
+        "floor": 2,
+        "id": "rosebel",
+        "name": "로제벨",
+        "title": "가시채찍 여왕",
+        "status": "user_approved",
+        "approved_image_filename": "exec-8ca04d06-9f6a-4e1d-ad94-0e088ebf7dbe.png",
+        "approval": "좋아 이정도면 만족스럽네",
+        "original_reference_library_id": "libfile_a7de0d7d006c81918d41cc15990d83ab",
+        "underwear": {
+          "base": "샴페인색 실크",
+          "lace": "진홍",
+          "flower": "장미",
+          "stockings": "검정"
+        },
+        "game_database_applied": false
+      }
+    ],
+    "handling": "이전 user_approved와 승인 이미지 파일명은 역사 기록으로만 보존; 새 REVIEW SHEET의 최종 승인으로 상속하지 않음."
+  },
+  "bosses": [
+    {
+      "id": "BOS-F1-01",
+      "floor": 1,
+      "name": "아르델라",
+      "title": "기사왕",
+      "hair_color": "화이트실버 / 은백색",
+      "hairstyle": "높게 모인 긴 굵은 땋기, 청색 리본을 여러 지점에 배치. 얼굴 옆의 풀린 긴 가닥과 중앙 이마 노출.",
+      "face_identity": "청색 눈, 정돈된 눈썹과 작은 입, 침착하고 엄정한 성인 얼굴. 얼굴 확대 뷰를 잠금 기준으로 사용.",
+      "body_structure": "충분한 흉곽·흉부 체적, 이어지는 허리·골반·허벅지. 갑옷/내부 의상 3뷰의 체적 대응 유지. cm·컵·등신 실측값은 지정하지 않음.",
+      "costume_identity": "흰색·은색 중갑과 금색 테두리, 검정 관절 밑옷, 흰 앞자락, 청색 긴 망토, 흰 어깨 모피. 허벅지 판금과 갑주 구두.",
+      "costume_colors": [
+        "흰색",
+        "은색",
+        "금색",
+        "청색",
+        "검정"
+      ],
+      "weapon": "장식 직검과 큰 방패. 검과 방패의 앞/옆/뒤 상세 및 파지 확대 뷰 우선.",
+      "accessory": [
+        "청색 헤어 리본",
+        "모피 어깨 장식",
+        "벨트·갑옷 버클"
+      ],
+      "motif": [
+        "별·성문양",
+        "금색 식물 문양",
+        "내부 의상 백합"
+      ],
+      "pose_notes": "정면·측면·후면의 지상 기본 자세. 검을 아래로 내리고 방패를 지지. 갑주 구두의 굽과 발 지지, 방패 무게에 따른 팔 연결을 확인.",
+      "anatomy_notes": "전신 소형 뷰의 손가락, 측면 검 파지, 손목–팔꿈치–어깨와 방패 스트랩 하중은 PARTIAL. 이전 QA를 완전 통과로 승격하지 않음.",
+      "costume_notes": "내부 의상은 은백색 실크처럼 보이는 패널, 청색 레이스·백합 장식, 독립 허리 가터벨트, 검정 스타킹. 갑옷 아래 실제 배치·숨은 연결은 미확정.",
+      "weapon_scale_notes": "시트 내 검·방패 대비 전신 비율을 기준으로 유지. 물리 치수·무게·게임 픽셀 스케일은 미측정.",
+      "underwear": {
+        "base": "은백색",
+        "material_direction": "실크",
+        "lace": "청색",
+        "flower": "백합",
+        "garter": "독립 허리벨트·세로 연결끈",
+        "stockings": "검정"
+      },
+      "uncertain": [
+        "갑옷 아래 내부 의상 여밈과 간섭",
+        "소형 뷰 손가락 및 측면 파지",
+        "전신과 상세 뷰의 장비 치수 일치"
+      ],
+      "art_slug": "ardella",
+      "approved_reference_image": {
+        "library_file_id": "libfile_d811037d4c088191a2920932564beb1d",
+        "file_id": "file_00000000ac30820988ed59b52388b6ce",
+        "path": "/아르델라 _ 1F · 기사왕 · REVIEW SHEET.png",
+        "filename": "아르델라 _ 1F · 기사왕 · REVIEW SHEET.png",
+        "modified_at": "2026-10-09T10:31:51.129183Z",
+        "version_id": null,
+        "reference_status": "user_designated_current_review_reference",
+        "final_approval_status": "not_final_approved",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sha256": "6cf076e3df39b60ad0ade27a2e96daba6ea198b3d4607a96299eab157a129972"
+      },
+      "supporting_reference_images": [],
+      "reference_scope": "지정 REVIEW SHEET의 의상·내부 의상 3뷰와 상세 패널",
+      "QA_status": "PARTIAL",
+      "workflow_status": [
+        "design_reference_ready",
+        "review_sheet_ready",
+        "qa_partial"
+      ],
+      "qa_basis": "기존 QA_Record.json의 PARTIAL과 이번 직접 시각 대조. 이미지 생성·교정 및 인체 정밀 실측 없음.",
+      "game_database_applied": false,
+      "conflict_ids": [
+        "C-ARD-01"
+      ],
+      "runtime_reference": {
+        "base_image": "boss-gatekeeper.webp",
+        "source_path": "tower-site/dist/assets/",
+        "role": "기존 아트 이력; 최신 시트를 덮어쓰지 않음."
+      },
+      "underlayer_reference_notes": {
+        "palette": "은백색 / 청색",
+        "motifs": [
+          "기사왕",
+          "백합"
+        ],
+        "application": "구조적이고 정돈된 내부 의상. 독립 허리벨트·스트랩·갑옷 밑 레이어의 연결과 마찰 여유 검토.",
+        "reference_status": "analysis_complete_for_structure_reference",
+        "new_reference_ids": [
+          "U03",
+          "U04",
+          "U11",
+          "U18",
+          "U20"
+        ],
+        "analysis_completed": true,
+        "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+        "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+        "analysis_scope": [
+          "기본 실루엣",
+          "상의 구조",
+          "하의 구조",
+          "허리선",
+          "스트랩 위치",
+          "가터 연결 방식",
+          "레이스 배치",
+          "자수 배치",
+          "장식 위치",
+          "소재 두께",
+          "광택",
+          "시스루 여부",
+          "색상 조합",
+          "봉제선",
+          "가장자리 마감",
+          "외부 의상과 겹칠 때의 구조"
+        ],
+        "notes": "기존 팔레트·착장·체형 보존. 원리 참조만 완료; 아직 설정화 수정·숨은 구조 승인 없음.",
+        "observed_application_notes": "U03/U04의 벨트–세로끈–링 구분, U11의 평평한 밴드, U18의 밝은 레이스 가장자리, U20의 봉제·테두리를 구조 원리로 사용. 링-허벅지띠를 스타킹 클립으로 오독하지 않고 새 띠를 추가하지 않음. 은백색/청색·백합 유지.",
+        "latest_reference_design_proposal": {
+          "references": "image.png · U24의 삼각 컵 형태 보조",
+          "silhouette_and_panels": "CK 스타일의 넓은 탄성 밴드·간결한 컵/어깨끈의 스포츠 브라와 로우라이즈 미니멀 하의",
+          "material_palette_details": "모든 원단·밴드·끈 회색, 무광 신축 니트, 작은 동색 백합 문양",
+          "connections_status": "레이스·가터·스타킹 없음 유지",
+          "status": "text_design_proposal_visual_generation_pending",
+          "reference_board_is_final": false,
+          "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소."
+        },
+        "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+        "latest_character_design_override": {
+          "top": "회색 곡선 컵 레이스 브라",
+          "bottom": "낮은 앞중심·좁은 레이스 옆선의 미니멀 하의",
+          "material_palette": "회색 레이스·불투명 안감. CK형 넓은 밴드는 제거",
+          "connections_notes": "가터·스타킹 없음 유지",
+          "priority": "latest_user_instruction",
+          "image_generated": false
+        },
+        "additional_product_reference_candidates": [
+          "U41",
+          "U44",
+          "U52"
+        ],
+        "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+        "latest_palette_matching": {
+          "name": "아르델라",
+          "costume_palette_reference": "은백색 갑옷·청색 망토·금색 테두리",
+          "top": "은백색 레이스 컵·청색 가장자리·작은 백합 자수",
+          "low_rise_bottom": "은백색 작은 앞패널·청색 좁은 옆끈·얇은 청색 레이스 경계",
+          "references_and_connections": "U41/U44의 밝은 자수 패널, U45의 테두리 대비. 가터·스타킹 없음",
+          "status": "text_design_proposal_visual_application_pending"
+        }
+      },
+      "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+      "female_head_ratio_target": 8.5,
+      "visual_correction_status": "pending",
+      "latest_underlayer_setting": {
+        "structure": "회색 레이스 브라·로우라이즈 미니멀 하의",
+        "palette": [
+          "은백색",
+          "청색"
+        ],
+        "material_direction": "은백색 레이스·불투명 안감·청색 얇은 마감",
+        "motif": "작은 백합 자수",
+        "lace": true,
+        "garter_belt": false,
+        "garter_straps": false,
+        "stockings": false,
+        "status": "user_directed_design_reference_not_final_qa",
+        "supersedes": "이전 회색 레이스 유지 제안; 스포츠형 설정 폐기 이력은 보존",
+        "face_issue": "사용자 지적: 설정화 얼굴이 원본과 달라짐. 원본 정체성/여관주인 얼굴 형태 대조 후 보정 대기"
+      },
+      "underlayer_bottom_shape": "low_rise_minimal_coverage",
+      "approved_design_v3": {
+        "status": "user_approved_design",
+        "final_approved": true,
+        "approval": "좋아 아르델라 설정화는 이걸로 저장하고",
+        "approved_at": "2026-10-09T22:27:04.825894+00:00",
+        "image": "boss_ardella_review_sheet_approved_v3.png",
+        "generated_source": "exec-f173a262-5786-4468-a7c4-7517b5805120.png",
+        "identity_reference": "10353666378_494354581_a0fb6a57d0685d1e36c4e28905c7cd96.png.webp",
+        "costume": "흰색과 은색이 은은하게 혼합된 경량 판금·단단한 일체형 흉갑·흰 모피·청색 망토 및 허리 아래 천, 금색 장식 삭제 방향·수수한 장비",
+        "character": "노블리스 오블리주·검소함·단순함을 추구하는 북방 기사왕",
+        "physique": "어깨와 흉부 보강·은은한 잔근육, 의상 및 속옷뷰 동일 체격 목표",
+        "weapon": "검과 대형 방패, 검 손잡이/가드/칼날 및 파지 상세 보정",
+        "underlayer": "은백색 불투명 안감 꽃 레이스·청색 테두리/끈·로우라이즈 하의, 소재 스와치와 패턴 통일, 가터/스타킹 없음",
+        "qa_status": "visual_design_user_approved_technical_qa_partial",
+        "qa_notes": [
+          "8.5등신은 제작 목표이며 정밀 실측 QA 미완료",
+          "후면 무기와 가려진 파지 검증 제한",
+          "일부 작은 버클의 따뜻한 색조 잔존은 렌더링 확인 항목"
+        ],
+        "game_database_applied": false
+      },
+      "final_approved": true,
+      "anatomy_qa": {
+        "report": "Boss_Anatomy_QA_20261010.json",
+        "review_completed": true,
+        "technical_status": "PARTIAL",
+        "target_head_ratio": 8.5,
+        "certified_head_ratio": null,
+        "limitation": "두상·옷 아래 관절 가림. 2D 윤곽 추정은 골격 실측이 아님."
+      }
+    },
+    {
+      "id": "BOS-F2-01",
+      "floor": 2,
+      "name": "로제벨",
+      "title": "가시채찍 여왕",
+      "hair_color": "밝은 샴페인 금발 / 옅은 분홍빛 음영",
+      "hairstyle": "매우 긴 다층 컬 장발, 머리 위 장미·가시 왕관과 뒤쪽 진홍 리본. 뿌리·컬 실루엣은 헤어 상세 기준.",
+      "face_identity": "붉은 눈, 가늘고 정돈된 눈썹, 가벼운 미소와 위압적인 시선. 얼굴 상세의 성인 얼굴 유지.",
+      "body_structure": "흉부와 골반·허벅지에 충분한 체적을 둔 성인 실루엣. 허리 곡선과 지지축을 연결하고 3뷰 체적 차이를 검토. 수치 측정 없음.",
+      "costume_identity": "검정 코르셋형 몸통과 진홍 다층 드레스, 장미·금색 가시 장식, 검정 레이스 스타킹, 금색 장식 굽 구두. 긴 앞뒤 자락과 후면 트레인 유지.",
+      "costume_colors": [
+        "검정",
+        "진홍",
+        "금색"
+      ],
+      "weapon": "장미·가시 채찍. 붉은 수정은 손잡이 끝(포멜) 한 곳만; 채찍 본체/중간/장식에 붉은 수정 없음. 붉은 장미꽃은 유지.",
+      "accessory": [
+        "장미·가시 왕관",
+        "진홍 헤어 리본",
+        "목 장식",
+        "금색 체인",
+        "검정 장갑"
+      ],
+      "motif": [
+        "장미",
+        "가시"
+      ],
+      "pose_notes": "정면·측면·후면 기본 스탠딩. 채찍이 큰 루프로 몸 앞을 통과. 지지 다리·구두 접지와 채찍–치마 겹침 순서 확인.",
+      "anatomy_notes": "채찍 파지 확대 뷰는 있으나 소형 전신 손, 허리–골반 회전, 굽 구두 접지는 PARTIAL. 채찍 장력과 치마 앞뒤 간격 미검증.",
+      "costume_notes": "최신 v4 소재 상세 기준: 브라·로우라이즈 하의·벨트에 평면 장미 레이스 일관 적용. 별도 허벅지 밴드 없음; 스타킹 일체 상단 레이스·클립 유지.",
+      "weapon_scale_notes": "시트의 손잡이 대비 손 크기와 전신 루프를 기준으로 유지. 전체 길이·무게·실제 장력 및 게임 pivot 미측정.",
+      "underwear": {
+        "base": "검정",
+        "material_direction": "검정 실크 안감·검정 메시 위 평면 장미 레이스",
+        "lace": "장미색/진홍 주색",
+        "flower": "MATERIAL 패널의 잔잔한 장미 반복 패턴",
+        "garter": "독립 벨트·세로 연결끈",
+        "stockings": "검정·상단 레이스와 장미/덩굴 다리 자수 통일",
+        "metal_accents": "절제된 금색",
+        "separate_thigh_band": false,
+        "bottom_shape": "low_rise_minimal_coverage"
+      },
+      "uncertain": [
+        "가터 숨은 후면 연결",
+        "채찍과 치마의 겹침·장력",
+        "코르셋 내부 지지 구조의 실제 조립"
+      ],
+      "art_slug": "rosebel",
+      "approved_reference_image": {
+        "filename": "boss_rosebel_review_sheet_approved_v4.png",
+        "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_rosebel_review_sheet_approved_v4.png",
+        "repository_path": "design/boss-art/review-sheets/boss_rosebel_review_sheet_approved_v4.png",
+        "reference_status": "latest_user_approved_design",
+        "final_approval_status": "user_approved",
+        "approval_basis": "좋아 이거랑 방금 만든 이벨린 설정화까지 반영해서 최신화 작업해줘",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sha256": "a486f49c8146c1f1d803a98d9e16c993ed1b7435e4eca1adb5a74d4c99b90d00",
+        "library_file_id": "libfile_2f85be45282081919c37d5981d378d29",
+        "file_id": "file_00000000951881f59b51f598757d041c"
+      },
+      "supporting_reference_images": [],
+      "reference_scope": "지정 REVIEW SHEET의 의상·내부 의상 3뷰와 상세 패널",
+      "QA_status": "PARTIAL",
+      "workflow_status": [
+        "design_reference_ready",
+        "review_sheet_ready",
+        "user_approved",
+        "qa_partial"
+      ],
+      "qa_basis": "2026-10-10 최신 수정 PNG 직접 시각 검토 및 5종 2D 인체 QA. 가려진 골격·접지/파지는 미검증.",
+      "game_database_applied": false,
+      "conflict_ids": [
+        "C-ROS-01"
+      ],
+      "runtime_reference": {
+        "base_image": "boss-rosequeen.webp",
+        "source_path": "tower-site/dist/assets/",
+        "role": "기존 아트 이력; 최신 시트를 덮어쓰지 않음."
+      },
+      "underlayer_reference_notes": {
+        "palette": "검정 / 장미색/진홍 주색",
+        "motifs": [
+          "장미",
+          "가시"
+        ],
+        "application": "독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+        "reference_status": "analysis_complete_for_structure_reference",
+        "new_reference_ids": [
+          "U02",
+          "U03",
+          "U06",
+          "U07",
+          "U13",
+          "U14",
+          "U19",
+          "U20"
+        ],
+        "analysis_completed": true,
+        "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+        "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+        "analysis_scope": [
+          "기본 실루엣",
+          "상의 구조",
+          "하의 구조",
+          "허리선",
+          "스트랩 위치",
+          "가터 연결 방식",
+          "레이스 배치",
+          "자수 배치",
+          "장식 위치",
+          "소재 두께",
+          "광택",
+          "시스루 여부",
+          "색상 조합",
+          "봉제선",
+          "가장자리 마감",
+          "외부 의상과 겹칠 때의 구조"
+        ],
+        "notes": "최신 승인 이미지 반영 완료. 이전 제안은 design_history에 보존.",
+        "observed_application_notes": "오른쪽 하단 MATERIAL의 검정 메시·장미색 반복 레이스, 불투명 검정 안감·소량 금색; 독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+        "latest_reference_design_proposal": {
+          "references": "U21/U34 · U25 · U31",
+          "silhouette_and_panels": "분리형 3패널 컵 브라·로우라이즈 미니멀 하의. 컵 윗부분과 하의 양옆을 레이스 패널로 구분. 독립 가터벨트는 중앙이 넓고 양옆이 가늘어지는 형태.",
+          "material_palette_details": "샴페인 새틴 중심 패널·진홍 안감 레이스. U21의 측면에서 중앙으로 흐르는 꽃 자수 배치를 장미로 재해석하고, U25의 어두운 가장자리 대비를 진홍 테두리에 적용.",
+          "connections_status": "기존 검정 스타킹과 가터 연결 유지. U31의 여러 장식끈을 그대로 추가하지 않고 가터 접점 정리에만 사용.",
+          "status": "historical_proposal_superseded",
+          "reference_board_is_final": false,
+          "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소.",
+          "superseded_by": "approved_design_v4"
+        },
+        "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+        "latest_character_design_override": {
+          "top": "검정 바탕·장미색 평면 꽃 레이스 브라",
+          "bottom": "동일 패턴 로우라이즈 미니멀 하의",
+          "material_palette": "오른쪽 하단 MATERIAL의 검정 메시·장미색 반복 레이스, 불투명 검정 안감·소량 금색",
+          "connections_notes": "독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+          "priority": "user_approved_20261010_v4",
+          "image_generated": true
+        },
+        "additional_product_reference_candidates": [
+          "U43",
+          "U48"
+        ],
+        "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+        "latest_palette_matching": {
+          "name": "로제벨",
+          "costume_palette_reference": "진홍 드레스·검정 코르셋·금색 가시",
+          "top": "샴페인 새틴·진홍 장미 자수·검정 얇은 테두리",
+          "low_rise_bottom": "샴페인 작은 앞패널·진홍 레이스 옆선·검정 가는 연결끈",
+          "references_and_connections": "U43/U48. 가터벨트도 샴페인·진홍, 금색은 작은 부속만",
+          "status": "historical_proposal_superseded",
+          "superseded_by": "approved_design_v4"
+        }
+      },
+      "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+      "female_head_ratio_target": 8.5,
+      "visual_correction_status": "user_approved",
+      "underlayer_bottom_shape": "low_rise_minimal_coverage",
+      "approved_design_v3": {
+        "status": "user_approved_design_with_pending_image_correction",
+        "approval": "허벅지 밴드는 삭제하는걸로 db 저장하고 별도 설정화는 생성하지마",
+        "approved_at": "2026-10-09T22:53:24.751839+00:00",
+        "image": "exec-2aedfe13-f1e9-42de-8659-c23f487a6a02.png",
+        "costume": "진홍·검정 장미/가시 드레스·코르셋·왕관·가시채찍 유지",
+        "underlayer": "검정 불투명 실크 바탕·장미색 주 자수 및 레이스·절제된 금색 포인트·로우라이즈 하의·독립 가터벨트",
+        "stockings": "검정 스타킹, 속옷뷰 상단 레이스와 의상뷰 장미/덩굴 다리 자수 통일",
+        "thigh_band": false,
+        "thigh_band_instruction": "별도 허벅지 밴드 삭제; 스타킹 자체 상단 레이스 및 가터 클립은 유지",
+        "image_correction_pending": [
+          "최신 이미지 의상뷰에 남은 별도 허벅지 밴드 삭제: 사용자 요청으로 이번 재생성 없음"
+        ],
+        "sheer_application": "시스루 장미 레이스는 소재 상세, 착용 영역 불투명 안감",
+        "pose": "자연스러운 체중 이동·부드러운 팔 자세",
+        "qa_status": "partial_pending_thigh_band_image_correction",
+        "game_database_applied": false
+      },
+      "separate_thigh_band": false,
+      "anatomy_qa": {
+        "report": "Boss_Anatomy_QA_20261010.json",
+        "review_completed": true,
+        "technical_status": "PARTIAL",
+        "target_head_ratio": 8.5,
+        "certified_head_ratio": null,
+        "limitation": "두상·옷 아래 관절 가림. 2D 윤곽 추정은 골격 실측이 아님."
+      },
+      "design_history": [
+        {
+          "archived_at": "2026-10-10T04:46:03.985916+00:00",
+          "reason": "v2.23 최신 승인 수정본 적용 전 현행 필드 보존",
+          "previous_underwear": {
+            "base": "샴페인색",
+            "material_direction": "실크",
+            "lace": "진홍",
+            "flower": "장미",
+            "garter": "허리벨트·세로 연결끈",
+            "stockings": "검정"
+          },
+          "previous_reference": {
+            "library_file_id": "libfile_0728a02fcd8c8191a29354fb66a59e22",
+            "file_id": "file_000000006e888206879e63a343c4db4a",
+            "path": "/로제벨 2F · REVIEW SHEET.png",
+            "filename": "로제벨 2F · REVIEW SHEET.png",
+            "modified_at": "2026-10-09T10:31:52.005580Z",
+            "version_id": null,
+            "reference_status": "user_designated_current_review_reference",
+            "final_approval_status": "not_final_approved",
+            "dimensions": [
+              1536,
+              1024
+            ],
+            "sha256": "b8c54da7a37bde3e98620ef7151eab3d0e859f6bfea8018cf09113b0af089b2c"
+          },
+          "previous_notes": {
+            "palette": "검정 / 장미색/진홍 주색",
+            "motifs": [
+              "장미",
+              "가시"
+            ],
+            "application": "독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+            "reference_status": "analysis_complete_for_structure_reference",
+            "new_reference_ids": [
+              "U02",
+              "U03",
+              "U06",
+              "U07",
+              "U13",
+              "U14",
+              "U19",
+              "U20"
+            ],
+            "analysis_completed": true,
+            "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+            "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+            "analysis_scope": [
+              "기본 실루엣",
+              "상의 구조",
+              "하의 구조",
+              "허리선",
+              "스트랩 위치",
+              "가터 연결 방식",
+              "레이스 배치",
+              "자수 배치",
+              "장식 위치",
+              "소재 두께",
+              "광택",
+              "시스루 여부",
+              "색상 조합",
+              "봉제선",
+              "가장자리 마감",
+              "외부 의상과 겹칠 때의 구조"
+            ],
+            "notes": "최신 승인 이미지 반영 완료. 이전 제안은 design_history에 보존.",
+            "observed_application_notes": "오른쪽 하단 MATERIAL의 검정 메시·장미색 반복 레이스, 불투명 검정 안감·소량 금색; 독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+            "latest_reference_design_proposal": {
+              "references": "U21/U34 · U25 · U31",
+              "silhouette_and_panels": "분리형 3패널 컵 브라·로우라이즈 미니멀 하의. 컵 윗부분과 하의 양옆을 레이스 패널로 구분. 독립 가터벨트는 중앙이 넓고 양옆이 가늘어지는 형태.",
+              "material_palette_details": "샴페인 새틴 중심 패널·진홍 안감 레이스. U21의 측면에서 중앙으로 흐르는 꽃 자수 배치를 장미로 재해석하고, U25의 어두운 가장자리 대비를 진홍 테두리에 적용.",
+              "connections_status": "기존 검정 스타킹과 가터 연결 유지. U31의 여러 장식끈을 그대로 추가하지 않고 가터 접점 정리에만 사용.",
+              "status": "historical_proposal_superseded",
+              "reference_board_is_final": false,
+              "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소.",
+              "superseded_by": "approved_design_v4"
+            },
+            "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+            "latest_character_design_override": {
+              "top": "검정 바탕·장미색 평면 꽃 레이스 브라",
+              "bottom": "동일 패턴 로우라이즈 미니멀 하의",
+              "material_palette": "오른쪽 하단 MATERIAL의 검정 메시·장미색 반복 레이스, 불투명 검정 안감·소량 금색",
+              "connections_notes": "독립 가터벨트·스타킹 상단/다리 자수 통일, 별도 허벅지 밴드 삭제",
+              "priority": "user_approved_20261010_v4",
+              "image_generated": true
+            },
+            "additional_product_reference_candidates": [
+              "U43",
+              "U48"
+            ],
+            "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+            "latest_palette_matching": {
+              "name": "로제벨",
+              "costume_palette_reference": "진홍 드레스·검정 코르셋·금색 가시",
+              "top": "샴페인 새틴·진홍 장미 자수·검정 얇은 테두리",
+              "low_rise_bottom": "샴페인 작은 앞패널·진홍 레이스 옆선·검정 가는 연결끈",
+              "references_and_connections": "U43/U48. 가터벨트도 샴페인·진홍, 금색은 작은 부속만",
+              "status": "historical_proposal_superseded",
+              "superseded_by": "approved_design_v4"
+            }
+          }
+        }
+      ],
+      "current_design_version": "v4",
+      "final_approved": true,
+      "approved_design_v4": {
+        "status": "user_approved",
+        "image": "boss_rosebel_review_sheet_approved_v4.png",
+        "changes": [
+          "MATERIAL 평면 장미 레이스로 속옷 통일",
+          "별도 허벅지 밴드 실제 이미지 삭제",
+          "붉은 수정 손잡이 포멜 한 곳만 유지"
+        ],
+        "qa_status": "PARTIAL",
+        "game_database_applied": false
+      },
+      "current_design": {
+        "version": "v4",
+        "reference": {
+          "filename": "boss_rosebel_review_sheet_approved_v4.png",
+          "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_rosebel_review_sheet_approved_v4.png",
+          "repository_path": "design/boss-art/review-sheets/boss_rosebel_review_sheet_approved_v4.png",
+          "reference_status": "latest_user_approved_design",
+          "final_approval_status": "user_approved",
+          "approval_basis": "좋아 이거랑 방금 만든 이벨린 설정화까지 반영해서 최신화 작업해줘",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "a486f49c8146c1f1d803a98d9e16c993ed1b7435e4eca1adb5a74d4c99b90d00",
+          "library_file_id": "libfile_2f85be45282081919c37d5981d378d29",
+          "file_id": "file_00000000951881f59b51f598757d041c"
+        },
+        "underwear": {
+          "base": "검정",
+          "material_direction": "검정 실크 안감·검정 메시 위 평면 장미 레이스",
+          "lace": "장미색/진홍 주색",
+          "flower": "MATERIAL 패널의 잔잔한 장미 반복 패턴",
+          "garter": "독립 벨트·세로 연결끈",
+          "stockings": "검정·상단 레이스와 장미/덩굴 다리 자수 통일",
+          "metal_accents": "절제된 금색",
+          "separate_thigh_band": false,
+          "bottom_shape": "low_rise_minimal_coverage"
+        },
+        "weapon": "장미·가시 채찍. 붉은 수정은 손잡이 끝(포멜) 한 곳만; 채찍 본체/중간/장식에 붉은 수정 없음. 붉은 장미꽃은 유지.",
+        "design_status": "user_approved",
+        "technical_qa": "PARTIAL",
+        "game_database_applied": false
+      }
+    },
+    {
+      "id": "BOS-F3-01",
+      "floor": 3,
+      "name": "아스트라",
+      "title": "시계탑 마녀",
+      "hair_color": "청보라 / 선명한 보라빛",
+      "hairstyle": "청보라 매우 긴 레이어 장발, 큰 S 웨이브와 정돈된 후면 흐름. 기존 색·길이·가르마 유지.",
+      "face_identity": "한쪽 금빛·반대쪽 청색의 이색 눈, 여유 있는 미소. 눈 색의 좌우는 이미지 뷰 기준으로 보존하고 임의 반전하지 않음.",
+      "body_structure": "풍부한 흉곽·흉부와 골반–허벅지의 연속 체적, 길고 정돈된 사지. 의상 및 내부 의상 3뷰 대응. 실측값 없음.",
+      "costume_identity": "검정·청보라 코르셋형 마녀 드레스, 다층 긴 자락과 넓은 소매, 금색 시계·천문 문양, 검정 레이스 스타킹, 금색 끈 굽 구두.",
+      "costume_colors": [
+        "검정",
+        "짙은 청보라",
+        "금색"
+      ],
+      "weapon": "짧고 뾰족한 포인터 마법봉과 손 위 부유 마법서. 마법봉은 파지, 책은 부유 상태로 구분.",
+      "accessory": [
+        "넓은 마녀 모자",
+        "회중시계",
+        "금색 별·시계 장식",
+        "체인",
+        "귀걸이"
+      ],
+      "motif": [
+        "시계",
+        "천문",
+        "별",
+        "초승달"
+      ],
+      "pose_notes": "두 다리 분리, 고관절–무릎–발목 축과 발 접지 교정. 전후면 체형 일치 목표.",
+      "anatomy_notes": "마법봉 파지·펼친 손 상세는 있으나 소형 전신 손가락과 팔 연결은 PARTIAL. 책의 부유와 실제 접촉 혼동 금지.",
+      "costume_notes": "중앙 긴 천문 자락 유지, 양옆 안쪽 천 제거하여 두 스타킹 다리 노출. 허리–치마 봉제 연결 유지.",
+      "weapon_scale_notes": "짧은 마법봉 길이와 책–손 간격은 시트 기준. 긴 지팡이로 바꾸지 않음. 장식 체인의 숨은 부착점과 실제 치수 미확정.",
+      "underwear": {
+        "base": "짙은 남색",
+        "material_direction": "시어 레이스, 주요 착장 부위 불투명 안감",
+        "lace": "좁은 남색 레이스",
+        "embroidery": "금색 형이상적 별자리·궤도 문양",
+        "flower": null,
+        "garter": "독립 가터벨트",
+        "stockings": "검정",
+        "bottom": "좁은 옆선의 로우라이즈"
+      },
+      "uncertain": [
+        "이색 눈의 뷰 간 일치",
+        "꽃 자수의 정확한 종",
+        "소형 손 및 장신구·체인 연결",
+        "모자 아래 가려진 정수리"
+      ],
+      "art_slug": "astra",
+      "approved_reference_image": {
+        "library_file_id": "libfile_8d894a44a2308191a601503324380ef5",
+        "file_id": "file_00000000998881f9abe1dd32203c570f",
+        "filename": "boss_astra_review_sheet_approved_v3.png",
+        "path": "/boss_astra_review_sheet_approved_v3.png",
+        "reference_status": "latest_user_approved",
+        "final_approval_status": "user_approved_design",
+        "version_id": "0"
+      },
+      "supporting_reference_images": [
+        {
+          "library_file_id": "libfile_ee975fe40ac48191b0cb8b2f2d16bca0",
+          "file_id": "file_00000000707482099f059071bc331021",
+          "path": "/아스트라 _ ASTRA · 3F · 시계탑 마녀 · REVIEW SHEET.png",
+          "filename": "아스트라 _ ASTRA · 3F · 시계탑 마녀 · REVIEW SHEET.png",
+          "modified_at": "2026-10-09T10:31:51.440658Z",
+          "version_id": null,
+          "reference_status": "user_designated_current_review_reference",
+          "final_approval_status": "not_final_approved",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "e30388d3de2cf88b8d30dd10956c369263e4d1826beb16338b46f1d8723e777d"
+        }
+      ],
+      "reference_scope": "지정 REVIEW SHEET의 의상·내부 의상 3뷰와 상세 패널",
+      "QA_status": "PARTIAL",
+      "workflow_status": [
+        "design_reference_ready",
+        "review_sheet_ready",
+        "qa_partial"
+      ],
+      "qa_basis": "기존 QA_Record.json의 PARTIAL과 이번 직접 시각 대조. 이미지 생성·교정 및 인체 정밀 실측 없음.",
+      "game_database_applied": false,
+      "conflict_ids": [
+        "C-AST-01"
+      ],
+      "runtime_reference": {
+        "base_image": "boss-astra.webp",
+        "source_path": "tower-site/dist/assets/",
+        "role": "기존 아트 이력; 최신 시트를 덮어쓰지 않음."
+      },
+      "underlayer_reference_notes": {
+        "palette": "청보라 / 금색",
+        "motifs": [
+          "별",
+          "시계",
+          "천문"
+        ],
+        "application": "최신 시트의 팔레트·문양 유지. 시계 장식 체인과 가터 지지 구분. 기존 Guide 색상·자수 충돌 C-AST-01 유지.",
+        "reference_status": "analysis_complete_for_structure_reference",
+        "new_reference_ids": [
+          "U03",
+          "U04",
+          "U08",
+          "U16",
+          "U19",
+          "U20"
+        ],
+        "analysis_completed": true,
+        "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+        "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+        "analysis_scope": [
+          "기본 실루엣",
+          "상의 구조",
+          "하의 구조",
+          "허리선",
+          "스트랩 위치",
+          "가터 연결 방식",
+          "레이스 배치",
+          "자수 배치",
+          "장식 위치",
+          "소재 두께",
+          "광택",
+          "시스루 여부",
+          "색상 조합",
+          "봉제선",
+          "가장자리 마감",
+          "외부 의상과 겹칠 때의 구조"
+        ],
+        "notes": "기존 팔레트·착장·체형 보존. 원리 참조만 완료; 아직 설정화 수정·숨은 구조 승인 없음.",
+        "observed_application_notes": "U03/U04/U20의 지지부와 장식 구분, U08/U16의 바인딩·세로 이음, U19의 겉옷 아래 경로 참고. 기존 청보라/금색·별/시계/천문 모티프로만 정리. Guide 색상·자수 충돌 유지.",
+        "latest_reference_design_proposal": {
+          "references": "U23 · U33 · U38",
+          "silhouette_and_panels": "곡선 컵 패널과 레이스 상단이 분리되는 브라·로우라이즈 미니멀 하의. 하의 중심 패널은 매끈하고 양옆은 안감 레이스. 중앙의 작은 고리로 좌우 패널을 정돈.",
+          "material_palette_details": "청보라 중심 패널·짙은 보라 가장자리. U23의 밝고 어두운 패널 대비, U33의 넓은 자수 레이스 면을 별·궤도·시계 눈금으로 재해석. 금색은 가는 자수와 작은 연결부에만.",
+          "connections_status": "기존 스타킹·가터 유지. U38의 꽃/끈 장식은 배치 원리만 사용. 기존 Guide 색상·꽃 충돌 기록 유지.",
+          "status": "text_design_proposal_visual_generation_pending",
+          "reference_board_is_final": false,
+          "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소."
+        },
+        "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+        "latest_character_design_override": {
+          "top": "짙은 남색 시어 레이스·주요 부위 안감",
+          "bottom": "좁은 옆선 로우라이즈",
+          "connections_notes": "독립 가터·검정 스타킹",
+          "priority": "user_approved_20261010"
+        },
+        "additional_product_reference_candidates": [
+          "U45",
+          "U46",
+          "U47",
+          "U50",
+          "U51"
+        ],
+        "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+        "latest_palette_matching": {
+          "name": "아스트라",
+          "costume_palette_reference": "검정·청보라 드레스·금색 천문 장식",
+          "top": "청보라 곡선 컵·짙은 보라 레이스·가는 금색 천문 자수",
+          "low_rise_bottom": "청보라 작은 앞패널·짙은 보라 옆끈·금색 가장자리 자수",
+          "references_and_connections": "U47의 보라 배색, U45의 패널/끈 구분. 기존 가터·스타킹 유지",
+          "status": "text_design_proposal_visual_application_pending"
+        }
+      },
+      "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+      "female_head_ratio_target": 8.5,
+      "visual_correction_status": "user_approved",
+      "underlayer_bottom_shape": "low_rise_minimal_coverage",
+      "final_approved": true,
+      "approved_design_v3": {
+        "status": "user_approved",
+        "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_astra_review_sheet_approved_v3.png",
+        "source_image": "exec-df144211-d9d9-4d0c-9fa6-b61525e97dc3.png",
+        "changes": [
+          "짙은 남색 시어 레이스 로우라이즈 하의 및 레이스 폭 축소",
+          "양옆 안쪽 천 제거·두 다리 노출",
+          "다리 축·접지 교정",
+          "뒷머리 꼬임 완화"
+        ],
+        "QA": "PARTIAL: 사용자 디자인 승인; 8.5등신 실측 및 소형 파지 전수 검증 미완료",
+        "game_database_applied": false,
+        "library_file_id": "libfile_8d894a44a2308191a601503324380ef5"
+      },
+      "anatomy_qa": {
+        "report": "Boss_Anatomy_QA_20261010.json",
+        "review_completed": true,
+        "technical_status": "PARTIAL",
+        "target_head_ratio": 8.5,
+        "certified_head_ratio": null,
+        "limitation": "두상·옷 아래 관절 가림. 2D 윤곽 추정은 골격 실측이 아님."
+      }
+    },
+    {
+      "id": "BOS-F4-01",
+      "floor": 4,
+      "name": "모르가나",
+      "title": "차원문지기",
+      "hair_color": "검정 / 짙은 보라 음영",
+      "hairstyle": "검정·보라 웨이브 장발; 최신 승인 이미지의 실루엣 기준. 후면 가닥과 천 분리.",
+      "face_identity": "보라색 눈, 차분한 표정과 가는 눈썹. 하관은 시스루 무늬 베일로 가려짐. 베일 아래 숨은 얼굴 치수 미확정.",
+      "body_structure": "충분한 상체·골반 체적과 이어지는 허벅지·다리. 일체형 내부 의상으로 흉곽–허리–골반 축이 연결. 3뷰 정밀 실측 없음.",
+      "costume_identity": "검정·보라 별빛 긴 드레스, 어깨·가슴 상단 개방, 다리 개방 치마, 금색 허리벨트, 긴 장갑·금속 팔장식, 맨발. 겉옷과 속옷 독립.",
+      "costume_colors": [
+        "검정",
+        "보라",
+        "금색"
+      ],
+      "weapon": "부유 오컬트/타로 카드. 손은 마법 제스처이며 카드 파지로 단정하지 않음.",
+      "accessory": [
+        "금색 허리벨트",
+        "긴 장갑",
+        "금속 팔장식",
+        "시계형 후륜",
+        "보라 보석·귀걸이"
+      ],
+      "motif": [
+        "별빛",
+        "시계형 후륜",
+        "부유 카드"
+      ],
+      "pose_notes": "시트에는 한쪽 발끝 지지가 남아 있음. 기존 부유 정체성과 접지 표현의 차이를 미확정으로 기록. 임의로 양발 접지 또는 완전 부유로 재해석하지 않음.",
+      "anatomy_notes": "마법 손 상세 존재. 어깨·몸통축·소형 전신 손과 한쪽 발끝 지지는 PARTIAL. 가려진 관절을 확정 통과 처리하지 않음.",
+      "costume_notes": "최신 사용자 승인: 겉옷·속옷 결합 삭제. 전신 스타킹·티아라·면사 없음. U07 기반 분리형 속옷.",
+      "weapon_scale_notes": "카드 대비 손 크기·간격을 시트 기준으로 유지. 카드 실물 치수와 부유 원리, 게임 이펙트 위치는 미측정.",
+      "underwear": {
+        "structure": "U07 기반 분리형 브라·로우라이즈 하의",
+        "base": "검정·짙은 남색",
+        "lace": "은은한 은청색 별빛 레이스",
+        "garter": false,
+        "stockings": false,
+        "feet": "맨발"
+      },
+      "uncertain": [
+        "8.5등신 정밀 실측",
+        "소형 장식과 후면 봉제의 정밀 검증"
+      ],
+      "art_slug": "morgana",
+      "approved_reference_image": {
+        "library_file_id": "libfile_2ef513b31e048191bd183507b2fd1918",
+        "file_id": "file_0000000013c081f5b3ebc20258f552c8",
+        "filename": "boss_morgana_review_sheet_approved_v2.png",
+        "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_morgana_review_sheet_approved_v2.png",
+        "final_approval_status": "user_approved",
+        "reference_status": "latest_user_approved_design"
+      },
+      "supporting_reference_images": [
+        {
+          "library_file_id": "libfile_435d2ffc6ab0819196fdeffd78810479",
+          "file_id": "file_00000000a04c8209a5929cf1c89db4b7",
+          "path": "/탑의 잔향/모르가나 _ MORGANA · 4F · REVIEW SHEET.png",
+          "filename": "모르가나 _ MORGANA · 4F · REVIEW SHEET.png",
+          "modified_at": "2026-10-09T09:21:40.625147Z",
+          "version_id": null,
+          "reference_status": "user_designated_current_review_reference",
+          "final_approval_status": "not_final_approved",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "b6a42350e006ead96c4fa3b9da50b114b0fa36c7526f7b8cf55bb76c3217e5a2"
+        },
+        {
+          "library_file_id": "libfile_d462a9dfd96881919cb1c3f50d71b47e",
+          "file_id": "file_00000000af388209883d3d416ef6b568",
+          "path": "/모르가나 블랙 실크 보디수트 설계도.png",
+          "filename": "모르가나 블랙 실크 보디수트 설계도.png",
+          "modified_at": "2026-10-09T10:31:50.726234Z",
+          "version_id": null,
+          "reference_status": "user_designated_current_review_reference",
+          "final_approval_status": "not_final_approved",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "3173837702dd32afe03574e9ed7bb2f2daec4bc035c4de4c7592db8fdf497f68"
+        }
+      ],
+      "reference_scope": "최신 승인 설정화 우선; 이전 일체형·면사·전신 스타킹은 폐기된 디자인 이력",
+      "QA_status": "PARTIAL",
+      "workflow_status": [
+        "design_reference_ready",
+        "review_sheet_ready",
+        "qa_partial"
+      ],
+      "qa_basis": "기존 QA_Record.json의 PARTIAL과 이번 직접 시각 대조. 이미지 생성·교정 및 인체 정밀 실측 없음.",
+      "game_database_applied": false,
+      "conflict_ids": [
+        "C-MOR-01",
+        "C-MOR-02",
+        "C-MOR-03"
+      ],
+      "runtime_reference": {
+        "base_image": "boss-morgana.webp",
+        "source_path": "tower-site/dist/assets/",
+        "role": "기존 아트 이력; 최신 시트를 덮어쓰지 않음."
+      },
+      "underlayer_reference_notes": {
+        "palette": "검정 / 보라",
+        "motifs": [
+          "베일",
+          "마도 문양"
+        ],
+        "application": "일체형 보디수트·연속 시스루 다리 유지. 분리형 착장으로 회귀하지 않음. 숨은 지지·봉제·가장자리와 베일/마도 문양의 조화 검토.",
+        "reference_status": "analysis_complete_for_structure_reference",
+        "new_reference_ids": [
+          "U03",
+          "U04",
+          "U10",
+          "U13",
+          "U20"
+        ],
+        "analysis_completed": true,
+        "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+        "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+        "analysis_scope": [
+          "기본 실루엣",
+          "상의 구조",
+          "하의 구조",
+          "허리선",
+          "스트랩 위치",
+          "가터 연결 방식",
+          "레이스 배치",
+          "자수 배치",
+          "장식 위치",
+          "소재 두께",
+          "광택",
+          "시스루 여부",
+          "색상 조합",
+          "봉제선",
+          "가장자리 마감",
+          "외부 의상과 겹칠 때의 구조"
+        ],
+        "notes": "기존 팔레트·착장·체형 보존. 원리 참조만 완료; 아직 설정화 수정·숨은 구조 승인 없음.",
+        "observed_application_notes": "U10의 상하 연결 패널은 연결 원리만 사용; 컷아웃·노출은 옮기지 않음. U03/U04/U13/U20의 봉제·레이스·띠 구분을 일체형의 숨은 지지 설계 참고로 사용. 분리형·외부 가터 추가 없이 검정/보라 보디수트·연속 시스루 다리 유지.",
+        "latest_reference_design_proposal": {
+          "references": "U26 · U31 · U38",
+          "silhouette_and_panels": "일체형 보디수트 유지. 곡선 컵 아래부터 옆 허리·골반까지 이어지는 연속 패널, 기존 복부 개구부와 시스루 다리 연결을 정돈.",
+          "material_palette_details": "검정 불투명 실크 지지 패널·검정 메시, 보라 레이스 경계. U26의 넓은 허리 구조와 U31의 대칭 스트랩 배치를 기존 패널 봉제선으로 흡수. U38의 장식 집중 위치를 작은 마도 자수로 전환.",
+          "connections_status": "새 분리형 브라·가터는 추가하지 않음. 베일과 레이스 결 통일, 기존 개구부·시스루 범위 유지.",
+          "status": "text_design_proposal_visual_generation_pending",
+          "reference_board_is_final": false,
+          "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소."
+        },
+        "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+        "latest_character_design_override": {
+          "references": [
+            "U07"
+          ],
+          "top": "검정·짙은 남색 분리형 브라",
+          "bottom": "로우라이즈 좁은 옆선 하의",
+          "material_palette": "은은한 은청색 별빛 레이스·안감 중심패널",
+          "connections_notes": "가터·스타킹 없음. 겉옷과 독립",
+          "priority": "user_approved_20261010",
+          "image_generated": true
+        },
+        "additional_product_reference_candidates": [
+          "U51",
+          "U53"
+        ],
+        "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+        "latest_palette_matching": {
+          "name": "모르가나",
+          "costume_palette_reference": "검정·보라 드레스·베일·보석",
+          "top": "검정 일체형 실크 패널·짙은 보라 레이스·마도 자수",
+          "low_rise_bottom": "일체형 하부의 검정 작은 골반 패널·보라 봉제 경계",
+          "references_and_connections": "U51/U53의 소재/레이스 경계만 참고. 기존 일체형/시스루 다리 유지",
+          "status": "text_design_proposal_visual_application_pending"
+        }
+      },
+      "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+      "female_head_ratio_target": 8.5,
+      "visual_correction_status": "user_approved",
+      "underlayer_bottom_shape": "low_rise_minimal_coverage",
+      "latest_review_draft": {
+        "local_path": "/workspace/scratch/751839635353/generated_images/exec-aea515e0-9df3-4033-8f7a-9fb66c6e2e22.png",
+        "status": "awaiting_user_review",
+        "qa": "PARTIAL: 의상/내부 의상 정후면 및 상세 포함. 후면 헤어 볼륨·접지/부유·8.5등신 정밀 실측 미확정.",
+        "game_database_applied": false
+      },
+      "design_history": [
+        {
+          "hairstyle": "길고 풍부한 웨이브 장발, 이마 중앙을 여는 얼굴 옆 가닥, 가시 왕관과 뒤쪽 레이스 베일. 아래로 흐르는 후면 질량 유지.",
+          "costume_identity": "검정·보라 긴 분할 드레스와 넓은 소매, 복부 개구부, 금색 가시 테두리, 보라 보석, 하관 베일. 안쪽 검정 보디수트와 연속 시스루 다리, 발은 노출.",
+          "underwear": {
+            "base": "검정",
+            "material_direction": "실크 지지 패널·시스루 다리",
+            "lace": "보라",
+            "embroidery": "보라 꽃",
+            "flower_species": "미확정; Guide는 아이리스로 명명",
+            "structure": "일체형 보디수트와 연속 시스루 다리",
+            "garter": "별도 외부 가터 없음; 숨은 지지 구조 미확정",
+            "feet": "맨발"
+          },
+          "approved_reference_image": {
+            "library_file_id": "libfile_d462a9dfd96881919cb1c3f50d71b47e",
+            "file_id": "file_00000000af388209883d3d416ef6b568",
+            "path": "/모르가나 블랙 실크 보디수트 설계도.png",
+            "filename": "모르가나 블랙 실크 보디수트 설계도.png",
+            "modified_at": "2026-10-09T10:31:50.726234Z",
+            "version_id": null,
+            "reference_status": "user_designated_current_review_reference",
+            "final_approval_status": "not_final_approved",
+            "dimensions": [
+              1536,
+              1024
+            ],
+            "sha256": "3173837702dd32afe03574e9ed7bb2f2daec4bc035c4de4c7592db8fdf497f68"
+          },
+          "accessory": [
+            "가시 왕관",
+            "하관 시스루 베일",
+            "후면 레이스 베일",
+            "보라 보석·귀걸이"
+          ],
+          "motif": [
+            "가시",
+            "오컬트 문양",
+            "보라 꽃 자수"
+          ],
+          "costume_notes": "최신 보디수트 설계도를 내부 의상 우선 기준으로 사용. 검정 실크 방향의 일체형 몸통·하부 지지와 연속 시스루 다리, 보라 레이스·꽃 장식. 이전 REVIEW SHEET의 분리형 브라·하의·스타킹 경계는 이력으로만 보존."
+        }
+      ],
+      "final_approved": true,
+      "approved_design_v2": {
+        "status": "user_approved",
+        "source_image": "exec-88b2ae33-99f7-4ec6-bf9a-47f704e6a47a.png",
+        "library_file_id": "libfile_2ef513b31e048191bd183507b2fd1918",
+        "QA": "PARTIAL: 디자인 승인. 8.5등신 실측·소형 장식과 후면 연결 전수 검증 미완료.",
+        "game_database_applied": false
+      },
+      "anatomy_qa": {
+        "report": "Boss_Anatomy_QA_20261010.json",
+        "review_completed": true,
+        "technical_status": "PARTIAL",
+        "target_head_ratio": 8.5,
+        "certified_head_ratio": null,
+        "limitation": "두상·옷 아래 관절 가림. 2D 윤곽 추정은 골격 실측이 아님."
+      }
+    },
+    {
+      "id": "BOS-F5-01",
+      "floor": 5,
+      "name": "이벨린",
+      "title": "외신의 잔영",
+      "hair_color": "은백색 / 흰색",
+      "hairstyle": "은백색 긴 웨이브 유지, 후면 큰 흐름으로 정리·산발/꼬임 완화. 승인본 후면 구조 기준.",
+      "face_identity": "흰 겹붕대 안대가 눈을 덮고 작은 입과 정돈된 하관이 보임. 눈 색·숨은 눈 형태를 추정하지 않음.",
+      "body_structure": "속옷뷰를 기준으로 의상뷰의 몸통 길이·낮춘 자연 허리 위치 일치. 과도하게 넓어진 어깨/쇄골 축소, 골반·하체와 균형. 8.5등신은 목표이며 정밀 실측 미완료.",
+      "costume_identity": "백색·아이보리 긴 겹옷, 짙은 보라 중앙패널·후드, 납작한 금색 성구/천문 자수. 늘어진 술·장식 삭제. 의식서·황동 향로와 지지 사슬 유지.",
+      "costume_colors": [
+        "흰색",
+        "아이보리",
+        "검정",
+        "짙은 보라",
+        "금색"
+      ],
+      "weapon": "문양이 있는 의식서와 사슬로 매단 황동색 향로. 책 지지 손과 향로 고리 파지 상세 기준.",
+      "accessory": [
+        "흰 붕대 안대",
+        "짙은 보라 후드",
+        "납작한 금색 자수·허리 장식",
+        "향로 기능성 사슬",
+        "귀걸이"
+      ],
+      "motif": [
+        "별",
+        "성역·의식 문양",
+        "은백색 꽃"
+      ],
+      "pose_notes": "3뷰 스탠딩에서 책을 몸 가까이 지지하고 향로를 아래로 매달림. 겉옷 아래 발은 가려짐. 내부 의상 뷰는 발 착장을 포함하나 게임용 부유/접지 확정은 별도.",
+      "anatomy_notes": "허리 위치·어깨/골반 균형은 최신 승인 체형 유지. 후면 가터 2개 연결을 착장/구조 상세에서 대조. 옷에 가려진 관절·발, 소형 파지 및 8.5등신 실측은 PARTIAL.",
+      "costume_notes": "의상/속옷뷰 동일 체형을 기준으로 어깨 재단·허리 위치 보정. 치렁거리는 술/장식 제거. 속옷과 소재 상세는 승인 이미지 기준.",
+      "weapon_scale_notes": "책과 향로의 상대 크기·사슬 길이는 시트 기준. 실제 중량·모든 사슬 연결·게임 스케일 미측정.",
+      "underwear": {
+        "base": "아이보리",
+        "material_direction": "새틴/실크 표현·불투명 중심패널",
+        "lace": "연보라",
+        "structure": "분리형 브라·로우라이즈 하의·독립 가터벨트",
+        "stockings": "짙은 회보라 기본색 #483A48; 상단 레이스 #3B2847. 광원·피부 비침에 따른 렌더 밝기는 별도.",
+        "garter": "독립 벨트에서 앞 2개·뒤 2개, 총 4개 연결",
+        "stocking_base_color": "#483A48",
+        "stocking_cuff_color": "#3B2847",
+        "garter_strap_count": 4,
+        "garter_rear_routing": "벨트 앵커 → 길이 조절링 → 스타킹 상단 클립; 후면 좌우 1개씩",
+        "bottom_shape": "low_rise_minimal_coverage"
+      },
+      "uncertain": [
+        "8.5등신 정밀 실측",
+        "가려진 관절 및 책/향로 소형 파지 전수 검증"
+      ],
+      "art_slug": "ivelin",
+      "approved_reference_image": {
+        "filename": "boss_ivelyn_review_sheet_approved_v3.png",
+        "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_ivelyn_review_sheet_approved_v3.png",
+        "repository_path": "design/boss-art/review-sheets/boss_ivelyn_review_sheet_approved_v3.png",
+        "reference_status": "latest_user_approved_design",
+        "final_approval_status": "user_approved",
+        "approval_basis": "좋아 이거랑 방금 만든 이벨린 설정화까지 반영해서 최신화 작업해줘",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sha256": "e4a6cae4499fecf1360ba8e14755e9736577c7f5e1811811c8f8e4c4a3b33460",
+        "library_file_id": "libfile_b68f0c7d12bc81918afa68d9c31f654e",
+        "file_id": "file_00000000be2481f5b77c5149b6652a8e"
+      },
+      "supporting_reference_images": [
+        {
+          "library_file_id": "libfile_76c99d3e26988191930f840a28d0c758",
+          "file_id": "file_0000000037448206b6d21c88002ca4d8",
+          "path": "/이벨린 _ IVELIN — 5F · 외신의 잔영 · REVIEW SHEET.png",
+          "filename": "이벨린 _ IVELIN — 5F · 외신의 잔영 · REVIEW SHEET.png",
+          "modified_at": "2026-10-09T10:31:51.827420Z",
+          "version_id": null,
+          "reference_status": "user_designated_current_review_reference",
+          "final_approval_status": "not_final_approved",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "714eb72ea013dbe2d15f0cc8107672a6f7364991f675405ff4d897ab2a037f27"
+        }
+      ],
+      "reference_scope": "지정 REVIEW SHEET의 의상·내부 의상 3뷰와 상세 패널",
+      "QA_status": "PARTIAL",
+      "workflow_status": [
+        "design_reference_ready",
+        "review_sheet_ready",
+        "user_approved",
+        "qa_partial"
+      ],
+      "qa_basis": "2026-10-10 최신 수정 PNG 직접 시각 검토 및 5종 2D 인체 QA. 가려진 골격·접지/파지는 미검증.",
+      "game_database_applied": false,
+      "conflict_ids": [
+        "C-IVE-01",
+        "C-IVE-02"
+      ],
+      "runtime_reference": {
+        "base_image": "boss-ivelyn.webp",
+        "source_path": "tower-site/dist/assets/",
+        "role": "기존 아트 이력; 최신 시트를 덮어쓰지 않음."
+      },
+      "underlayer_reference_notes": {
+        "palette": "아이보리 / 연보라",
+        "motifs": [
+          "성당",
+          "외신",
+          "성구"
+        ],
+        "application": "독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+        "reference_status": "analysis_complete_for_structure_reference",
+        "new_reference_ids": [
+          "U03",
+          "U04",
+          "U11",
+          "U15",
+          "U18",
+          "U19"
+        ],
+        "analysis_completed": true,
+        "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+        "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+        "analysis_scope": [
+          "기본 실루엣",
+          "상의 구조",
+          "하의 구조",
+          "허리선",
+          "스트랩 위치",
+          "가터 연결 방식",
+          "레이스 배치",
+          "자수 배치",
+          "장식 위치",
+          "소재 두께",
+          "광택",
+          "시스루 여부",
+          "색상 조합",
+          "봉제선",
+          "가장자리 마감",
+          "외부 의상과 겹칠 때의 구조"
+        ],
+        "notes": "최신 승인 이미지 반영 완료. 이전 제안은 design_history에 보존.",
+        "observed_application_notes": "아이보리 새틴/실크·연보라 레이스·성구 자수; 독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+        "latest_reference_design_proposal": {
+          "references": "U22 · U30 · U33",
+          "silhouette_and_panels": "곡선 컵 브라·로우라이즈 미니멀 하의. 컵 상단에 얇은 스캘럽 레이스, 하의는 매끈한 중심과 넓은 안감 레이스 옆 패널.",
+          "material_palette_details": "백색/아이보리 바탕·연보라 레이스. U22의 밝은 색 꽃 자수 컵과 U30의 섬세한 가장자리, U33의 옆 패널 분할을 성당 아치·성구 문양으로 재해석.",
+          "connections_status": "겹옷 아래 장식 두께 최소화. 가터 전체 경로·스타킹 정확한 색 미확정 유지.",
+          "status": "historical_proposal_superseded",
+          "reference_board_is_final": false,
+          "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소.",
+          "superseded_by": "approved_design_v3"
+        },
+        "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+        "latest_character_design_override": {
+          "top": "아이보리 컵·연보라 레이스 브라",
+          "bottom": "로우라이즈 최소 면적 하의",
+          "material_palette": "아이보리 새틴/실크·연보라 레이스·성구 자수",
+          "connections_notes": "독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+          "priority": "user_approved_20261010_v3",
+          "image_generated": true
+        },
+        "additional_product_reference_candidates": [
+          "U41",
+          "U44",
+          "U49",
+          "U50",
+          "U51",
+          "U52"
+        ],
+        "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+        "latest_palette_matching": {
+          "name": "이벨린",
+          "costume_palette_reference": "백색 겹옷·보라 패널·안대·성구",
+          "top": "아이보리 컵·연보라 레이스·작은 은색 성구 자수",
+          "low_rise_bottom": "아이보리 작은 앞패널·연보라 좁은 옆끈·가는 보라 마감",
+          "references_and_connections": "U44/U46/U49. 가터벨트도 아이보리·보라로 통일",
+          "status": "historical_proposal_superseded",
+          "superseded_by": "approved_design_v3"
+        }
+      },
+      "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+      "female_head_ratio_target": 8.5,
+      "visual_correction_status": "user_approved",
+      "underlayer_bottom_shape": "low_rise_minimal_coverage",
+      "design_history": [
+        {
+          "approved_reference_image": {
+            "library_file_id": "libfile_76c99d3e26988191930f840a28d0c758",
+            "file_id": "file_0000000037448206b6d21c88002ca4d8",
+            "path": "/이벨린 _ IVELIN — 5F · 외신의 잔영 · REVIEW SHEET.png",
+            "filename": "이벨린 _ IVELIN — 5F · 외신의 잔영 · REVIEW SHEET.png",
+            "modified_at": "2026-10-09T10:31:51.827420Z",
+            "version_id": null,
+            "reference_status": "user_designated_current_review_reference",
+            "final_approval_status": "not_final_approved",
+            "dimensions": [
+              1536,
+              1024
+            ],
+            "sha256": "714eb72ea013dbe2d15f0cc8107672a6f7364991f675405ff4d897ab2a037f27"
+          },
+          "hairstyle": "매우 긴 웨이브 장발, 후드 아래 풀린 앞가닥, 뒤쪽 긴 웨이브 질량. 내부 의상 후면에서는 상부 일부 모임이 보이나 정확한 묶음 구조는 미확정.",
+          "body_structure": "풍부한 상체와 연결되는 골반·허벅지, 정돈된 성인 비율. 겉옷 아래 하체 구조는 내부 의상 뷰로만 비교하며 실측값 없음.",
+          "costume_identity": "흰색·아이보리 긴 겹옷, 검정/짙은 보라 중앙 패널과 후드, 보라 안감·술, 금색 문양. 책과 사슬 향로 유지.",
+          "accessory": [
+            "흰 붕대 안대",
+            "후드",
+            "보라 술",
+            "별·십자형 장식",
+            "사슬·귀걸이"
+          ],
+          "underwear": {
+            "base": "은백색 / 아이보리",
+            "material_direction": "실크",
+            "lace": "보라",
+            "flower": "은백색 꽃; 종 미확정",
+            "garter": "보라 허리벨트·세로 연결끈",
+            "stockings": "검정에 가까운 짙은 색; 순검정/짙은 보라 판독 미확정"
+          },
+          "uncertain": [
+            "스타킹 정확한 색",
+            "총 6개 가터끈의 모든 연결",
+            "후면 헤어 묶음 구조",
+            "책 아래 손바닥·엄지와 옷 아래 발"
+          ]
+        },
+        {
+          "archived_at": "2026-10-10T04:46:03.985916+00:00",
+          "reason": "v2.23 최신 승인 수정본 적용 전 현행 필드 보존",
+          "previous_underwear": {
+            "base": "아이보리",
+            "material_direction": "새틴/실크 표현·불투명 중심패널",
+            "lace": "연보라",
+            "structure": "분리형 브라·로우라이즈 하의·독립 가터벨트",
+            "stockings": "짙은 회보라 기본색 #483A48; 상단 레이스 #3B2847. 광원·피부 비침에 따른 렌더 밝기는 별도.",
+            "garter": "독립 벨트에서 앞 2개·뒤 2개, 총 4개 연결",
+            "stocking_base_color": "#483A48",
+            "stocking_cuff_color": "#3B2847",
+            "garter_strap_count": 4,
+            "garter_rear_routing": "벨트 앵커 → 길이 조절링 → 스타킹 상단 클립; 후면 좌우 1개씩",
+            "bottom_shape": "low_rise_minimal_coverage"
+          },
+          "previous_reference": {
+            "library_file_id": "libfile_f542a8be3b44819189794da009ff6e40",
+            "file_id": "file_0000000077e881f9bc64977fb486d93d",
+            "filename": "boss_ivelyn_review_sheet_approved_v2.png",
+            "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_ivelyn_review_sheet_approved_v2.png",
+            "reference_status": "latest_user_approved_design",
+            "final_approval_status": "user_approved"
+          },
+          "previous_notes": {
+            "palette": "아이보리 / 연보라",
+            "motifs": [
+              "성당",
+              "외신",
+              "성구"
+            ],
+            "application": "독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+            "reference_status": "analysis_complete_for_structure_reference",
+            "new_reference_ids": [
+              "U03",
+              "U04",
+              "U11",
+              "U15",
+              "U18",
+              "U19"
+            ],
+            "analysis_completed": true,
+            "source": "2026-10-09 사용자 UNDERLAYER 구조 참고 지시",
+            "identity_lock": "최신 참조·기존 체형·외부 의상 보존",
+            "analysis_scope": [
+              "기본 실루엣",
+              "상의 구조",
+              "하의 구조",
+              "허리선",
+              "스트랩 위치",
+              "가터 연결 방식",
+              "레이스 배치",
+              "자수 배치",
+              "장식 위치",
+              "소재 두께",
+              "광택",
+              "시스루 여부",
+              "색상 조합",
+              "봉제선",
+              "가장자리 마감",
+              "외부 의상과 겹칠 때의 구조"
+            ],
+            "notes": "최신 승인 이미지 반영 완료. 이전 제안은 design_history에 보존.",
+            "observed_application_notes": "아이보리 새틴/실크·연보라 레이스·성구 자수; 독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+            "latest_reference_design_proposal": {
+              "references": "U22 · U30 · U33",
+              "silhouette_and_panels": "곡선 컵 브라·로우라이즈 미니멀 하의. 컵 상단에 얇은 스캘럽 레이스, 하의는 매끈한 중심과 넓은 안감 레이스 옆 패널.",
+              "material_palette_details": "백색/아이보리 바탕·연보라 레이스. U22의 밝은 색 꽃 자수 컵과 U30의 섬세한 가장자리, U33의 옆 패널 분할을 성당 아치·성구 문양으로 재해석.",
+              "connections_status": "겹옷 아래 장식 두께 최소화. 가터 전체 경로·스타킹 정확한 색 미확정 유지.",
+              "status": "historical_proposal_superseded",
+              "reference_board_is_final": false,
+              "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 큰 중심 패널/넓은 허리부 축소.",
+              "superseded_by": "approved_design_v3"
+            },
+            "mandatory_bottom_rule": "로우라이즈·최소 면적만 허용. 이전 브리프형 규칙 폐기. 일체형 하부도 동일.",
+            "latest_character_design_override": {
+              "top": "아이보리 컵·연보라 레이스 브라",
+              "bottom": "로우라이즈 최소 면적 하의",
+              "material_palette": "아이보리 새틴/실크·연보라 레이스·성구 자수",
+              "connections_notes": "독립 벨트→앞2/뒤2 총4끈→스타킹 클립. 스타킹 #483A48, 상단 레이스 #3B2847",
+              "priority": "user_approved_20261010_v3",
+              "image_generated": true
+            },
+            "additional_product_reference_candidates": [
+              "U41",
+              "U44",
+              "U49",
+              "U50",
+              "U51",
+              "U52"
+            ],
+            "additional_product_application_status": "후속 디자인 참고 후보만; 최신 설정 자동 변경 없음",
+            "latest_palette_matching": {
+              "name": "이벨린",
+              "costume_palette_reference": "백색 겹옷·보라 패널·안대·성구",
+              "top": "아이보리 컵·연보라 레이스·작은 은색 성구 자수",
+              "low_rise_bottom": "아이보리 작은 앞패널·연보라 좁은 옆끈·가는 보라 마감",
+              "references_and_connections": "U44/U46/U49. 가터벨트도 아이보리·보라로 통일",
+              "status": "historical_proposal_superseded",
+              "superseded_by": "approved_design_v3"
+            }
+          }
+        }
+      ],
+      "final_approved": true,
+      "approved_design_v2": {
+        "status": "user_approved",
+        "source_image": "exec-333cc0eb-a517-4239-9163-dea4a16017bc.png",
+        "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_ivelyn_review_sheet_approved_v2.png",
+        "library_file_id": "libfile_f542a8be3b44819189794da009ff6e40",
+        "changes": [
+          "늘어진 술·장식 제거",
+          "후면 헤어 정돈",
+          "의상 허리선 하향·몸통 길이 보정",
+          "어깨/쇄골 폭 축소·정후면 비율 보정"
+        ],
+        "QA": "디자인 사용자 승인; 기술 QA PARTIAL",
+        "game_database_applied": false
+      },
+      "anatomy_qa": {
+        "report": "Boss_Anatomy_QA_20261010.json",
+        "review_completed": true,
+        "technical_status": "PARTIAL",
+        "target_head_ratio": 8.5,
+        "certified_head_ratio": null,
+        "limitation": "두상·옷 아래 관절 가림. 2D 윤곽 추정은 골격 실측이 아님."
+      },
+      "current_design_version": "v3",
+      "approved_design_v3": {
+        "status": "user_approved",
+        "image": "boss_ivelyn_review_sheet_approved_v3.png",
+        "changes": [
+          "스타킹 기본색·상단 레이스 색 표기",
+          "후면 가터 구조 및 앞2/뒤2 총4개 통일"
+        ],
+        "qa_status": "PARTIAL",
+        "game_database_applied": false
+      },
+      "current_design": {
+        "version": "v3",
+        "reference": {
+          "filename": "boss_ivelyn_review_sheet_approved_v3.png",
+          "local_path": "/workspace/scratch/751839635353/boss-review-v2/boss_ivelyn_review_sheet_approved_v3.png",
+          "repository_path": "design/boss-art/review-sheets/boss_ivelyn_review_sheet_approved_v3.png",
+          "reference_status": "latest_user_approved_design",
+          "final_approval_status": "user_approved",
+          "approval_basis": "좋아 이거랑 방금 만든 이벨린 설정화까지 반영해서 최신화 작업해줘",
+          "dimensions": [
+            1536,
+            1024
+          ],
+          "sha256": "e4a6cae4499fecf1360ba8e14755e9736577c7f5e1811811c8f8e4c4a3b33460",
+          "library_file_id": "libfile_b68f0c7d12bc81918afa68d9c31f654e",
+          "file_id": "file_00000000be2481f5b77c5149b6652a8e"
+        },
+        "underwear": {
+          "base": "아이보리",
+          "material_direction": "새틴/실크 표현·불투명 중심패널",
+          "lace": "연보라",
+          "structure": "분리형 브라·로우라이즈 하의·독립 가터벨트",
+          "stockings": "짙은 회보라 기본색 #483A48; 상단 레이스 #3B2847. 광원·피부 비침에 따른 렌더 밝기는 별도.",
+          "garter": "독립 벨트에서 앞 2개·뒤 2개, 총 4개 연결",
+          "stocking_base_color": "#483A48",
+          "stocking_cuff_color": "#3B2847",
+          "garter_strap_count": 4,
+          "garter_rear_routing": "벨트 앵커 → 길이 조절링 → 스타킹 상단 클립; 후면 좌우 1개씩",
+          "bottom_shape": "low_rise_minimal_coverage"
+        },
+        "weapon": "문양이 있는 의식서와 사슬로 매단 황동색 향로. 책 지지 손과 향로 고리 파지 상세 기준.",
+        "design_status": "user_approved",
+        "technical_qa": "PARTIAL",
+        "game_database_applied": false
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "C-ARD-01",
+      "boss_id": "BOS-F1-01",
+      "field": "underwear.colors",
+      "guide_value": "짙은 남색 실크·아이보리 레이스",
+      "previous_db_value": "은백색 실크·청색 레이스",
+      "observed_review_value": "은백색 패널·청색 레이스·백합",
+      "resolution": "REVIEW SHEET 표현을 현행 기준으로 채택. Guide 원문은 변경하지 않고 불일치 이력 유지.",
+      "status": "resolved_for_design_reference"
+    },
+    {
+      "id": "C-ROS-01",
+      "boss_id": "BOS-F2-01",
+      "field": "underwear.colors_and_structure",
+      "guide_value": "검정 실크·적색/검정 레이스, 코르셋 내장 컵",
+      "previous_db_value": "샴페인 실크·진홍 레이스·장미",
+      "observed_review_value": "샴페인색 분리형 내부 의상·진홍 장미 장식",
+      "resolution": "v4 MATERIAL 기준 검정 메시·장미색 평면 레이스 및 검정 안감. 이전 샴페인안 폐기.",
+      "status": "resolved_by_latest_user_approval",
+      "current_reference": "boss_rosebel_review_sheet_approved_v4.png"
+    },
+    {
+      "id": "C-AST-01",
+      "boss_id": "BOS-F3-01",
+      "field": "underwear.colors_and_embroidery",
+      "guide_value": "청남색 실크·청보라 레이스·작은 청보라 꽃",
+      "previous_db_value": null,
+      "observed_review_value": "밝은 청보라 패널·짙은 레이스·금색 별/천문형 자수",
+      "resolution": "관찰된 팔레트·문양 우선. 꽃 종과 세부 꽃무늬는 미확정.",
+      "status": "partially_resolved"
+    },
+    {
+      "id": "C-MOR-01",
+      "boss_id": "BOS-F4-01",
+      "field": "underwear.structure",
+      "guide_value": "일체형 지지 바디·연속 시스루 다리",
+      "previous_db_value": null,
+      "older_review_value": "분리형 브라·하의·허벅지 스타킹 경계",
+      "observed_review_value": "최신 보디수트 설계도의 일체형 몸통·하부와 연속 시스루 다리",
+      "resolution": "최신 보디수트 설계도를 내부 의상 우선 기준으로 지정. 이전 시트는 겉옷·얼굴·장비 보조 및 변경 이력으로 유지.",
+      "status": "resolved_for_design_reference"
+    },
+    {
+      "id": "C-MOR-02",
+      "boss_id": "BOS-F4-01",
+      "field": "costume_identity.veil_and_opening",
+      "guide_value": "10절의 구형 기본 자산 기록에는 하관 베일·복부 개방이 없음",
+      "previous_db_value": null,
+      "observed_review_value": "최신 시트는 하관 시스루 베일과 복부 개구부를 표현",
+      "resolution": "최신 시트의 베일·개구부 보존. 구형 자산 기록으로 제거하지 않음.",
+      "status": "resolved_for_design_reference"
+    },
+    {
+      "id": "C-MOR-03",
+      "boss_id": "BOS-F4-01",
+      "field": "pose.support",
+      "guide_value": "기존 부유 정체성 보존",
+      "game_value": "FLOATING_BODY / foot_anchor 50",
+      "observed_review_value": "한쪽 발끝 지지로 읽히는 표현",
+      "resolution": "시각 표현과 기존 설정을 각각 기록. 접지/완전 부유 최종 판정 보류.",
+      "status": "unresolved"
+    },
+    {
+      "id": "C-IVE-01",
+      "boss_id": "BOS-F5-01",
+      "field": "underwear.stockings_color",
+      "guide_value": "짙은 보라색 반불투명 스타킹",
+      "previous_db_value": null,
+      "observed_review_value": "검정에 가까운 짙은 스타킹",
+      "resolution": "스타킹 기본색 #483A48, 상단 레이스 #3B2847. 광원/투과에 따른 픽셀색과 기본색 구분.",
+      "status": "resolved_by_latest_user_approval"
+    },
+    {
+      "id": "C-IVE-02",
+      "boss_id": "BOS-F5-01",
+      "field": "underwear.garter_connections",
+      "guide_value": "앞/옆/뒤 총 6개 끈",
+      "previous_db_value": null,
+      "observed_review_value": "세로 연결끈이 보이나 전체 연결 경로는 가려짐",
+      "resolution": "총4개(앞2/뒤2)로 최신 시트 통일; 6개는 역사값. 벨트→조절링→스타킹 클립.",
+      "status": "resolved_by_latest_user_approval"
+    }
+  ],
+  "change_log": [
+    {
+      "version": "2.0.0",
+      "changes": [
+        "게임 BOS ID 5개로 통합",
+        "아스트라·모르가나·이벨린 추가",
+        "아르델라·로제벨 최신 시트 대조",
+        "참조 경로·식별자·QA·충돌·미확정 분리",
+        "5명 모두 game_database_applied false"
+      ],
+      "untouched": [
+        "공통 Guide 원문",
+        "게임 DB·이미지·코드",
+        "Push·Deploy"
+      ]
+    },
+    {
+      "version": "2.1.0",
+      "changes": [
+        "UNDERLAYER 참고 범위·분석 항목 추가",
+        "5보스 underlayer_reference_notes 추가",
+        "신규 자료 0건·분석 대기 명시",
+        "기존 QA·충돌·게임 미반영 유지"
+      ]
+    },
+    {
+      "version": "2.2.0",
+      "changes": [
+        "첨부 20장 U01–U20 관찰·원본 식별자 연결",
+        "16개 의복 분석 항목 및 판독 제한 기록",
+        "5보스 구조 참고 연결 갱신",
+        "기존 QA PARTIAL·게임 미반영·충돌 유지"
+      ]
+    },
+    {
+      "version": "2.3.0",
+      "summary": "여성 전원 여관주인 얼굴 형태/8등신 제작 기준, 아르델라 스포츠형/스타킹 없음, U21–U40 관찰 추가. 기존 충돌 이력과 PARTIAL/false 유지."
+    },
+    {
+      "version": "2.4.0",
+      "summary": "レ퍼런스별 속옷 형태·패널·허리선·연결·문양 배치의 12캐릭터 텍스트 수정안. 이미지 생성 없음."
+    },
+    {
+      "version": "2.5.0",
+      "summary": "사용자 확정: 모든 속옷 드로즈/보이쇼츠/사각/반바지형 금지. 브리프형만 허용. 이미지 생성 없음."
+    },
+    {
+      "version": "2.6.0",
+      "summary": "전 캐릭터 로우라이즈·최소 면적. 이전 브리프형/중간·높은 허리선 규칙 폐기. 이미지 없음."
+    },
+    {
+      "version": "2.7.0",
+      "summary": "스포츠 브라 CK 구조 참고, 스포츠 상하의·밴드·끈 회색 통일. 전원 로우라이즈 유지. 이미지 없음."
+    },
+    {
+      "version": "2.8.0",
+      "summary": "4명 동일 소재 가터벨트 세트·카렌/이레 흰 붕대와 전통 속곳·아르델라 레이스·베르나 영상 형태. 텍스트만 수정."
+    },
+    {
+      "version": "2.9.0",
+      "summary": "속옷 제품 자료 14파일/13독립 U41–U54 관찰·중복·후속 참고 후보 추가. 이미지 생성/캐릭터 자동 변경 없음."
+    },
+    {
+      "version": "2.10.0",
+      "summary": "12캐릭터 외부 의상 색상과 속옷 패널/끈/레이스 매칭안. 아르델라 은백색·청색, 베르나 녹색·코코아, 카렌/이레 흰 천 유지. 이미지 없음."
+    },
+    {
+      "version": "2.11.0",
+      "date": "2026-10-09",
+      "change": "벨·세라핀·루미에라 최신 설정화 사용자 승인 기록 및 과거 제안 우선순위 정정. 베르나 15개 참고자료·서부 콘셉트 초안 추가. 게임 본체 변경 없음."
+    },
+    {
+      "version": "2.12.0",
+      "date": "2026-10-10",
+      "change": "베르나 최신 사용자 승인 설정 저장: 웨이브 헤어·배지 삭제·허리 단검. 이미지 헤어 길이 잔여 차이 기록. 게임 본체 변경 없음."
+    },
+    {
+      "version": "2.13.0",
+      "date": "2026-10-10",
+      "change": "이리스 설정화 사용자 승인 저장: 사이드 포니테일·고딕 드레스·자동 관절 인형·로우라이즈 레이스 속옷. 게임 본체 변경 없음."
+    },
+    {
+      "version": "2.14.0",
+      "date": "2026-10-10",
+      "change": "카렌 최신 설정화 사용자 승인 저장: 양손도끼·짐승뼈 목걸이·골반/허벅지/근육·안정된 포즈·뷰 체격 보정. 게임 본체 변경 없음."
+    },
+    {
+      "version": "2.15.0",
+      "date": "2026-10-10",
+      "change": "이레 최종 설정화 사용자 승인 저장: 동양풍 금속 권갑·아이보리/검정 무투복·흑발 묶음·흰 붕대와 훈도시형 속곳. 플레이어블 7인 디자인 승인 완료; 게임 본체 변경 없음."
+    },
+    {
+      "version": "2.16.0",
+      "date": "2026-10-10",
+      "change": "아르델라 최신 설정화 사용자 승인 저장. 초기 얼굴·수수한 백은색 경갑·청색 자락·속옷 꽃레이스 통일·검 파지 보정. 보스 공통 8.5등신 목표 반영, 게임 미반영 유지."
+    },
+    {
+      "version": "2.17.0",
+      "date": "2026-10-10",
+      "change": "로제벨 검정 실크·장미색/금색 디자인 및 별도 허벅지 밴드 삭제 설정 저장. 밴드 삭제 이미지 보정은 요청에 따라 보류, 게임 미반영."
+    },
+    {
+      "version": "2.18.0",
+      "date": "2026-10-10",
+      "changes": [
+        "아스트라 최종 설정화 사용자 승인 및 이미지 기록",
+        "뒷머리 가이드 R12–R20 추가; 게임 런타임 미반영"
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "change": "모르가나 최신 설정화 사용자 승인 저장. 별빛 드레스와 독립 U07 검정·남색 속옷. 게임 반영 없음."
+    },
+    {
+      "date": "2026-10-10",
+      "change": "이벨린 최종 사용자 승인 설정화 저장. 의상 장식·후면 헤어·허리 위치·어깨 비율 보정 기록. 보스 5종 디자인 기록 보존; 기술 QA PARTIAL·게임 반영 false 유지."
+    },
+    {
+      "version": "2.21.0",
+      "date": "2026-10-10",
+      "change": "이레 기존 무협 의상 참고 중국계의상 재분류; 한국풍 저고리/비녀/보디슈트 검토안과 14장 자료 분석 저장. 새 이미지·게임 반영 없음."
+    },
+    {
+      "date": "2026-10-10",
+      "change": "이레 한국풍 최종 설정화 사용자 승인 저장. 기존 중국계의상 승인 이력 보존, 후드 저고리·비녀·X 하네스·옥패·높은 힐·회색 스포츠 속옷 적용. game_database_applied:false 유지."
+    },
+    {
+      "version": "2.23.0",
+      "date": "2026-10-10",
+      "changes": [
+        "로제벨 v4 MATERIAL 패턴·포멜 수정·허벅지 밴드 삭제 승인본 등록",
+        "이벨린 v3 스타킹 기본색·4개 가터 경로 승인본 등록",
+        "현행/역사 제안 분리, 미확정 충돌 해결",
+        "5종 인체 검토 수행: 정밀 골격 실측 미완료·기술 QA PARTIAL"
+      ],
+      "game_database_applied": false
+    }
+  ],
+  "underlayer_reference_policy": {
+    "purpose": "설정화 내부 레이어·의복 구조 참고. 디자인 복제 또는 노출 강화 목적 아님.",
+    "reference_intake": {
+      "received_reference_count": 20,
+      "analysis_completed_count": 20,
+      "unreadable_file_count": 0,
+      "exact_duplicate_count_within_batch": 0,
+      "duplicate_scope": "이번 20장 SHA-256 동일 파일 비교. 과거 전체 자료와의 중복은 전수 확인하지 않음.",
+      "status": "analysis_complete_with_limits",
+      "note": "20장 정상 디코딩·직접 시각 관찰 완료. 개별 항목의 가림·원근·후면·봉제·소재 실측 한계는 각각 기록. 정밀 재단 검증 또는 보스 QA 통과가 아님."
+    },
+    "analysis_fields": [
+      "기본 실루엣",
+      "상의 구조",
+      "하의 구조",
+      "허리선",
+      "스트랩 위치",
+      "가터 연결 방식",
+      "레이스 배치",
+      "자수 배치",
+      "장식 위치",
+      "소재 두께",
+      "광택",
+      "시스루 여부",
+      "색상 조합",
+      "봉제선",
+      "가장자리 마감",
+      "외부 의상과 겹칠 때의 구조"
+    ],
+    "rules": [
+      "외부 의상·정체성·체형·노출 범위 유지",
+      "레퍼런스 디자인을 그대로 복제하지 않고 의복 구조 원리만 기록",
+      "허리 지지부·가터끈·스타킹 상단·장식 체인을 구분하며 가려진 연결은 미확정",
+      "소재 성분·두께·장력은 시각 관찰과 설계 의도를 구분하고 실측 없는 수치를 단정하지 않음",
+      "봉제·클립·스트랩은 겉옷·갑옷·무기와의 접촉·마찰·겹침을 검토",
+      "최신 REVIEW SHEET와 기존 충돌 이력 보존",
+      "자료 분석 후 별도 지시 단계에서만 설정화 수정"
+    ]
+  },
+  "underlayer_references": [
+    {
+      "id": "U01",
+      "filename": "b502d4fa57bf3e3529e38427ce828fee.jpg",
+      "library_file_id": "libfile_0da6962a09388191b0f8e5e79a963899",
+      "local_path": "/workspace/scratch/751839635353/upload/b502d4fa57bf3e3529e38427ce828fee.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "사진형 분리 2피스",
+        "top_structure": "삼각 패널·목 방향 끈",
+        "bottom_structure": "옆 링·매듭 하의",
+        "waistline": "복부 교차 끈·낮은 하의선",
+        "strap_positions": "목·등·허리 교차·옆 매듭",
+        "garter_connection": "보이는 가터 없음",
+        "lace_placement": "보이는 레이스 없음",
+        "embroidery_placement": "보이는 자수 없음",
+        "ornament_positions": "링·매듭",
+        "material_thickness": "작은 리브/텍스처, 두께 미확정",
+        "gloss": "낮은 광택",
+        "sheer": "불투명으로 보임",
+        "color_combination": "청색 단색",
+        "seam_lines": "패널 가장자리만 식별",
+        "edge_finish": "좁은 테두리·매듭",
+        "outer_layer_overlap": "겉옷 없음; 링/매듭 돌출 검토",
+        "limitations": "저해상도; 후면·봉제·끈 하중 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "d2bca33f639473db8b91ad8a95ce595baccf03b17cd37ce02a88e8742e99bf43",
+      "dimensions": [
+        236,
+        314
+      ]
+    },
+    {
+      "id": "U02",
+      "filename": "e86c931f95f5c73645de09982eeafe5b.jpg",
+      "library_file_id": "libfile_94e1e29062d88191bfdacedc1b473080",
+      "local_path": "/workspace/scratch/751839635353/upload/e86c931f95f5c73645de09982eeafe5b.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 배색 세트",
+        "top_structure": "곡선 컵·하단 지지선",
+        "bottom_structure": "전면 패널·옆 레이스",
+        "waistline": "낮은 하의선",
+        "strap_positions": "검정 어깨끈",
+        "garter_connection": "가터 없음",
+        "lace_placement": "검정 상단·옆면",
+        "embroidery_placement": "붉은 바탕 꽃 패턴; 직조/자수 구분 불가",
+        "ornament_positions": "별도 의복 장식 거의 없음",
+        "material_thickness": "레이스/바탕 구분, 실제 두께 미확정",
+        "gloss": "낮은 광택",
+        "sheer": "레이스 일부 투명",
+        "color_combination": "진홍·검정·옅은 꽃",
+        "seam_lines": "컵 경계·하단 곡선",
+        "edge_finish": "레이스 스캘럽",
+        "outer_layer_overlap": "겉옷 없음; 레이스 가장자리 겹침 참고",
+        "limitations": "뒤 여밈·안감 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "a27aa5a45e8f282de7d7b102202003c03354e136ffb07651ecbaba12d030904c",
+      "dimensions": [
+        736,
+        980
+      ]
+    },
+    {
+      "id": "U03",
+      "filename": "f1dbac90dbf210ba359e1af111192a56.jpg",
+      "library_file_id": "libfile_2af1606d148c8191a7baab4c0faf9446",
+      "local_path": "/workspace/scratch/751839635353/upload/f1dbac90dbf210ba359e1af111192a56.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "마네킹 3피스",
+        "top_structure": "컵·검정 하단 밴드",
+        "bottom_structure": "전면 하의와 별도 넓은 허리벨트",
+        "waistline": "허리 가터벨트",
+        "strap_positions": "어깨·허리에서 세로 끈",
+        "garter_connection": "링으로 독립 허벅지띠에 연결; 스타킹 클립 아님",
+        "lace_placement": "컵·허리벨트 가장자리",
+        "embroidery_placement": "검정 꽃·덩굴형 문양",
+        "ornament_positions": "링·슬라이더",
+        "material_thickness": "망사형 바탕·띠 두께 정성 관찰",
+        "gloss": "낮은 광택",
+        "sheer": "밝은 바탕 위 투명형 패널",
+        "color_combination": "아이보리·검정",
+        "seam_lines": "컵 세로선·테두리",
+        "edge_finish": "스캘럽·바인딩",
+        "outer_layer_overlap": "겉옷 없음; 벨트·링 겹침 검토",
+        "limitations": "실제 착용핏·후면 연결 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "deda0d290df64ea652189b004dfe1ae83ff1d2ed2fd008d4af4e7e0132db23e4",
+      "dimensions": [
+        736,
+        1308
+      ]
+    },
+    {
+      "id": "U04",
+      "filename": "6f83fc9b0984027f32ccc2bf90f2051d.jpg",
+      "library_file_id": "libfile_f6fd790cc9e48191bb1570ce0bf84606",
+      "local_path": "/workspace/scratch/751839635353/upload/6f83fc9b0984027f32ccc2bf90f2051d.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "마네킹 스트랩 세트",
+        "top_structure": "긴 하단 밴드·컵",
+        "bottom_structure": "별도 하의·넓은 허리벨트",
+        "waistline": "직선 검정 벨트",
+        "strap_positions": "어깨·세로 연결",
+        "garter_connection": "링→이중 허벅지띠; 클립 스타킹과 구분",
+        "lace_placement": "컵·옆면·벨트",
+        "embroidery_placement": "꽃·덩굴형 문양",
+        "ornament_positions": "금색 버클·링",
+        "material_thickness": "망사형 패널·두꺼운 띠 대비",
+        "gloss": "띠의 제한적 반사",
+        "sheer": "레이스 패널 투명형",
+        "color_combination": "검정·밝은 바탕·금색",
+        "seam_lines": "컵 경계·패널 이음",
+        "edge_finish": "스캘럽·검정 바인딩",
+        "outer_layer_overlap": "겉옷 없음; 금속·띠가 갑옷에 닿는 위치 검토",
+        "limitations": "실제 하중·안감·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "6479b5dcd4cdc8893c0ad6320de702741f76fa97ec81248fbd9852f896db00f1",
+      "dimensions": [
+        1200,
+        1489
+      ]
+    },
+    {
+      "id": "U05",
+      "filename": "e439e35462d06375a9d9639665f95a3533bcea23baa5e1124d52c44e40c85a7f.jpg",
+      "library_file_id": "libfile_f39bdb168498819186f79a66dcec5615",
+      "local_path": "/workspace/scratch/751839635353/upload/e439e35462d06375a9d9639665f95a3533bcea23baa5e1124d52c44e40c85a7f.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "부분 착장·겉옷 겹침",
+        "top_structure": "삼각 패널·가는 끈",
+        "bottom_structure": "하의는 겉옷에 가림",
+        "waistline": "끈과 바지 허리선",
+        "strap_positions": "목 방향·옆/뒤 끈 일부",
+        "garter_connection": "미확인",
+        "lace_placement": "패널 측면",
+        "embroidery_placement": "꽃형 문양, 기법 미확정",
+        "ornament_positions": "작은 매듭",
+        "material_thickness": "얇게 보이는 패널",
+        "gloss": "천 반사는 약함",
+        "sheer": "패널 일부 반투명 표현",
+        "color_combination": "검정·짙은 회색",
+        "seam_lines": "테두리 정도만 관찰",
+        "edge_finish": "레이스 테두리·끈",
+        "outer_layer_overlap": "바지와 하의·상의 레이어 일부 겹침",
+        "limitations": "전체 구성·후면·착장 연결 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "0f3a6caddfe5cdce7d5d90f7f0cfdb422bdd8d3a4d203cf0622fdee0debedad1",
+      "dimensions": [
+        1000,
+        750
+      ]
+    },
+    {
+      "id": "U06",
+      "filename": "193593068554c0368.jpg",
+      "library_file_id": "libfile_0fa606416c74819185e744b784099e2d",
+      "local_path": "/workspace/scratch/751839635353/upload/193593068554c0368.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 꽃 레이스",
+        "top_structure": "컵·하단 밴드",
+        "bottom_structure": "하의 일부만 보임",
+        "waistline": "낮은 하의 옆끈",
+        "strap_positions": "어깨끈·뒤 밴드 일부",
+        "garter_connection": "미확인",
+        "lace_placement": "컵 전면·상단",
+        "embroidery_placement": "밝은 꽃 아플리케처럼 보임",
+        "ornament_positions": "중앙 리본",
+        "material_thickness": "망사·꽃 장식 대비",
+        "gloss": "낮은 천 광택",
+        "sheer": "컵 레이스 투명 표현",
+        "color_combination": "검정·짙은 보라·밝은 꽃",
+        "seam_lines": "컵 하단 경계",
+        "edge_finish": "꽃 스캘럽·밴드",
+        "outer_layer_overlap": "겉옷 없음; 꽃 장식 두께 간섭 참고",
+        "limitations": "하의·후면·가터 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "085d325563518d30d525f0b7cbdc0927fade93a875a92d1cf9c9598d3d41b21a",
+      "dimensions": [
+        780,
+        1267
+      ]
+    },
+    {
+      "id": "U07",
+      "filename": "191593643c61dc54c(1).jpg",
+      "library_file_id": "libfile_0e65f65f80348191b80a1e258d72bc11",
+      "local_path": "/workspace/scratch/751839635353/upload/191593643c61dc54c(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 레이스·망사 다리 착장",
+        "top_structure": "컵·어깨끈",
+        "bottom_structure": "하의·허벅지 스타킹",
+        "waistline": "낮은 하의선",
+        "strap_positions": "가는 어깨끈",
+        "garter_connection": "가터 연결 보이지 않음",
+        "lace_placement": "컵 상단·스타킹 상단",
+        "embroidery_placement": "꽃 자수형 대비 문양",
+        "ornament_positions": "꽃 장식·중앙 리본",
+        "material_thickness": "망사 구멍·레이스 띠 대비",
+        "gloss": "낮은 광택",
+        "sheer": "컵 일부·스타킹 망사",
+        "color_combination": "진홍·검정·밝은 꽃",
+        "seam_lines": "패널 경계 일부",
+        "edge_finish": "스캘럽·망사 상단띠",
+        "outer_layer_overlap": "침구가 일부 가림; 겉옷 없음",
+        "limitations": "포즈 원근·후면·스타킹 지지 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "bc875fad30a5d70d5700c67fb8c4e566db3564a542b115e48ddda738310b2748",
+      "dimensions": [
+        900,
+        506
+      ]
+    },
+    {
+      "id": "U08",
+      "filename": "183270734b752e72d(1).jpg",
+      "library_file_id": "libfile_827de400c7d48191b397a7419243db87",
+      "local_path": "/workspace/scratch/751839635353/upload/183270734b752e72d(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 삼각 패널",
+        "top_structure": "가는 끈·곡선 삼각 패널",
+        "bottom_structure": "가는 옆끈 하의",
+        "waistline": "낮은 하의선",
+        "strap_positions": "어깨·하의 옆끈",
+        "garter_connection": "가터 없음",
+        "lace_placement": "컵 상단·하의 상단",
+        "embroidery_placement": "기법 미확정",
+        "ornament_positions": "작은 리본",
+        "material_thickness": "얇은 패널 표현, 성분 미확정",
+        "gloss": "부드러운 면 반사",
+        "sheer": "컵 일부 반투명",
+        "color_combination": "짙은 보라·검정·분홍",
+        "seam_lines": "컵 중앙선·하의 경계",
+        "edge_finish": "레이스 스캘럽·바인딩",
+        "outer_layer_overlap": "리브 상의 아래 패널·끈 겹침",
+        "limitations": "실제 지지력·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "00ca4b949d78dfdb0347dce33307c17e9842c10ce01bd29a750e0e3ff0251a2d",
+      "dimensions": [
+        849,
+        1200
+      ]
+    },
+    {
+      "id": "U09",
+      "filename": "84419509＿p1＿.jpg",
+      "library_file_id": "libfile_e63813c4a0e88191befa3e1c22c48295",
+      "local_path": "/workspace/scratch/751839635353/upload/84419509＿p1＿.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "교차 스트랩 세트",
+        "top_structure": "컵·다중 교차 끈",
+        "bottom_structure": "하의·스타킹 상단 일부",
+        "waistline": "복부·골반 교차 끈",
+        "strap_positions": "가슴 위 교차·허리 끈",
+        "garter_connection": "상단 연결 미확인",
+        "lace_placement": "컵 상단·스타킹 상단",
+        "embroidery_placement": "꽃형 문양",
+        "ornament_positions": "목 장식 등은 적용 대상 제외",
+        "material_thickness": "망사형 컵·끈",
+        "gloss": "낮은 천 반사",
+        "sheer": "컵 부분 투명",
+        "color_combination": "검정",
+        "seam_lines": "숨은 봉제 미확인",
+        "edge_finish": "스캘럽·가는 테두리",
+        "outer_layer_overlap": "겉옷 없음; 교차끈이 겉옷 밖으로 나오지 않게 검토",
+        "limitations": "후면·스트랩 기능·가터 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "dac40c8d084c2e9d42e7595bda7e45594c4719f9a99db3287ead1cacf053b5d1",
+      "dimensions": [
+        786,
+        1150
+      ]
+    },
+    {
+      "id": "U10",
+      "filename": "75789078_p0_master1200(1).jpg",
+      "library_file_id": "libfile_07ac481be64c8191aab60f380b6829c2",
+      "local_path": "/workspace/scratch/751839635353/upload/75789078_p0_master1200(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "컷아웃 일체 연결형",
+        "top_structure": "컵과 하부 연결 레이스 패널",
+        "bottom_structure": "하부 패널·스타킹 일부",
+        "waistline": "허리 개구부·끈",
+        "strap_positions": "목 방향 끈·복부 교차",
+        "garter_connection": "스타킹 지지 연결 미확인",
+        "lace_placement": "컵~몸통 연결·다리 착장",
+        "embroidery_placement": "회색 꽃형 문양",
+        "ornament_positions": "연결점 작은 장식",
+        "material_thickness": "레이스 바탕",
+        "gloss": "낮은 광택",
+        "sheer": "몸통 일부 투명 표현",
+        "color_combination": "회색·검정",
+        "seam_lines": "패널 이음 일부",
+        "edge_finish": "레이스 테두리",
+        "outer_layer_overlap": "겉옷 없음; 개구부를 새 디자인으로 복제하지 않음",
+        "limitations": "구조·지지력·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "7b6261fa78aa5614ec71e02db8b4afb268b1ac318f597375cdc71300c51ca013",
+      "dimensions": [
+        700,
+        700
+      ]
+    },
+    {
+      "id": "U11",
+      "filename": "18522496e4a1d92ff(1).jpg",
+      "library_file_id": "libfile_44217fe3a74c8191adddbcafc46c5124",
+      "local_path": "/workspace/scratch/751839635353/upload/18522496e4a1d92ff(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 밴드 세트",
+        "top_structure": "삼각 패널·넓은 하단 밴드",
+        "bottom_structure": "삼각 패널·넓은 허리밴드",
+        "waistline": "굵은 탄성밴드 형태",
+        "strap_positions": "어깨끈",
+        "garter_connection": "가터 없음",
+        "lace_placement": "레이스 없음",
+        "embroidery_placement": "문자 인쇄; 복제 제외",
+        "ornament_positions": "의복 장식 거의 없음",
+        "material_thickness": "매끈한 패널·밴드",
+        "gloss": "완만한 반사",
+        "sheer": "불투명",
+        "color_combination": "검정·흰색",
+        "seam_lines": "중앙·테두리 일부",
+        "edge_finish": "단순 바인딩",
+        "outer_layer_overlap": "흰 셔츠·밴드가 겹침",
+        "limitations": "실제 원단 성분·뒤 여밈 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "f2994175e68df89ed53960fd6f99b1889135e84c4ce8b07e135738edba5d4dc5",
+      "dimensions": [
+        900,
+        1271
+      ]
+    },
+    {
+      "id": "U12",
+      "filename": "8643000b7698a2d9a02d374fee75371635dfe7088b0b1d56f6d9d56a55565acd(1).jpg",
+      "library_file_id": "libfile_88fb784db698819180eb820051b8a572",
+      "local_path": "/workspace/scratch/751839635353/upload/8643000b7698a2d9a02d374fee75371635dfe7088b0b1d56f6d9d56a55565acd(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 레이스 세트·겉옷",
+        "top_structure": "컵·어깨끈",
+        "bottom_structure": "넓은 전면 하의",
+        "waistline": "허리 레이스 가장자리",
+        "strap_positions": "어깨끈 일부",
+        "garter_connection": "보이는 연결 없음",
+        "lace_placement": "컵 상단·하의 가장자리",
+        "embroidery_placement": "동색 꽃형 패턴",
+        "ornament_positions": "중앙 리본",
+        "material_thickness": "패널과 레이스 구분",
+        "gloss": "낮은 천 반사",
+        "sheer": "레이스 가장자리 일부",
+        "color_combination": "분홍·흰색·짙은 테두리",
+        "seam_lines": "컵 경계 일부",
+        "edge_finish": "스캘럽·리본",
+        "outer_layer_overlap": "흰 셔츠·짙은 겉옷·치마와의 앞뒤 관계",
+        "limitations": "겹옷에 가린 하의 옆·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "0e1abc58e56797ffb7ec3ea98f640e963145c3a614e5d3b5338fbe2f8690a8f3",
+      "dimensions": [
+        1000,
+        750
+      ]
+    },
+    {
+      "id": "U13",
+      "filename": "1794358ea6b18d128(1).jpg",
+      "library_file_id": "libfile_c579a2bc6a208191828d04f4f02669b4",
+      "local_path": "/workspace/scratch/751839635353/upload/1794358ea6b18d128(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "레이스·허리벨트 연결형",
+        "top_structure": "곡선 컵·가슴 위 교차끈",
+        "bottom_structure": "하의·독립 허리벨트·스타킹",
+        "waistline": "넓은 벨트와 골반끈",
+        "strap_positions": "교차·허리 세로끈",
+        "garter_connection": "허리벨트→스타킹 상단으로 보이는 연결",
+        "lace_placement": "컵·벨트·스타킹 띠",
+        "embroidery_placement": "덩굴형 문양",
+        "ornament_positions": "금속 링",
+        "material_thickness": "레이스와 지지 띠 대비",
+        "gloss": "완만한 반사",
+        "sheer": "스타킹 일부 반투명",
+        "color_combination": "검정·짙은 회색",
+        "seam_lines": "패널 가장자리 일부",
+        "edge_finish": "레이스 스캘럽",
+        "outer_layer_overlap": "겉옷 없음; 연결점 마찰 검토",
+        "limitations": "누운 원근·숨은 클립·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "d1cd1900722b494910d374328e1f6451314a4b9e6769979b6dd76cff60c55df3",
+      "dimensions": [
+        1022,
+        1500
+      ]
+    },
+    {
+      "id": "U14",
+      "filename": "268427d99fd33d709ba6735cf34c9c21cb51ff983eb9b7fc020dd3bb44939672(1).jpg",
+      "library_file_id": "libfile_d55bfe9862288191b441a07892d68e07",
+      "local_path": "/workspace/scratch/751839635353/upload/268427d99fd33d709ba6735cf34c9c21cb51ff983eb9b7fc020dd3bb44939672(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "짧은 레이어형 이너 드레스",
+        "top_structure": "컵·가는 끈",
+        "bottom_structure": "몸통에서 이어지는 얇은 자락",
+        "waistline": "짧은 하단·중앙 레이어",
+        "strap_positions": "어깨끈",
+        "garter_connection": "미확인",
+        "lace_placement": "컵 가장자리",
+        "embroidery_placement": "작은 꽃형 문양",
+        "ornament_positions": "리본·자락 프릴",
+        "material_thickness": "광택 패널과 얇은 자락 대비",
+        "gloss": "넓은 부드러운 반사",
+        "sheer": "하단 자락 투명 표현",
+        "color_combination": "진홍·짙은 테두리",
+        "seam_lines": "컵 이음·자락 경계",
+        "edge_finish": "레이스·프릴",
+        "outer_layer_overlap": "내부 자락과 상부 패널 겹침",
+        "limitations": "자락 하부·전체 하의·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "92af3b60a865d70c188d5f1c7acff12a417175546f1b3896e556b774800a60f2",
+      "dimensions": [
+        1000,
+        559
+      ]
+    },
+    {
+      "id": "U15",
+      "filename": "407072f5e091f850a30aef770ea12e728a1d9fac1ec5e8a48d76d34dfed3df0a.jpg",
+      "library_file_id": "libfile_c78bb6aa334081919db53425ebadfc4e",
+      "local_path": "/workspace/scratch/751839635353/upload/407072f5e091f850a30aef770ea12e728a1d9fac1ec5e8a48d76d34dfed3df0a.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 세트·겉옷 겹침",
+        "top_structure": "곡선 컵·리본",
+        "bottom_structure": "전면 하의 패널",
+        "waistline": "치마·하의 허리 겹침",
+        "strap_positions": "가는 어깨끈 일부",
+        "garter_connection": "미확인",
+        "lace_placement": "컵 상단·하의 가장자리",
+        "embroidery_placement": "분홍 꽃형 문양",
+        "ornament_positions": "중앙 리본",
+        "material_thickness": "매끈한 밝은 바탕·레이스",
+        "gloss": "넓고 부드러운 반사",
+        "sheer": "대부분 불투명; 경계 일부",
+        "color_combination": "흰색·분홍",
+        "seam_lines": "컵 경계 일부",
+        "edge_finish": "스캘럽·바인딩",
+        "outer_layer_overlap": "니트·치마·가방끈의 앞뒤 관찰; 복식 복제 제외",
+        "limitations": "후면·겹옷 아래 끈 경로 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "e72a4fed2511f5c51912b40ac9f0673614ea617916c435972c12d3a339bb112c",
+      "dimensions": [
+        1000,
+        730
+      ]
+    },
+    {
+      "id": "U16",
+      "filename": "185554a4bc3565915.jpg",
+      "library_file_id": "libfile_f479993e16dc8191b2712a657046ef8c",
+      "local_path": "/workspace/scratch/751839635353/upload/185554a4bc3565915.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 삼각 레이스",
+        "top_structure": "세로 이음 삼각 패널",
+        "bottom_structure": "가는 옆끈·전면 패널",
+        "waistline": "낮은 하의선",
+        "strap_positions": "어깨·하의 옆끈",
+        "garter_connection": "가터 없음",
+        "lace_placement": "컵·하의 전면",
+        "embroidery_placement": "동색 꽃형 문양",
+        "ornament_positions": "두드러진 장식 없음",
+        "material_thickness": "얇은 레이스 표현",
+        "gloss": "낮은 천 광택",
+        "sheer": "패널 부분 투명",
+        "color_combination": "짙은 보라·검정",
+        "seam_lines": "컵 세로선",
+        "edge_finish": "검정 바인딩",
+        "outer_layer_overlap": "티셔츠·재킷 아래 레이어 겹침",
+        "limitations": "컵 기능·후면·숨은 하의 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "0b032ae70db6162bf5696f30a59f7a15de5d140287a982880ee3815cbc9062e3",
+      "dimensions": [
+        849,
+        1200
+      ]
+    },
+    {
+      "id": "U17",
+      "filename": "184703ac08856a698.jpg",
+      "library_file_id": "libfile_9a07b7e491b48191a3cfd2243ef22788",
+      "local_path": "/workspace/scratch/751839635353/upload/184703ac08856a698.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 꽃 레이스",
+        "top_structure": "컵·넓게 보이는 어깨끈",
+        "bottom_structure": "하의 옆면 일부",
+        "waistline": "하의선 부분만 관찰",
+        "strap_positions": "어깨끈·옆 밴드",
+        "garter_connection": "미확인",
+        "lace_placement": "컵 전면 꽃 레이스",
+        "embroidery_placement": "동색 큰 꽃형 문양",
+        "ornament_positions": "중앙 작은 리본",
+        "material_thickness": "꽃 패턴·바탕 대비",
+        "gloss": "완만한 반사",
+        "sheer": "판독 제한",
+        "color_combination": "분홍·보라",
+        "seam_lines": "컵 하단 경계",
+        "edge_finish": "좁은 가장자리",
+        "outer_layer_overlap": "겉옷 없음; 어깨끈과 외부 끈 겹침 참고",
+        "limitations": "위쪽 원근·하의·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "ae10cf40cf90e346bb4d46702afb3d4e35932339286026f82ad12174e30001ba",
+      "dimensions": [
+        514,
+        747
+      ]
+    },
+    {
+      "id": "U18",
+      "filename": "180433f2cfc94d77.jpg",
+      "library_file_id": "libfile_5536f3697e34819188bfdb077e1b7d3c",
+      "local_path": "/workspace/scratch/751839635353/upload/180433f2cfc94d77.jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 밝은 레이스",
+        "top_structure": "컵·하단 밴드",
+        "bottom_structure": "매끈한 전면 하의",
+        "waistline": "좁은 하의 옆밴드",
+        "strap_positions": "상부 끈은 셔츠에 가림",
+        "garter_connection": "가터 없음",
+        "lace_placement": "컵 상부·전면",
+        "embroidery_placement": "흰 꽃형 패턴",
+        "ornament_positions": "분홍 중앙 리본",
+        "material_thickness": "얇은 꽃 레이스·패널",
+        "gloss": "부드러운 반사",
+        "sheer": "컵 부분 투명 표현",
+        "color_combination": "흰색·옅은 분홍",
+        "seam_lines": "컵 중앙·하단 경계",
+        "edge_finish": "레이스 스캘럽",
+        "outer_layer_overlap": "셔츠 아래 컵·끈 겹침",
+        "limitations": "후면·실제 원단 성분·끈 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "407807eb672970550b5bd2f364e54584737a9b24b386fdc39e1541afc592fbf0",
+      "dimensions": [
+        731,
+        1200
+      ]
+    },
+    {
+      "id": "U19",
+      "filename": "19217a3ef4e13f0b0(1).png",
+      "library_file_id": "libfile_508de87dbadc8191aa619fb1ff30504d",
+      "local_path": "/workspace/scratch/751839635353/upload/19217a3ef4e13f0b0(1).png",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "겉옷 아래 분리형·가터",
+        "top_structure": "컵·가슴 위 교차끈",
+        "bottom_structure": "하의는 치마에 가림",
+        "waistline": "치마 허리선; 가터 상부 가림",
+        "strap_positions": "가슴 교차·세로 가터 일부",
+        "garter_connection": "스타킹 상단 클립은 보임; 허리 고정은 가림",
+        "lace_placement": "컵 상단",
+        "embroidery_placement": "보라 장미형 문양",
+        "ornament_positions": "중앙 리본·장식",
+        "material_thickness": "매끈한 컵과 스타킹",
+        "gloss": "컵의 완만한 반사",
+        "sheer": "컵 대체로 불투명",
+        "color_combination": "보라·검정·흰 겉옷",
+        "seam_lines": "컵 세로 경계",
+        "edge_finish": "장식 테두리·밴드",
+        "outer_layer_overlap": "셔츠·치마가 연결을 가림; 보이는 클립과 숨은 경로 구분",
+        "limitations": "허리 가터벨트 전체·하의·후면 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "7446fde37a39bb133c5fc65a56745263025368c3cf0f175410c942ae80839e58",
+      "dimensions": [
+        791,
+        1134
+      ]
+    },
+    {
+      "id": "U20",
+      "filename": "18287aecc1e55243b(1).jpg",
+      "library_file_id": "libfile_81edcd879a7481919a8e2a931f3e48c9",
+      "local_path": "/workspace/scratch/751839635353/upload/18287aecc1e55243b(1).jpg",
+      "analysis_status": "completed_with_observation_limits",
+      "observations": {
+        "silhouette": "분리형 레이스·가터벨트",
+        "top_structure": "컵·넓은 레이스 어깨끈",
+        "bottom_structure": "하의·별도 넓은 허리벨트",
+        "waistline": "이중 가는 허리끈·중앙 연결",
+        "strap_positions": "어깨·세로 가터끈",
+        "garter_connection": "벨트→스타킹 상단; 클립 전체는 잘림",
+        "lace_placement": "컵·벨트·하의·스타킹 띠",
+        "embroidery_placement": "큰 곡선/꽃 문양",
+        "ornament_positions": "중앙 연결·슬라이더",
+        "material_thickness": "망사형 바탕·띠 대비",
+        "gloss": "낮은 천 반사",
+        "sheer": "레이스 패널 투명형",
+        "color_combination": "검정·밝은 바탕",
+        "seam_lines": "컵 하단 경계",
+        "edge_finish": "스캘럽·바인딩",
+        "outer_layer_overlap": "겉옷 없음; 벨트·레이스 두께 간섭 검토",
+        "limitations": "후면·하단 클립·전체 연결 미확정"
+      },
+      "scope": "의복 구조만 분석. 인물·체형·표정·포즈·노출·문구·주변 소품은 보스 디자인으로 옮기지 않음.",
+      "sha256": "e49689efaa492154cb3e40ee403ec1f1a1c73bbd39ab158c261ca83ed63e3fe9",
+      "dimensions": [
+        900,
+        1201
+      ]
+    }
+  ],
+  "latest_character_art_standard": {
+    "face_shape_reference": "dist/assets/npc-innkeeper-cutout-v1.png",
+    "face_application": "여관주인 얼굴 형태 기반 변형; 캐릭터별 눈매·표정·헤어·눈색·정체성 차별화",
+    "female_head_ratio_target": 8,
+    "measurement_definition": "헤어/모자/굽 제외, 정수리–턱 1단위, 정수리–발바닥 8단위",
+    "status": "text_standard_set_visual_application_pending",
+    "image_generation_requires_explicit_user_request": true
+  },
+  "additional_underlayer_references_20261009": [
+    {
+      "id": "U21",
+      "filename": "19042cfcb3b5365bb.jpg",
+      "size_px": [
+        849,
+        1200
+      ],
+      "sha256": "8eb46f9771dab1e7d12071431fa6b421ffa9d9d72af1aa923d80740155b3d7e9",
+      "observation": "남색 바탕에 황색·청색 꽃 자수, 가장자리 레이스, 가는 어깨·옆 스트랩. 재질 성분·후면 연결은 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U22",
+      "filename": "18491ef533152e72d.jpg",
+      "size_px": [
+        748,
+        1200
+      ],
+      "sha256": "e0a830e61c6e3341825455a4e6e15e3e53b3350f967e7d06d074ddc8f1de29ec",
+      "observation": "밝은 청색 컵과 하의, 밝은 꽃 레이스·넓은 밑가슴 지지부·중앙 작은 장식. 후면 구조 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U23",
+      "filename": "18287b28e3955243b.jpeg",
+      "size_px": [
+        692,
+        1200
+      ],
+      "sha256": "dd2e6829898d4752c02e4a4dbe4da10221ec4c48f23119f10002940981c8d0a7",
+      "observation": "연분홍 패널과 검정 배색·레이스 가장자리, 컵 패널과 하의 허리 레이스 경계. 원근 때문에 폭 실측 불가.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U24",
+      "filename": "18257dd985740a91f.jpg",
+      "size_px": [
+        900,
+        1263
+      ],
+      "sha256": "9471f362500e93bf6aba670dcd55ac5ce8f0a19678d0e9f83b9f17b5752eb637",
+      "observation": "청색 삼각형 소프트 상의, 가는 끈과 교차 장식선. 장식선의 지지 역할은 확정하지 않음.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U25",
+      "filename": "17170b07c0c47c07f.jpg",
+      "size_px": [
+        900,
+        1252
+      ],
+      "sha256": "b876d55b6c2ecc3d3c2e4fbe5c2387bc63cf97e738c875c4e14897ed31f72faf",
+      "observation": "진홍 바탕과 검정 레이스 테두리, 분리형 상하의·중앙 장식. 가려진 여밈은 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U26",
+      "filename": "1923b3ed9a3588ca6(1).jpg",
+      "size_px": [
+        900,
+        1036
+      ],
+      "sha256": "a5cb40e7bfb704a8dd7f332e91d61137eccbd9200f2d2cb959adb74aadc12361",
+      "observation": "검정 레이스 상의와 넓은 허리부·스타킹 상단·연결끈 일부. 겉옷과 겹친 전체 연결 경로 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U27",
+      "filename": "1889f8aaf3e56d1c9(2).png",
+      "size_px": [
+        900,
+        675
+      ],
+      "sha256": "ab1b194cb5450f2076fba118bec0732407d11ecbcb049a29969a10fb844e9a41",
+      "observation": "검정 꽃 레이스 컵과 가는 스트랩·중앙 리본, 아래쪽 허리부 일부. 하의·후면은 가려짐.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U28",
+      "filename": "1888f1e145c13f0b0(2).jpeg",
+      "size_px": [
+        900,
+        1250
+      ],
+      "sha256": "251956fadd7b614d20eac675fe599ed34ba87c42001d1372b20bc5b3ea3a82e1",
+      "observation": "검정 꽃 레이스 상하의, 물결형 가장자리와 곡선 컵 경계. 소재의 안감·후면 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U29",
+      "filename": "1794df8a5d152e23f.jpg",
+      "size_px": [
+        705,
+        1200
+      ],
+      "sha256": "8be0317dbf8f203ba546bed6774bc170a414deda3c3ced72406e409aab498b6f",
+      "observation": "밝은 청색 꽃 레이스 상하의·작은 중앙 장식·가는 옆선. 하체 지지 연결은 제한적으로만 보임.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U30",
+      "filename": "184abc47f932130a.jpg",
+      "size_px": [
+        900,
+        640
+      ],
+      "sha256": "0cb0eb68bdae002c16ec30daaa7848a504a4e31cba84bc58bc07d48182423a2c",
+      "observation": "밝은 분홍·백색 레이스와 가터·스타킹 연결 일부. 누운 자세의 원근은 구조 관찰에만 사용.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U31",
+      "filename": "182aeee7c0373da(2).jpg",
+      "size_px": [
+        900,
+        1370
+      ],
+      "sha256": "1832a73ab7af3d7d2866f3faa5c4bf7cc59c633f242d1946038ab7d1fc3ba463",
+      "observation": "검정 레이스 컵·다중 장식 스트랩·허리 가터와 레이스 스타킹 상단. 끈의 기능은 보이는 접점만 기록.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U32",
+      "filename": "178d68d3f7d4f4ea7.jpg",
+      "size_px": [
+        850,
+        1200
+      ],
+      "sha256": "33a975d1309051a4c07385ef9f899afb700d513b9a2afb27f3a7cd99a94c03ae",
+      "observation": "검정 레이스 분리형 착장·옆 매듭 일부. 컵·하의 전체와 후면 연결은 가려져 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U33",
+      "filename": "18e6143396151da94(2).jpg",
+      "size_px": [
+        900,
+        1415
+      ],
+      "sha256": "466d3c08e17f0fcf02abaa78e018259f926f9398f9976cd40d31a1164ab6c5c9",
+      "observation": "청록색 꽃 자수 컵과 레이스 하의 패널, 매끈한 테두리 배색. 실측 두께·지지력 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U34",
+      "filename": "18be587a00113f0b0(1).png",
+      "size_px": [
+        900,
+        1273
+      ],
+      "sha256": "21dcdbdc8b1bba0ad9ae7447add84aed1906dcc69412784722dd8168dd5dd905",
+      "observation": "U21과 동일 구도의 남색·황색/청색 꽃 자수 착장. 시각적 중복 자료이며 파일 바이트는 다름.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U35",
+      "filename": "17c5649ca74547851(1).jpg",
+      "size_px": [
+        599,
+        842
+      ],
+      "sha256": "46ab8d849c4769cb3c342689042bd2bc1100205d95acfa34f32e79f20f658443",
+      "observation": "검정 스타킹 상단 레이스와 보이는 세로 연결끈. 상의와 전체 허리 지지 구조는 판독 불가.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U36",
+      "filename": "17b6467cd8948cce3(1).jpg",
+      "size_px": [
+        900,
+        602
+      ],
+      "sha256": "bd77ec924011c4f6f4aae74bf62f1672e0535076e83d7eff779c61fc80e21d54",
+      "observation": "검정 바탕·청색 가장자리의 분리형 착장과 컵 배색 일부. 가려진 하의·여밈 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U37",
+      "filename": "17afcbf9c5150670c(1).jpg",
+      "size_px": [
+        900,
+        1508
+      ],
+      "sha256": "80106f58477375e4da4dd354c866073f212def3021f9e4d84c60b2c12b831f81",
+      "observation": "검정 레이스 상하의·금색/밝은 자수 포인트·가는 어깨끈. 지지 구조와 후면 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U38",
+      "filename": "7abbc250ef8ff52285dcc835981b95ed18b38d9340615e4c0aa4ddbf61cbfc08.jpg",
+      "size_px": [
+        1000,
+        1567
+      ],
+      "sha256": "871e1fa8fe8791f11e6b19462e1a939db9c231916cd7d3595e2a7f87b365cea2",
+      "observation": "검정 패널·청색 꽃 장식·여러 가는 연결선. 장식끈과 가터 지지끈의 기능을 단정하지 않음.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U39",
+      "filename": "5a506d2973aceaea6962e2219497a501c92e5ebb8411d5d438f1b670646fa420(1).jpg",
+      "size_px": [
+        1000,
+        750
+      ],
+      "sha256": "6905354938a6da06fb3e25f5db4e0045d870a513cb557a715c2d2a9c14d40bd1",
+      "observation": "검정 레이스 컵과 가는 어깨끈·검정 가장자리. 하의 및 후면 미확정.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    },
+    {
+      "id": "U40",
+      "filename": "＿＿original＿and＿1＿more＿drawn＿by＿yahiro＿pochi＿＿sample－4010413ca3ad991502811aa1.jpg",
+      "size_px": [
+        850,
+        1226
+      ],
+      "sha256": "45e3a6bf54af3e21ee64d376d74c3d319b09934a447bfb8fef46d9402730546d",
+      "observation": "검정 세로 주름/골 조직의 컵·레이스 가장자리·가는 끈. 신축성·성분은 시각 자료로 확정 불가.",
+      "status": "visual_structure_reviewed",
+      "application_scope": "의복 디자인·재질 표현만; 체형·얼굴·포즈·노출 복제 제외"
+    }
+  ],
+  "playable_underlayer_design_proposals": [
+    {
+      "name": "벨",
+      "references": "U22 · U29",
+      "silhouette_and_panels": "아이보리 소프트 컵·녹색 레이스 브라 / 로우라이즈 작은 앞패널·좁은 옆선",
+      "material_palette_details": "아이보리 컵·짙은 녹색 레이스·작은 진홍 장미 / 아이보리 작은 앞패널·녹색 좁은 옆끈·중앙 장미 소량",
+      "connections_status": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "아이보리 컵·짙은 녹색 레이스·작은 진홍 장미",
+        "low_rise_bottom": "아이보리 작은 앞패널·녹색 좁은 옆끈·중앙 장미 소량",
+        "references_and_connections": "U41/U50. 가터벨트는 아이보리 중심·녹색 레이스, 붉은 포인트 최소"
+      },
+      "superseded_by": "approved_playable_character_designs.bell",
+      "current_setting": "회색 기능성 스포츠 브라·로우라이즈 미니멀 하의",
+      "garter_belt": false,
+      "stockings": false
+    },
+    {
+      "name": "세라핀",
+      "references": "U22 · U33",
+      "silhouette_and_panels": "백색/청색 3패널 컵·자수 레이스 브라 / 로우라이즈 최소 면적 하의",
+      "material_palette_details": "백색/옅은 청색 컵·청색 자수 레이스·금색 별자리 / 백색/옅은 청색 작은 앞패널·청색 좁은 옆끈·작은 별 자수",
+      "connections_status": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "백색/옅은 청색 컵·청색 자수 레이스·금색 별자리",
+        "low_rise_bottom": "백색/옅은 청색 작은 앞패널·청색 좁은 옆끈·작은 별 자수",
+        "references_and_connections": "U45/U46. 가터벨트도 백색·청색, 금색은 가는 자수만"
+      },
+      "superseded_by": "approved_playable_character_designs.seraphin",
+      "current_setting": "백색·옅은 청색 레이스 브라·불투명 안감, 로우라이즈 미니멀 하의; 기능성 아님",
+      "garter_belt": false,
+      "stockings": true
+    },
+    {
+      "name": "루미에라",
+      "references": "U22 · U23",
+      "silhouette_and_panels": "아이보리 지지형 브라·얇은 크림 레이스 / 로우라이즈 최소 면적 하의",
+      "material_palette_details": "아이보리 컵·크림 레이스·옅은 금색 성문양 / 아이보리 작은 앞패널·크림색 좁은 옆끈·금색 가는 마감",
+      "connections_status": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "아이보리 컵·크림 레이스·옅은 금색 성문양",
+        "low_rise_bottom": "아이보리 작은 앞패널·크림색 좁은 옆끈·금색 가는 마감",
+        "references_and_connections": "U44/U49의 컵/벨트 구분. 가터벨트도 아이보리·크림·금색 소량"
+      },
+      "superseded_by": "approved_playable_character_designs.lumiera",
+      "current_setting": "아이보리·크림 레이스 브라·로우라이즈 미니멀 하의, 금색 성문양, 독립 가터벨트·크림 스타킹",
+      "garter_belt": true,
+      "stockings": true
+    },
+    {
+      "name": "베르나",
+      "references": "image.png · U24 · U40",
+      "silhouette_and_panels": "영상처럼 가는 끈의 삼각형 소프트 컵 / 작은 삼각 앞패널·가는 옆끈·낮은 앞중심",
+      "material_palette_details": "짙은 녹색 삼각 컵·가는 같은 색 끈·코코아색 얇은 마감 / 짙은 녹색 작은 삼각 앞패널·가는 녹색 옆끈·코코아 봉제선",
+      "connections_status": "가터 없음. 뒤판 면적/정확한 후면 패턴은 영상만으로 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "sports_bra_reference": "스포츠형 폐기 이력; 영상 삼각 컵/가는 끈 형태 유지",
+      "palette": [
+        "짙은 녹색",
+        "코코아색 소량"
+      ],
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "reference_video": "f138a8a7dfb64bd98467637d48b0ea90.mp4",
+      "latest_palette_matching": {
+        "top": "짙은 녹색 삼각 컵·가는 같은 색 끈·코코아색 얇은 마감",
+        "low_rise_bottom": "짙은 녹색 작은 삼각 앞패널·가는 녹색 옆끈·코코아 봉제선",
+        "references_and_connections": "첨부 영상 형태 우선. 스포츠형 아닌 가는 끈 세트로 배색 변경"
+      },
+      "superseded_by": "approved_playable_character_designs.verna",
+      "current_setting": "짙은 녹색 삼각 컵·가는 끈·로우라이즈 미니멀 하의·코코아 마감, 가터·스타킹 없음"
+    },
+    {
+      "name": "이리스",
+      "references": "U28 · U31 · U37",
+      "silhouette_and_panels": "검정 곡선 컵·아이보리 마감 레이스 브라 / 로우라이즈 최소 면적 하의",
+      "material_palette_details": "검정 레이스 컵·아이보리 얇은 테두리·작은 실 자수 / 검정 작은 앞패널·검정 레이스 좁은 옆선·아이보리 마감",
+      "connections_status": "가터 없음 제안 유지",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "검정 레이스 컵·아이보리 얇은 테두리·작은 실 자수",
+        "low_rise_bottom": "검정 작은 앞패널·검정 레이스 좁은 옆선·아이보리 마감",
+        "references_and_connections": "U42/U49/U51. 독립 가터 추가 없음"
+      },
+      "superseded_by": "approved_playable_character_designs.iris",
+      "current_setting": "검정 레이스 브라·불투명 안감·로우라이즈 미니멀 하의, 금색 자수·아이보리 얇은 마감, 가터 없음"
+    },
+    {
+      "name": "카렌",
+      "references": "image.png · U24",
+      "silhouette_and_panels": "흰 천 붕대 상의: 가로 겹침과 고정점이 있는 랩 구조 / 서양식 로인클로스 참고: 낮은 골반의 가는 허리끈과 작은 앞·뒤 천 덮개",
+      "material_palette_details": "흰색 불투명 천 붕대 / 낮은 골반선의 흰 천 로인클로스·작은 앞뒤 덮개",
+      "connections_status": "스포츠 브라·회색 스포츠 세트 폐기. 반바지형/긴 치마형 아님",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "sports_bra_reference": "폐기: 흰 천 붕대 상의로 변경",
+      "palette": [
+        "흰색"
+      ],
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "흰색 불투명 천 붕대",
+        "low_rise_bottom": "낮은 골반선의 흰 천 로인클로스·작은 앞뒤 덮개",
+        "references_and_connections": "사용자 흰색 지정 유지. 색 장식 추가 없이 겹침·질감·묶음으로 구분"
+      },
+      "superseded_by": "approved_playable_character_designs.karen",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 로인클로스 앞뒤 덮개·옆 묶음"
+    },
+    {
+      "name": "이레",
+      "references": "image.png · U24",
+      "silhouette_and_panels": "흰 천 붕대 상의: 가로 겹침과 고정점이 있는 랩 구조 / 동양식 훈도시 참고: 낮은 골반 허리끈과 작은 앞천·뒤쪽 회수/묶음 구조",
+      "material_palette_details": "흰색 불투명 천 붕대 / 낮은 골반선의 흰 천 훈도시·작은 앞천·묶음",
+      "connections_status": "스포츠 브라·회색 스포츠 세트 폐기. 전통 유형/후면 상세는 미확정",
+      "status": "historical_proposal_superseded",
+      "mandatory_bottom_shape": "low_rise_minimal_coverage",
+      "bottom_design_override": "낮은 골반선·좁은 옆선·최소 면적. 이전 브리프형 제안 폐기.",
+      "sports_bra_reference": "폐기: 흰 천 붕대 상의로 변경",
+      "palette": [
+        "흰색"
+      ],
+      "latest_instruction": "2026-10-09 21:33 KST",
+      "latest_palette_matching": {
+        "top": "흰색 불투명 천 붕대",
+        "low_rise_bottom": "낮은 골반선의 흰 천 훈도시·작은 앞천·묶음",
+        "references_and_connections": "사용자 흰색 지정 유지. 색 장식 추가 없이 접힘·묶음 구조로 구분"
+      },
+      "superseded_by": "approved_playable_character_designs.ire",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 훈도시형 하의·옆 묶음"
+    }
+  ],
+  "mandatory_underlayer_bottom_rule": {
+    "scope": "전 캐릭터",
+    "allowed": "로우라이즈 미니멀 하의: 낮은 골반선·좁은 옆선·최소 면적",
+    "prohibited": [
+      "브리프형 통일 규칙",
+      "드로즈",
+      "드로어즈",
+      "보이쇼츠",
+      "사각 팬티",
+      "반바지형 하의",
+      "중간 허리선",
+      "높은 허리선",
+      "넓은 복부 덮개"
+    ],
+    "priority": "최신 사용자 확정 지시; 이전 규칙 폐기",
+    "rear_cut": "T백/끈팬티 여부 미확정",
+    "visual_application": "별도 이미지 요청 대기"
+  },
+  "mandatory_sports_underlayer_rule": {
+    "bra_reference": "CK 브라의 간결한 컵/어깨끈·넓은 탄성 밑가슴 밴드 구조",
+    "specific_model": "미지정",
+    "brand_lettering": "별도 미지정",
+    "palette": [
+      "회색"
+    ],
+    "scope": "모든 스포츠형 상의·하의·밴드·끈; 미래 스포츠형 변경에도 적용",
+    "material_direction": "무광 신축 니트 시각 표현; 실제 성분 미확정",
+    "bottom": "로우라이즈·최소 면적 유지",
+    "current_characters": [],
+    "status": "Conditional rule only; previous four sport sets superseded by latest user designs."
+  },
+  "latest_underlayer_character_overrides": [
+    {
+      "name": "아르델라",
+      "top": "회색 곡선 컵 레이스 브라",
+      "bottom": "낮은 앞중심·좁은 레이스 옆선의 미니멀 하의",
+      "material_palette": "회색 레이스·불투명 안감. CK형 넓은 밴드는 제거",
+      "connections_notes": "가터·스타킹 없음 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F1-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "로제벨",
+      "top": "샴페인 새틴 3패널 브라·진홍 레이스",
+      "bottom": "로우라이즈 작은 앞패널·레이스 옆선",
+      "material_palette": "기존 샴페인·진홍·장미 자수 유지",
+      "connections_notes": "기존 가터벨트·스타킹 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F2-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "아스트라",
+      "top": "청보라 곡선 컵·레이스 상단 브라",
+      "bottom": "로우라이즈 작은 앞패널·안감 레이스 옆선",
+      "material_palette": "청보라·금색 천문 자수 유지",
+      "connections_notes": "기존 가터벨트·스타킹 유지; 기존 색상 충돌 기록 보존",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F3-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "모르가나",
+      "top": "검정 실크 일체형 보디수트 상부",
+      "bottom": "일체형 내부 하부의 낮은 골반선·최소 면적",
+      "material_palette": "검정·보라·기존 시스루 다리 패널 유지",
+      "connections_notes": "별도 가터 없음; 기존 일체형/발 노출 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F4-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "이벨린",
+      "top": "아이보리 곡선 컵·연보라 레이스 브라",
+      "bottom": "로우라이즈 최소 면적 하의",
+      "material_palette": "아이보리 새틴/실크 느낌·보라 레이스·성구 자수",
+      "connections_notes": "같은 소재·배색의 독립 가터벨트 추가. 스타킹 정확한 색/전체 경로 미확정",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F5-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "벨",
+      "top": "아이보리 소프트 컵·녹색 레이스 브라",
+      "bottom": "로우라이즈 작은 앞패널·좁은 옆선",
+      "material_palette": "아이보리 매끄러운 직물·녹색 레이스·장미 자수 유지",
+      "connections_notes": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.bell",
+      "current_setting": "회색 기능성 스포츠 브라·로우라이즈 미니멀 하의",
+      "garter_belt": false,
+      "stockings": false
+    },
+    {
+      "name": "세라핀",
+      "top": "백색/청색 3패널 컵·자수 레이스 브라",
+      "bottom": "로우라이즈 최소 면적 하의",
+      "material_palette": "백색/청색·별자리 자수·금색 소량 유지",
+      "connections_notes": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.seraphin",
+      "current_setting": "백색·옅은 청색 레이스 브라·불투명 안감, 로우라이즈 미니멀 하의; 기능성 아님",
+      "garter_belt": false,
+      "stockings": true
+    },
+    {
+      "name": "루미에라",
+      "top": "아이보리 지지형 브라·얇은 크림 레이스",
+      "bottom": "로우라이즈 최소 면적 하의",
+      "material_palette": "아이보리 불투명 부드러운 직물·크림 레이스·옅은 금색 유지",
+      "connections_notes": "동일 소재·배색의 독립 가터벨트 추가. 스타킹은 이번에 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.lumiera",
+      "current_setting": "아이보리·크림 레이스 브라·로우라이즈 미니멀 하의, 금색 성문양, 독립 가터벨트·크림 스타킹",
+      "garter_belt": true,
+      "stockings": true
+    },
+    {
+      "name": "베르나",
+      "top": "영상처럼 가는 끈의 삼각형 소프트 컵",
+      "bottom": "작은 삼각 앞패널·가는 옆끈·낮은 앞중심",
+      "material_palette": "기존 회색 유지 제안·미세 조직감 직물. 넓은 CK형 밴드 제거",
+      "connections_notes": "가터 없음. 뒤판 면적/정확한 후면 패턴은 영상만으로 확정하지 않음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.verna",
+      "current_setting": "짙은 녹색 삼각 컵·가는 끈·로우라이즈 미니멀 하의·코코아 마감, 가터·스타킹 없음"
+    },
+    {
+      "name": "이리스",
+      "top": "검정 곡선 컵·아이보리 마감 레이스 브라",
+      "bottom": "로우라이즈 최소 면적 하의",
+      "material_palette": "기존 검정 꽃 레이스·불투명 안감 유지",
+      "connections_notes": "가터 없음 제안 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.iris",
+      "current_setting": "검정 레이스 브라·불투명 안감·로우라이즈 미니멀 하의, 금색 자수·아이보리 얇은 마감, 가터 없음"
+    },
+    {
+      "name": "카렌",
+      "top": "흰 천 붕대 상의: 가로 겹침과 고정점이 있는 랩 구조",
+      "bottom": "서양식 로인클로스 참고: 낮은 골반의 가는 허리끈과 작은 앞·뒤 천 덮개",
+      "material_palette": "흰색 불투명 무광 직물·접힌 가장자리·봉제/묶음",
+      "connections_notes": "스포츠 브라·회색 스포츠 세트 폐기. 반바지형/긴 치마형 아님",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.karen",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 로인클로스 앞뒤 덮개·옆 묶음"
+    },
+    {
+      "name": "이레",
+      "top": "흰 천 붕대 상의: 가로 겹침과 고정점이 있는 랩 구조",
+      "bottom": "동양식 훈도시 참고: 낮은 골반 허리끈과 작은 앞천·뒤쪽 회수/묶음 구조",
+      "material_palette": "흰색 불투명 무광 직물·접힌 가장자리·묶음",
+      "connections_notes": "스포츠 브라·회색 스포츠 세트 폐기. 전통 유형/후면 상세는 미확정",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.ire",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 훈도시형 하의·옆 묶음"
+    }
+  ],
+  "additional_underlayer_product_references_U41_U54": [
+    {
+      "id": "U41",
+      "filename": "db99bd13-2d3f-4e25-b721-da8d0b4db6c2.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "bfd9f8cd9295169214761853033432c146a146f2e29a74f9caac0fffb2cf0d54",
+      "observation": "백색 바탕의 녹색 꽃 자수 컵, 컵 아래 봉제/지지 경계, 좁은 하의와 옆 리본 묶음. 후면/안감 미확정.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U42",
+      "filename": "6935eab8-6d92-4101-b62b-5bf8d18c7842.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "2631cbc4f4786b157f3f56cda7acf29dc8c8c2d6ef0e70a5946443626ffb0f48",
+      "observation": "갈색 꽃 레이스 컵·넓은 옆 지지 밴드·중앙 대비 리본, 하의 옆 조절 스트랩. 레이스 조직과 후면 여밈 미확정.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U43",
+      "filename": "cff53199-e23d-4c1c-9f8c-e43493ff87e2.jpg",
+      "size": [
+        800,
+        1067
+      ],
+      "sha256": "03a4943cb0e236c500f13c71291ba3e8fca993109f287f0e9743fdba5f2e253a",
+      "observation": "진홍 레이스 컵·밴드와 백색 중앙 리본, 하의 가는 옆끈/조절부. 컵 곡선과 배색 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U44",
+      "filename": "30934f06-4591-4eda-a820-f4882f3f27ac.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "beda344c9b665aff17e9f691421f595a43214d846c3619c4c0dc21d99044e524",
+      "observation": "백색 꽃 자수 컵·가는 다중 옆끈, 좁은 하의 패널·옆 리본. 장식끈/지지끈 기능은 보이는 접점만 기록.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U45",
+      "filename": "099ffbf0-2616-4c0a-8750-342f623fa62c.jpg",
+      "size": [
+        800,
+        1067
+      ],
+      "sha256": "3bedacc0b00489f80281c981772ea4be7c5d6fa358344a87085374acedb310d6",
+      "observation": "청색 꽃 자수 컵·분리된 옆 스트랩·좁은 하의와 긴 옆 리본. 꽃 자수 집중도와 테두리 구분.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U46",
+      "filename": "a74d0f05-8d96-4877-8d9c-ae7ff2826079.jpg",
+      "size": [
+        800,
+        1067
+      ],
+      "sha256": "5b97385feeec52c5a05fa70d139b5027eee571397a0f6d68377ce139141d6db1",
+      "observation": "옅은 청색·분홍 꽃 자수 컵/하의, 청색 파이핑·옆 리본. 동일 배색과 자수 흐름 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U47",
+      "filename": "9dbbef0f-922d-4494-8634-e6617a6c554f.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "0a3a746710f00ab23d42f80603d4ca0f7f3f1a540f6ee271cababbe61f4fe542",
+      "observation": "보라/연분홍 꽃 레이스 컵·분리된 옆 스트랩, 좁은 하의·보라 리본. 연결부와 자수 밀도 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U48",
+      "filename": "715ec638-c8de-4ab2-9b2a-8e36bd8f260a.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "a708fb45ad90e4498222539cc3604bab0abdddf8e352afb2dac4790ade7f7ff7",
+      "observation": "검정 테두리와 진홍 꽃 자수, 컵/독립 가터벨트/하의가 분리됨. 세로 가터끈의 출발점과 조절부 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U49",
+      "filename": "083bdd88-67e6-4fc7-a3af-938ed4ae34c8 (1).jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "522ca44bd8f10d5b4bafdf57aaacee5ff4b76dc0e182a6ab10a80de1a7f72bc0",
+      "observation": "검정 꽃 자수·밝은 바탕/메시 대비, 독립 가터벨트와 세로 연결끈. 지지 허리부와 하의를 구분.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U50",
+      "filename": "56c11081-3b43-4925-b40a-79116ac33c4c.jpg",
+      "size": [
+        800,
+        1067
+      ],
+      "sha256": "f1714f2f1c0cfc3c82df2c14f67a55d8513b75e33dcaa26b6b10fbeda40c773e",
+      "observation": "녹색 레이스 브라·독립 가터벨트·좁은 하의·스타킹. 허리벨트/클립 연결과 동일 색 소재 표현 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U51",
+      "filename": "30a0d328-bb51-4649-b7c8-1fa8cc1f9bab.jpg",
+      "size": [
+        800,
+        1067
+      ],
+      "sha256": "cda474601486747117f79b43aade1cac606b6e66fd293f474bcc74e20456d249",
+      "observation": "검정 레이스 브라·독립 가터벨트·좁은 하의·스타킹. 컵/벨트/하의 역할 구분과 클립 접점 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U52",
+      "filename": "8acade59-a443-4dcc-8788-d1eaf2d823ed.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "815edd721401c82498335e04880dfa26e9e2becfb2d6ad373451ed83551f08a9",
+      "observation": "밝은 바탕·분홍 꽃 자수 컵/하의, 분홍 테두리와 조절 옆끈. 곡선 봉제·자수 배치 참고.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U53",
+      "filename": "New-Design-Hot-Sexy-Women-Lingerie-Set.jpg",
+      "size": [
+        413,
+        550
+      ],
+      "sha256": "c1db8a499d890e5d53db8bf17ec67f6c41833f8e77b5b3c9d50638bd86d2a7a2",
+      "observation": "녹색 광택 직물과 꽃 모양 자수/레이스 컵 패널, 중심 연결부·옆 조절끈. 실제 실크 여부는 미확정.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정"
+    },
+    {
+      "id": "U54",
+      "filename": "083bdd88-67e6-4fc7-a3af-938ed4ae34c8.jpg",
+      "size": [
+        800,
+        1066
+      ],
+      "sha256": "522ca44bd8f10d5b4bafdf57aaacee5ff4b76dc0e182a6ab10a80de1a7f72bc0",
+      "observation": "U49와 파일 바이트가 동일한 중복 자료. 별도 신규 디자인/분석 개수로 중복 계산하지 않음.",
+      "status": "visual_structure_reviewed",
+      "limits": "실제 섬유 성분·두께·지지력·가려진 후면/안감 미확정",
+      "duplicate_of": "U49"
+    }
+  ],
+  "additional_underlayer_product_reference_policy": {
+    "received": 14,
+    "unique": 13,
+    "exact_duplicate": [
+      "U49",
+      "U54"
+    ],
+    "use": "의복 구조·소재 표현 참고만, 자동 디자인 변경 없음",
+    "character_design_priority": "최신 사용자 지정 유지",
+    "image_generated": false
+  },
+  "latest_underlayer_palette_matching": [
+    {
+      "name": "아르델라",
+      "costume_palette_reference": "은백색 갑옷·청색 망토·금색 테두리",
+      "top": "은백색 레이스 컵·청색 가장자리·작은 백합 자수",
+      "low_rise_bottom": "은백색 작은 앞패널·청색 좁은 옆끈·얇은 청색 레이스 경계",
+      "references_and_connections": "U41/U44의 밝은 자수 패널, U45의 테두리 대비. 가터·스타킹 없음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F1-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "로제벨",
+      "costume_palette_reference": "진홍 드레스·검정 코르셋·금색 가시",
+      "top": "샴페인 새틴·진홍 장미 자수·검정 얇은 테두리",
+      "low_rise_bottom": "샴페인 작은 앞패널·진홍 레이스 옆선·검정 가는 연결끈",
+      "references_and_connections": "U43/U48. 가터벨트도 샴페인·진홍, 금색은 작은 부속만",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F2-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "아스트라",
+      "costume_palette_reference": "검정·청보라 드레스·금색 천문 장식",
+      "top": "청보라 곡선 컵·짙은 보라 레이스·가는 금색 천문 자수",
+      "low_rise_bottom": "청보라 작은 앞패널·짙은 보라 옆끈·금색 가장자리 자수",
+      "references_and_connections": "U47의 보라 배색, U45의 패널/끈 구분. 기존 가터·스타킹 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F3-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "모르가나",
+      "costume_palette_reference": "검정·보라 드레스·베일·보석",
+      "top": "검정 일체형 실크 패널·짙은 보라 레이스·마도 자수",
+      "low_rise_bottom": "일체형 하부의 검정 작은 골반 패널·보라 봉제 경계",
+      "references_and_connections": "U51/U53의 소재/레이스 경계만 참고. 기존 일체형/시스루 다리 유지",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F4-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "이벨린",
+      "costume_palette_reference": "백색 겹옷·보라 패널·안대·성구",
+      "top": "아이보리 컵·연보라 레이스·작은 은색 성구 자수",
+      "low_rise_bottom": "아이보리 작은 앞패널·연보라 좁은 옆끈·가는 보라 마감",
+      "references_and_connections": "U44/U46/U49. 가터벨트도 아이보리·보라로 통일",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "bosses.BOS-F5-01.current_design_or_latest_approved_design"
+    },
+    {
+      "name": "벨",
+      "costume_palette_reference": "짙은 녹색 제복·흰 바지·붉은 망토",
+      "top": "아이보리 컵·짙은 녹색 레이스·작은 진홍 장미",
+      "low_rise_bottom": "아이보리 작은 앞패널·녹색 좁은 옆끈·중앙 장미 소량",
+      "references_and_connections": "U41/U50. 가터벨트는 아이보리 중심·녹색 레이스, 붉은 포인트 최소",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.bell",
+      "current_setting": "회색 기능성 스포츠 브라·로우라이즈 미니멀 하의",
+      "garter_belt": false,
+      "stockings": false
+    },
+    {
+      "name": "세라핀",
+      "costume_palette_reference": "백색·청색 로브·금색 장식",
+      "top": "백색/옅은 청색 컵·청색 자수 레이스·금색 별자리",
+      "low_rise_bottom": "백색/옅은 청색 작은 앞패널·청색 좁은 옆끈·작은 별 자수",
+      "references_and_connections": "U45/U46. 가터벨트도 백색·청색, 금색은 가는 자수만",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.seraphin",
+      "current_setting": "백색·옅은 청색 레이스 브라·불투명 안감, 로우라이즈 미니멀 하의; 기능성 아님",
+      "garter_belt": false,
+      "stockings": true
+    },
+    {
+      "name": "루미에라",
+      "costume_palette_reference": "백색·금색 갑옷·성문양",
+      "top": "아이보리 컵·크림 레이스·옅은 금색 성문양",
+      "low_rise_bottom": "아이보리 작은 앞패널·크림색 좁은 옆끈·금색 가는 마감",
+      "references_and_connections": "U44/U49의 컵/벨트 구분. 가터벨트도 아이보리·크림·금색 소량",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.lumiera",
+      "current_setting": "아이보리·크림 레이스 브라·로우라이즈 미니멀 하의, 금색 성문양, 독립 가터벨트·크림 스타킹",
+      "garter_belt": true,
+      "stockings": true
+    },
+    {
+      "name": "베르나",
+      "costume_palette_reference": "갈색 롱코트·흰 상의·짙은 녹색 요소",
+      "top": "짙은 녹색 삼각 컵·가는 같은 색 끈·코코아색 얇은 마감",
+      "low_rise_bottom": "짙은 녹색 작은 삼각 앞패널·가는 녹색 옆끈·코코아 봉제선",
+      "references_and_connections": "첨부 영상 형태 우선. 스포츠형 아닌 가는 끈 세트로 배색 변경",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.verna",
+      "current_setting": "짙은 녹색 삼각 컵·가는 끈·로우라이즈 미니멀 하의·코코아 마감, 가터·스타킹 없음"
+    },
+    {
+      "name": "이리스",
+      "costume_palette_reference": "검정·아이보리 고딕 드레스",
+      "top": "검정 레이스 컵·아이보리 얇은 테두리·작은 실 자수",
+      "low_rise_bottom": "검정 작은 앞패널·검정 레이스 좁은 옆선·아이보리 마감",
+      "references_and_connections": "U42/U49/U51. 독립 가터 추가 없음",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.iris",
+      "current_setting": "검정 레이스 브라·불투명 안감·로우라이즈 미니멀 하의, 금색 자수·아이보리 얇은 마감, 가터 없음"
+    },
+    {
+      "name": "카렌",
+      "costume_palette_reference": "가죽·모피·청색 부족 문양",
+      "top": "흰색 불투명 천 붕대",
+      "low_rise_bottom": "낮은 골반선의 흰 천 로인클로스·작은 앞뒤 덮개",
+      "references_and_connections": "사용자 흰색 지정 유지. 색 장식 추가 없이 겹침·질감·묶음으로 구분",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.karen",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 로인클로스 앞뒤 덮개·옆 묶음"
+    },
+    {
+      "name": "이레",
+      "costume_palette_reference": "백색·검정 무투복·붕대",
+      "top": "흰색 불투명 천 붕대",
+      "low_rise_bottom": "낮은 골반선의 흰 천 훈도시·작은 앞천·묶음",
+      "references_and_connections": "사용자 흰색 지정 유지. 색 장식 추가 없이 접힘·묶음 구조로 구분",
+      "status": "historical_proposal_superseded",
+      "superseded_by": "approved_playable_character_designs.ire",
+      "current_setting": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 훈도시형 하의·옆 묶음"
+    }
+  ],
+  "approved_playable_character_designs": [
+    {
+      "id": "bell",
+      "name": "벨",
+      "hair": "금발 단발, 뒷머리 묶음 없음",
+      "costume": "아이보리 셔츠·넥타이, 양쪽 소형 견갑, 검을 든 팔의 확장 보호대, 등 전체를 덮는 균일한 길이의 짙은 녹색 자켓·진홍 안감, 타이즈형 하의·검정 부츠",
+      "weapon": "조금 두꺼운 세검",
+      "underlayer": "회색 기능성 스포츠 브라·로우라이즈 미니멀 하의",
+      "garter": false,
+      "stockings": false,
+      "image": "exec-9795477e-ff18-4d2d-8834-54d08794c8a9.png",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 여태까지 설정한 캐릭터들 디자인은 db에 반영해 만족스러워",
+      "approved_at": "2026-10-09T23:52:54+09:00",
+      "female_head_ratio_target": 8,
+      "face_shape_reference": "npc-innkeeper-cutout-v1.png",
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa"
+    },
+    {
+      "id": "seraphin",
+      "name": "세라핀",
+      "hair": "금발, 적당한 웨이브·앞쪽 가는 땋은 머리",
+      "species": "긴 귀의 엘프",
+      "costume": "마녀 모자 복구, 아이보리·금색 로브와 파란 안감, 가운데 긴 천과 양옆 벌어지는 치마, 등 후드·가슴 장식, 검정 스타킹·장식 부츠",
+      "weapon": "보석 없는 나무 스태프·룬어가 쓰인 색 천, 마법서 복구",
+      "underlayer": "백색·옅은 청색 레이스 브라·불투명 안감, 로우라이즈 미니멀 하의; 기능성 아님",
+      "garter": false,
+      "stockings": true,
+      "image": "exec-ec038dea-0711-4faf-8505-3a0fa67dec37.png",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 여태까지 설정한 캐릭터들 디자인은 db에 반영해 만족스러워",
+      "approved_at": "2026-10-09T23:52:54+09:00",
+      "female_head_ratio_target": 8,
+      "face_shape_reference": "npc-innkeeper-cutout-v1.png",
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa"
+    },
+    {
+      "id": "lumiera",
+      "name": "루미에라",
+      "species": "인간",
+      "hair": "분홍색, 땋아 뒤에 모은 묶음머리·금실 고정, 한쪽 긴 앞머리 비대칭",
+      "costume": "은백색·금색 판금 갑옷, 가슴부터 복부까지 이어지는 단단한 일체형 흉갑·금속 가장자리·허리 겹판, 다른 갑주와 동일한 밝은 은백색, 아이보리 중앙 자락·균형 잡힌 등 덮개·갑주 부츠",
+      "weapon": "메이스·성기사 방패; 성경 삭제",
+      "physique": "성기사다운 적당한 어깨·팔·등·다리 근육과 자연스러운 11자 복근; 체적 과장 없음",
+      "underlayer": "아이보리·크림 레이스 브라·로우라이즈 미니멀 하의, 금색 성문양, 독립 가터벨트·크림 스타킹",
+      "garter": true,
+      "stockings": true,
+      "image": "exec-b83c2f72-fc7b-48a6-97df-c9f45fba0b64.png",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 여태까지 설정한 캐릭터들 디자인은 db에 반영해 만족스러워",
+      "approved_at": "2026-10-09T23:52:54+09:00",
+      "female_head_ratio_target": 8,
+      "face_shape_reference": "npc-innkeeper-cutout-v1.png",
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa"
+    },
+    {
+      "id": "verna",
+      "name": "베르나",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "베르나 설정 db 저장하고",
+      "approved_at": "2026-10-10T00:06:22+09:00",
+      "hair": "짙은 녹색 옆가르마·흐르는 레이어드 웨이브; 최신 첨부 헤어 우선",
+      "costume": "갈색 바바리형 롱코트·녹색 안감, 아이보리 셔츠·짙은 조끼, 카우보이 모자·부츠, 가죽 홀스터·탄띠·장갑; 보안관 배지 삭제",
+      "weapon": "목제 개머리판 스코프 장총, 홀스터 리볼버, 허리 칼집 단검",
+      "underlayer": "짙은 녹색 삼각 컵·가는 끈·로우라이즈 미니멀 하의·코코아 마감, 가터·스타킹 없음",
+      "garter": false,
+      "stockings": false,
+      "image": "exec-de3f2a8b-2f47-4006-be7f-1e7435f8d950.png",
+      "female_head_ratio_target": 8,
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa",
+      "remaining_visual_note": "의상 정면 헤어 일부가 후면보다 길게 표현된 점은 후속 길이 통일 보정 대상"
+    },
+    {
+      "id": "iris",
+      "name": "이리스",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 이리스도 db저정해줘",
+      "approved_at": "2026-10-10T00:12:18+09:00",
+      "hair": "은백색 웨이브 사이드 포니테일·검정 리본·금색 꽃 장식",
+      "costume": "검정·아이보리 고딕 드레스, 금색 덩굴 자수, 아이보리 러플 목장식·소매, 비대칭 겹치마, 허리 리본·회중시계, 검정 스타킹·레이스업 부츠",
+      "weapon": "조종 십자대·실·소형 마리오네트, 검정 정장·아이보리 조끼·도자기 가면·황동 관절의 자동 관절 인형",
+      "underlayer": "검정 레이스 브라·불투명 안감·로우라이즈 미니멀 하의, 금색 자수·아이보리 얇은 마감, 가터 없음",
+      "garter": false,
+      "stockings": "외부 의상 검정 스타킹; 속옷 단독뷰 맨다리",
+      "image": "exec-ae0f1efd-5672-436e-92c8-3694ffa00c61.png",
+      "female_head_ratio_target": 8,
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa"
+    },
+    {
+      "id": "karen",
+      "name": "카렌",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 카렌은 이걸로 DB 반영하고",
+      "approved_at": "2026-10-10T00:29:14+09:00",
+      "hair": "붉은 웨이브·부분 땋기·뒤쪽 반묶음",
+      "costume": "가죽 교차 상의·청색 직조 테두리, 회백색 모피 어깨덮개, 청색 중앙 앞뒤 자락·가죽 옆패널, 가죽 팔 보호대·모피 부츠",
+      "accessory": "짐승 뼈 구슬·중앙 송곳니 목걸이",
+      "weapon": "긴 목제 자루의 양손도끼; 단일 도끼날·자루 구멍/금속 고정구, 방패 삭제",
+      "physique": "골반·허벅지 확대와 전신의 적당한 근육 보강, 의상·속옷 뷰 체격 통일",
+      "pose": "도끼를 몸 옆에 세워 지지하는 안정적인 직립 자세",
+      "underlayer": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 로인클로스 앞뒤 덮개·옆 묶음",
+      "garter": false,
+      "stockings": false,
+      "image": "exec-db94bb0a-9c28-41ce-a897-101d23d8b5a4.png",
+      "female_head_ratio_target": 8,
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_physics_qa"
+    },
+    {
+      "id": "ire",
+      "name": "이레",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "됐다 이걸로 저장해줘",
+      "approved_at": "2026-10-10T04:25:34.795302+00:00",
+      "hair": "흑발을 비녀로 고정한 정돈된 올림머리, 얼굴 주변 짧은 잔머리",
+      "costume": "아이보리 후드 저고리: 교차깃과 몸에서 떠 있는 짧은 밑단. 검정 불투명 무광 전투 바디슈트가 발까지 연결. 양쪽 어깨에 흑백 태극만 표시(사괘·태극기 테두리 없음). 앞 가슴 가로 연결선·등 X자 하네스와 버클 없는 검정 허리 밴드. 파우치·등 이름·허벅지 문양 없음. 검정 무광 높은 힐 형태 신발. 깃 아래 작은 연녹색 한국 옥패 모티프 목걸이",
+      "weapon": "검정 무광 MMA/UFC 스타일 손가락 노출 패딩 권갑, 간결한 손목 보호. 금속 판금·금색 테두리 없음",
+      "underlayer": "회색 CK 스타일 스포츠 브라와 로우라이즈 하의, 단순한 탄성 밴드. 흰 압박붕대·전통 속곳 삭제",
+      "garter": false,
+      "stockings": false,
+      "image": "ire-design-review/ire_review_sheet_final_20261010.png",
+      "female_head_ratio_target": 8,
+      "face_shape_reference": "npc-innkeeper-cutout-v1.png",
+      "game_database_applied": false,
+      "qa_status": "user_visual_design_approved_technical_qa_partial",
+      "reference_category": "한국풍 무술가 / 최신 승인 디자인"
+    }
+  ],
+  "latest_playable_design_priority": "approved_playable_character_designs > historical underlayer proposals",
+  "verna_next_design_draft": {
+    "name": "베르나",
+    "status": "superseded_by_user_approved_design",
+    "concept": "서부 보안관·현상금사냥꾼",
+    "identity": "원본 짙은 녹색 머리·녹색 눈·갈색 롱코트·장총 유지",
+    "hair": "단발~중단발, 거친 레이어와 비대칭 앞머리; 장발 묶음 폐기",
+    "required_costume": [
+      "바바리형 롱코트",
+      "홀스터",
+      "베스트/조끼",
+      "카우보이 모자",
+      "카우보이 부츠"
+    ],
+    "proposed_palette": [
+      "코코아 갈색",
+      "짙은 녹색",
+      "아이보리",
+      "검정",
+      "낡은 황동"
+    ],
+    "weapon_proposal": "원본 목제 개머리판 장총을 주무기, 리볼버를 홀스터 보조무기로 유지",
+    "underlayer": "기존 짙은 녹색 삼각 컵·가는 끈·로우라이즈 미니멀 하의 유지, 가터 없음; 기능성 변경 미지시",
+    "reference_count": 15,
+    "image_generated": false,
+    "game_database_applied": false,
+    "superseded_by": "approved_playable_character_designs.verna"
+  },
+  "boss_common_proportion_rule": {
+    "target_heads": 8.5,
+    "relative_height": "플레이어블보다 조금 큰 키",
+    "scope": "bosses_only",
+    "playable_head_ratio_target": 8,
+    "instruction": "2026-10-10 최신 사용자 지정",
+    "verification": "target_not_measured_pass"
+  },
+  "common_underlayer_pose_rule": {
+    "direction": "구조 판독이 가능한 자연스러운 체중 이동·편안한 팔과 부드러운 무릎, 과도한 허리꺾임/골반비틀기 금지",
+    "scope": "all_characters",
+    "status": "latest_user_instruction_for_future_generation",
+    "already_approved_images_retroactively_edited": false
+  },
+  "reference_guide_categories": {
+    "chinese_costume": {
+      "name": "중국계의상",
+      "guide": "Chinese_Costume_Reference_Guide.md",
+      "scope": "기존 이레 무협풍 의상 참고 이력; 새 한국풍 의상 자동 적용 제외"
+    }
+  },
+  "ire_next_design_draft": {
+    "status": "user_approved_final_design",
+    "guide": "Ire_Korean_Martial_Artist_Costume_Review.md",
+    "concept": "한국풍 무술가: 짧은 저고리·비녀·검정 전투 보디슈트",
+    "reference_files": [
+      "845535847454d689a939d63c3dc785bd.jpg",
+      "c16288f37b31aefa537b82ebbf2c25d5.jpg",
+      "759bfb9a3580ff8f942feb89d218704d.jpg",
+      "a2f06c6fed5fc3baebe2d5a8f6b0927a.jpg",
+      "92198381bc9d94cb8f28d668a586f68f.jpg",
+      "5c72fe98fc716c18304eddf82c0d0dd8.jpg",
+      "1d7c3911a718e37a205a3a9c5e23782d.jpg",
+      "d0afe0a13fc312b44b3f8a83c73708c2 (1).jpg",
+      "021f6f386241d1f4439a1ac7f52d2b3a.jpg",
+      "7ec70b3571a8e80842d24c5460e3e735(1).jpg",
+      "5dd5a89093d6243c7dac492dcee60f31.jpg",
+      "47a0b107c17623433e4b9cd28f06965d.jpg",
+      "264e10140e5ae2fe01ee81dc7bbae707.jpg",
+      "d0afe0a13fc312b44b3f8a83c73708c2.jpg"
+    ],
+    "preserve": "이전 승인 이미지·체형·얼굴·속옷",
+    "image_generated": true,
+    "game_database_applied": false,
+    "superseded_by": "ire-design-review/ire_review_sheet_final_20261010.png"
+  },
+  "ire_design_history": [
+    {
+      "id": "ire",
+      "name": "이레",
+      "final_approved": true,
+      "status": "user_approved_design",
+      "approval": "좋아 이레 설정도 db 저정해줘",
+      "approved_at": "2026-10-10T00:46:51.200186+09:00",
+      "hair": "흑발 반묶음·상단 틀어 올린 묶음, 긴 뒷머리·아이보리/검정 리본",
+      "costume": "아이보리 교차 무투복·검정 안깃, 은금색 동양풍 자수, 검정 넓은 허리띠·끈·술 장식, 검정 여유 있는 무술 바지, 흰색/검정 정강이 감개·평저 무술화",
+      "weapon": "양손 동양풍 금속 권갑: 어두운 철색 분절 손등·마디 판금, 금색 구름 문양, 겹친 손목·전완 보호판과 고정끈; 기존 가죽 장갑 교체",
+      "underlayer": "흰색 불투명 붕대 상의·낮은 골반선의 흰 천 훈도시형 하의·옆 묶음",
+      "garter": false,
+      "stockings": false,
+      "image": "exec-d3f8642c-52aa-41de-9095-f2143ef56c04.png",
+      "female_head_ratio_target": 8,
+      "face_shape_reference": "npc-innkeeper-cutout-v1.png",
+      "game_database_applied": false,
+      "qa_status": "visual_design_approved_not_technical_qa",
+      "reference_category": "중국계의상 / 과거 승인 디자인 이력",
+      "next_design_proposal": "ire_next_design_draft"
+    }
+  ],
+  "game_database_applied": false,
+  "current_design_priority": "각 boss.current_design (존재 시) → 최신 approved_design_vN → 과거 제안. 역사 필드는 현행을 덮어쓰지 않는다.",
+  "current_review_sheet_registry": [
+    {
+      "boss_id": "BOS-F1-01",
+      "name": "아르델라",
+      "filename": "boss_ardella_review_sheet_approved_v3.png",
+      "repository_path": "design/boss-art/review-sheets/boss_ardella_review_sheet_approved_v3.png",
+      "sha256": "f80f9c7dfa2743d3576f69edcc36831ce2561679e60540b34311257ce952a078",
+      "design_approval": "user_approved",
+      "technical_qa": "PARTIAL"
+    },
+    {
+      "boss_id": "BOS-F2-01",
+      "name": "로제벨",
+      "filename": "boss_rosebel_review_sheet_approved_v4.png",
+      "repository_path": "design/boss-art/review-sheets/boss_rosebel_review_sheet_approved_v4.png",
+      "sha256": "a486f49c8146c1f1d803a98d9e16c993ed1b7435e4eca1adb5a74d4c99b90d00",
+      "design_approval": "user_approved",
+      "technical_qa": "PARTIAL",
+      "library_file_id": "libfile_2f85be45282081919c37d5981d378d29",
+      "file_id": "file_00000000951881f59b51f598757d041c"
+    },
+    {
+      "boss_id": "BOS-F3-01",
+      "name": "아스트라",
+      "filename": "boss_astra_review_sheet_approved_v3.png",
+      "repository_path": "design/boss-art/review-sheets/boss_astra_review_sheet_approved_v3.png",
+      "sha256": "acece1f491c335ed381037a4d5c1417b7f4e891b9b675d6ff1d01708b4e6ed39",
+      "design_approval": "user_approved",
+      "technical_qa": "PARTIAL"
+    },
+    {
+      "boss_id": "BOS-F4-01",
+      "name": "모르가나",
+      "filename": "boss_morgana_review_sheet_approved_v2.png",
+      "repository_path": "design/boss-art/review-sheets/boss_morgana_review_sheet_approved_v2.png",
+      "sha256": "edb45a87ec2ea445f226ee3744b5b0b6b98aebf9037449bb21995ec9c2bcf5b0",
+      "design_approval": "user_approved",
+      "technical_qa": "PARTIAL"
+    },
+    {
+      "boss_id": "BOS-F5-01",
+      "name": "이벨린",
+      "filename": "boss_ivelyn_review_sheet_approved_v3.png",
+      "repository_path": "design/boss-art/review-sheets/boss_ivelyn_review_sheet_approved_v3.png",
+      "sha256": "e4a6cae4499fecf1360ba8e14755e9736577c7f5e1811811c8f8e4c4a3b33460",
+      "design_approval": "user_approved",
+      "technical_qa": "PARTIAL",
+      "library_file_id": "libfile_b68f0c7d12bc81918afa68d9c31f654e",
+      "file_id": "file_00000000be2481f5b77c5149b6652a8e"
+    }
+  ]
+}
