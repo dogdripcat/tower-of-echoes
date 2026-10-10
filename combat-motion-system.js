@@ -28,7 +28,7 @@
     if (busy) return Promise.resolve(false);
     setLocked(true);
     const serial = ++actionSerial;
-    chain = chain.catch(() => {}).then(task).catch(error => {
+    chain = chain.catch(() => {}).then(() => serial === actionSerial ? task(() => serial === actionSerial) : false).catch(error => {
       console.error('COMBAT_MOTION_ERROR', error);
       return false;
     }).finally(() => {
@@ -105,20 +105,23 @@
     node.append(key,emblem,heading);arena.append(node);const completed=await delay(scaleTime(duration*1000));node.remove();return completed;
   }
   function enemySnapshot() { return new Map((state.enemies||[]).map(enemy=>[enemy.id,{hp:enemy.hp,block:enemy.block,status:JSON.stringify(enemy.statuses||{}),bleed:enemy.bleed||0,phase:enemy.phase||1}])); }
-  async function playerAction(card,targetId,resolve) {
+  async function playerAction(card,targetId,resolve,valid=()=>true) {
+    if(!valid()||!enabled()||state.hp<=0)return false;
     const hero=HEROES[state.hero]?.name, profile=data.player[hero]||{}, tag=data.cardTag(card,hero), accent=state.awakeningState?.selectedIds?.includes(card.id)?({red:'#ff4059',green:'#55e99a',blue:'#5bbcff'}[state.awakeningState.color]||profile.accent):profile.accent;
     if(tag==='AWAKENING'||tag==='TRANSCENDENCE'){
       const path=(card.name||'').replace(/\*+$/,'');
       if(!await cinematic(tag,path,tag==='TRANSCENDENCE'?'#ffffff':accent,hero))return false;
+      if(!valid()||!enabled()||state.hp<=0)return false;
       resolve();return true;
     }
     const duration=durationFor(tag,profile), unit=unitElement('hero');
-    if(!unit){resolve();return true}
+    if(!unit){if(!valid())return false;resolve();return true}
     unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
     if(['DEFEND','SKILL_BUFF','COUNTER'].includes(tag))label(card.name,accent);
     projectile('hero',tag,accent,duration);
     const impactAt=['ATTACK_RANGED','ATTACK_MAGIC','ATTACK_SUMMON','ATTACK_AOE'].includes(tag)?.58:tag==='ATTACK_HEAVY'?.54:.48;
     if((await delay(scaleTime(duration*1000*impactAt)))===false)return false;
+    if(!valid()||!enabled()||state.hp<=0)return false;
     const before=enemySnapshot(),heroBlock=state.block||0;
     let deferredWin=false, actualWin=window.winBattle;
     if(typeof actualWin==='function')window.winBattle=()=>{deferredWin=true};
@@ -134,14 +137,17 @@
     return true;
   }
   async function enemyAction(enemy,action,onImpact) {
+    const serial=actionSerial,valid=()=>serial===actionSerial&&enabled()&&state.hp>0&&enemy.hp>0;
+    if(!valid())return false;
     const profile=data.monster[enemy.monsterId]||{}, tag=data.actionTag(enemy,action), duration=durationFor(tag,profile,enemy.rank), accent=profile.accent||'#e96c75';
-    const unit=unitElement('enemy',enemy.id);if(!unit){for(let i=0;i<(action.hits||1);i++)if(onImpact(i)===false)break;return true}
+    const unit=unitElement('enemy',enemy.id);if(!unit){for(let i=0;i<(action.hits||1);i++){if(!valid())return false;if(onImpact(i)===false)return false}return true}
     unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
     if(['PHASE_SKILL','SKILL_CAST','COUNTER','DEFEND'].includes(tag))label(action.name,accent);
     projectile('enemy',tag,accent,duration);
     const hits=Math.max(1,action.hits||1), first=duration*1000*((tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE') ? 0.55 : 0.48), spacing=Math.min(170,duration*1000*.17);
     if((await delay(scaleTime(first)))===false)return false;
     for(let hit=0;hit<hits;hit++){
+      if(!valid())return false;
       const hp=state.hp, block=state.block, enemyHp=enemy.hp;if(onImpact(hit)===false){unit.classList.remove('motion-active',tagClass(tag));return false}
       const damaged=state.hp<hp||state.block<block;
       if(damaged)react('hero','',{heavy:tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE',blocked:state.hp===hp&&state.block<block,accent});
@@ -163,7 +169,7 @@
     const card=state.hand?.find(item=>item.id===id);
     if(!card||!enabled())return previousUse(id,targetId);
     if(busy)return false;
-    return enqueue(()=>playerAction(card,targetId,()=>previousUse(id,targetId)));
+    return enqueue(valid=>playerAction(card,targetId,()=>previousUse(id,targetId),valid));
   };
   const previousRender=window.renderBattle;
   window.renderBattle=function(...args){

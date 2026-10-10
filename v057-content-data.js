@@ -29,7 +29,7 @@
   const sanctuary=[
     {id:'GQ-SAN-C01',name:'성역의 작은 심부름',kind:'sanctuary',metric:'sanctuary',grade:'C',floor:1,target:2,objective:'성역 서비스 2회 이용',sanctuaryExclusive:true,reward:{type:'TEMP_ACTIVITY',visits:1}},
     {id:'GQ-SAN-C02',name:'순례자의 길잡이',kind:'sanctuary',metric:'map',grade:'C',floor:1,target:5,objective:'맵 노드 5개 이동',sanctuaryExclusive:true,reward:{type:'TEMP_ACTIVITY',visits:1}},
-    {id:'GQ-SAN-B01',name:'성역 관리인의 부탁',kind:'sanctuary',metric:'sanctuary',grade:'B',floor:2,target:3,objective:'서로 다른 성역 서비스 3종 이용',sanctuaryExclusive:true,reward:{type:'TEMP_ACTIVITY',visits:3}},
+    {id:'GQ-SAN-B01',name:'성역 관리인의 부탁',uniqueServices:true,kind:'sanctuary',metric:'sanctuary',grade:'B',floor:2,target:3,objective:'서로 다른 성역 서비스 3종 이용',sanctuaryExclusive:true,reward:{type:'TEMP_ACTIVITY',visits:3}},
     {id:'GQ-SAN-B02',name:'긴 순례의 기록',kind:'sanctuary',metric:'survival',grade:'B',floor:2,target:4,objective:'전투 4회 생존',sanctuaryExclusive:true,reward:{type:'TEMP_ACTIVITY',visits:3}},
     {id:'GQ-SAN-A01',name:'성역의 공인',kind:'sanctuary',metric:'boss',grade:'A',floor:3,target:1,objective:'보스 전투 1회 승리',sanctuaryExclusive:true,reward:{type:'MAX_ACTIVITY',amount:1}}
   ];

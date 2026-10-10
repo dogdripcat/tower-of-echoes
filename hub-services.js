@@ -41,8 +41,14 @@
     p.completedQuests.push({...quest});p.claimedQuests.push(claimKey);if(p.activeQuest===quest)p.activeQuest=null;sync?.();return true;
   }
   function claim(){const quest=progress().activeQuest;return Boolean(quest?.completed&&grantQuestReward(quest))}
-  function trackProgress(metric,amount=1){
+  function trackProgress(metric,amount=1,facility=null){
     const quest=progress().activeQuest;if(!quest||quest.completed||(quest.metric||quest.kind||quest.id)!==metric)return false;
+    if(quest.uniqueServices||quest.id==='GQ-SAN-B01'){
+      if(!['merchant','blacksmith','enchanter','alchemist','confessor','guild','inn'].includes(facility))return false;
+      quest.facilityLedger=Array.isArray(quest.facilityLedger)?[...new Set(quest.facilityLedger)]:[];
+      if(quest.facilityLedger.includes(facility))return false;
+      quest.facilityLedger.push(facility);amount=1;quest.progress=quest.facilityLedger.length-1;
+    }
     quest.progress=Math.min(quest.target,(quest.progress||0)+Math.max(0,Number(amount)||0));
     if(quest.progress>=quest.target){quest.completed=true;grantQuestReward(quest)}else sync?.();return true;
   }
@@ -111,6 +117,6 @@
     }
     return result;
   };
-  window.addEventListener?.('toe:guild-progress',event=>trackProgress(event.detail?.metric,event.detail?.amount||1));
+  window.addEventListener?.('toe:guild-progress',event=>trackProgress(event.detail?.metric,event.detail?.amount??1,event.detail?.facility));
   window.TOE_HUB={progress,offers,claim,grantQuestReward,trackBattle,trackProgress,questGold,questGoldRanges,quests,open(role,nav,bindNav,back){if(role==='confessor')openConfessor(nav,bindNav,back);else openGuild(nav,bindNav,back)}};
 })();
