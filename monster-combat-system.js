@@ -11,11 +11,12 @@
   const addPlayerStatus=(id,value=1)=>{state.statuses??=[];const old=state.statuses.find(x=>x.id===id||x.status===id);if(old)old.stacks=(old.stacks||1)+value;else state.statuses.push({id,status:id,name:statusNames[id]||id,icon:statusIcon[id]||'◆',stacks:value,kind:'debuff',desc:`${statusNames[id]||id} ${value}스택`})};
   const addStatusCard=(id,value=1)=>{if(typeof card!=='function')return;const c=card(statusNames[id]||id,0,'상태',`${statusNames[id]||id} ${value}`,0,'#d56b85','#251526','status');c.statusId=id;c.statusStacks=value;c.temporary=true;state.discard??=[];state.discard.push(c)};
   const activeBoss=()=>state.enemies?.find(e=>e.kind==='boss'&&e.hp>0&&e.domain?.active);
-  const exactHp=(enemy,spec)=>{const template=STAGES[state.stage]?.enemies?.find(x=>x[0]===enemy.name)||STAGES[state.stage]?.elite;const old=Number(template?.[2])||spec.hp;const ratio=enemy.maxHp/old;return Math.max(1,Math.round(spec.hp*(Number.isFinite(ratio)&&ratio>0?ratio:1)))};
+  const exactHp=(enemy,spec)=>{const stage=STAGES[state.stage];const template=spec.rank==='BOSS'?stage?.boss:stage?.enemies?.find(x=>x[0]===enemy.name)||stage?.elite;const old=Number(template?.[2])||spec.hp;const ratio=enemy.maxHp/old;return Math.max(1,Math.round(spec.hp*(Number.isFinite(ratio)&&ratio>0?ratio:1)))};
   const normalizeEnemy=(enemy,kind,count,isLeader,preserveHp=false)=>{
     const spec=specOf(enemy);if(!spec)return enemy;
+    const alreadyNormalized=enemy.monsterId===spec.id&&enemy.baseHp===spec.hp;
     enemy.monsterId=spec.id;enemy.rank=spec.rank;enemy.baseHp=spec.hp;enemy.role=spec.role;enemy.actions=spec.actions;enemy.ai=spec.ai;enemy.domainId=spec.domainId||null;enemy.startArmor=spec.startArmor||0;enemy.passive=spec.passive||null;enemy.cooldowns??={};enemy.uses??={};enemy.lastActionId??=null;enemy.telegraph??=null;enemy.forcedNext??=null;enemy.actionBuff??=0;enemy.counter??=0;enemy.statuses??={};enemy.survivalOnce??=spec.passive==='UNDEAD_SURVIVAL_ONCE';enemy.summoned=Boolean(enemy.summoned);enemy.domain??=null;enemy.bossTurns??=0;enemy.phase??=1;enemy.domainDamageBonus??=0;
-    const calculated=preserveHp&&Number.isFinite(enemy.maxHp)&&enemy.maxHp>0?enemy.maxHp:exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
+    const calculated=(preserveHp||alreadyNormalized)&&Number.isFinite(enemy.maxHp)&&enemy.maxHp>0?enemy.maxHp:exactHp(enemy,spec);if(enemy.hp===undefined||enemy.hp===enemy.maxHp){enemy.maxHp=calculated;enemy.hp=calculated}else enemy.maxHp=calculated;
     enemy.block=Math.max(0,enemy.block||0);enemy.armor=enemy.armor??spec.startArmor??0;
     if(enemy.summoned)enemy.uses.rally=1;
     return enemy;
@@ -203,15 +204,15 @@
     if(d.id==='NAMELESS_SANCTUM'){d.lawBrokenThisTurn=false;if(d.adapted?.length===3){d.breakNext=true;d.adapted=[]}const index=d.colors.indexOf(d.currentLaw);d.currentLaw=d.colors[(index+1+d.colors.length)%d.colors.length];d.nextLaw=d.colors[(d.colors.indexOf(d.currentLaw)+1)%d.colors.length];d.redConsumed=false;d.greenConsumed=false;d.blueConsumed=false}
     state.damageThisTurn=0;
   }
-  function clearClockLaw(){for(const pile of [state.hand||[],state.draw||[],state.discard||[],state.exhaust||[]])for(const c of pile){if(c.domainBaseCost!=null){c.cost=c.domainBaseCost;delete c.domainBaseCost}delete c.domainRole}}
+  function clearClockLaw(){for(const pile of [state.deck||[],state.hand||[],state.draw||[],state.discard||[],state.exhaust||[]])for(const c of pile){if(c.domainBaseCost!=null){c.cost=c.domainBaseCost;delete c.domainBaseCost}delete c.domainCostDelta;delete c.domainRole}}
   function applyClockLaw(enemy){
     if(enemy?.domain?.id!=='FROZEN_CLOCK')return;
     clearClockLaw();if(enemy.domain.lawBrokenThisTurn)return;const eligible=(state.hand||[]).filter(c=>!isSpecialCard(c)&&c.extra!=='status'&&c.type!=='상태');
-    if(eligible[0]){eligible[0].domainBaseCost=eligible[0].cost;eligible[0].cost=Math.max(0,eligible[0].cost-1);eligible[0].domainRole='accelerated'}
-    if(eligible[1]){eligible[1].domainBaseCost=eligible[1].cost;eligible[1].cost+=1;eligible[1].domainRole='delayed'}
+    if(eligible[0]){eligible[0].domainCostDelta=-1;eligible[0].domainRole='accelerated'}
+    if(eligible[1]){eligible[1].domainCostDelta=1;eligible[1].domainRole='delayed'}
   }
   const previousStart=startBattle;
-  startBattle=function(kind){previousStart(kind);const boss=state.enemies?.find(e=>e.kind==='boss');if(boss){normalizeEnemy(boss,kind,1,true);if(boss.domainId==='NAMELESS_SANCTUM')activateDomain(boss);else{boss.domain=null;boss.domainPending=false}}state.damageThisTurn=0;state.monsterPartyAttackBonus=0;state.lawErosionActive=false;state.domainLog='';renderBattle()};
+  startBattle=function(kind){clearClockLaw();previousStart(kind);const boss=state.enemies?.find(e=>e.kind==='boss');if(boss){if(boss.domainId==='NAMELESS_SANCTUM')activateDomain(boss);else{boss.domain=null;boss.domainPending=false}}state.damageThisTurn=0;state.monsterPartyAttackBonus=0;state.lawErosionActive=false;state.domainLog='';renderBattle()};
   function finishEnemyTurn(totalTaken){
     if(totalTaken)spawnCombatFx('enemy-attack',totalTaken,'hero');
     if(state.hp<=0&&!triggerDragonHeart()){gameOver();return}

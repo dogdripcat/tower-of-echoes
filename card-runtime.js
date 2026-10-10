@@ -77,6 +77,7 @@
   const previousStart = startBattle;
   startBattle = function(kind) {
     hydrateState();
+    for (const card of state.deck || []) delete card.resourceCycleTurn;
     state.cardResources = {};
     state.retainNextCards = [];
     state.cardRuntimeErrors = [];
@@ -138,13 +139,11 @@
   }
   useCard = function(id, targetId = '') {
     const index = state.hand.findIndex(card => card.id === id), card = state.hand[index];
-    if (!card || !normal(card)) return;
+    if (!card || !normal(card) || core.isResourceCycleLocked(card, state)) return;
     if (targetId) state.targetId = targetId;
     const target = currentTarget(), enemies = aliveEnemies();
     if (card.type === '공격' && !target) return;
-    const free = state.dragonWingFree || state.potionNextCardFree;
-    const actionCost = free ? 0 : Math.max(0, (Number.isFinite(card.actionCost) ? card.actionCost : card.cost) - (hasCardProperty(card, '신속') ? card.swiftPlays || 0 : 0) - (card.potionCostReduction || 0));
-    const innerCost = free ? 0 : Math.max(0, Number.isFinite(card.innerCost) ? card.innerCost : 0);
+    const {actionCost, innerCost} = core.paymentCost(card, state);
     if (actionCost > state.mana || innerCost > state.innerQi) return;
     state.mana -= actionCost; state.innerQi -= innerCost;
     const trigger = card.type === '공격' ? '매 턴 첫 공격' : card.type === '스킬' ? '스킬 카드를 사용할 때' : '';
@@ -159,11 +158,17 @@
         state, target, allEnemies: enemies,
         draw: amount => drawCards(amount),
         discard: amount => discardCards(amount, card.id),
+        gainBlock: amount => { const gained = adjustedAmount(amount, card, 'block'); state.block += gained; return gained; },
         damage: (enemy, amount) => { const bonus = firstDamage ? valueBonus : 0; firstDamage = false; return damageWithSystems(enemy, amount, card, bonus); }
       });
     } catch (error) {
       state.cardRuntimeErrors.push({cardId:card.cardId, message:error.message});
       console.error(error); return;
+    }
+    if (card.cardId === 'ire-23') card.resourceCycleTurn = state.turn;
+    if (card.type === '스킬') {
+      const bonus = (state.inventory || []).filter(item => item.effect === 'skillBlock').reduce((sum, item) => sum + item.amount, 0);
+      state.block += bonus; result.block += bonus;
     }
     const afterStatus = enemies.reduce((sum, enemy) => sum + Object.values(enemy.statuses || {}).reduce((a, b) => a + b, 0), 0);
     if (afterStatus > beforeStatus) core.triggerPersistent(state, '첫 번째 상태 부여 시', card, target, enemies);

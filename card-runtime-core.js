@@ -19,6 +19,22 @@
   const extraFor = type => type === '공격' ? 'attack' : type === '강화' ? 'enhancement' : type === '각성' ? 'awakening-card' : type === '초월' ? 'awakening-transcendence' : 'skill';
   const primaryValue = effects => effects.find(effect => ['damage','gainBlock','conditionalBlock','persistent'].includes(effect.op))?.amount || 0;
 
+  function paymentCost(card, state) {
+    const special = SPECIAL_TYPES.has(card.type) || /각성|초월/.test(card.type || '') || ['awakening','transcendence'].includes(card.extra);
+    const free = state.dragonWingFree || !special && state.potionNextCardFree;
+    const defaultInner = state.hero === 6 && card.keyword === '내공';
+    const base = Number.isFinite(card.actionCost) ? card.actionCost : defaultInner ? 0 : card.cost;
+    // Also read clock roles from older saves whose cost was temporarily mutated.
+    const clock = Number.isFinite(card.domainCostDelta) ? card.domainCostDelta : card.domainRole === 'accelerated' ? -1 : card.domainRole === 'delayed' ? 1 : 0;
+    const swift = card.properties?.some(property => property.keyword === '신속') ? card.swiftPlays || 0 : 0;
+    return {
+      actionCost: free ? 0 : Math.max(0, base + clock - swift - (card.potionCostReduction || 0)),
+      innerCost: free ? 0 : Math.max(0, Number.isFinite(card.innerCost) ? card.innerCost : defaultInner ? card.cost : 0)
+    };
+  }
+  // Draw + action refund can recycle this instance indefinitely, even without Swift.
+  const isResourceCycleLocked = (card, state) => card.cardId === 'ire-23' && Number.isFinite(card.resourceCycleTurn) && card.resourceCycleTurn === state.turn;
+
   function materialize(definition, instanceId = uuid()) {
     if (!definition || !cardType(definition.type)) throw new Error(`CARD_DEFINITION_INVALID:${definition?.id || 'unknown'}`);
     const card = {
@@ -123,7 +139,7 @@
   }
 
   function execute(card, context) {
-    const {state, target, allEnemies = [], draw = () => {}, discard = () => {}, damage = () => 0, effects = card.effects || []} = context;
+    const {state, target, allEnemies = [], draw = () => {}, discard = () => {}, damage = () => 0, effects = card.effects || [], gainBlock = amount => { state.block = (state.block || 0) + amount; return amount; }} = context;
     const result = {damage:0, block:0, drawn:0, discarded:0, statuses:0, resources:0, persistent:0};
     const targetsFor = effect => effect.target === '모든 적' ? allEnemies.filter(enemy => enemy.hp > 0) : [target].filter(Boolean);
     for (const effect of effects) {
@@ -132,9 +148,9 @@
       if (effect.op === 'damage') for (const enemy of targetsFor(effect)) result.damage += damage(enemy, effect.amount, card) || 0;
       else if (effect.op === 'conditionalDamage') {
         if (condition(state, target, allEnemies, effect.condition)) result.damage += damage(target, effect.amount, card) || 0;
-      } else if (effect.op === 'gainBlock') { state.block = (state.block || 0) + effect.amount; result.block += effect.amount; }
+      } else if (effect.op === 'gainBlock') { result.block += gainBlock(effect.amount, card) || 0; }
       else if (effect.op === 'conditionalBlock') {
-        if (condition(state, target, allEnemies, effect.condition)) { state.block = (state.block || 0) + effect.amount; result.block += effect.amount; }
+        if (condition(state, target, allEnemies, effect.condition)) result.block += gainBlock(effect.amount, card) || 0;
       } else if (effect.op === 'draw') {
         if (!effect.condition || condition(state, target, allEnemies, effect.condition)) { draw(effect.amount); result.drawn += effect.amount; }
       } else if (effect.op === 'discard') { discard(effect.amount); result.discarded += effect.amount; }
@@ -175,5 +191,5 @@
     }
     return errors;
   }
-  return {NORMAL_TYPES, SPECIAL_TYPES, SUPPORTED_OPS, materialize, applyCanonicalUpgrade, execute, triggerPersistent, resetPersistentTurn, validate, condition, addStatus, ownResource, changeResource, extraFor};
+  return {NORMAL_TYPES, SPECIAL_TYPES, SUPPORTED_OPS, materialize, applyCanonicalUpgrade, execute, triggerPersistent, resetPersistentTurn, validate, condition, addStatus, ownResource, changeResource, extraFor, paymentCost, isResourceCycleLocked};
 });
