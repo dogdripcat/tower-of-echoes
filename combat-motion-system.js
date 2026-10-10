@@ -5,6 +5,11 @@
   const timers = new Map();
   let chain = Promise.resolve();
   let busy = false;
+  let settling = false;
+  let actionCompletion = Promise.resolve(true);
+  let restoreTurnWin = null;
+  const deaths = new Map();
+  const isBusy = () => busy || settling;
   let actionSerial = 0;
   const tagClass = tag => `motion-${String(tag || 'SKILL_UTILITY').toLowerCase().replaceAll('_','-')}`;
   const delay = milliseconds => new Promise(resolve => {
@@ -20,9 +25,9 @@
   function setLocked(value) {
     busy = value;
     if(value)window.TOE_LIVING_IDLE?.stop();
-    document.body?.classList?.toggle('combat-motion-locked', value);
+    document.body?.classList?.toggle('combat-motion-locked', isBusy());
     const end = document.querySelector('#endTurn');
-    if (end) end.disabled = value;
+    if (end) end.disabled = isBusy();
   }
   function enqueue(task) {
     if (busy) return Promise.resolve(false);
@@ -31,6 +36,9 @@
     chain = chain.catch(() => {}).then(() => serial === actionSerial ? task(() => serial === actionSerial) : false).catch(error => {
       console.error('COMBAT_MOTION_ERROR', error);
       return false;
+    }).then(async result => {
+      if (result !== false && serial === actionSerial && !await finishDeaths()) return false;
+      return result;
     }).finally(() => {
       if (serial === actionSerial) {setLocked(false);cleanupTransient();window.TOE_LIVING_IDLE?.sync()}
     });
@@ -82,12 +90,39 @@
   }
   function react(side,id,{heavy=false,blocked=false,dead=false,accent='#fff'}={}) {
     const unit=unitElement(side,id);if(!unit)return;
+    if(side==='enemy'&&dead)return deathReaction(id,unit,accent);
     if(side==='hero')window.TOE_LIVING_IDLE?.stop();
     const className=dead?'motion-death':blocked?'motion-block-hit':heavy?'motion-heavy-hit':'motion-hit';
     unit.style.setProperty('--motion-accent',accent);unit.classList.add(className);
     later(()=>{unit.classList.remove(className);if(side==='hero')window.TOE_LIVING_IDLE?.sync()},dead?650:heavy?580:420);
     impactMarker(side,id,blocked?'block':'damage',accent);
     if(heavy&&!blocked){const arena=document.querySelector('#arena');arena?.classList.remove('motion-heavy-impact');void arena?.offsetWidth;arena?.classList.add('motion-heavy-impact')}
+  }
+  function deathReaction(id,unit,accent) {
+    if(deaths.has(id))return deaths.get(id).promise;
+    unit.disabled=true;unit.onclick=null;
+    unit.classList.remove('motion-active','motion-hit','motion-heavy-hit',...data.MOTION_TAGS.map(tagClass));
+    unit.style.setProperty('--motion-accent',accent);unit.classList.add('motion-death');
+    // CSS owns the duration, including reduced-motion overrides. No duplicate timer.
+    const animation=unit.getAnimations?.().find(item=>item.animationName==='toeDeath');
+    const promise=(animation?animation.finished.then(()=>true,()=>false):Promise.resolve(true)).then(completed=>{
+      unit.remove();if(deaths.get(id)?.promise===promise)deaths.delete(id);return completed;
+    });
+    deaths.set(id,{animation,promise});
+    return promise;
+  }
+  async function finishDeaths() {
+    for(const enemy of state.enemies||[]){
+      if(enemy.hp>0)continue;
+      const unit=unitElement('enemy',enemy.id);
+      if(unit)deathReaction(enemy.id,unit,'#fff');
+    }
+    return (await Promise.all([...deaths.values()].map(item=>item.promise))).every(Boolean);
+  }
+  async function whenIdle() {
+    const completion=actionCompletion, queued=chain;
+    await completion;
+    return (await queued)!==false;
   }
   function durationFor(tag, profile, rank='NORMAL') {
     const base = tag==='TRANSCENDENCE'?2.35:tag==='AWAKENING'?1.0:tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE'||tag==='PHASE_SKILL'?0.92:tag==='DEFEND'||tag==='SKILL_BUFF'?0.68:0.72;
@@ -108,31 +143,29 @@
   async function playerAction(card,targetId,resolve,valid=()=>true) {
     if(!valid()||!enabled()||state.hp<=0)return false;
     const hero=HEROES[state.hero]?.name, profile=data.player[hero]||{}, tag=data.cardTag(card,hero), accent=state.awakeningState?.selectedIds?.includes(card.id)?({red:'#ff4059',green:'#55e99a',blue:'#5bbcff'}[state.awakeningState.color]||profile.accent):profile.accent;
-    if(tag==='AWAKENING'||tag==='TRANSCENDENCE'){
-      const path=(card.name||'').replace(/\*+$/,'');
-      if(!await cinematic(tag,path,tag==='TRANSCENDENCE'?'#ffffff':accent,hero))return false;
-      if(!valid()||!enabled()||state.hp<=0)return false;
-      resolve();return true;
-    }
+    const special=tag==='AWAKENING'||tag==='TRANSCENDENCE';
     const duration=durationFor(tag,profile), unit=unitElement('hero');
-    if(!unit){if(!valid())return false;resolve();return true}
-    unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
-    if(['DEFEND','SKILL_BUFF','COUNTER'].includes(tag))label(card.name,accent);
-    projectile('hero',tag,accent,duration);
     const impactAt=['ATTACK_RANGED','ATTACK_MAGIC','ATTACK_SUMMON','ATTACK_AOE'].includes(tag)?.58:tag==='ATTACK_HEAVY'?.54:.48;
-    if((await delay(scaleTime(duration*1000*impactAt)))===false)return false;
+    if(special){
+      if(!await cinematic(tag,(card.name||'').replace(/\*+$/,''),tag==='TRANSCENDENCE'?'#ffffff':accent,hero))return false;
+    }else if(unit){
+      unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
+      if(['DEFEND','SKILL_BUFF','COUNTER'].includes(tag))label(card.name,accent);
+      projectile('hero',tag,accent,duration);
+      if((await delay(scaleTime(duration*1000*impactAt)))===false)return false;
+    }
     if(!valid()||!enabled()||state.hp<=0)return false;
     const before=enemySnapshot(),heroBlock=state.block||0;
-    let deferredWin=false, actualWin=window.winBattle;
-    if(typeof actualWin==='function')window.winBattle=()=>{deferredWin=true};
-    try{resolve()}finally{if(actualWin)window.winBattle=actualWin}
-    const attack=tag.startsWith('ATTACK_')||tag==='COUNTER';
-    if(attack){
+    let deferredWin=false;const actualWin=window.winBattle, deferWin=()=>{deferredWin=true};
+    if(typeof actualWin==='function')window.winBattle=deferWin;
+    try{resolve()}finally{if(window.winBattle===deferWin)window.winBattle=actualWin}
+    if(tag.startsWith('ATTACK_')||tag==='COUNTER'){
       for(const enemy of state.enemies||[]){const old=before.get(enemy.id);if(!old)continue;const damaged=enemy.hp<old.hp||enemy.block<old.block;if(damaged)react('enemy',enemy.id,{heavy:['ATTACK_HEAVY','ATTACK_AOE'].includes(tag),blocked:enemy.hp===old.hp&&enemy.block<old.block,dead:enemy.hp<=0,accent});if((enemy.phase||1)>(old.phase||1))label(`PHASE ${enemy.phase}`,accent);}
-    }else if((state.block||0)>heroBlock){impactMarker('hero','', 'block',accent)}
+    }else if((state.block||0)>heroBlock)impactMarker('hero','', 'block',accent);
     else if(tag==='SKILL_DEBUFF')impactMarker('enemy',targetId,'status',accent);
-    if((await delay(scaleTime(duration*1000*(1-impactAt))))===false)return false;
-    unit.classList.remove('motion-active',tagClass(tag));
+    const completed=await Promise.all([special||!unit?Promise.resolve(true):delay(scaleTime(duration*1000*(1-impactAt))),finishDeaths()]);
+    if(completed.includes(false)||!valid())return false;
+    unit?.classList.remove('motion-active',tagClass(tag));
     if(deferredWin&&actualWin)actualWin();
     return true;
   }
@@ -140,7 +173,8 @@
     const serial=actionSerial,valid=()=>serial===actionSerial&&enabled()&&state.hp>0&&enemy.hp>0;
     if(!valid())return false;
     const profile=data.monster[enemy.monsterId]||{}, tag=data.actionTag(enemy,action), duration=durationFor(tag,profile,enemy.rank), accent=profile.accent||'#e96c75';
-    const unit=unitElement('enemy',enemy.id);if(!unit){for(let i=0;i<(action.hits||1);i++){if(!valid())return false;if(onImpact(i)===false)return false}return true}
+    const unit=unitElement('enemy',enemy.id);
+    if(!unit){for(let i=0;i<(action.hits||1);i++){if(!valid())return false;const result=onImpact(i);if(enemy.hp<=0||state.hp<=0)return true;if(result===false)return false}return true}
     unit.classList.add('motion-active',tagClass(tag));unit.style.setProperty('--motion-duration',`${duration}s`);unit.style.setProperty('--motion-accent',accent);
     if(['PHASE_SKILL','SKILL_CAST','COUNTER','DEFEND'].includes(tag))label(action.name,accent);
     projectile('enemy',tag,accent,duration);
@@ -148,12 +182,18 @@
     if((await delay(scaleTime(first)))===false)return false;
     for(let hit=0;hit<hits;hit++){
       if(!valid())return false;
-      const hp=state.hp, block=state.block, enemyHp=enemy.hp;if(onImpact(hit)===false){unit.classList.remove('motion-active',tagClass(tag));return false}
+      const hp=state.hp, block=state.block, enemyHp=enemy.hp, impact=onImpact(hit);
       const damaged=state.hp<hp||state.block<block;
       if(damaged)react('hero','',{heavy:tag==='ATTACK_HEAVY'||tag==='ATTACK_AOE',blocked:state.hp===hp&&state.block<block,accent});
       else if(['DEFEND','SKILL_BUFF'].includes(tag))impactMarker('enemy',enemy.id,'block',accent);
       else if(tag==='SKILL_DEBUFF')impactMarker('hero','','status',accent);
       if(enemy.hp<enemyHp)react('enemy',enemy.id,{heavy:false,dead:enemy.hp<=0,accent:'#8ddcff'});
+      if(enemy.hp<=0||state.hp<=0){
+        const completed=await finishDeaths();
+        unit.classList.remove('motion-active',tagClass(tag));
+        return completed&&serial===actionSerial;
+      }
+      if(impact===false){unit.classList.remove('motion-active',tagClass(tag));return false}
       if(hit<hits-1&&(await delay(scaleTime(spacing)))===false)return false;
     }
     if((await delay(scaleTime(Math.max(80,duration*1000-first-spacing*(hits-1)))))===false)return false;
@@ -161,21 +201,24 @@
     return true;
   }
   function clear() {
+    restoreTurnWin?.();restoreTurnWin=null;
     window.TOE_LIVING_IDLE?.clear();
+    for(const {animation} of deaths.values())animation?.cancel();deaths.clear();settling=false;
     for(const [id,resolve] of timers){clearTimeout(id);resolve?.(false)}timers.clear();actionSerial++;setLocked(false);cleanupTransient();chain=Promise.resolve();
   }
   const previousUse=window.useCard;
   window.useCard=function(id,targetId=''){
     const card=state.hand?.find(item=>item.id===id);
     if(!card||!enabled())return previousUse(id,targetId);
-    if(busy)return false;
-    return enqueue(valid=>playerAction(card,targetId,()=>previousUse(id,targetId),valid));
+    if(isBusy())return false;
+    return actionCompletion=enqueue(valid=>playerAction(card,targetId,()=>previousUse(id,targetId),valid));
   };
   const previousRender=window.renderBattle;
   window.renderBattle=function(...args){
     const result=previousRender(...args);
     for(const enemy of state.enemies||[]){
       const slot=unitElement('enemy',enemy.id);if(!slot)continue;
+      if(enemy.hp<=0&&isBusy()){deathReaction(enemy.id,slot,'#fff');continue}
       slot.classList.toggle('motion-cue-counter',(enemy.counter||0)>0);
       slot.classList.toggle('motion-cue-armor',(enemy.armor||0)>0||(enemy.domain?.armor||0)>0);
       slot.classList.toggle('motion-cue-marked',Boolean(enemy.marked));
@@ -186,7 +229,35 @@
   for(const name of ['showRoute']){
     const previous=window[name];if(typeof previous==='function')window[name]=function(...args){clear();return previous.apply(this,args)};
   }
-  window.TOE_COMBAT_MOTION={data,enabled,isBusy:()=>busy,enqueue,delay,playerAction,enemyAction,react,impactMarker,cinematic,applicationBurst,clear,durationFor};
+  // Include the existing outer turn hooks in the stable action boundary.
+  const previousWin=window.winBattle;
+  if(typeof previousWin==='function')window.winBattle=function(...args){
+    if(state.roomState?.phase==='reward')return;
+    return previousWin.apply(this,args);
+  };
+  const previousEnd=window.endTurn;
+  window.endTurn=function(...args){
+    if(!enabled())return previousEnd.apply(this,args);
+    if(isBusy())return Promise.resolve(false);
+    let deferredWin=false;const actualWin=window.winBattle, deferWin=()=>{deferredWin=true};
+    window.winBattle=deferWin;
+    const restoreWin=()=>{if(window.winBattle===deferWin)window.winBattle=actualWin};
+    restoreTurnWin=restoreWin;
+    let result;
+    try{result=previousEnd.apply(this,args)}catch(error){restoreWin();restoreTurnWin=null;throw error}
+    const queued=chain;settling=true;setLocked(busy);
+    const completion=Promise.resolve(result).then(async value=>{
+      if((await queued)===false||!await finishDeaths())return false;
+      restoreWin();
+      if(deferredWin&&enabled())actualWin();
+      return value;
+    }).finally(()=>{
+      restoreWin();if(restoreTurnWin===restoreWin)restoreTurnWin=null;
+      if(actionCompletion===completion){settling=false;setLocked(false);cleanupTransient();window.TOE_LIVING_IDLE?.sync()}
+    });
+    actionCompletion=completion;return completion;
+  };
+  window.TOE_COMBAT_MOTION={data,enabled,isBusy,enqueue,delay,playerAction,enemyAction,react,impactMarker,cinematic,applicationBurst,clear,durationFor,whenIdle};
   const endTurnButton=document.querySelector('#endTurn');
   if(endTurnButton)endTurnButton.onclick=()=>window.endTurn();
 })();

@@ -1235,16 +1235,24 @@ renderBattle=function(){
   const relicItems=(state.inventory||[]).filter(item=>item.type==='relic'&&!item.starting&&item.scope!=='valuable');
   $('#battleEffects').innerHTML=`<span title="전용 유물"><i></i>${hero.relic} · ${hero.passive}</span>${state.hero===4?`<span><i></i>소환물 · HP ${state.summonHp} · 방어 ${state.summonBlock}</span>`:''}${relicItems.map(item=>`<span title="${item.desc}"><i></i>${item.category||'일반'} · ${item.name} · ${item.desc}</span>`).join('')}${blessings.length?`<span><i></i>축복 · ${blessings.map(x=>x.name||x).join(', ')}</span>`:''}${curses.length?`<span><i></i>저주 · ${curses.map(x=>x.name||x).join(', ')}</span>`:''}`;
   $('#heroStatuses').innerHTML=heroStatuses().map(statusChip).join('');
-  const party=$('#enemyParty');party.dataset.count=enemies.length;
-  party.innerHTML=enemies.map(enemy=>{
+  const party=$('#enemyParty');let dyingCount=0;
+  for(const slot of [...party.children]){
+    const enemy=state.enemies.find(item=>item.id===slot.dataset.enemyId);
+    if(enemy?.hp<=0&&window.TOE_COMBAT_MOTION?.isBusy()){
+      slot.disabled=true;slot.onclick=null;dyingCount++;
+    }else slot.remove();
+  }
+  party.dataset.count=enemies.length+dyingCount;
+  party.insertAdjacentHTML('afterbegin',enemies.map(enemy=>{
     const intent=intentFor(enemy),selected=enemy.id===target?.id?' selected':'';
     const flying=/박쥐|망령|화염령|빙정령/.test(enemy.name)?' flying':'';
     const meta=monsterSize(enemy.name),size=` enemy-${enemy.kind} enemy-size-${meta.size_class.toLowerCase()} enemy-mass-${meta.visual_mass.toLowerCase()}`;
     const shape=enemy.kind==='boss'?' enemy-shape-boss':enemy.type==='인간형'||/고블린|시체병|집행자|종지기|사도|인형|알라우네/.test(enemy.name)?' enemy-shape-humanoid':/들개|사냥개|박쥐|태엽쥐/.test(enemy.name)?' enemy-shape-beast':' enemy-shape-other';
     return `<button class="enemy-slot${selected}${flying}${size}${shape}" style="--enemy-scale:${meta.battle_scale};--enemy-mobile-scale:${Math.max(.55,+(meta.battle_scale*.72).toFixed(2))};--enemy-anchor:${meta.foot_anchor}px" type="button" data-enemy-id="${enemy.id}" data-size-class="${meta.size_class}" data-rank="${meta.rank}" data-dimension-type="${meta.dimension_type}" aria-label="${enemy.name}, ${enemy.type}, ${meta.rank}, ${meta.lore_height_cm}센티미터"><span class="enemy-art-wrap"><img src="${enemyImage(enemy)}" alt="${enemy.name}"></span><span class="status-tray">${enemyStatuses(enemy).map(statusChip).join('')}</span><span class="enemy-intent">의도: ${intent.text}</span><span class="enemy-local"><strong>${enemy.name} <em>[${enemy.type}]</em></strong><span class="bar layered-bar"><span class="hp-fill" style="width:${enemy.hp/enemy.maxHp*100}%"></span><span class="shield-fill" style="width:${Math.min(100,enemy.block/enemy.maxHp*100)}%"></span></span><small>HP ${enemy.hp}/${enemy.maxHp}${enemy.block?` · 방어 ${enemy.block}`:''}${enemy.armor?` · 장갑 ${enemy.armor}`:''}</small></span></button>`;
-  }).join('');
+  }).join(''));
   party.querySelectorAll('.enemy-slot img').forEach(img=>{if(img.complete)normalizeMonsterArt(img);else img.addEventListener('load',()=>normalizeMonsterArt(img),{once:true})});
   party.querySelectorAll('[data-enemy-id]').forEach(button=>{
+    if(button.disabled)return;
     button.onclick=()=>{state.targetId=button.dataset.enemyId;currentTarget();renderBattle()};
   });
   $('#drawCount').textContent=state.draw.length;$('#discardCount').textContent=state.discard.length;$('#exhaustCount').textContent=state.exhaust.length;$('#mana').textContent=state.mana;$('#resourceLabel').textContent=hero.resource;$('#resourceMax').textContent=`/${hero.resourceMax}`;const hasQi=state.hero===6;$('#innerQiPanel').classList.toggle('hidden',!hasQi);if(hasQi){$('#innerQi').textContent=Array.from({length:3},(_,i)=>i<state.innerQi?'●':'○').join(' ');$('#innerQiMax').textContent=`${state.innerQi}/3`}

@@ -215,6 +215,7 @@
   function finishEnemyTurn(totalTaken){
     if(totalTaken)spawnCombatFx('enemy-attack',totalTaken,'hero');
     if(state.hp<=0&&!triggerDragonHeart()){gameOver();return}
+    if(!aliveEnemies().length){winBattle();return}
     for(const c of [...state.discard])if(hasCardProperty(c,'회수')){state.discard.splice(state.discard.indexOf(c),1);state.hand.push(c)}
     if(state.potionRegeneration?.turns>0){state.hp=Math.min(state.maxHp,state.hp+Math.ceil(state.maxHp*state.potionRegeneration.percent/100));if(--state.potionRegeneration.turns<=0)state.potionRegeneration=null}
     if(state.dragonWingRecycle){const c=state.exhaust.find(x=>!isSpecialCard(x)&&!statusCard(x)&&!x.temporary&&!x.system);if(c){state.exhaust.splice(state.exhaust.indexOf(c),1);state.draw.push(c)}}
@@ -236,7 +237,8 @@
           const completed=(action?.hits||1)>1&&['attack','attackHeal','attackBlock'].includes(action.type)
             ?await executeMultiHitAnimated(enemy,action,motion)
             :await motion.enemyAction(enemy,action,()=>executeAction(enemy,action));
-          if(completed===false)return;
+          if(completed===false)return false;
+          if(!aliveEnemies().length&&state.hp>0){winBattle();return true}
           renderBattle();
         }else executeAction(enemy,action);
         totalTaken+=Math.max(0,takenBefore-state.hp);
@@ -244,6 +246,7 @@
         if(state.hp<=0)break;
       }
       finishEnemyTurn(totalTaken);
+      return true;
     };
     const motion=window.TOE_COMBAT_MOTION;
     if(motion?.enabled())return motion.enqueue(run);
