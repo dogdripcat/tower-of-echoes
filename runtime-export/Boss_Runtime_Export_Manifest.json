@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-10T05:13:08.884669+00:00",
+  "boss_art_db_version": "2.23.0",
+  "guide_version": "2.14",
+  "game_database_applied": false,
+  "review_sheet_redesign": "NONE",
+  "runtime_game_overwrite": "NONE",
+  "export_method": "Built-in image generation faithful dressed-front reconstruction with true alpha; lossless WebP transcode. Not a byte-exact crop of review sheet.",
+  "webp_encoding": {
+    "lossless": true,
+    "method": 6,
+    "exact": true
+  },
+  "qa_limitations": [
+    "Hidden underlayers/garter rear cannot be visually verified from dressed front; source design retained in manifest.",
+    "Center axis and support anchors are approximate manual visual coordinates, not skeletal measurements.",
+    "Morgana latest v2 has no face veil; actual latest approved sheet takes priority over earlier veil text.",
+    "Ivelin feet occluded by gown: robe-hem baseline exported; foot/float gameplay classification remains unresolved.",
+    "Safe margin is actual visible alpha bbox; no artificial padding or scale manipulation applied."
+  ],
+  "bosses": [
+    {
+      "boss_id": "BOS-F1-01",
+      "approved_sheet": "design/boss-art/review-sheets/boss_ardella_review_sheet_approved_v3.png",
+      "approved_sheet_sha256": "f80f9c7dfa2743d3576f69edcc36831ce2561679e60540b34311257ce952a078",
+      "png_master": "runtime-export/boss-gatekeeper-master.png",
+      "webp_runtime": "runtime-export/boss-gatekeeper.webp",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_bbox": [
+        9,
+        10,
+        1007,
+        1523
+      ],
+      "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+      "edge_touch": false,
+      "alpha_zero_pixels": 563435,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "decode": "PASS",
+      "margin_px": [
+        9,
+        10,
+        17,
+        13
+      ],
+      "center_axis": {
+        "x": 512,
+        "canvas_center_x": 512,
+        "method": "manual_visual_torso_axis_estimate",
+        "uncertainty_px": 30
+      },
+      "foot_or_float_anchor": {
+        "x": 510,
+        "y": 1510,
+        "type": "visible_foot_support_estimate",
+        "gameplay_float_classification": "NOT_CHANGED",
+        "method": "manual_visual_estimate",
+        "uncertainty_px": 12
+      },
+      "sha256_png": "c256aee3378c71d6bafc94d26617ddd559d193ffa272f52c5fd474464979ff8d",
+      "sha256_webp": "07b00dd34119d66ccee0b37392cbe0a70532e7a16c3520750001bd9e20274087",
+      "approval_version": "v3",
+      "export_approval": "source_design_approved_export_not_separately_approved",
+      "notes": "v3 silver/white armor, blue cloth, complete sword/shield and braid.",
+      "webp_qa": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "alpha_bbox": [
+          9,
+          10,
+          1007,
+          1523
+        ],
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+        "edge_touch": false,
+        "alpha_zero_pixels": 563435,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "decode": "PASS",
+        "margin_px": [
+          9,
+          10,
+          17,
+          13
+        ]
+      },
+      "png_webp_rgba_pixel_match": true,
+      "completeness_visual_review": "PASS_visible_head_equipment_hair_and_hem",
+      "anatomy_qa": "PARTIAL_occluded_joints_and_precise_head_ratio",
+      "bytes_png": 2597009,
+      "bytes_webp": 1664074
+    },
+    {
+      "boss_id": "BOS-F2-01",
+      "approved_sheet": "design/boss-art/review-sheets/boss_rosebel_review_sheet_approved_v4.png",
+      "approved_sheet_sha256": "a486f49c8146c1f1d803a98d9e16c993ed1b7435e4eca1adb5a74d4c99b90d00",
+      "png_master": "runtime-export/boss-rosequeen-master.png",
+      "webp_runtime": "runtime-export/boss-rosequeen.webp",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_bbox": [
+        11,
+        7,
+        1020,
+        1506
+      ],
+      "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+      "edge_touch": false,
+      "alpha_zero_pixels": 609641,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "decode": "PASS",
+      "margin_px": [
+        11,
+        7,
+        4,
+        30
+      ],
+      "center_axis": {
+        "x": 520,
+        "canvas_center_x": 512,
+        "method": "manual_visual_torso_axis_estimate",
+        "uncertainty_px": 30
+      },
+      "foot_or_float_anchor": {
+        "x": 618,
+        "y": 1488,
+        "type": "visible_foot_support_estimate",
+        "gameplay_float_classification": "NOT_CHANGED",
+        "method": "manual_visual_estimate",
+        "uncertainty_px": 12
+      },
+      "sha256_png": "24a3479c5ff616b1118406843362dd0c2b73e3102aa86394e6258cd6c0d553f4",
+      "sha256_webp": "6e8b45e078e1b45bb956f5f4a43564f7203bf26aae5992851417f11c44cbf854",
+      "approval_version": "v4",
+      "export_approval": "source_design_approved_export_not_separately_approved",
+      "notes": "v4 MATERIAL flat red rose lace retained; no separate thighband; red crystal only whip handle pommel, loop dangling crystal removed. Dress/shoe gems are not whip crystals.",
+      "webp_qa": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "alpha_bbox": [
+          11,
+          7,
+          1020,
+          1506
+        ],
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+        "edge_touch": false,
+        "alpha_zero_pixels": 609641,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "decode": "PASS",
+        "margin_px": [
+          11,
+          7,
+          4,
+          30
+        ]
+      },
+      "png_webp_rgba_pixel_match": true,
+      "completeness_visual_review": "PASS_visible_head_equipment_hair_and_hem",
+      "anatomy_qa": "PARTIAL_occluded_joints_and_precise_head_ratio",
+      "bytes_png": 2619974,
+      "bytes_webp": 1818368
+    },
+    {
+      "boss_id": "BOS-F3-01",
+      "approved_sheet": "design/boss-art/review-sheets/boss_astra_review_sheet_approved_v3.png",
+      "approved_sheet_sha256": "acece1f491c335ed381037a4d5c1417b7f4e891b9b675d6ff1d01708b4e6ed39",
+      "png_master": "runtime-export/boss-astra-master.png",
+      "webp_runtime": "runtime-export/boss-astra.webp",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_bbox": [
+        16,
+        5,
+        1009,
+        1429
+      ],
+      "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+      "edge_touch": false,
+      "alpha_zero_pixels": 680261,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "decode": "PASS",
+      "margin_px": [
+        16,
+        5,
+        15,
+        107
+      ],
+      "center_axis": {
+        "x": 540,
+        "canvas_center_x": 512,
+        "method": "manual_visual_torso_axis_estimate",
+        "uncertainty_px": 30
+      },
+      "foot_or_float_anchor": {
+        "x": 578,
+        "y": 1422,
+        "type": "visible_foot_support_estimate",
+        "gameplay_float_classification": "NOT_CHANGED",
+        "method": "manual_visual_estimate",
+        "uncertainty_px": 12
+      },
+      "sha256_png": "131a8aa97e703f687a5c809e7149611dc12cfc37e4e886849149d0e0f27d43ab",
+      "sha256_webp": "8441b851d7154ab161d6c3adc1ec87e9c53d784b50bc1ce41bc9b39306bb7af2",
+      "approval_version": "v3",
+      "export_approval": "source_design_approved_export_not_separately_approved",
+      "notes": "v3 hat, hair, hour-hand wand, floating book, stockings and gown retained.",
+      "webp_qa": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "alpha_bbox": [
+          16,
+          5,
+          1009,
+          1429
+        ],
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+        "edge_touch": false,
+        "alpha_zero_pixels": 680261,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "decode": "PASS",
+        "margin_px": [
+          16,
+          5,
+          15,
+          107
+        ]
+      },
+      "png_webp_rgba_pixel_match": true,
+      "completeness_visual_review": "PASS_visible_head_equipment_hair_and_hem",
+      "anatomy_qa": "PARTIAL_occluded_joints_and_precise_head_ratio",
+      "bytes_png": 2503174,
+      "bytes_webp": 1741074
+    },
+    {
+      "boss_id": "BOS-F4-01",
+      "approved_sheet": "design/boss-art/review-sheets/boss_morgana_review_sheet_approved_v2.png",
+      "approved_sheet_sha256": "edb45a87ec2ea445f226ee3744b5b0b6b98aebf9037449bb21995ec9c2bcf5b0",
+      "png_master": "runtime-export/boss-morgana-master.png",
+      "webp_runtime": "runtime-export/boss-morgana.webp",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_bbox": [
+        13,
+        6,
+        1010,
+        1453
+      ],
+      "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+      "edge_touch": false,
+      "alpha_zero_pixels": 747215,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "decode": "PASS",
+      "margin_px": [
+        13,
+        6,
+        14,
+        83
+      ],
+      "center_axis": {
+        "x": 545,
+        "canvas_center_x": 512,
+        "method": "manual_visual_torso_axis_estimate",
+        "uncertainty_px": 30
+      },
+      "foot_or_float_anchor": {
+        "x": 580,
+        "y": 1445,
+        "type": "visible_foot_support_estimate",
+        "gameplay_float_classification": "NOT_CHANGED",
+        "method": "manual_visual_estimate",
+        "uncertainty_px": 12
+      },
+      "sha256_png": "538e16f2415822534ccb55f2b58041c4e274b6c10d2e4b3e1eaf53ab605b2ac1",
+      "sha256_webp": "182eb3636311496dae15e3063a6fdd21ce0aba4cca0d7a0b4219bbd4a745883d",
+      "approval_version": "v2",
+      "export_approval": "source_design_approved_export_not_separately_approved",
+      "notes": "v2 bare feet, star gown, gloves, clock halo/cards, latest uncovered face retained; no new veil invented.",
+      "webp_qa": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "alpha_bbox": [
+          13,
+          6,
+          1010,
+          1453
+        ],
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+        "edge_touch": false,
+        "alpha_zero_pixels": 747215,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "decode": "PASS",
+        "margin_px": [
+          13,
+          6,
+          14,
+          83
+        ]
+      },
+      "png_webp_rgba_pixel_match": true,
+      "completeness_visual_review": "PASS_visible_head_equipment_hair_and_hem",
+      "anatomy_qa": "PARTIAL_occluded_joints_and_precise_head_ratio",
+      "bytes_png": 2299913,
+      "bytes_webp": 1547318
+    },
+    {
+      "boss_id": "BOS-F5-01",
+      "approved_sheet": "design/boss-art/review-sheets/boss_ivelyn_review_sheet_approved_v3.png",
+      "approved_sheet_sha256": "e4a6cae4499fecf1360ba8e14755e9736577c7f5e1811811c8f8e4c4a3b33460",
+      "png_master": "runtime-export/boss-ivelyn-master.png",
+      "webp_runtime": "runtime-export/boss-ivelyn.webp",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_bbox": [
+        8,
+        18,
+        1017,
+        1516
+      ],
+      "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+      "edge_touch": false,
+      "alpha_zero_pixels": 633403,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "decode": "PASS",
+      "margin_px": [
+        8,
+        18,
+        7,
+        20
+      ],
+      "center_axis": {
+        "x": 512,
+        "canvas_center_x": 512,
+        "method": "manual_visual_torso_axis_estimate",
+        "uncertainty_px": 30
+      },
+      "foot_or_float_anchor": {
+        "x": 512,
+        "y": 1516,
+        "type": "robe_hem_proxy_foot_occluded",
+        "gameplay_float_classification": "NOT_CHANGED",
+        "method": "manual_visual_estimate",
+        "uncertainty_px": 12
+      },
+      "sha256_png": "348eaabc7004124eb83a2423a9d8a4a4d5ab89508a9146afa1c50c7ab96a71ab",
+      "sha256_webp": "3f31603b39c2bb4fef9e4fa18b97848883510fb63f2866b6d5829e3b26fb3603",
+      "approval_version": "v3",
+      "export_approval": "source_design_approved_export_not_separately_approved",
+      "notes": "v3 source underlayer stocking base #483A48/cuff #3B2847 and front2/rear2 garters retained as hidden design; fully dressed export naturally conceals them. Book/censer/chain complete.",
+      "webp_qa": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGBA",
+        "alpha_bbox": [
+          8,
+          18,
+          1017,
+          1516
+        ],
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive], alpha>8",
+        "edge_touch": false,
+        "alpha_zero_pixels": 633403,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "decode": "PASS",
+        "margin_px": [
+          8,
+          18,
+          7,
+          20
+        ]
+      },
+      "png_webp_rgba_pixel_match": true,
+      "completeness_visual_review": "PASS_visible_head_equipment_hair_and_hem",
+      "anatomy_qa": "PARTIAL_occluded_joints_and_precise_head_ratio",
+      "bytes_png": 2422913,
+      "bytes_webp": 1612342,
+      "hidden_underlayer_design": {
+        "stocking_base_color": "#483A48",
+        "stocking_cuff_color": "#3B2847",
+        "garter_front": 2,
+        "garter_rear": 2,
+        "visibility_in_export": "occluded_by_gown; source design contract, not visible color measurement"
+      }
+    }
+  ],
+  "prompt_set": [
+    {
+      "character": "gatekeeper",
+      "reference": "boss_ardella_review_sheet_approved_v3.png",
+      "prompt": "Use case: background-extraction. Make a game runtime PNG master at EXACTLY 1024x1536 portrait with genuine transparent RGBA background. The input is the latest approved character review sheet, an EDIT TARGET: isolate/reconstruct ONLY the LEFTMOST FULLY DRESSED FRONT character at high resolution, not the underlayer character and not rear views. Preserve the approved face, body proportions, hairstyle, costume construction, colors, materials and all equipment. This is a faithful single-character export, NOT a redesign. Entire head, hair ends, feet, all weapons, equipment and gown hems inside canvas, with about 30-50 px safe margin. Body axis centered, narrow balanced game-readable silhouette, natural frontal or slight 3/4 frontal pose. Keep original illustrated rendering, sharp face and material fidelity. ONE character only, no text, no labels, no frames, no review panels, no swatches, no paper, no ground plane, no cast shadow, no matte, no background objects. Retain transparency in gaps. Ardella v3: white/silver metallic plate armor, white fur shoulders, blue cloak and waist cloth, silver braided hair and blue eyes, restrained silver detailing. Sword held physically correctly by the grip, complete sword blade and point visible directed down, large silver kite shield with blue emblem fully visible. No new gold decoration. Recenter the original figure so the shield and sword both fit."
+    },
+    {
+      "character": "rosequeen",
+      "reference": "boss_rosebel_review_sheet_approved_v4.png",
+      "prompt": "Use case: background-extraction. Make a game runtime PNG master at EXACTLY 1024x1536 portrait with genuine transparent RGBA background. The input is the latest approved character review sheet, an EDIT TARGET: isolate/reconstruct ONLY the LEFTMOST FULLY DRESSED FRONT character at high resolution, not the underlayer character and not rear views. Preserve the approved face, body proportions, hairstyle, costume construction, colors, materials and all equipment. This is a faithful single-character export, NOT a redesign. Entire head, hair ends, feet, all weapons, equipment and gown hems inside canvas, with about 30-50 px safe margin. Body axis centered, narrow balanced game-readable silhouette, natural frontal or slight 3/4 frontal pose. Keep original illustrated rendering, sharp face and material fidelity. ONE character only, no text, no labels, no frames, no review panels, no swatches, no paper, no ground plane, no cast shadow, no matte, no background objects. Retain transparency in gaps. Rosebel v4: retain latest face and long champagne-blonde/rose curls, thorn/rose crown, crimson layered gown and black corset with flat rose-red lace pattern matching MATERIAL panel, black patterned stockings with integral lace cuffs, gold accent heels. NO separate horizontal thigh band. Thorn whip all visible in a compact downwards looping curve beside the body, not a wide sweeping horizontal attack. Red crystals ONLY one at HANDLE END/POMMEL. NO red crystals anywhere else on whip; organic red rose FLOWERS on whip remain. Keep fully dressed outfit as shown."
+    },
+    {
+      "character": "astra",
+      "reference": "boss_astra_review_sheet_approved_v3.png",
+      "prompt": "Use case: background-extraction. Make a game runtime PNG master at EXACTLY 1024x1536 portrait with genuine transparent RGBA background. The input is the latest approved character review sheet, an EDIT TARGET: isolate/reconstruct ONLY the LEFTMOST FULLY DRESSED FRONT character at high resolution, not the underlayer character and not rear views. Preserve the approved face, body proportions, hairstyle, costume construction, colors, materials and all equipment. This is a faithful single-character export, NOT a redesign. Entire head, hair ends, feet, all weapons, equipment and gown hems inside canvas, with about 30-50 px safe margin. Body axis centered, narrow balanced game-readable silhouette, natural frontal or slight 3/4 frontal pose. Keep original illustrated rendering, sharp face and material fidelity. ONE character only, no text, no labels, no frames, no review panels, no swatches, no paper, no ground plane, no cast shadow, no matte, no background objects. Retain transparency in gaps. Astra v3: retain broad pointed dark witch hat, long violet-blue hair, dark navy/blue-violet tailored robe with gold astronomical embroidery, leg openings and black lace stockings, heels, clock ornaments. Hold the approved narrow clock-HOUR-HAND wand pointing down, entire tip visible, and the grimoire levitating just above the other palm, compact close to torso. Entire hat brim, hair, wand, book and hems inside safe margins; no added weapons."
+    },
+    {
+      "character": "morgana",
+      "reference": "boss_morgana_review_sheet_approved_v2.png",
+      "prompt": "Use case: background-extraction. Make a game runtime PNG master at EXACTLY 1024x1536 portrait with genuine transparent RGBA background. The input is the latest approved character review sheet, an EDIT TARGET: isolate/reconstruct ONLY the LEFTMOST FULLY DRESSED FRONT character at high resolution, not the underlayer character and not rear views. Preserve the approved face, body proportions, hairstyle, costume construction, colors, materials and all equipment. This is a faithful single-character export, NOT a redesign. Entire head, hair ends, feet, all weapons, equipment and gown hems inside canvas, with about 30-50 px safe margin. Body axis centered, narrow balanced game-readable silhouette, natural frontal or slight 3/4 frontal pose. Keep original illustrated rendering, sharp face and material fidelity. ONE character only, no text, no labels, no frames, no review panels, no swatches, no paper, no ground plane, no cast shadow, no matte, no background objects. Retain transparency in gaps. Morgana v2: copy actual latest approved FRONT face, dark purple flowing hair, exposed shoulders, black/navy star-filled gown with purple lining and elegant split skirt, long black gloves, gold sculptural waist belt, bare feet, hovering purple cards and slender clock halo behind upper head. Preserve actual approved sheet treatment of neck/face; do not invent a new veil, crown or mask absent from this latest sheet. Both visible feet naturally supported as shown; do not invent a hovering flight pose. Keep full clock halo and cards inside safe margins, restrained glow, no extra particles."
+    },
+    {
+      "character": "ivelyn",
+      "reference": "boss_ivelyn_review_sheet_approved_v3.png",
+      "prompt": "Use case: background-extraction. Make a game runtime PNG master at EXACTLY 1024x1536 portrait with genuine transparent RGBA background. The input is the latest approved character review sheet, an EDIT TARGET: isolate/reconstruct ONLY the LEFTMOST FULLY DRESSED FRONT character at high resolution, not the underlayer character and not rear views. Preserve the approved face, body proportions, hairstyle, costume construction, colors, materials and all equipment. This is a faithful single-character export, NOT a redesign. Entire head, hair ends, feet, all weapons, equipment and gown hems inside canvas, with about 30-50 px safe margin. Body axis centered, narrow balanced game-readable silhouette, natural frontal or slight 3/4 frontal pose. Keep original illustrated rendering, sharp face and material fidelity. ONE character only, no text, no labels, no frames, no review panels, no swatches, no paper, no ground plane, no cast shadow, no matte, no background objects. Retain transparency in gaps. Ivelin v3: preserve latest face with white blindfold, long silver-white waves, purple hood and white/ivory long layered gown with dark violet central panel and flat gold ritual embroidery, book held close to torso and brass censer hanging from properly attached chains. Complete censer and all chains/robe hems included. Keep latest body/waist/shoulder proportions. Under gown, stocking BASE COLOR #483A48 and upper lace #3B2847, independent belt with front2/rear2 total4 garter straps. Do not expose hidden underlayers merely to show them; maintain dressed front natural coverage. No added dangling ornaments or text."
+    },
+    {
+      "character": "rosequeen",
+      "iteration": "whip_crystal_cleanup",
+      "prompt": "Keep original transparent sprite; remove red diamond at whip loop mid-section; preserve only handle pommel crystal. Organic red roses and dress/shoe gems unchanged."
+    }
+  ]
+}
